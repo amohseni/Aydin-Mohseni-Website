@@ -25,7 +25,7 @@
   display: "Kevin Zollman"
   url: "https://www.kevinzollman.com/"
   url_source: "CMU faculty page, fetched"
-  works: [automated-safety-research, bayesian-grant-funding, optimal-grant-funding]
+  works: [bayesian-grant-funding]
   also: "MS thesis chair (CMU, 2015)."
   constant: true
 
@@ -33,7 +33,7 @@
   display: "Simon DeDeo"
   url: "https://www.cmu.edu/dietrich/sds/people/faculty/simon-dedeo.html"
   url_source: exproof-readme
-  works: [automated-safety-research, bayesian-grant-funding, optimal-grant-funding]
+  works: [bayesian-grant-funding]
   constant: true
 
 - name: "Alex John London"
@@ -48,6 +48,17 @@
   url: "https://www.cs.cmu.edu/~hheidari/"
   url_source: exproof-publications
   works: [science-ai]
+
+- name: "Yosra Kazemi"
+  display: "Yosra Kazemi"
+  url: "https://cifar.ca/bios/yosra-kazemi/"
+  url_source: exproof-people
+  works: [automated-safety-research]
+
+- name: "Yang Hu"
+  display: "Yang Hu"
+  url: ""
+  works: [automated-safety-research]
 
 - name: "Simon Huttegger"
   display: "Simon Huttegger"

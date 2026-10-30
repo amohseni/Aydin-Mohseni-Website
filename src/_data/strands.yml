@@ -46,7 +46,7 @@
     "Truth and Conformity on Networks": truth-and-conformity
     "The Best Paper You'll Read Today": best-paper
     "HARKing: from Misunderstanding to Misprescription": harking
-  selected: [social-sciences-hard, best-paper, truth-and-conformity, harking, optimal-grant-funding]
+  selected: [social-sciences-hard, best-paper, truth-and-conformity, harking, bayesian-grant-funding]
 
 - slug: methods
   title: "Methods"

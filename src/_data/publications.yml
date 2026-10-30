@@ -314,7 +314,7 @@
 
 - slug: automated-safety-research
   title: "Bayes-Optimal Automated AI Safety Research via Judgement Aggregation under Resource Constraints"
-  authors: ["Aydin Mohseni", "Kevin J. S. Zollman", "Simon DeDeo"]
+  authors: ["Aydin Mohseni", "Yosra Kazemi", "Yang Hu"]
   year: ""
   status: in-progress
   venue: ""
@@ -325,25 +325,10 @@
   exproof: ""
   verified: cv
   verify: true
-  verify_note: "exproof.ai lists a related working paper 'Bayes-Optimal Research Protocols for Automated Research' by Mohseni and DeDeo only ('How to allocate compute across research directions when AI systems do the research.'). Same project? Title and authors differ; summary left blank."
+  verify_note: "Authors from the CV of 30 Oct 2026 (W8), which spells 'Kasemi'; exproof.ai and CIFAR spell 'Kazemi'. exproof.ai lists the SPAR project as 'Bayes-optimal research protocols for automated research' and a working paper 'Bayes-Optimal Research Protocols for Automated Research' by Mohseni and DeDeo ('How to allocate compute across research directions when AI systems do the research.'). Same project? Title and authors differ; summary left blank."
 
 - slug: bayesian-grant-funding
   title: "A Bayesian Model of Grant Funding"
-  authors: ["Aydin Mohseni", "Kevin J. S. Zollman", "Simon DeDeo"]
-  year: ""
-  status: in-progress
-  venue: ""
-  links: {}
-  strand: metascience
-  selected: false
-  summary: ""
-  exproof: ""
-  verified: cv
-  verify: true
-  verify_note: "CV lists W7 'A Bayesian Model of Grant Funding' and W6 'A Bayesian Model of Optimal Grant Funding' with the same authors. Confirm these are two papers."
-
-- slug: optimal-grant-funding
-  title: "A Bayesian Model of Optimal Grant Funding"
   authors: ["Aydin Mohseni", "Kevin J. S. Zollman", "Simon DeDeo"]
   year: ""
   status: in-progress
@@ -356,8 +341,7 @@
   summary: "A Bayesian model of grant funding in which research output depends on both talent and resources, and funding compounds talent over time. The optimal allocation funds the gap between capabilities and resources; the model compares strategies from peer review to uniform seed funding."
   exproof: ""
   verified: cv
-  verify: true
-  verify_note: "Summary and model links come from the old Computational Models page ('Optimal Grant Funding for Scientific Production'). The link between that model and this paper (rather than W7) is an inference."
+  verify_note: "The CV of 30 Oct 2026 drops W6 ('A Bayesian Model of Optimal Grant Funding'), so the two entries are one paper. Summary and model links come from the old Computational Models page ('Optimal Grant Funding for Scientific Production')."
 
 - slug: principal-agent
   title: "AI Alignment as a Principal-Agent Problem"

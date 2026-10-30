@@ -10,7 +10,7 @@
   summary: "A Bayesian model of grant funding in which research output depends on talent and resources, and funding compounds talent over time. The optimal allocation funds the gap between capabilities and resources; the app compares strategies from peer review to uniform seed funding."
   app: "https://amohseni.shinyapps.io/Grant-Funding-and-Scientific-Output-Model/"
   code: "https://github.com/amohseni/Grant-Funding-and-Scientific-Output-Model"
-  paper_slug: optimal-grant-funding
+  paper_slug: bayesian-grant-funding
   image: "/wp-content/uploads/2026/07/SC-GrantFundingModel.png"
   image_alt: "Screenshot of the Optimal Grant Funding for Scientific Production model"
   thumb: "/assets/img/models/grant-funding.png"   # resized copy of `image`, for the Models page
