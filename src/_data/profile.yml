@@ -7,7 +7,8 @@ url: "https://aydinmohseni.com"
 short_bio: >-
   Aydin Mohseni is a mathematical philosopher and assistant professor in the Department of
   Philosophy at Carnegie Mellon University. He uses evolutionary game theory and Bayesian
-  epistemology to study problems in AI safety and metascience.
+  epistemology to study problems in AI safety and metascience. He is a core member of CMU's
+  Institute for Complex Social Dynamics, and co-director of ∃xProof AI with Daniel Herrmann.
 
 long_bio:
   - >-
@@ -41,6 +42,9 @@ bio_links:
   "Department of Philosophy": "https://www.cmu.edu/dietrich/philosophy/"
   "Carnegie Mellon University": "https://www.cmu.edu/"
   "Institute for Complex Social Dynamics (ICSD)": "https://www.cmu.edu/dietrich/social-dynamics/"
+  "Institute for Complex Social Dynamics": "https://www.cmu.edu/dietrich/social-dynamics/"
+  "∃xProof AI": "https://exproof.ai/"
+  "Daniel Herrmann": "https://danielherrmann.ca/"
   "Conceptual Research on Safe AI (CoRe Safe AI)": "https://www.cs.cmu.edu/~coresafeai/"
   "Center for Philosophy of Science": "https://www.centerphilsci.pitt.edu/"
   "Department of Logic and Philosophy of Science": "http://www.lps.uci.edu"

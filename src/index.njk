@@ -18,7 +18,7 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
     <img class="intro-photo" src="{{ '/assets/img/mohseni.jpg' | url }}" alt="Portrait of Aydin Mohseni" width="360" height="360">
     <div class="intro-text">
       <h1 class="tagline" id="home-title"><span class="visually-hidden">Aydin Mohseni, </span>{{ profile.tagline }}</h1>
-      <p class="bio">{{ profile.short_bio | linkPhrases(profile.bio_links) | safe }}</p>
+      <p class="bio">{{ profile.short_bio | linkPhrases(profile.bio_links) | replace("∃", '<span class="exists">∃</span>') | safe }}</p>
       <p class="who"><a href="#strand-ai-safety">AI safety</a> · <a href="#strand-metascience">Metascience</a> · <a href="#strand-methods">Methods</a> · <a href="{{ research }}">All research</a> · <a href="{{ '/cv.pdf' | url }}">CV</a></p>
     </div>
   </div>
@@ -82,14 +82,6 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
 <p class="more"><a href="{{ research }}#talks">All talks</a></p>
 {% endcall %}
 
-{% call section("Co-inquirers", "coinquirers", wide=true) %}
-<ul class="names">
-  {%- for c in coinquirers %}{% if c.constant %}
-  <li>{% if c.url %}<a href="{{ c.url }}">{{ c.display }}</a>{% else %}{{ c.display }}{% endif %}<span class="d">
-    {%- for slug in c.works %}{% set w = publications | findBySlug(slug) %}{% if w %}<a href="{{ research }}#pub-{{ w.slug }}">{{ w.title }}</a>{% if not loop.last %}; {% endif %}{% endif %}{% endfor %}</span></li>
-  {%- endif %}{% endfor %}
-</ul>
-{% endcall %}
 
 {% call section("Contact", "contact") %}
 <p class="lead"><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></p>
