@@ -1,0 +1,513 @@
+% ============================================================================
+% Aydin Mohseni -- Curriculum Vitae
+% ============================================================================
+% Design goal: keep the visual style compact and table-based, while making the
+% data-entry layer simple. Most CV sections below are written as semantic items
+% rather than hand-spaced table rows.
+% ============================================================================
+
+\documentclass[article,10pt,reqno]{amsart}
+
+% ----------------------------------------------------------------------------
+% Encoding, language, mathematics, and page geometry
+% ----------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{mathtools,amsmath,amsthm,amsfonts,amssymb}
+\usepackage[top=2.5cm,bottom=2.5cm,left=3.5cm,right=3.5cm]{geometry}
+
+% ----------------------------------------------------------------------------
+% Spacing and paragraph behavior
+% ----------------------------------------------------------------------------
+\usepackage{setspace}
+\onehalfspacing
+\setlength\parindent{0pt}
+\raggedbottom
+\allowdisplaybreaks
+
+\usepackage[hang,flushmargin]{footmisc}
+\setlength{\skip\footins}{.3cm}
+
+% ----------------------------------------------------------------------------
+% Tables and column types
+% ----------------------------------------------------------------------------
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{multirow}
+
+% Vertically centered columns: retained for legacy/header sections.
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% Top-aligned columns: used for semantic CV-list sections.
+\newcolumntype{T}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{U}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
+% ----------------------------------------------------------------------------
+% Color, microtypography, and links
+% ----------------------------------------------------------------------------
+\usepackage[dvipsnames]{xcolor}
+\definecolor{darkRed}{rgb}{0.57,0.07,0.12}
+\definecolor{darkGray}{rgb}{0.15,0.15,0.15}
+\definecolor{Black}{rgb}{0,0,0}
+
+\usepackage[letterspace=40]{microtype}
+\usepackage[hidelinks]{hyperref}
+
+% Make black the default text color throughout the document.
+\makeatletter
+\newcommand{\globalcolor}[1]{%
+	\color{#1}\global\let\default@color\current@color
+}
+\makeatother
+\AtBeginDocument{\globalcolor{Black}}
+
+% ----------------------------------------------------------------------------
+% Headers, footers, and pagination
+% ----------------------------------------------------------------------------
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagenumbering{gobble}
+
+\renewcommand{\headrulewidth}{0pt}
+\headsep 20pt
+\fancyhead[C]{\footnotesize \color{darkRed}\uppercase{ Aydin Mohseni}\color{Black}\hspace{0.2em}\raisebox{0.1em}{$ | $}  \textit{Curriculum Vitae}}
+\fancyfoot[C]{\footnotesize \thepage\ \textit{of}\ \pageref{LastPage}}
+
+\fancypagestyle{specialfooter}{%
+	\fancyhf{}
+	\renewcommand\headrulewidth{0pt}
+	\fancyfoot[C]{\footnotesize \thepage\ \textit{of}\ \pageref{LastPage}}
+}
+\thispagestyle{specialfooter}
+
+% ----------------------------------------------------------------------------
+% Optional/legacy utilities
+% ----------------------------------------------------------------------------
+\usepackage{comment}
+\usepackage{type1cm}
+\usepackage{lettrine}
+\usepackage[document]{ragged2e}
+\usepackage{marvosym}
+\usepackage{wasysym}
+
+% ----------------------------------------------------------------------------
+% Semantic CV-list machinery
+% ----------------------------------------------------------------------------
+\usepackage{xparse}
+\usepackage{etoolbox}
+
+\newlength{\cvlabelwidth}
+\setlength{\cvlabelwidth}{0.04\textwidth}
+
+\newlength{\cvbodywidth}
+\setlength{\cvbodywidth}{0.96\textwidth}
+
+
+\newlength{\cvitemsep}
+\setlength{\cvitemsep}{0.45em}
+
+\newlength{\cvlabelsep}
+\setlength{\cvlabelsep}{1em}
+
+% Geometry for non-table presentation entries. These reproduce the horizontal
+% text positions of the standard two-column CV table: default longtable padding
+% places the body column at label width + 3\tabcolsep, with a 2\tabcolsep gap
+% between the right-aligned label and the body text.
+\newlength{\cvpresbodyoffset}
+\setlength{\cvpresbodyoffset}{\dimexpr\cvlabelwidth+3\tabcolsep\relax}
+
+\newlength{\cvpreslabelgap}
+\setlength{\cvpreslabelgap}{\dimexpr2\tabcolsep\relax}
+
+\newlength{\cvpresitemsep}
+\setlength{\cvpresitemsep}{0.25em}
+
+% Generic two-column CV section.
+% Usage: \begin{CVList}{Section Title}[heading-space][arraystretch] ... \end{CVList}
+\NewDocumentEnvironment{CVList}{m O{5px} O{1.2}}{%
+	\renewcommand*{\arraystretch}{#3}%
+	\begin{longtable}{U{\cvlabelwidth} T{\cvbodywidth}}
+		& \multicolumn{1}{l}{\footnotesize{#1}} \\[#2]
+	}{%
+	\end{longtable}
+}
+
+% Labeled item: left-column label plus right-column content.
+% Optional argument controls extra vertical space after the row.
+\NewDocumentCommand{\CVItem}{O{} m m}{%
+	#2 & #3 \ifstrempty{#1}{\\}{\\[#1]}%
+}
+
+% Unlabeled item: preserves the same left indent without printing a label.
+\NewDocumentCommand{\CVBlankItem}{O{} m}{%
+	& #2 \ifstrempty{#1}{\\}{\\[#1]}%
+}
+
+% Presentation sections are set as aligned hanging entries rather than table
+% rows. The P-number is placed in the same label column used elsewhere, and the
+% title/venues start at the same body-column x-position as the other CV lists.
+% Since the label is printed with \llap at the start of the title line, it
+% always shares the title baseline.
+\NewDocumentEnvironment{CVPresentationList}{m O{0px}}{%
+	\par\vspace{14pt}\noindent\hspace*{\cvpresbodyoffset}\footnotesize{#1}\par\vspace{#2}%
+}{%
+	\par
+}
+
+\NewDocumentCommand{\CVPresentation}{m m +m}{%
+	\par\begingroup
+	\normalsize
+	\leftskip=\cvpresbodyoffset
+	\parindent=0pt
+	\noindent\llap{\makebox[\cvlabelwidth][r]{#1}\hspace{\cvpreslabelgap}}``#2''\par
+	#3%
+	\par\endgroup\vspace{\cvpresitemsep}%
+}
+
+% Venue item inside a presentation. The optional argument is for symbols such as
+% $^\dagger$; empty city/year arguments are suppressed.
+\NewDocumentCommand{\CVVenue}{O{} m m m}{%
+	\noindent#1\textit{#2}\ifstrempty{#3}{}{ $\cdot$ #3}\ifstrempty{#4}{}{ #4}\par%
+}
+
+% Four-column teaching table.
+\NewDocumentEnvironment{CVTeachingTable}{m O{6px}}{%
+	\renewcommand*{\arraystretch}{1}%
+	\begin{longtable}{R{0.04\textwidth} L{0.45\textwidth} L{0.10\textwidth} L{0.31\textwidth}}
+		& \multicolumn{3}{l}{\footnotesize{#1}} \\[#2]
+	}{%
+	\end{longtable}
+}
+
+\NewDocumentCommand{\CVTeachingItem}{m m m}{%
+	& #1 & #2 & #3 \\
+}
+
+% Five-column summer-school/short-course table.
+\NewDocumentEnvironment{CVShortCourseTable}{m O{6px}}{%
+	\renewcommand*{\arraystretch}{1}%
+	\begin{longtable}{R{0.035\textwidth} L{0.3\textwidth} L{0.3\textwidth} L{0.08\textwidth} L{0.15\textwidth}}
+		& \multicolumn{3}{l}{\footnotesize{#1}} \\[#2]
+	}{%
+	\end{longtable}
+}
+
+\NewDocumentCommand{\CVShortCourseItem}{m m m m}{%
+	& #1 & #2 & #3 & #4 \\
+}
+
+\begin{document}
+	
+	\pagestyle{fancy}
+	\pagenumbering{arabic}
+	\fancyfoot[C]{\footnotesize \thepage \ \textit{of} \pageref{LastPage}} 
+	\setlength{\footskip}{30pt} %footer
+	
+	\renewcommand*{\arraystretch}{1.2}
+	\begin{longtable}{ L{1\textwidth} } 
+		\lsstyle \color{darkRed} \LARGE{\uppercase{Aydin Mohseni}} \\
+		\Large{\textit{curriculum vitae}} \\[-10px]
+	\end{longtable}
+	
+	\renewcommand*{\arraystretch}{1.2}
+	\begin{longtable}{ L{0.15\textwidth} L{0.85\textwidth} } 
+		\multicolumn{2}{l}{\footnotesize{\uppercase{Contact Information}}}  \\[5px]
+		\makecell[l]{ \textit{address} \\ \\ \\ } & \makecell[l]{Carnegie Mellon University \\ Department of Philosophy (Baker Hall 161) \\ 5000 Forbes Ave, Pittsburgh, PA 15213 }\\
+		\textit{phone} & +1 (612) 708 4598 \\
+		\textit{email} & \color{darkRed} amohseni@cmu.edu \\
+		\textit{website} & \color{darkRed} www.aydinmohseni.com \\
+		\textit{last updated:} & \today \\[-6px]
+	\end{longtable}
+	
+	\vspace{4px}
+	\renewcommand*{\arraystretch}{1.1}
+	\begin{longtable}{ L{0.18\textwidth} L{0.82\textwidth} } 
+		\multicolumn{2}{l}{\footnotesize{\uppercase{research}}} \\[5px]
+		\textit{AI Safety} & AI agent foundations, value learning and alignment, automated research \\
+		\textit{Metascience} & Grant funding, replication crisis, social epistemology of science \\
+		\textit{Methods} & Bayesian epistemology, decision theory, evolutionary game theory  \\[-8.3px]
+	\end{longtable}
+	
+	\renewcommand*{\arraystretch}{1.75}
+	\begin{longtable}{L{\textwidth} } 
+		\footnotesize{\uppercase{Academic Appointments}} \\[5px]
+		\makecell[l]{\textsc{Carnegie Mellon University} \\ Assistant Professor, \textbf{Department of Philosophy} (\textit{2024--present}) \\ 
+			Core Member, \textbf{CoreSafe AI} (\textit{2025--present})   \\
+			Core Member, \textbf{Institute for Complex Social Dynamics} (\textit{2024--present})}   \\
+		\makecell[l]{\textsc{University of Pennsylvania} \\ Senior Research Fellow, \textbf{Department of Philosophy} (\textit{2022--24}) \\ }  \\		
+		\makecell[l]{\textsc{University of Pittsburgh} \\ Postdoctoral Research Fellow, \textbf{The Center for Philosophy of Science} (\textit{2021--2022}) \\ } \\[-10.5px]			
+	\end{longtable}
+	
+	\renewcommand*{\arraystretch}{2}
+	\begin{longtable}{ L{\textwidth} } 
+		\footnotesize{\uppercase{Education}} \\[-4px]
+		\makecell[l]{PhD, \textbf{Logic and Philosophy of Science} \textsc{University of California, Irvine} (\textit{2021})} \\[-15px]
+		\ \ \  \textit{Dissertation:} Essays on the Social Epistemology of Science \\[-15px]
+		\ \ \ \textit{Committee:} Cailin O'Connor \textit{\&} Simon Huttegger (co-chairs), Brian Skyrms, Kyle Stanford \\[-10px]
+		MA, \textbf{Mathematical Behavioral Sciences} \textsc{University of California, Irvine} (\textit{2020}) \\[-10px]
+		MS, \textbf{Logic, Computation, and Methodology} \textsc{Carnegie Mellon University} (\textit{2015}) \\[-15px]
+		\ \ \  \textit{Thesis:} The Limitations of Equilibrium Concepts in Evolutionary Game Theory \\[-15px]
+		\ \ \ \textit{Committee:} Kevin Zollman (chair) \textit{\&} Teddy Seidenfeld \\[-10px]
+		BFA, \textbf{Interactive Media} \textsc{Minneapolis College of Art and Design} (\textit{2007}) \\[-10px]
+	\end{longtable}
+	
+	\pagebreak
+	
+	\begin{CVList}{GRANTS}[5px][1]
+		\CVBlankItem{Templeton Foundation Research Grant (PI): \textit{Identifying Breakthrough Science: Modeling, Measurement, and Funding Implications} $\cdot$ \$200k $\cdot$ 2026}
+		\CVBlankItem{Supervised Program for Alignment Research (SPAR) Grant $\cdot$ \$5k $\cdot$ 2026}
+		\CVBlankItem{Institute for Complex Social Dynamics (ICSD) Startup Grant $\cdot$ \$5k $\cdot$ 2026}
+		\CVBlankItem{Falk Research Grant $\cdot$ \$5k $\cdot$ 2024}
+		\CVBlankItem{Interim Appointee, AI2050 Early Career Fellowship, Schmidt Sciences (PI: Atoosa Kasirzadeh)}
+	\end{CVList}
+	
+	% equalize section gap (~28pt)
+	\vspace{-2.1pt}
+	\begin{CVList}{PEER-REVIEWED CONTRIBUTIONS ($\ddag \equiv$ commissioned article.)}
+		\CVItem{A9}{\textbf{Mohseni, A.}, D. Herrmann, \textit{\&} G. A. Orona.  (\textit{forthcoming}) ``Why are the Social Sciences Hard? Two New Hypotheses.'' \textit{Studies in History and Philosophy of Science Part A}	}	
+		\CVItem{A8}{\textbf{Mohseni, A.} (\textit{forthcoming}) ``The Role of Modeling in Improving Science.''  \textit{Philosophy Compass.$\ddag$}}
+		\CVItem{A7}{\textbf{Mohseni, A.} (2025) ``Methods for Modelers of Science,'' in \textit{Methods in the Philosophy of Science: A User's Guide.} Adrian Currie \textit{\&} Sophie Juliane Veigl (eds.), Oxford University Press.}
+		\CVItem{A6}{\textbf{Mohseni, A.}, O'Connor, C., \textit{\&} J. Weatherall (2024) ``The Best Paper You’ll Read Today: Media Biases and the Public Understanding of Science.'' \textit{Philosophical Topics}, 50(2), 127-153.}
+		\CVItem{A5}{LaCroix, T. \textit{\&} \textbf{A. Mohseni} (2023) ``The Tragedy of the AI Commons.'' \textit{Synthese}, 200(4), 289.}
+		\CVItem{A4}{\textbf{Mohseni, A.}, \textit{\&} C. Williams  (2021) ``Truth and Conformity on Networks.'' \textit{Erkenntnis} 86(6), 1509-1530.}
+		\CVItem{A3}{\textbf{Mohseni, A.}, O'Connor, C., \textit{\&} H. Rubin (2019) ``On the Emergence of Minority Disadvantage: Testing the Cultural Red King Hypothesis.'' \textit{Synthese}, 198(2), 5599–5621.}
+		\CVItem{A2}{Barrett, J., Skyrms, B., \textit{\&} \textbf{A. Mohseni} (2019). ``Self-Assembling Networks.''  \textit{British Journal of Philosophy of Science,} 70(2), 301–325.}
+		\CVItem{A1}{\textbf{Mohseni, A.} (2019). ``Stochastic Stability and Disagreements Between Dynamics.'' \textit{Philosophy of Science,} 86(3), 497-521.}
+	\end{CVList}
+	
+	% equalize section gap (~28pt)
+	\vspace{-3pt}
+	\begin{CVList}{UNDER REVIEW ($\dagger \equiv$ revise \textit{\&} resubmit.)}
+		\CVItem{R5}{Herrmann, D.,  \textbf{Mohseni, A.}, Levinstein, B., \textit{\&} B. Rushing. ``A Bayesian Reduction of Causation.''}
+		\CVItem{R4}{London, A. J. \textit{\&} \textbf{A. Mohseni}  ``Learning the Value of Value Learning.'' {\color{darkRed}\href{https://arxiv.org/abs/2511.17714}{arXiv:2511.17714}}}
+		\CVItem{R3}{\textbf{Mohseni, A.} ``HARKing: from Misunderstanding to Misprescription''$\dagger$}
+		\CVItem{R2}{\textbf{Mohseni, A.} ``Replication, Reform, and an Interventional Simpson's Paradox''}
+		\CVItem{R1}{\textbf{Mohseni, A.} ``Limitations of Equilibrium Concepts in Evolutionary Games''}
+	\end{CVList}
+	
+	\begin{CVList}{WORKS IN PROGRESS}
+		\CVItem{W8}{\textbf{Mohseni, A.}, Zollman, K.J.S.,  \textit{\&}  S. DeDeo. ``Bayes-Optimal Automated AI Safety Research via Judgement Aggregation under Resource Constraints.''}		
+		\CVItem{W7}{\textbf{Mohseni, A.}, Zollman, K.J.S.,  \textit{\&}  S. DeDeo. ``A Bayesian Model of  Grant Funding.''}		
+		\CVItem{W6}{\textbf{Mohseni, A.}, Zollman, K.J.S.,  \textit{\&}  S. DeDeo. ``A Bayesian Model of Optimal Grant Funding.''}		
+		\CVItem{W5}{\textbf{Mohseni, A.}, \textit{\&} L. G. Demo. ``AI Alignment as a Principal-Agent Problem.''}
+		\CVItem{W4}{\textbf{Mohseni, A.} ``Goodman's Riddle \textit{\&} the Replicability of Interaction Effects''}
+		\CVItem{W3}{\textbf{Mohseni, A.} ``Changing Scientific Norms: Epistemic Trade-Offs from Classical and Bayesian Perspectives''}
+		\CVItem{W2}{\textbf{Mohseni, A.} \textit{\&} S. Huttegger ``The Rationality of Nash Equilibria''}
+		\CVItem{W1}{\textbf{Mohseni, A.} ``Stochasticity and Intermediate Evolutionary Regimes''}
+	\end{CVList}
+	
+	\begin{CVPresentationList}{PRESENTATIONS ($\dagger \equiv$ invited; $\ddagger \equiv$ commenter.)}[7px]
+		\CVPresentation{P15}{A Bayesian Model of Optimal Science Funding}{
+			\CVVenue[$^\dagger$]{Manifest Conference}{Berkeley}{2026}
+		}
+		\CVPresentation{P14}{A Mathematical Unification of Learning and Evolution}{
+			\CVVenue[$^\dagger$]{ILIAD 2026 Conference}{Berkeley}{2026}
+		} 
+		\CVPresentation{P13}{Virtues and Vices of Analytic Philosophy with Respect to AI Safety}{
+	\CVVenue[$^\dagger$]{ILIAD 2026 Conference}{Berkeley}{2026}
+} 	
+		\CVPresentation{P12}{A Bayesian Reduction of Causation}{
+			\CVVenue{Philosophy of Science Biennial Conference}{San Diego}{2026}
+			\CVVenue{The Society for Philosophy of Causation Conference}{Paris}{2026}
+			\CVVenue{PhilML'26 Philosophy of Machine Learning Conference}{Munich}{2026}			
+			\CVVenue[$^\dagger$]{PPE 9th Annual Meeting}{New Orleans}{2025}
+			\CVVenue[$^\dagger$]{ILIAD 2025 Conference: ODYSSEY}{Berkeley}{2025}
+			\CVVenue[$^\dagger$]{Center for Philosophy of Science Lunch Time Talks}{Pittsburgh}{2025}
+			\CVVenue[$^\dagger$]{4th Formal and Experimental Philosophy Conference}{Amherst}{2025}
+			\CVVenue{12th Workshop on Combining Probability and Logic}{Pittsburgh}{2025}
+			\CVVenue[$^\dagger$]{Logic and Philosophy of Science Colloquium}{Irvine}{2025}
+			\CVVenue[$^\dagger$]{Agent Foundations Workshop}{Pittsburgh}{2025}
+		}
+		\CVPresentation{P11}{Learning the Value of Value Learning}{
+			\CVVenue{Philosophy, Politics, and Economics Conference}{London}{2026}
+			\CVVenue{Beyond Basic Bayesianism Workshop}{Helsinki}{2026}
+			\CVVenue{Formal Ethics Workshop}{Buffalo}{2026}
+			\CVVenue{Agent Foundations Conference}{Pittsburgh}{2026}
+			\CVVenue{ICSD Workshop}{Pittsburgh}{2024}
+			\CVVenue[$^\dagger$]{ILIAD 2025 Conference: ODYSSEY}{Berkeley}{2025}
+		}
+		\CVPresentation{P10}{AI Alignment as a Principal-Agent Problem}{
+			\CVVenue{Foundations of Cooperative AI Lab Seminar}{Pittsburgh}{2024}
+			\CVVenue{Philosophy, Politics, and Economics Society Conference}{New Orleans}{2024}
+			\CVVenue{Philosophy of Science Meets Machine Learning Conference}{T{\"u}bingen}{2024}
+			\CVVenue[$^\dagger$]{ILIAD Conference}{Berkeley}{2024}
+		}
+		\CVPresentation{P9}{Bayesian Epistemology: Foundations, Limits, and Open Questions}{
+			\CVVenue[$^\dagger$]{ILIAD Conference}{Berkeley}{2024}
+		}
+		\CVPresentation{P8}{Why are the Social Sciences Hard? Two New Hypotheses}{
+			\CVVenue{Ninth Quadrennial Fellows Conference}{Miami}{2024}
+			\CVVenue{Formal and Experimental Philosophy Workshop}{Pittsburgh}{2023}
+			\CVVenue{CLMPST: Science and Values in an Uncertain World}{Buenos Aires}{2023}
+		}
+		\CVPresentation{P7}{HARKing: from Misunderstanding to Misprescription}{
+			\CVVenue[$^\dagger$]{Scientific Progress: Individual and Collective}{Amsterdam}{2022}
+			\CVVenue{Society for Philosophy and Psychology Annual Meeting}{Virtual}{2021}
+			\CVVenue[$^\dagger$]{Center for Philosophy of Science, Lunch Time Talk}{Pittsburgh}{2021}
+			\CVVenue{ANPOSS/ENPOSS/POSS-RT Joint Conference}{Tokyo}{2021}
+		}
+		\CVPresentation{P6}{Intervention and Backfire in the Replication Crisis}{
+			\CVVenue{Philosophy of Science Association Biennial}{Baltimore}{2021}
+			\CVVenue{Society for Philosophy of Science in Practice Biennial}{Lansing}{2020}
+			\CVVenue[$^\dagger$]{Public Choice Society Annual Meeting}{Newport Beach}{2020}
+			\CVVenue{Philosophy of Social Science Round Table}{Atlanta}{2020}
+			\CVVenue{12th Munich-Sydney-Tilburg/Turin (MuST) Conference in Philosophy of Science}{Munich}{2019}
+		}
+		\CVPresentation{P5}{On the Emergence of Minority Disadvantage}{
+			\CVVenue[$^\dagger$]{APA: Central Division Meeting}{Denver}{2019}
+			\CVVenue{APA: Pacific Division Meeting}{Vancouver}{2019}
+			\CVVenue{Agent-Based Models in Philosophy Conference}{ Bochum}{2019}
+			\CVVenue[$^\dagger$]{Philosophy, Politics \textit{\&} Economics Society Meeting}{ New Orleans}{2019}
+			\CVVenue[$^\dagger$]{Philosophy and Complex Systems Seminar}{Moscow}{2018}
+		}
+		\CVPresentation{P4}{Truth and Conformity on Networks}{
+			\CVVenue{Philosophy of Science Association Biennial}{Seattle}{2018}
+			\CVVenue{Computational Modeling in Philosophy Conference}{Munich}{2018}
+			\CVVenue[$^\dagger$]{Formal Social Epistemology Workshop}{Irvine}{2018}
+			\CVVenue{IMBS R. D. Luce  Conference}{Irvine}{2017}
+		}
+		\CVPresentation{P3}{Stochastic Stability and Disagreements Between Dynamics}{
+			\CVVenue{Generalized Theory of Evolution Conference}{Düsseldorf}{2018}
+			\CVVenue{Infinite Idealizations in Science Conference}{Munich}{2017}
+		}
+		\CVPresentation{P2}{Self-Assembling Networks}{
+			\CVVenue{IMBS  R. D. Luce Conference}{Irvine}{2015}
+		}
+		\CVPresentation{P1}{Limitations of Equilibrium Concepts in Evolutionary Games}{
+			\CVVenue{International Society for History, Philosophy \textit{\&} Social Studies of Biology Biennial Meeting}{Montreal}{2015}
+			\CVVenue{Decisions, Games and Logic Conference}{London}{2015}
+		}
+	\end{CVPresentationList}
+	
+	\vspace*{10pt}
+	
+	
+	\begin{CVTeachingTable}{UNIVERSITY TEACHING}
+		\CVTeachingItem{Decision Theory \& AI Agent Foundations}{CMU}{Spring 2026}
+		\CVTeachingItem{Philosophy Core II Graduate Seminar}{CMU}{Spring 2026}
+		\CVTeachingItem{Introduction to Philosophy}{CMU}{Fall 2025}
+		\CVTeachingItem{Philosophy Core II Graduate Seminar}{CMU}{Spring 2025}
+		\CVTeachingItem{Game Theory, AI \textit{\&} X-Risk}{CMU}{Spring 2025}
+		\CVTeachingItem{Introduction to Philosophy}{CMU}{Fall 2024}
+		\CVTeachingItem{Game Theory, AI \textit{\&} X-Risk}{UPenn}{Spring 2024}
+		\CVTeachingItem{Introduction to Logic}{UPenn}{Spring 2024}
+		\CVTeachingItem{Introduction to Philosophy}{UPenn}{Spring 2023}
+		\CVTeachingItem{Metaphysics \textit{\&} Epistemology}{UPenn}{Spring 2023}
+		\CVTeachingItem{Topics in Philosophy of Science}{UPenn}{Fall 2022, Fall 2023}
+		\CVTeachingItem{Introduction to Philosophy of Science}{UPenn}{Fall 2022, Fall 2023}
+		\CVTeachingItem{Making Modern Science}{UCI}{Fall 2020}
+		\CVTeachingItem{Introduction to Inductive Logic}{UCI}{Summer 2020}
+	\end{CVTeachingTable}
+	
+	\begin{CVShortCourseTable}{SUMMER SCHOOLS \& SHORT COURSES}
+		\CVShortCourseItem{Decision Theory \textit{\&} AI Agent Foundations}{17th Pitt–Tsinghua Summer School}{THU}{Summer 2026}
+		\CVShortCourseItem{Decision Theory \textit{\&} AI Agent Foundations}{Summer School in Logic and Formal Epistemology}{CMU}{Summer 2026}
+		\CVShortCourseItem{Bayesian Epistemology \textit{\&} Metascience}{Summer School in Logic and Formal Epistemology}{CMU}{Summer 2025}
+		\CVShortCourseItem{Social Epistemology \textit{\&} the Replication Crisis}{Pittsburgh Summer Program}{UPitt}{Summer 2025}
+	\end{CVShortCourseTable}
+	
+	\begin{CVList}{TEACHING TRAINING}[6px][1]
+		\CVBlankItem{CMU Supporting Student Well-Being: Faculty Professional Development in Recognizing and Assisting Students in Distress training $\cdot$ 2026}
+		\CVBlankItem{UCI DTEI Mentoring Excellence Program workshops $\cdot$ 2020}
+		\CVBlankItem{\quad Mentoring Across Differences $\cdot$ Spring 2020}
+		\CVBlankItem{\quad Balancing Academics and Wellness $\cdot$ Winter 2020}
+		\CVBlankItem{UCI DTEI Certificate of Teaching Excellence $\cdot$ 2019}
+		\CVBlankItem{UCI DTEI Certificate of Course Design $\cdot$ 2018}
+		\CVBlankItem{UCI course in advanced course design: Uni Stu 390Z $\cdot$ 2020}
+		\CVBlankItem{UCI courses in pedagogy: Uni Stu 390X, S90A, 390B, and 390C $\cdot$ 2018-19}
+		\CVBlankItem{UCI Diversity and Inclusion in the Classroom workshops $\cdot$ 2019-20}
+		\CVBlankItem{\quad Inclusive Course Design Workshop $\cdot$ Winter 2020}
+		\CVBlankItem{\quad Inclusive Classroom Practices and Pedagogies Workshop $\cdot$ Spring 2019}
+		\CVBlankItem{\quad Enhancing Diversity and Equitable Inclusion Workshop $\cdot$  Fall 2019}
+	\end{CVList}
+	
+	\begin{CVList}{COMMITTEE MEMBERSHIPS}[6px][1]
+		\CVBlankItem{\textit{PhD dissertation committee member} $\cdot$ Zhongxia ``Ricky'' Zhao}
+		\CVBlankItem{\textit{Master's thesis committee member} $\cdot$ Franco Basti\'{a}n Menares Paredes, Dorian Clay}
+		\CVBlankItem{\textit{Undergraduate thesis advisor} $\cdot$ Michael DiGiovanna}
+		\CVBlankItem{\textit{Undergraduate summer research advisor} $\cdot$ Udi Akolkar}		
+	\end{CVList}
+	
+	\begin{CVList}{SERVICE TO THE DEPARTMENT \& UNIVERSITY}[6px][1]
+		\CVBlankItem{\textit{Graduate Admissions Committee} $\cdot$ 2026}
+		\CVBlankItem{\textit{Panelist} for Professional Development Job Information Panel $\cdot$ 2026}		
+		\CVBlankItem{\textit{Member of the Search Committee} for Professor of Philosophy specializing in causal learning and reasoning $\cdot$ 2026}
+		\CVBlankItem{\textit{Member of the Search Committee} for ICSD Postdoctoral Research Fellow  $\cdot$ 2025}
+		\CVBlankItem{\textit{Member of the Search Committee} for Lecturer in Philosophy of Science $\cdot$ 2025}
+		\CVBlankItem{\textit{Graduate Student TA Coordinator} $\cdot$ 2025--2026}
+		\CVBlankItem{\textit{Incoming Graduate Student Faculty Mentor} $\cdot$ 2025--2026}
+	\end{CVList}
+	
+	\begin{CVList}{SERVICE TO THE PROFESSION}[6px][1]
+		\CVBlankItem[5px]{\textit{Conference Organizer} $\cdot$ CMU AI \& Agency Workshop (Pittsburgh, Fall 2026); Formal Models in Metascience Workshop (Pittsburgh, Summer 2025); Philosophy of Science Association Symposium Panel on ``Modeling the Social Structure of Science'' (Baltimore, Fall 2021)}		
+		\CVBlankItem[5px]{\textit{Workshop Designer and Presenter} $\cdot$ twelve-hour TA Professional Development Program workshop for philosophy grad students (Fall 2019); two-hour workshops on diversity \textit{\&} inclusion for graduate students in the school of social sciences (Winter 2020, Spring 2020)}
+		\CVBlankItem[5px]{\textit{Facilitator} $\cdot$ Chance, Credence, Computation Workshop (Pittsburgh, Fall 2024); LPS Summer Diversity Workshop (Irvine, Summer 2020), 17th Annual Formal Epistemology Workshop (Irvine, Spring 2020), Formal Social Epistemology Workshop (Irvine, Spring 2018), Philosophy of Machine Learning Conference (Irvine, Spring 2018), Medical Knowledge in a Social World Conference (Irvine, Spring 2016)}		
+		\CVBlankItem{\textit{Program Committee} $\cdot$ Philosophy of Science Association Biennial 2026; Formal Epistemology Workshop 2026}
+		\CVBlankItem[5px]{\textit{Referee (Journals)} $\cdot$ Philosophy of Science; The British Journal for the Philosophy of Science; The European Journal for the Philosophy of Science; Studies in History and Philosophy of Science C: Studies in History and Philosophy of Biological and Biomedical Sciences; Synthese; Theoria; Ergo; American Philosophical Quarterly}
+		\CVBlankItem{\textit{Referee (Books)} $\cdot$ University of Pittsburgh Press}
+		\CVBlankItem[5px]{\textit{Referee (Conferences)} $\cdot$ PSA Program Committee (2026); Agent Based Models in Philosophy (Summer 2023; Spring 2019); PSA Poster Committee (2022); Formal Epistemology Workshop (2020)}
+		
+		\CVBlankItem{\textit{Public Outreach Volunteer} $\cdot$ Public Philosophy Booth, Long Beach Farmer's Market (2020), Center for Open Science Ambassador (2021--present)
+			%& Volunteer lecturer: Graduate student career day (2016)
+		}
+	\end{CVList}
+	
+	\begin{comment}
+		\begin{CVList}{\uppercase{Languages}}[5px][1]
+			\CVBlankItem{\textit{English} (fluent) primary language of education}
+			\CVBlankItem{\textit{Persian} (native) fluent oral skills, 4 years writing instruction}
+			\CVBlankItem{\textit{Moroccan Arabic} (advanced) certified proficiency, 2 years living in Morocco}
+		\end{CVList}
+	\end{comment}
+	
+	\begin{comment}
+		\begin{CVList}{Technical Capacities}[5px][1]
+			\CVBlankItem{\textit{Mathematics} $\cdot$ Real Analysis, Stochastic Processes, Probability Theory, (Bayesian \textit{\&} Classical) Statistics, Machine Learning, Differential Equations, Linear Algebra, Multivariate Calculus}
+			\CVBlankItem{\textit{Logic} $\cdot$ Set Theory, Computability Theory, Predicate Logic}
+			\CVBlankItem{\textit{Programming} $\cdot$ R, Shiny, Stan, Python, Processing, Lingo}
+			\CVBlankItem{\textit{Scientific Computing} $\cdot$ Mathematica, MATLAB, NetLogo, Excel}
+			\CVBlankItem{\textit{Experiment Design} $\cdot$ oTree, zTree, Amazon Turk, Qualtrics}
+			\CVBlankItem{\textit{Markup} $\cdot$ \LaTeX, XML, CSS \textit{\&} HTML}
+		\end{CVList}
+	\end{comment}
+	
+	\begin{CVList}{FELLOWSHIPS \textit{\&} AWARDS}[5px][1]
+		\CVBlankItem{UCI School of Social Sciences Outstanding Scholar Award $\cdot$ 2020}
+		\CVBlankItem{Christian Werner Research Fellowship $\cdot$ 2020}
+		\CVBlankItem{NSF Graduate Research Assistantship (Grant 1922424 for ``Consensus, Democracy, and the Public Understanding of Science''; PIs Cailin O'Connor \textit{\&} James Weatherall) $\cdot$ 2019}
+		\CVBlankItem{NSF Graduate Research Assistantship (Grant 1535139 for ``Social Dynamics and Epistemic Communities''; PI Cailin O'Connor) $\cdot$ 2016-2019}
+		\CVBlankItem{UCI DTEI Pedagogical Fellowship $\cdot$ 2019}
+		\CVBlankItem{IMBS Research Fellowship $\cdot$ 2018}
+		\CVBlankItem{UCI Associate Dean Fellowship $\cdot$ 2018}
+		\CVBlankItem{UCI School of Social Science Merit Scholarships $\cdot$ 2015-2020}
+		\CVBlankItem{CMU Merit Scholarships $\cdot$ 2013-2015}
+	\end{CVList}
+	
+	\begin{CVList}{PROFESSIONAL SOCIETIES}[6px][1]
+		\CVBlankItem{Center for Open Science (Ambassador)}
+		\CVBlankItem{Philosophy of Science Association}
+		%\CVBlankItem{International Society for History, Philosophy, and Social Studies of Biology}
+		%\CVBlankItem{Philosophy, Politics, and Economics Society}
+		\CVBlankItem{American Philosophical Association}
+	\end{CVList}
+	
+	\vspace{20px}
+	
+	\begin{comment}
+		\newpage
+		\begin{CVList}{References}[10px][1.3]
+			\CVBlankItem[40px]{\makecell[l]{ \textbf{Dr. Simon Huttegger} \\Professor of Logic and Philosophy of Science \\ University of California, Irvine \\  shuttegg@uci.edu}}
+			\CVBlankItem[40px]{\makecell[l]{ \textbf{Dr. Edouard Machery} \\ Distinguished Professor of Philosophy \\ University of Pittsburgh \\  machery@pitt.edu }}
+			%\CVBlankItem[40px]{\makecell[l]{ \textbf{Dr. Bert Baumgaertner} \\Associate Professor of Philosophy, Acting Chair of Politics and Philosophy \\ University of Idaho \\  bbaum@uidaho.edu }}
+			%\CVBlankItem[40px]{\makecell[l]{ \textbf{Dr. Daniel Mann} (teaching reference) \\Director of Grad Student \textit{\&} Postdoc Scholar Instructional Development \\ University of California, Irvine  \\  dmann@uci.edu}}
+			\CVBlankItem[40px]{\makecell[l]{ \textbf{Dr. Cailin O'Connor} \\ Professor of Logic and Philosophy of Science \\ University of California, Irvine \\  cailino@uci.edu }}
+			\CVBlankItem{\makecell[l]{ \textbf{Dr. Kevin Zollman} \\ Herbert A. Professor of Philosophy and Social and Decision Sciences \\ Carnegie Mellon University \\  kzollman@andrew.cmu.edu } \\...}
+		\end{CVList}
+	\end{comment}
+	
+
+	
+\end{document}

@@ -1,0 +1,444 @@
+<title>aydinmohseni.com Rebuild</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+@font-face { font-family: "CMU Serif"; src: url(data:font/woff2;base64,__SERIF__) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "CMU Serif"; src: url(data:font/woff2;base64,__ITALIC__) format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "CMU Serif"; src: url(data:font/woff2;base64,__BOLD__) format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "CMU Sans Serif"; src: url(data:font/woff2;base64,__SANS__) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+
+/* Layout: the exproof.ai three-zone grid (label rail | text column | margin notes), inverted to paper. */
+:root {
+  --bg: #fcfcfa;        /* paper */
+  --fg: #141413;        /* ink */
+  --fg-2: #5d5d58;      /* graphite */
+  --rule: #e2e2dc;
+  --rule-strong: #a9a9a2;
+  --red: #b0122b;
+  --red-bright: #d11c3d;
+  --green: #1a7f4e;
+  --chip: #f1f1ec;
+  --grain-opacity: 0.05;
+  --serif: "CMU Serif", "Latin Modern Roman", "Computer Modern", Georgia, serif;
+  --sans: "CMU Sans Serif", "Latin Modern Sans", "Helvetica Neue", Arial, sans-serif;
+  --rail: 8.5rem; --gap: 2.5rem; --margin: 15rem; --measure: 34rem;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #050505; --fg: #f5f5f2; --fg-2: #b8b8b3; --rule: #2c2c2a; --rule-strong: #6c6c68;
+  --red: #d11c3d; --red-bright: #e8455f; --green: #1fa463; --chip: #151514; --grain-opacity: 0.03; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #050505; --fg: #f5f5f2; --fg-2: #b8b8b3; --rule: #2c2c2a; --rule-strong: #6c6c68;
+  --red: #d11c3d; --red-bright: #e8455f; --green: #1fa463; --chip: #151514; --grain-opacity: 0.03; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+@media (min-width: 1200px) { html { font-size: 18px; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--serif); font-size: 1.12rem; line-height: 1.5; font-kerning: normal; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+.page { position: relative; z-index: 1; max-width: calc(var(--rail) + var(--gap) + var(--measure) + 2.5rem + var(--margin)); margin: 0 auto;
+  padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); padding-block: 0 4rem; }
+a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule-strong); text-underline-offset: 2px; }
+a:hover { color: var(--red); text-decoration-color: var(--red); }
+a:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+.masthead { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 2rem;
+  padding-block: 1.1rem .9rem; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid color-mix(in srgb, var(--rule-strong) 50%, transparent); }
+.brand { font-size: 1.25rem; letter-spacing: .01em; }
+.brand .d { color: var(--red); }
+.masthead nav { display: flex; flex-wrap: wrap; gap: .2rem 1.1rem; font-family: var(--sans); font-size: .78rem; color: var(--fg-2); }
+.masthead nav a { text-decoration: none; }
+
+.section { display: grid; grid-template-columns: var(--rail) minmax(0, var(--measure)) var(--margin); column-gap: var(--gap); padding-block: 2.2rem 1.4rem; }
+.section--wide { grid-template-columns: var(--rail) minmax(0, calc(var(--measure) + var(--gap) + var(--margin))); }
+.label { font-family: var(--sans); font-size: .72rem; letter-spacing: .09em; text-transform: uppercase; color: var(--fg-2); padding-top: .42rem; min-width: 0; }
+.body { min-width: 0; }
+.note { font-size: .82rem; line-height: 1.4; color: var(--fg-2); min-width: 0; padding-top: .3rem; }
+.note p { margin: 0 0 .7rem; }
+h1 { font-weight: 400; font-size: 2.3rem; line-height: 1.15; margin: 0 0 .6rem; text-wrap: balance; }
+h2 { font-weight: 400; font-size: 1.45rem; line-height: 1.25; margin: 0 0 .7rem; text-wrap: balance; }
+h3 { font-weight: 400; font-style: italic; font-size: 1.15rem; margin: 1.4rem 0 .35rem; }
+p { margin: 0 0 .85rem; }
+.lede { font-size: 1.25rem; line-height: 1.45; }
+.meta { font-family: var(--sans); font-size: .78rem; color: var(--fg-2); }
+ul, ol { margin: 0 0 .9rem; padding-left: 1.2rem; }
+li { margin-bottom: .3rem; }
+code { font-family: var(--sans); font-size: .82em; background: var(--chip); padding: 0 .25em; border-radius: 2px; overflow-wrap: anywhere; }
+.table-wrap { overflow-x: auto; margin: .3rem 0 1rem; }
+table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+th { font-family: var(--sans); font-weight: 400; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-2); text-align: left; padding: .35rem .6rem .35rem 0; border-bottom: 1px solid var(--rule-strong); }
+td { padding: .45rem .6rem .45rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td:first-child { white-space: nowrap; }
+
+/* Status tracker */
+.progress { display: flex; flex-wrap: wrap; gap: .4rem 1.3rem; font-family: var(--sans); font-size: .8rem; color: var(--fg-2); margin: .6rem 0 1rem; }
+.progress b { font-weight: 400; color: var(--fg); font-variant-numeric: tabular-nums; }
+.bar { height: 3px; background: var(--rule); margin: 0 0 1.2rem; position: relative; }
+.bar i { position: absolute; inset: 0 auto 0 0; background: var(--fg); }
+.steps { list-style: none; padding: 0; margin: 0 0 1rem; }
+.steps li { display: grid; grid-template-columns: 6.2rem minmax(0, 1fr); gap: .8rem; padding: .35rem 0; margin: 0; }
+.chip { font-family: var(--sans); font-size: .66rem; letter-spacing: .07em; text-transform: uppercase; padding: .18rem .45rem; border: 1px solid var(--rule-strong); border-radius: 2px; color: var(--fg-2); justify-self: start; align-self: start; margin-top: .2rem; white-space: nowrap; }
+li[data-s="done"] .chip { border-color: var(--fg); color: var(--fg); }
+li[data-s="done"] .chip::before { content: "✓ "; }
+li[data-s="doing"] .chip { border-color: var(--red); color: var(--red); }
+li[data-s="you"] .chip { background: var(--red); border-color: var(--red); color: var(--bg); }
+li[data-s="done"] .t { color: var(--fg-2); }
+.ask { counter-reset: q; list-style: none; padding: 0; }
+.ask li { counter-increment: q; display: grid; grid-template-columns: 1.6rem minmax(0,1fr); gap: .5rem; margin-bottom: .7rem; }
+.ask li::before { content: counter(q); color: var(--red); font-size: 1.15rem; line-height: 1.3; }
+
+figure { margin: .4rem 0 1.2rem; }
+canvas { width: 100%; max-width: 100%; aspect-ratio: 4 / 3; display: block; }
+figcaption { font-size: .82rem; color: var(--fg-2); line-height: 1.4; margin-top: .4rem; }
+figcaption b { font-weight: 400; font-family: var(--sans); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--fg); margin-right: .3rem; }
+.swatches { display: flex; flex-wrap: wrap; gap: .8rem; margin: .4rem 0 1rem; font-family: var(--sans); font-size: .72rem; color: var(--fg-2); }
+.swatches span { display: flex; align-items: center; gap: .4rem; }
+.swatches i { width: 1.1rem; height: 1.1rem; border: 1px solid var(--rule-strong); display: inline-block; }
+.toggle { font-family: var(--sans); font-size: .75rem; background: none; border: 1px solid var(--rule-strong); color: var(--fg-2); padding: .2rem .55rem; cursor: pointer; border-radius: 2px; }
+.toggle:hover { color: var(--red); border-color: var(--red); }
+
+@media (max-width: 1100px) { :root { --margin: 12rem; } }
+@media (max-width: 860px) {
+  .section, .section--wide { grid-template-columns: minmax(0, 1fr); padding-block: 1.6rem 1rem; }
+  .label { padding-top: 0; margin-bottom: .5rem; }
+  .note { border-left: 2px solid var(--rule); padding-left: .8rem; margin-top: .4rem; }
+  h1 { font-size: 1.9rem; }
+}
+@media (max-width: 560px) { .masthead { position: static; } .steps li { grid-template-columns: minmax(0,1fr); gap: .2rem; } }
+</style>
+
+<div class="page">
+<header class="masthead">
+  <div class="brand"><span class="d">Δ</span> Aydin Mohseni <span class="meta">· site rebuild plan</span></div>
+  <nav aria-label="Sections">
+    <a href="#tracker">Tracker</a><a href="#asks">Your calls</a><a href="#ia">Structure</a><a href="#design">Design</a><a href="#visuals">Visuals</a><a href="#stack">Stack</a><a href="#cv">CV</a><a href="#cutover">Cutover</a><a href="#upkeep">Upkeep</a>
+    <button class="toggle" id="theme" type="button">Night</button>
+  </nav>
+</header>
+
+<section class="section">
+  <div class="label">Plan</div>
+  <div class="body">
+    <h1>Move aydinmohseni.com to GitHub, rebuilt in the ∃xProof design language</h1>
+    <p class="lede">Goal: one repository that is the whole site, styled as a white, Computer Modern sibling of exproof.ai, organized like danielherrmann.ca, and kept current by Claude with the CV updating itself.</p>
+    <p class="meta">Version 1 · 30 October 2026 · status updated as work proceeds</p>
+  </div>
+  <aside class="note"><p>This page is itself set in the proposed system: the exproof.ai grid and proportions, CMU Serif for text, CMU Sans Serif for labels, paper ground with faint grain. Toggle Night to see the exproof.ai palette, which becomes the site's dark mode.</p></aside>
+</section>
+
+<section class="section" id="tracker">
+  <div class="label">Tracker</div>
+  <div class="body">
+    <h2>Status</h2>
+    <div class="progress" id="counts"></div>
+    <div class="bar"><i id="barfill"></i></div>
+    <h3>0. Discovery</h3>
+    <ul class="steps">
+      <li data-s="done"><span class="chip">Done</span><span class="t">Located the ∃xProof site: repo <code>amohseni/Existential-Proof-AI-Safety-Website</code>, served at exproof.ai. Read its <code>DESIGN.md</code>, <code>STYLE.md</code>, CSS and background animation.</span></li>
+      <li data-s="done"><span class="chip">Done</span><span class="t">Inventoried aydinmohseni.com page by page (9 pages; 17 papers, 36 talks, 13 models, 13 courses, 2 workshops, 3 infographics).</span></li>
+      <li data-s="done"><span class="chip">Done</span><span class="t">Mapped danielherrmann.ca structure.</span></li>
+      <li data-s="done"><span class="chip">Done</span><span class="t">Checked the lead visualization numerically: the 4-strategy game below has an interior strange attractor (largest Lyapunov exponent ≈ 0.16 from three starts).</span></li>
+      <li data-s="you"><span class="chip">Your call</span><span class="t">Approve this plan, or mark changes (questions under Your calls).</span></li>
+    </ul>
+    <h3>1. Capture</h3>
+    <ul class="steps">
+      <li data-s="todo"><span class="chip">To do</span><span class="t">Full mirror of the live site from your laptop (this cloud container cannot reach aydinmohseni.com): every page, every file under <code>/wp-content/uploads/</code> at full resolution, plus a WordPress XML export.</span></li>
+      <li data-s="todo"><span class="chip">To do</span><span class="t">Record current DNS (A, MX, TXT, CNAME, nameservers, registrar) before touching anything.</span></li>
+      <li data-s="todo"><span class="chip">To do</span><span class="t">Extract content into data files (papers, talks, models, courses, workshops) and reconcile against the CV and the 27 Aug dossier audit.</span></li>
+    </ul>
+    <h3>2. Build (parallel agents)</h3>
+    <ul class="steps">
+      <li data-s="todo"><span class="chip">To do</span><span class="t">Design system: port exproof.ai CSS to paper palette and Computer Modern; templates for header, footer, sections.</span></li>
+      <li data-s="todo"><span class="chip">To do</span><span class="t">Visualization 1: chaos on the simplex (background and hero).</span></li>
+      <li data-s="todo"><span class="chip">To do</span><span class="t">Visualizations 2 and 3: reflection; hypothesis-space refinement.</span></li>
+      <li data-s="todo"><span class="chip">To do</span><span class="t">Pages: Home, Research, Models, Teaching, Workshops, Sketchbook, About; redirects for every old URL.</span></li>
+      <li data-s="todo"><span class="chip">To do</span><span class="t">CV pipeline.</span></li>
+      <li data-s="todo"><span class="chip">To do</span><span class="t">Checks in CI: layout (port of <code>check_layout.py</code>), links, consistency with CV and exproof.ai.</span></li>
+    </ul>
+    <h3>3. Review and launch</h3>
+    <ul class="steps">
+      <li data-s="todo"><span class="chip">To do</span><span class="t">Preview at the github.io address; your review pass.</span></li>
+      <li data-s="todo"><span class="chip">To do</span><span class="t">DNS cutover (needs your go-ahead; touches email).</span></li>
+      <li data-s="todo"><span class="chip">To do</span><span class="t">Two weeks of parallel running, then cancel InMotion.</span></li>
+    </ul>
+  </div>
+  <aside class="note"><p>Build starts only after you approve. Steps marked Your call wait on you; everything else I run.</p></aside>
+</section>
+
+<section class="section" id="asks">
+  <div class="label">Your calls</div>
+  <div class="body">
+    <h2>What I need from you</h2>
+    <ol class="ask">
+      <li><span><b>Create an empty public repository</b> named <code>aydinmohseni.com</code> under amohseni on GitHub. I cannot create repositories from here; I attach it once it exists. Public is required for free GitHub Pages.</span></li>
+      <li><span><b>Where does the CV source live?</b> A .tex on your laptop, Overleaf, or only a PDF in Drive? This decides the pipeline below.</span></li>
+      <li><span><b>Email at the domain.</b> Do you receive mail at any @aydinmohseni.com address, and is the domain registered with InMotion? I will read the DNS from your laptop to confirm, but you know whether a mailbox matters.</span></li>
+      <li><span><b>Influences section.</b> Which Borges and Gibran passages, and who else belongs there? I will not choose these for you.</span></li>
+      <li><span><b>Daniel's code.</b> Reusing his demo scaffolding (controls, "How it works" toggles) saves time. Worth a one-line check with him.</span></li>
+    </ol>
+  </div>
+  <aside class="note"><p>Defaults if you say nothing: CMU Sans Serif for labels; Eleventy; CV compiled from LaTeX in the repo; DNS moved to Cloudflare before cutover.</p></aside>
+</section>
+
+<section class="section" id="ia">
+  <div class="label">Structure</div>
+  <div class="body">
+    <h2>Information architecture</h2>
+    <p>Daniel's model: the home page carries the argument (who you are, three research strands each with a live model and selected work, recent talks, collaborators, influences), and a small number of reference pages carry the lists. Fewer menu items than now: seven become five, the Workshops dropdown with a dead parent link goes away.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Page</th><th>Contents</th><th>Replaces</th></tr></thead>
+      <tbody>
+        <tr><td>Home</td><td>Photo, one-line description, short bio; hero visualization; three research strands (visualization, short essay, selected work); recent and upcoming talks; co-inquirers; influences; contact.</td><td>Home</td></tr>
+        <tr><td>Research</td><td>Published, In progress, Talks, Workshops, in that order, as on exproof.ai. One anchor per paper (<code>#pub-slug</code>); each talk links to its paper. Links per paper: PDF, journal, model, code, data.</td><td>Research, Presentations</td></tr>
+        <tr><td>Models</td><td>Original and pedagogical models, each with a thumbnail, two-line summary, app and code links, and the paper it supports.</td><td>Computational Models</td></tr>
+        <tr><td>Teaching</td><td>Courses by institution and term; Tsinghua 2026 added; training condensed to a short list.</td><td>Teaching</td></tr>
+        <tr><td>Workshops</td><td>One page per workshop: dates, place, speakers, program.</td><td>Workshops menu</td></tr>
+        <tr><td>Sketchbook</td><td>Infographics and portrait sketches together. Fits the chalk register.</td><td>Infographics, Sketches</td></tr>
+        <tr><td>About</td><td>Full bio, Peace Corps, Erdős number, contact, profiles.</td><td>Home bio</td></tr>
+        <tr><td>CV</td><td>Stable URL <code>/cv.pdf</code>, always the latest build.</td><td>Dated upload URL</td></tr>
+      </tbody>
+    </table></div>
+    <p>Navigation: Research, Models, Teaching, Sketchbook, About, CV, and a link to ∃xProof AI (Daniel does the same). Workshops sit under Research.</p>
+    <h3>Old URLs keep working</h3>
+    <p>Every old page gets a redirect stub (<code>/talks/</code> to <code>/research/#talks</code>, <code>/teaching-2/</code> to <code>/teaching/</code>, and so on). Every file under <code>/wp-content/uploads/</code> stays at its exact path, because papers, syllabi and exproof.ai link to those PDFs directly. <code>/meet</code> keeps forwarding to your booking page.</p>
+    <h3>Consistency with exproof.ai</h3>
+    <p>Paper titles, author order, venues and program descriptions must read identically on both sites and in the CV. A CI check compares the three and fails on drift. exproof.ai stays plain HTML that Daniel co-edits; the personal site does not write into it.</p>
+  </div>
+  <aside class="note"><p>Daniel's site has no teaching section; yours keeps one because teaching is part of your record and your tenure case.</p><p>Research strand names are a draft: AI safety and alignment; rational agency; metascience.</p></aside>
+</section>
+
+<section class="section" id="design">
+  <div class="label">Design</div>
+  <div class="body">
+    <h2>exproof.ai, on paper, in Computer Modern</h2>
+    <h3>Kept exactly from exproof.ai</h3>
+    <ul>
+      <li>The grid: label rail 8.5rem, text column 34rem (about 65 characters), margin-note column 15rem, gap 2.5rem; breakpoints at 1100, 860 and 560 pixels.</li>
+      <li>Root size 17px (18px above 1200px), sticky masthead with one half-strength rule, no rules between sections, cap-line alignment of labels with first lines, margin notes that open in place on phones.</li>
+      <li>Blood red as the only accent; green only for a found or converged state in animations.</li>
+      <li>The style guide and layout check, adapted rather than rewritten.</li>
+    </ul>
+    <h3>Changed</h3>
+    <ul>
+      <li><b>Ground.</b> Paper white with ink text by default. The exproof.ai black palette becomes the Night mode, so the two sites are literally one design in two states.</li>
+      <li><b>Type.</b> CMU Serif replaces ET Book for text and headings; CMU Sans Serif replaces IBM Plex Sans for labels and navigation; CMU Typewriter for code. All self-hosted, subset, under 200 KB.</li>
+      <li><b>Red on white.</b> Blood red has a contrast ratio near 7:1 on white (2.9:1 on black), so links can show red at rest if you want. I recommend keeping exproof.ai behavior: ink at rest, red on hover.</li>
+      <li><b>Wordmark.</b> "Aydin Mohseni" in CMU Serif with a red Δ, the simplex symbol, playing the role of ∃ on exproof.ai. A proposal; drop it if it feels like branding.</li>
+    </ul>
+    <div class="swatches">
+      <span><i style="background:#fcfcfa"></i>paper</span><span><i style="background:#141413"></i>ink</span><span><i style="background:#5d5d58"></i>graphite</span><span><i style="background:#b0122b"></i>blood red</span><span><i style="background:#1a7f4e"></i>found path</span>
+    </div>
+    <h3>Chalk on paper, kept faint</h3>
+    <p>Three devices, each easy to remove. A fixed paper grain at about 5% opacity (visible behind this page). Animation strokes in graphite with slight width variation and a grain mask, so lines read as drawn rather than rendered. Hand-drawn figures in the Sketchbook. Text, controls and tables stay crisp; texture never touches them.</p>
+  </div>
+  <aside class="note"><p>Risk: Computer Modern was cut for print at 10pt, and its hairlines go thin on low-resolution screens, mostly Windows. Mitigation: the larger exproof.ai sizes help; test on Windows early; fall back to Latin Modern's 12pt optical size if body text looks weak.</p></aside>
+</section>
+
+<section class="section" id="visuals">
+  <div class="label">Visuals</div>
+  <div class="body">
+    <h2>Three live models, in exproof.ai's animation style</h2>
+    <p>Same vocabulary as the exproof.ai search tree: thin graphite lines, one moving light, smooth acceleration, a brief hold at events, dimming under the text column, a still frame under reduced motion.</p>
+
+    <h3>1. Chaos on the simplex (background and hero)</h3>
+    <figure>
+      <canvas id="chaos" aria-label="A trajectory of the replicator dynamics tracing a strange attractor inside a rotating tetrahedron"></canvas>
+      <figcaption><b>Preview</b>Replicator dynamics of a 4-strategy game, drawn in the 3-simplex (a tetrahedron, one vertex per strategy). Payoffs as given for the Arneodo, Coullet and Tresser system in Sandholm (2010); citation to confirm before build.</figcaption>
+    </figure>
+    <p>Why this is the right headline: replicator dynamics on 2 or 3 strategies cannot be chaotic, because their state space is at most a triangle, a plane region, where the Poincaré–Bendixson theorem rules chaos out. Four strategies give a 3-dimensional simplex, the first place chaos can occur. So this is the minimal chaotic case, as you said. Sources: Skyrms, "Chaos in game dynamics," <i>Journal of Logic, Language and Information</i> 1 (1992); Arneodo, Coullet and Tresser (1980) on strange attractors in 3-species Lotka–Volterra systems, which Hofbauer (1981) showed equivalent to 4-strategy replicator dynamics; Sandholm, <i>Population Games and Evolutionary Dynamics</i> (2010).</p>
+    <p>On the page: the orbit drawn slowly across the background, as the search tree is on exproof.ai; in the hero, the same system with controls (start point, speed, rotation) and a "How it works" toggle.</p>
+
+    <h3>2. Reflection (rational agency)</h3>
+    <p>A Bayesian agent's credence about a coin. From the present, a fan of possible future credence paths in graphite spreads toward 0 and 1, while their average, in red, stays level at today's credence: van Fraassen's Reflection, P(A | P<sub>later</sub>(A) = x) = x, shown as a martingale. A toggle swaps in an agent who expects to change its mind in a known direction; the average drifts, and the page notes the Dutch book that drift permits.</p>
+
+    <h3>3. Refining a hypothesis space (AI safety and alignment)</h3>
+    <p>A space partitioned into hypotheses plus a catch-all cell, shaded by posterior. As evidence arrives, mass moves; when the catch-all gains enough, it splits into new hypotheses and the partition refines. This is the evolving-algebra picture behind value learning with a catch-all, and links to <i>Learning the Value of Value Learning</i>.</p>
+
+    <h3>Candidate fourth (metascience)</h3>
+    <p>A community sharing evidence on a network converges or splits; with a toggle between agents seeing the same coin and agents seeing different data from it. Uses the lightweight model with Cole. Built after launch unless you want it on day one.</p>
+  </div>
+  <aside class="note"><p>"Brian Gardner": I found no such source on 4×4 chaos. I read it as Brian Skyrms. Tell me if you meant someone else.</p><p>"Force simplex" I read as the simplex for four strategies. Its dimension is 3, which is why it draws as a tetrahedron.</p><p>Numerical check: with this payoff matrix, orbits started near the interior equilibrium (all strategies at ¼) stay interior, and the largest Lyapunov exponent is about 0.16 from three different starts. Orbits started far away go to the boundary, so the start point matters.</p></aside>
+</section>
+
+<section class="section" id="stack">
+  <div class="label">Stack</div>
+  <div class="body">
+    <h2>Static site, GitHub Pages, one repository</h2>
+    <p><b>Recommendation: Eleventy</b>, a small static-site generator, with content in YAML data files and pages in templates. It outputs plain HTML like exproof.ai, so nothing changes for visitors. It differs from exproof.ai in one place: exproof.ai repeats the header and footer in every file, which its own README flags as a chore. With 36 talks, 17 papers and 13 models, lists generated from data are cheaper to keep correct than hand-edited HTML.</p>
+    <ul>
+      <li>Repository <code>amohseni/aydinmohseni.com</code>; GitHub Actions builds on every push and deploys to Pages.</li>
+      <li>A nightly rebuild, so talks move from Upcoming to Past on their date without anyone touching the repo.</li>
+      <li>Visualizations as plain JavaScript on canvas, one file each, no framework, following <code>assets/search.js</code> on exproof.ai.</li>
+      <li>The raw WordPress mirror kept in a separate private archive repository, never deployed.</li>
+    </ul>
+  </div>
+  <aside class="note"><p>Alternative: plain HTML, exactly like exproof.ai. Simpler toolchain, more hand edits. I would choose it only if you want to edit pages yourself in the GitHub web editor.</p></aside>
+</section>
+
+<section class="section">
+  <div class="label">Capture</div>
+  <div class="body">
+    <h2>Getting every byte off WordPress</h2>
+    <ol>
+      <li>Mirror the site from your laptop with <code>wget --mirror --page-requisites</code>, then collect full-size originals of every image (WordPress serves cut-down copies such as <code>-300x236.png</code>).</li>
+      <li>Export the WordPress XML (Tools, Export) and, if you can, a cPanel backup. The export catches drafts, unlinked uploads and the Sketches gallery, which a crawl may miss.</li>
+      <li>Build an inventory: every URL, file, and outbound link, with its new home. Nothing is dropped without being on that list.</li>
+      <li>Check outbound links (13 shinyapps.io models, GitHub, OSF) and flag dead ones.</li>
+    </ol>
+  </div>
+  <aside class="note"><p>This container's network blocks aydinmohseni.com, so the mirror runs on your laptop through the linked folder.</p></aside>
+</section>
+
+<section class="section">
+  <div class="label">Fixes</div>
+  <div class="body">
+    <h2>Errors found on the current site</h2>
+    <p>Corrected during migration, with publisher records as the authority (several match the 27 August dossier audit).</p>
+    <ul>
+      <li>"Truth and Conformity on Networks" is listed as <i>Erkenntnis</i> 2021, while its citation says unpublished manuscript.</li>
+      <li>Two papers link to placeholder URLs (<code>PREPRINT-URL</code>).</li>
+      <li>The Metascience workshop's program PDF is the AI Agency workshop's file.</li>
+      <li>Hardness paper: now <i>Studies in History and Philosophy of Science</i> 119 (2026); site says 2024 and adds "the".</li>
+      <li>User's Guide chapter: correct title is "Methods for Modelers of Science," MIT Press, Veigl and Currie eds.</li>
+      <li>Red King: published title includes "Cultural"; <i>Synthese</i> 198(6), 2021; site says forthcoming 2020.</li>
+      <li>Talks end in 2025; a year is truncated ("Munich 201"); "Perci" for Persi Diaconis; OSF links to the OSF homepage.</li>
+      <li>Tragedies of the Commons has no code link, though <code>amohseni/Tragedies-of-the-Commons</code> exists. A grant-funding image sits under the wrong model.</li>
+      <li>Empty "Video Lectures" heading on Teaching; the Sketches page shows no images to a crawler.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="cv">
+  <div class="label">CV</div>
+  <div class="body">
+    <h2>CV that updates itself</h2>
+    <p><b>Recommended:</b> the CV's LaTeX source lives in the repository. On every change, GitHub Actions compiles it and publishes <code>/cv.pdf</code>. The site and CV then never disagree, because the papers and talks sections of the CV are generated from the same data files as the site. Adding a talk is one edit, which updates the home page, the Research page and the CV together.</p>
+    <p>Staged to keep launch simple: at launch, the CV is compiled from source as it is; after launch, its lists are generated from the shared data.</p>
+    <p>If the CV lives in Overleaf, Overleaf's GitHub sync feeds the same pipeline. If it exists only as a PDF in Drive, a weekly scheduled task copies the newest version into the site; that works, but it gives up the single source.</p>
+  </div>
+</section>
+
+<section class="section" id="cutover">
+  <div class="label">Cutover</div>
+  <div class="body">
+    <h2>Moving the domain without losing mail</h2>
+    <p>The main risk is not the website. If InMotion runs your DNS and you cancel the account, everything on the domain stops resolving, including any mail and the <code>/meet</code> link on your email signature and in exproof.ai.</p>
+    <ol>
+      <li><b>Record</b> every current DNS record and the registrar.</li>
+      <li><b>Move DNS first.</b> Copy every record into Cloudflare's free DNS (or the registrar's), mail records unchanged, and switch nameservers. The site is still served by InMotion at this point, so nothing visible changes.</li>
+      <li><b>Mail.</b> If a mailbox lives at InMotion, set up forwarding (for example Cloudflare Email Routing to Gmail) and confirm delivery before going further. If mail is hosted elsewhere, its records are simply copied.</li>
+      <li><b>Verify the domain</b> in your GitHub account (a TXT record), which prevents anyone else's Pages site from claiming it.</li>
+      <li><b>Cut over.</b> Lower the TTL to 5 minutes a day ahead; point the apex at GitHub Pages' four A records and four AAAA records, and <code>www</code> at <code>amohseni.github.io</code>; add the <code>CNAME</code> file; enforce HTTPS once the certificate is issued.</li>
+      <li><b>Run in parallel</b> two weeks with InMotion intact as rollback. Then transfer the domain out if InMotion is the registrar (unlock, auth code, check the renewal date), and cancel hosting.</li>
+    </ol>
+    <p>Steps 2, 5 and 6 change live systems, so each waits for your go-ahead.</p>
+  </div>
+  <aside class="note"><p><code>/meet</code>: GitHub Pages cannot issue a true 302 redirect. A page with an instant meta refresh does the same job for people. If DNS is on Cloudflare, a redirect rule can give a true 302.</p></aside>
+</section>
+
+<section class="section" id="upkeep">
+  <div class="label">Upkeep</div>
+  <div class="body">
+    <h2>How you keep it current</h2>
+    <ul>
+      <li><b>You tell me; I edit.</b> "Add the Missouri talk," "the causation paper is accepted at Phil Review": I change the data file, the build checks run, and it goes live in two minutes. Content edits go straight to <code>main</code>; design changes go through a pull request you can preview.</li>
+      <li><b>Checks on every push:</b> layout at five widths, broken links, and consistency of titles, authors and venues across the site, the CV and exproof.ai.</li>
+      <li><b>Monthly steward run</b> (a scheduled Claude task): checks links and the shinyapps.io models, looks for new arXiv and PhilPapers entries under your name, and opens a pull request with proposed updates. It never publishes on its own.</li>
+      <li><b>Records:</b> <code>README.md</code>, <code>STYLE.md</code> and <code>DESIGN.md</code> in the repo, on the exproof.ai pattern, plus a pointer in your for-claude state repo.</li>
+    </ul>
+  </div>
+  <aside class="note"><p>shinyapps.io free accounts sleep idle apps and cap monthly hours. If the models matter for visitors, a few could be ported to in-browser JavaScript later, as Schelling already is.</p></aside>
+</section>
+
+<section class="section">
+  <div class="label">Order</div>
+  <div class="body">
+    <h2>Build order after approval</h2>
+    <p><b>Wave 1, in parallel:</b> capture and inventory; design system; visualization 1; visualizations 2 and 3; data extraction into YAML.</p>
+    <p><b>Wave 2:</b> page assembly; CV pipeline; checks.</p>
+    <p><b>Wave 3:</b> preview, your review, copy pass, then cutover steps one at a time with your approval.</p>
+    <p class="meta">Sources: exproof.ai repository (README, DESIGN, STYLE, site.css, search.js); live pages of aydinmohseni.com and danielherrmann.ca fetched 30 Oct 2026; your 27 Aug 2026 dossier audit; your notes from the meeting with Daniel.</p>
+  </div>
+</section>
+</div>
+
+<script>
+(() => {
+  // Status counts
+  const items = [...document.querySelectorAll('.steps li')];
+  const n = s => items.filter(li => li.dataset.s === s).length;
+  const done = n('done'), total = items.length;
+  document.getElementById('counts').innerHTML =
+    `<span><b>${done}</b> of <b>${total}</b> done</span><span><b>${n('doing')}</b> in progress</span><span><b>${n('you')}</b> waiting on you</span><span><b>${n('todo')}</b> to do</span>`;
+  document.getElementById('barfill').style.width = (100 * done / total) + '%';
+
+  // Night toggle
+  const root = document.documentElement, btn = document.getElementById('theme');
+  const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  const label = () => { btn.textContent = isDark() ? 'Day' : 'Night'; };
+  btn.addEventListener('click', () => { root.dataset.theme = isDark() ? 'light' : 'dark'; label(); });
+  label();
+
+  // Chaos on the simplex: replicator dynamics, 4 strategies
+  const A = [[0,-12,0,22],[20,0,0,-10],[-21,-4,0,35],[10,-2,2,0]];
+  const f = x => { const p = A.map(r => r[0]*x[0]+r[1]*x[1]+r[2]*x[2]+r[3]*x[3]);
+    const avg = x[0]*p[0]+x[1]*p[1]+x[2]*p[2]+x[3]*p[3]; return x.map((xi,i) => xi*(p[i]-avg)); };
+  const add = (x,k,h) => x.map((xi,i) => xi + h*k[i]);
+  const step = (x,h) => { const k1=f(x), k2=f(add(x,k1,h/2)), k3=f(add(x,k2,h/2)), k4=f(add(x,k3,h));
+    const y = x.map((xi,i) => xi + h/6*(k1[i]+2*k2[i]+2*k3[i]+k4[i])); const s = y[0]+y[1]+y[2]+y[3]; return y.map(v => v/s); };
+  let x = [0.26,0.24,0.25,0.25];
+  const h = 0.004;
+  for (let i = 0; i < 25000; i++) x = step(x,h);
+  const V = [[1,1,1],[1,-1,-1],[-1,1,-1],[-1,-1,1]].map(v => v.map(c => c/Math.sqrt(3)));
+  const to3 = x => [0,1,2].map(j => x[0]*V[0][j]+x[1]*V[1][j]+x[2]*V[2][j]+x[3]*V[3][j]);
+  const MAX = 5200, trail = [];
+  const cv = document.getElementById('chaos'), ctx = cv.getContext('2d');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W, H, dpr;
+  const size = () => { dpr = Math.min(2, devicePixelRatio || 1); W = cv.clientWidth; H = cv.clientHeight; cv.width = W*dpr; cv.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); };
+  size(); addEventListener('resize', size);
+  const css = v => getComputedStyle(root).getPropertyValue(v).trim();
+  let theta = 0.6;
+  const proj = p => { const c = Math.cos(theta), s = Math.sin(theta), ct = Math.cos(0.42), st = Math.sin(0.42);
+    const X = c*p[0] + s*p[2], Z = -s*p[0] + c*p[2]; const Y = ct*p[1] - st*Z; const D = st*p[1] + ct*Z;
+    const k = Math.min(W,H)*0.43, persp = 1/(1 + 0.18*D); return [W/2 + X*k*persp, H/2 - Y*k*persp]; };
+  if (reduce) { for (let i = 0; i < MAX*3; i++) { x = step(x,h); if (i % 3 === 0) trail.push(to3(x)); } }
+  const draw = () => {
+    const ink = css('--fg'), gr = css('--fg-2'), red = css('--red'), rule = css('--rule-strong');
+    ctx.clearRect(0,0,W,H);
+    const P = V.map(proj);
+    ctx.strokeStyle = rule; ctx.lineWidth = 0.7; ctx.globalAlpha = 0.8;
+    ctx.beginPath(); for (let i = 0; i < 4; i++) for (let j = i+1; j < 4; j++) { ctx.moveTo(...P[i]); ctx.lineTo(...P[j]); } ctx.stroke();
+    ctx.globalAlpha = 1; ctx.fillStyle = gr; ctx.font = '12px "CMU Sans Serif", sans-serif';
+    P.forEach((p,i) => ctx.fillText(String(i+1), p[0] + (p[0] > W/2 ? 6 : -14), p[1] + (p[1] > H/2 ? 14 : -6)));
+    // chalk: two passes, slight jitter, alpha by age
+    const L = trail.length;
+    for (let pass = 0; pass < 2; pass++) {
+      ctx.strokeStyle = ink; ctx.lineWidth = pass ? 0.55 : 1.05;
+      for (let i = 1; i < L; i++) {
+        const a = proj(trail[i-1]), b = proj(trail[i]);
+        const age = i / L; ctx.globalAlpha = (pass ? 0.35 : 0.22) * (0.15 + 0.85*age);
+        const jx = pass ? (Math.sin(i*12.9898)*0.35) : 0, jy = pass ? (Math.cos(i*78.233)*0.35) : 0;
+        ctx.beginPath(); ctx.moveTo(a[0]+jx, a[1]+jy); ctx.lineTo(b[0]+jx, b[1]+jy); ctx.stroke();
+      }
+    }
+    if (L) { const q = proj(trail[L-1]); const g = ctx.createRadialGradient(q[0],q[1],0,q[0],q[1],14);
+      g.addColorStop(0, red); g.addColorStop(1, 'transparent'); ctx.globalAlpha = 0.5; ctx.fillStyle = g; ctx.beginPath(); ctx.arc(q[0],q[1],14,0,7); ctx.fill();
+      ctx.globalAlpha = 1; ctx.fillStyle = red; ctx.beginPath(); ctx.arc(q[0],q[1],2.2,0,7); ctx.fill(); }
+    ctx.globalAlpha = 1;
+  };
+  if (reduce) { draw(); return; }
+  for (let i = 0; i < 1500; i++) { x = step(x,h); if (i % 3 === 0) trail.push(to3(x)); }
+  let visible = true;
+  new IntersectionObserver(e => { visible = e[0].isIntersecting; }).observe(cv);
+  const loop = () => {
+    if (visible) {
+      for (let i = 0; i < 9; i++) { x = step(x,h); if (i % 3 === 0) trail.push(to3(x)); }
+      while (trail.length > MAX) trail.shift();
+      theta += 0.0025; draw();
+    }
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+})();
+</script>

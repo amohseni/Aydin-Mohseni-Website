@@ -1,0 +1,28 @@
+{
+  "name": "aydin-mohseni-website",
+  "version": "1.0.0",
+  "description": "The professional website of the philosopher Aydin Mohseni.",
+  "main": "index.js",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve --port 8080",
+    "check": "node tools/check.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amohseni/aydin-mohseni-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amohseni/aydin-mohseni-website/issues"
+  },
+  "homepage": "https://github.com/amohseni/aydin-mohseni-website#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "js-yaml": "^4.1.0"
+  },
+  "type": "module",
+  "private": true
+}
