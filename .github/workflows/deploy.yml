@@ -48,10 +48,18 @@ jobs:
         run: npm ci
 
       - name: Compile the CV
+        id: cv
+        continue-on-error: true
         uses: xu-cheng/latex-action@v3
         with:
           root_file: amohseni.CV.tex
           working_directory: cv
+
+      - name: Report CV errors
+        # A failed CV compile does not block the site; its LaTeX errors become annotations.
+        if: steps.cv.outcome == 'failure'
+        run: |
+          grep -n -A3 '^!' cv/*.log | head -60 | while IFS= read -r l; do echo "::warning title=CV LaTeX::$l"; done || true
 
       - name: Configure Pages
         id: pages
@@ -70,9 +78,11 @@ jobs:
         run: npx eleventy
 
       - name: Add the CV to the site
+        if: steps.cv.outcome == 'success'
         run: cp cv/amohseni.CV.pdf _site/cv.pdf
 
       - name: Copy the CV to the old WordPress CV addresses
+        if: steps.cv.outcome == 'success'
         # Every path in src/_data/legacy_cv_paths.yml gets the current CV, so old links keep working.
         run: |
           node -e '
@@ -92,7 +102,7 @@ jobs:
           node tools/test-models-community.mjs
 
       - name: Check links, alt text, dashes and meta tags
-        run: node tools/check.mjs
+        run: node tools/check.mjs ${{ steps.cv.outcome == 'success' && ' ' || '--allow-missing /cv.pdf' }}
 
       - name: Install Chromium for the layout check
         run: |
