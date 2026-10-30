@@ -1,7 +1,7 @@
 {#- Base layout. Front matter it reads:
     title         page title (the home page leaves it out)
     description   meta and social description
-    ogImage       site-relative path of a social card image (defaults to the portrait)
+    ogImage       site-relative path of a social card image (defaults to og-card.png, made by tools/og-card)
     ogType        "website" (default) or "article"
     background    a model name to run full-page behind the content, via background.js. Defaults to
                   "chaos" on every page; the home page sets false (it shows the chaos hero instead)
@@ -15,7 +15,7 @@
 {%- set pageDescription = description or defaultDescription -%}
 {%- set canonical = siteUrl ~ page.url -%}
 {%- set bg = (background if background is defined else "chaos") -%}
-{%- set ogImagePath = ogImage or "/assets/img/mohseni.jpg" -%}
+{%- set ogImagePath = ogImage or "/assets/img/og-card.png" -%}
 {%- set ogImageUrl = ogImagePath if ("://" in ogImagePath) else (siteUrl ~ ogImagePath) -%}
 {%- set nav = [
   { label: "Publications", href: "/publications/", match: ["/publications/"] },
@@ -31,7 +31,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{{ pageTitle }}</title>
-<script>(function(){var r=document.documentElement;try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")r.setAttribute("data-theme",t);if(localStorage.getItem("motion")==="paused")r.setAttribute("data-motion","paused");}catch(e){}})();</script>
+<script>(function(){var r=document.documentElement;try{var t=localStorage.getItem("theme");r.setAttribute("data-theme",t==="dark"?"dark":"light");if(localStorage.getItem("motion")==="paused")r.setAttribute("data-motion","paused");}catch(e){}})();</script>
 <meta name="description" content="{{ pageDescription }}">
 <link rel="canonical" href="{{ canonical }}">
 {%- if noindex %}
@@ -43,13 +43,12 @@
 <meta property="og:description" content="{{ pageDescription }}">
 <meta property="og:url" content="{{ canonical }}">
 <meta property="og:image" content="{{ ogImageUrl }}">
-<meta property="og:image:alt" content="{{ ogImageAlt or 'Portrait of Aydin Mohseni' }}">
-<meta name="twitter:card" content="{{ 'summary_large_image' if ogImage else 'summary' }}">
+<meta property="og:image:alt" content="{{ ogImageAlt or 'Aydin Mohseni, mathematical philosopher, beside a chaotic orbit of the replicator dynamics' }}">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ title or siteName }}">
 <meta name="twitter:description" content="{{ pageDescription }}">
 <meta name="twitter:image" content="{{ ogImageUrl }}">
-<meta name="theme-color" content="#fcfcfa" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fcfcfa">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 9 L57 55 H7 Z' fill='none' stroke='%23d11c3d' stroke-width='6' stroke-linejoin='miter'/%3E%3C/svg%3E">
 <link rel="preload" href="{{ '/assets/fonts/cmu-serif-500-roman.woff2' | url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ '/assets/fonts/cmu-sans-serif-500-roman.woff2' | url }}" as="font" type="font/woff2" crossorigin>

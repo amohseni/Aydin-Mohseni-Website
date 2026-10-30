@@ -211,7 +211,8 @@ export function mount(container, options = {}) {
   let yaw = 0.6, pitch = cfg.pitch, yawVel = 0, dragging = false;
   let speedMul = 1, W = 1, Hh = 1, scrim = null;
   let screen = new Float32Array((cfg.cap + 1) * 2), depth = new Float32Array(cfg.cap + 1);
-  let stepCarry = 0, appear = 0;
+  let stepCarry = 0, appear = 0, runMs = 0;
+  const BG_RESTART_MS = 5 * 60 * 1000;   // the background starts a new orbit every 5 minutes of motion, so it never looks frozen
   const stats = { frames: 0, work: 0, maxWork: 0 };
 
   function newStart() { return randomStart(rng); }
@@ -223,7 +224,7 @@ export function mount(container, options = {}) {
       ghost = { traj: g, t0: performance.now() };
     } else ghost = null;
     traj.reset(newStart());
-    appear = 0;
+    appear = 0; runMs = 0;
     // Reduced motion, or paused (site-wide "Pause motion" or the model's own Pause): show the
     // new orbit's settled attractor at once, as a still frame; Play continues from it.
     if (reduced || (loop && !loop.running)) { settleStill(); draw(performance.now()); }
@@ -411,6 +412,8 @@ export function mount(container, options = {}) {
     const want = (cfg.speed * speedMul * dt) / 1000 / H + stepCarry;
     const steps = Math.floor(want); stepCarry = want - steps;
     if (!traj.advance(steps)) restart(true);
+    runMs += dt;
+    if (isBg && runMs > BG_RESTART_MS) restart(true);
     appear = Math.min(1, appear + dt / 700);
     // Rotation: slow auto-rotation, plus inertia left over from a drag.
     if (!dragging) {

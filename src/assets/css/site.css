@@ -164,6 +164,10 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
   :root:not([data-theme="light"]) .theme-toggle .to-night { display: none; }
 }
 
+/* The Erdős path on About: its own centered line in the sans face. */
+.erdos-path { text-align: center; font-family: var(--sans); font-size: 0.95rem; letter-spacing: 0.02em; color: var(--fg); }
+.erdos-path a { color: inherit; }
+
 /* ---------- The ∃xProof AI peek ----------
    Hovering or focusing the ∃xProof AI link opens a small card that runs a miniature of the
    exproof.ai background: a light searching a tree for a witness path (assets/js/xp-peek.js). */

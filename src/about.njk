@@ -17,7 +17,7 @@ description: "Aydin Mohseni: biography, research, teaching, appointments and edu
 
 {% call section("Biography", "bio") %}
 {%- for para in profile.long_bio %}
-<p{% if loop.first and profile.center_name_note %} data-verify="{{ profile.center_name_note }}"{% endif %}>{{ para | linkPhrases(profile.bio_links) | replace("أزرو", '<span lang="ar" dir="rtl">أزرو</span>') | safe }}</p>
+<p{% if loop.first and profile.center_name_note %} data-verify="{{ profile.center_name_note }}"{% endif %}>{{ para | linkPhrases(profile.bio_links) | replace("أزرو", '<span lang="ar" dir="rtl">أزرو</span>') | replace("following path: ", 'following path:</p><p class="erdos-path">') | safe }}</p>
 {%- endfor %}
 {% endcall %}
 
@@ -55,5 +55,5 @@ description: "Aydin Mohseni: biography, research, teaching, appointments and edu
 {% endcall %}
 
 {% call section("Colophon", "colophon") %}
-<p>This site is set in Computer Modern, the typeface Donald Knuth designed for TeX, in the Computer Modern Unicode versions (SIL Open Font License). Its design is shared with <a href="https://exproof.ai/">{{ "" | exproofName | safe }}</a>, and its organization follows <a href="https://www.danielherrmann.ca/">Daniel Herrmann&rsquo;s site</a>. The live models are plain JavaScript drawn on canvas. The pages are built with Eleventy from data files and served by GitHub Pages.</p>
+<p>This site is set in Computer Modern, the typeface Donald Knuth designed for TeX, in the Computer Modern Unicode versions (SIL Open Font License). The pages are built with Eleventy from data files and served by GitHub Pages.</p>
 {% endcall %}
