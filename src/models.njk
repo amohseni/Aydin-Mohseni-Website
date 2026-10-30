@@ -65,28 +65,20 @@ description: "Interactive computational models by Aydin Mohseni, from his papers
 </ul>
 {% endcall %}
 
-{%- for ig in sketchbook.infographics %}
-{%- set figNo = loop.index %}
-{% call section("Infographics" if loop.first else "", ("infographics" if loop.first else "infographic-" ~ loop.index), wide=true) %}
-<h2{% if ig.verify %} data-verify="{{ ig.verify_note }}"{% endif %}>{{ ig.title }}</h2>
-{%- if ig.with %}
-{%- set person = coinquirers | findBy("display", ig.with) %}
-<p class="meta-line">With {% if person and person.url %}<a href="{{ person.url }}">{{ ig.with }}</a>{% else %}{{ ig.with }}{% endif %}</p>
-{%- endif %}
-{%- if ig.caption %}
-<p{% if ig.verify_note and not ig.verify %} data-verify="{{ ig.verify_note }}"{% endif %}>{{ ig.caption }}</p>
-{%- endif %}
-<ul class="gallery gallery--row">
-  {%- for img in ig.local %}
-  {%- set size = img | imageSize %}
-  <li style="--ar: {{ (size.width / size.height) | round(4) }}"><a href="{{ (ig.pdf or img) | url }}"><img src="{{ img | url }}" width="{{ size.width }}" height="{{ size.height }}" alt="{{ ig.alt }}{% if ig.local.length > 1 %}, panel {{ loop.index }} of {{ ig.local.length }}{% endif %}" loading="lazy" decoding="async"></a></li>
+{% call section("Infographics", "infographics", wide=true) %}
+<ul class="cards">
+  {%- for ig in sketchbook.infographics %}
+  {%- set size = ig.thumb | imageSize %}
+  {%- set w = publications | findBySlug(ig.paper_slug) if ig.paper_slug else null %}
+  <li class="card" id="infographic-{{ loop.index }}"{% if ig.verify_note %} data-verify="{{ ig.verify_note }}"{% endif %}>
+    <a href="{{ ig.pdf | url }}"><img class="card-thumb" src="{{ ig.thumb | url }}" alt="{{ ig.alt }}" width="{{ size.width }}" height="{{ size.height }}" loading="lazy" decoding="async"></a>
+    <h3><a href="{{ ig.pdf | url }}">{{ ig.title }}</a></h3>
+    <p>{{ ig.caption }}</p>
+    <div class="work-links">
+      <a href="{{ ig.pdf | url }}">Poster</a>
+      {%- if w %}<a href="{{ research }}#pub-{{ w.slug }}">Paper</a>{% endif %}
+    </div>
+  </li>
   {%- endfor %}
 </ul>
-{%- if ig.pdf or ig.paper_slug %}
-<ul class="related">
-  {%- if ig.pdf %}<li><a href="{{ ig.pdf | url }}">Full poster (PDF)</a></li>{% endif %}
-  {%- if ig.paper_slug %}{% set w = publications | findBySlug(ig.paper_slug) %}{% if w %}<li><a href="{{ research }}#pub-{{ w.slug }}"{% if ig.paper_slug_verify %} data-verify="The link between this infographic and the paper is an editorial inference"{% endif %}>Related paper: {{ w.title }}</a></li>{% endif %}{% endif %}
-</ul>
-{%- endif %}
 {% endcall %}
-{%- endfor %}
