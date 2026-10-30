@@ -141,7 +141,7 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
 .nav a { color: var(--fg-2); padding-block: 0.15rem; }
 .nav a:hover { color: var(--fg); }
 .nav a[aria-current="page"] { color: var(--fg); box-shadow: inset 0 -1px 0 var(--red); }
-.nav .exists, .foot .exists, a.xp .exists { font-family: var(--math); font-size: 1.04em; line-height: 1; color: var(--red-bright); margin-right: 0.02em; }
+.nav .exists, .foot .exists, a.xp .exists, .bio .exists { font-family: var(--math); font-size: 1.04em; line-height: 1; color: var(--red-bright); margin-right: 0.02em; }
 .theme-toggle {
   font: inherit; letter-spacing: inherit; color: var(--fg-2); background: none; border: 0; cursor: pointer;
   padding: 0.15rem 0; margin: 0;
