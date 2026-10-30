@@ -1,0 +1,58 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Source of src/assets/img/og-card.png, the link-preview image. Render it with tools/og-card/render.mjs.
+     Layout after exproof.ai's and danielherrmann.ca's cards: words on the left, the model on the right. -->
+<style>
+@font-face { font-family: "CMU Serif"; src: url("../../src/assets/fonts/cmu-serif-500-roman.woff2"); font-style: normal; }
+@font-face { font-family: "CMU Serif"; src: url("../../src/assets/fonts/cmu-serif-500-italic.woff2"); font-style: italic; }
+@font-face { font-family: "CMU Sans"; src: url("../../src/assets/fonts/cmu-sans-serif-500-roman.woff2"); }
+:root { --bg: #fcfcfa; --fg: #141413; --fg-2: #5d5d58; --rule: #e2e2dc; --red: #b0122b; --red-bright: #d11c3d; }
+html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: var(--bg); color: var(--fg); }
+canvas { position: absolute; inset: 0; }
+.words { position: absolute; left: 84px; top: 0; bottom: 0; width: 560px; display: flex; flex-direction: column; justify-content: center; }
+.name { font-family: "CMU Serif"; font-size: 78px; line-height: 1; margin: 0; white-space: nowrap; }
+.name .delta { color: var(--red-bright); font-size: 0.62em; margin-right: 0.22em; vertical-align: 0.12em; }
+.line { font-family: "CMU Serif"; font-size: 31px; line-height: 1.28; margin: 30px 0 0; color: var(--fg); }
+.line em { color: var(--red-bright); }
+.url { font-family: "CMU Sans"; font-size: 19px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-2); margin-top: 30px; }
+</style></head>
+<body>
+<canvas id="c" width="2400" height="1260" style="width:1200px;height:630px"></canvas>
+<div class="words">
+  <p class="name"><span class="delta">&Delta;</span>Aydin Mohseni</p>
+  <p class="line">Mathematical philosopher. Evolutionary game theory and Bayesian epistemology for AI safety and metascience.</p>
+  <div class="url">aydinmohseni.com</div>
+</div>
+<script type="module">
+import { rk4Step, H } from "../../src/assets/js/models/chaos.js";
+const Q = new URLSearchParams(location.search);
+const yaw = +(Q.get("yaw") || 1.0), pitch = +(Q.get("pitch") || 0.36);
+const cx = +(Q.get("cx") || 905), cy = +(Q.get("cy") || 300), R = +(Q.get("r") || 310);
+const c = document.getElementById("c"), g = c.getContext("2d"); g.scale(2, 2);
+const V = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]];
+function proj(x) {
+  let p = [0, 0, 0];
+  for (let i = 0; i < 4; i++) for (let k = 0; k < 3; k++) p[k] += x[i] * V[i][k];
+  const [a, b, z] = p;
+  const X = a * Math.cos(yaw) - b * Math.sin(yaw), Y = a * Math.sin(yaw) + b * Math.cos(yaw);
+  const Yp = Y * Math.sin(pitch) - z * Math.cos(pitch);
+  return [cx + X * R / Math.sqrt(3), cy + Yp * R / Math.sqrt(3)];
+}
+const corners = [0, 1, 2, 3].map(i => proj([0, 1, 2, 3].map(j => +(i === j))));
+g.strokeStyle = "#a9a9a2"; g.lineWidth = 1;
+for (let i = 0; i < 4; i++) for (let j = i + 1; j < 4; j++) { g.beginPath(); g.moveTo(...corners[i]); g.lineTo(...corners[j]); g.stroke(); }
+// Orbit from near the center; skip the outward spiral, keep the attractor.
+const x = new Float64Array([0.26, 0.245, 0.25, 0.245]);
+for (let s = 0; s < 400 / H * 0.25; s++) rk4Step(x);
+const pts = [];
+for (let s = 0; s < (+(Q.get("T") || 160)) / H; s++) { rk4Step(x); if (s % 10 === 0) pts.push(proj(x)); }
+g.strokeStyle = "rgba(20,20,19,0.42)"; g.lineWidth = 0.7; g.beginPath(); g.moveTo(...pts[0]);
+for (const p of pts) g.lineTo(...p); g.stroke();
+const [hx, hy] = pts[pts.length - 1];
+const glow = g.createRadialGradient(hx, hy, 0, hx, hy, 26);
+glow.addColorStop(0, "rgba(209,28,61,0.45)"); glow.addColorStop(1, "rgba(209,28,61,0)");
+g.fillStyle = glow; g.beginPath(); g.arc(hx, hy, 26, 0, 7); g.fill();
+g.fillStyle = "#d11c3d"; g.beginPath(); g.arc(hx, hy, 4.2, 0, 7); g.fill();
+document.body.dataset.ready = "1";
+</script>
+</body></html>
