@@ -5,7 +5,7 @@ permalink: /models/
 description: "Interactive computational models by Aydin Mohseni, from his papers and courses, with their code."
 ---
 {%- from "partials/macros.njk" import section with context -%}
-{%- set research = '/research/' | url -%}
+{%- set research = '/publications/' | url -%}
 {%- set home = '/' | url -%}
 {%- set researchModels = models | whereKind("research") -%}
 {%- set teachingModels = models | whereKind("teaching") -%}
@@ -37,7 +37,7 @@ description: "Interactive computational models by Aydin Mohseni, from his papers
   <p class="eyebrow">Models</p>
   <h1 id="m-title">Computational models</h1>
   <p class="lede">Interactive models from papers and courses. Each opens as an app in the browser; its code is on GitHub.</p>
-  <p class="who"><a href="#research-models">Research</a> ({{ researchModels.length }}) · <a href="#teaching-models">Teaching</a> ({{ teachingModels.length }}) · <a href="#on-this-site">On this site</a> ({{ live.length }})</p>
+  <p class="who"><a href="#research-models">Research</a> ({{ researchModels.length }}) · <a href="#teaching-models">Teaching</a> ({{ teachingModels.length }}) · <a href="#on-this-site">On this site</a> ({{ live.length }}) · <a href="#infographics">Infographics</a> ({{ sketchbook.infographics.length }})</p>
 </section>
 
 {% call section("Research", "research-models", wide=true) %}
@@ -64,3 +64,29 @@ description: "Interactive computational models by Aydin Mohseni, from his papers
   {%- endfor %}
 </ul>
 {% endcall %}
+
+{%- for ig in sketchbook.infographics %}
+{%- set figNo = loop.index %}
+{% call section("Infographics" if loop.first else "", ("infographics" if loop.first else "infographic-" ~ loop.index), wide=true) %}
+<h2{% if ig.verify %} data-verify="{{ ig.verify_note }}"{% endif %}>{{ ig.title }}</h2>
+{%- if ig.with %}
+{%- set person = coinquirers | findBy("display", ig.with) %}
+<p class="meta-line">With {% if person and person.url %}<a href="{{ person.url }}">{{ ig.with }}</a>{% else %}{{ ig.with }}{% endif %}</p>
+{%- endif %}
+{%- if ig.caption %}
+<p{% if ig.verify_note and not ig.verify %} data-verify="{{ ig.verify_note }}"{% endif %}>{{ ig.caption }}</p>
+{%- endif %}
+<ul class="gallery gallery--row">
+  {%- for img in ig.local %}
+  {%- set size = img | imageSize %}
+  <li style="--ar: {{ (size.width / size.height) | round(4) }}"><a href="{{ (ig.pdf or img) | url }}"><img src="{{ img | url }}" width="{{ size.width }}" height="{{ size.height }}" alt="{{ ig.alt }}{% if ig.local.length > 1 %}, panel {{ loop.index }} of {{ ig.local.length }}{% endif %}" loading="lazy" decoding="async"></a></li>
+  {%- endfor %}
+</ul>
+{%- if ig.pdf or ig.paper_slug %}
+<ul class="related">
+  {%- if ig.pdf %}<li><a href="{{ ig.pdf | url }}">Full poster (PDF)</a></li>{% endif %}
+  {%- if ig.paper_slug %}{% set w = publications | findBySlug(ig.paper_slug) %}{% if w %}<li><a href="{{ research }}#pub-{{ w.slug }}"{% if ig.paper_slug_verify %} data-verify="The link between this infographic and the paper is an editorial inference"{% endif %}>Related paper: {{ w.title }}</a></li>{% endif %}{% endif %}
+</ul>
+{%- endif %}
+{% endcall %}
+{%- endfor %}

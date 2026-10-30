@@ -152,7 +152,7 @@
 
 {#- A short entry for selected work (home page strands): title linked to its Research anchor. -#}
 {% macro featuredWork(w) -%}
-<li><span class="t"><a href="{{ '/research/' | url }}#pub-{{ w.slug }}">{{ w.title }}</a></span><span class="d">{% if w.venue %}<i>{{ w.venue }}</i>{% if w.year %}, {{ w.year }}{% endif %}.{% elif w.year %}{{ w.year }}.{% endif %}{% if w.summary %} {{ w.summary }}{% endif %}</span></li>
+<li><span class="t"><a href="{{ '/publications/' | url }}#pub-{{ w.slug }}">{{ w.title }}</a></span><span class="d">{% if w.venue %}<i>{{ w.venue }}</i>{% if w.year %}, {{ w.year }}{% endif %}.{% elif w.year %}{{ w.year }}.{% endif %}{% if w.summary %} {{ w.summary }}{% endif %}</span></li>
 {%- endmacro %}
 
 {#- The year of a date given as 2026, "2026", "2026-03", or a YAML date. -#}
@@ -163,7 +163,7 @@
 <li class="work talk">
   <div class="work-meta"><span class="year">{{ yearOf(t.date) if t.date else "" }}</span><span class="type">{{ "Invited talk" if t.invited else "Talk" }}</span></div>
   <div>
-    <p class="work-title">{% if t.paper_slug %}<a href="{{ '/research/' | url }}#pub-{{ t.paper_slug }}">{{ t.title }}</a>{% else %}{{ t.title }}{% endif %}</p>
+    <p class="work-title">{% if t.paper_slug %}<a href="{{ '/publications/' | url }}#pub-{{ t.paper_slug }}">{{ t.title }}</a>{% else %}{{ t.title }}{% endif %}</p>
     <p class="work-summary">{{ t.venue }}{% if t.city %}, {{ t.city }}{% endif %}{% if upcoming %} (upcoming){% endif %}</p>
     {%- if t.video %}
     <div class="work-links"><a href="{{ t.video }}">Video</a></div>

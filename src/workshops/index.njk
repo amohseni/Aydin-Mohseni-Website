@@ -1,0 +1,31 @@
+---
+layout: layouts/base.njk
+title: Workshops
+permalink: /workshops/
+description: "Workshops and symposia organized by Aydin Mohseni."
+---
+{%- from "partials/macros.njk" import section with context -%}
+{%- set organized = workshops -%}
+
+<section class="hero page-head" aria-labelledby="w-title">
+  <p class="eyebrow">Workshops</p>
+  <h1 id="w-title">Workshops</h1>
+  <p class="lede">Workshops and symposia I have organized.</p>
+</section>
+
+{% call section("Organized", "workshops") %}
+<ol class="works">
+  {%- for ws in organized %}
+  <li class="work" id="workshop-{{ ws.slug }}">
+    <div class="work-meta"><span class="year">{{ (ws.start | string).slice(0, 4) if ws.start else (ws.dates | string).slice(-4) }}</span><span class="type">{{ "Workshop" if ws.page else "Symposium" }}</span></div>
+    <div>
+      <p class="work-title">{% if ws.page %}<a href="{{ ws.url | url }}">{{ ws.title }}</a>{% else %}{{ ws.title }}{% endif %}</p>
+      <p class="work-summary">{% if ws.page %}{{ ws.dates | replace("-", "&ndash;") | safe }}. {{ ws.place }}.{% if ws.organizers and ws.organizers.length %} Organized by {% for o in ws.organizers %}{% if not loop.first %}{{ ((", and " if loop.length > 2 else " and ") if loop.last else ", ") }}{% endif %}{{ o.name }}{% endfor %}.{% endif %}{% else %}{{ ws.role }}. {{ ws.place }}, {{ ws.dates }}.{% endif %}</p>
+      {%- if ws.page %}
+      <div class="work-links"><a href="{{ ws.url | url }}">Workshop page</a>{% if ws.program_pdf %}<a href="{{ ws.program_pdf | url }}">Program (PDF)</a>{% endif %}</div>
+      {%- endif %}
+    </div>
+  </li>
+  {%- endfor %}
+</ol>
+{% endcall %}

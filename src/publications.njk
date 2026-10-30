@@ -1,12 +1,12 @@
 ---
 layout: layouts/base.njk
-title: Research
-permalink: /research/
-description: "Papers, talks and workshops by Aydin Mohseni on AI safety, metascience, and methods (formal epistemology and game theory)."
+title: Publications
+permalink: /publications/
+description: "Papers and talks by Aydin Mohseni on AI safety, metascience, and methods (formal epistemology and game theory)."
 ---
 {%- from "partials/macros.njk" import section, work with context -%}
 {#- Structure of exproof.ai publications.html: a count line with jump links, then one section per
-    status, then talks and workshops. Every work has the anchor #pub-<slug>. Talks are grouped by
+    status, then talks (workshops have their own page). Every work has the anchor #pub-<slug>. Talks are grouped by
     title, one entry per talk with every occasion it was given; upcoming occasions are computed at
     build time from each date (see eleventy.config.js). -#}
 {%- set published = publications | whereStatus("published") -%}
@@ -17,9 +17,9 @@ description: "Papers, talks and workshops by Aydin Mohseni on AI safety, metasci
 {%- set organized = workshops -%}
 
 <section class="hero page-head" aria-labelledby="r-title">
-  <p class="eyebrow">Research</p>
-  <h1 id="r-title">Papers, talks and workshops</h1>
-  <p class="who"><a href="#published">Published</a> ({{ published.length }}) · <a href="#under-review">Under review</a> ({{ review.length }}) · <a href="#in-progress">In progress</a> ({{ progress.length }}) · <a href="#talks">Talks</a> ({{ talks.length }}) · <a href="#workshops">Workshops</a> ({{ organized.length }})</p>
+  <p class="eyebrow">Publications</p>
+  <h1 id="r-title">Publications and talks</h1>
+  <p class="who"><a href="#published">Published</a> ({{ published.length }}) · <a href="#under-review">Under review</a> ({{ review.length }}) · <a href="#in-progress">In progress</a> ({{ progress.length }}) · <a href="#talks">Talks</a> ({{ talks.length }}) · <a href="{{ '/workshops/' | url }}">Workshops</a> ({{ organized.length }})</p>
 </section>
 
 {% call section("Published", "published") %}
@@ -78,23 +78,6 @@ description: "Papers, talks and workshops by Aydin Mohseni on AI safety, metasci
         <li{% if t.verify %} data-verify="{{ t.verify_note }}"{% endif %}>{{ t.venue }}, {{ t.city }}, <span class="nw">{{ t.date | formatDate }}{% if t.upcoming %} (upcoming){% endif %}{% if t.invited %} <span class="inv">invited</span>{% endif %}{% if t.video %} <a class="vid" href="{{ t.video }}">Video</a>{% endif %}</span>{% if t.with and t.with.length %} <span class="inv nw">with {{ t.with | join(" and ") }}</span>{% endif %}</li>
         {%- endfor %}
       </ul>
-    </div>
-  </li>
-  {%- endfor %}
-</ol>
-{% endcall %}
-
-{% call section("Workshops", "workshops") %}
-<ol class="works">
-  {%- for ws in organized %}
-  <li class="work" id="workshop-{{ ws.slug }}">
-    <div class="work-meta"><span class="year">{{ (ws.start | string).slice(0, 4) if ws.start else (ws.dates | string).slice(-4) }}</span><span class="type">{{ "Workshop" if ws.page else "Symposium" }}</span></div>
-    <div>
-      <p class="work-title">{% if ws.page %}<a href="{{ ws.url | url }}">{{ ws.title }}</a>{% else %}{{ ws.title }}{% endif %}</p>
-      <p class="work-summary">{% if ws.page %}{{ ws.dates | replace("-", "&ndash;") | safe }}. {{ ws.place }}.{% if ws.organizers and ws.organizers.length %} Organized by {% for o in ws.organizers %}{% if not loop.first %}{{ ((", and " if loop.length > 2 else " and ") if loop.last else ", ") }}{% endif %}{{ o.name }}{% endfor %}.{% endif %}{% else %}{{ ws.role }}. {{ ws.place }}, {{ ws.dates }}.{% endif %}</p>
-      {%- if ws.page %}
-      <div class="work-links"><a href="{{ ws.url | url }}">Workshop page</a>{% if ws.program_pdf %}<a href="{{ ws.program_pdf | url }}">Program (PDF)</a>{% endif %}</div>
-      {%- endif %}
     </div>
   </li>
   {%- endfor %}

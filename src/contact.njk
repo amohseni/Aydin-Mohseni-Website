@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+title: Contact
+permalink: /contact/
+description: "How to reach Aydin Mohseni, and how to work with him."
+---
+{%- from "partials/macros.njk" import section with context -%}
+{%- set L = profile.links -%}
+{#- Organized as danielherrmann.ca/contact.html: how to reach me, profiles, working with me,
+    mentoring. Statements of policy (who should write, and how) are Aydin's to confirm. -#}
+
+<section class="hero page-head" aria-labelledby="c-title">
+  <p class="eyebrow">Contact</p>
+  <h1 id="c-title">Contact</h1>
+  <p class="lede">Email is the best way to reach me: {{ profile.email_obfuscated }}. To talk in person or by video, <a href="{{ '/meet/' | url }}">schedule a meeting</a>.</p>
+</section>
+
+{% call section("Office", "office") %}
+<p>{% for line in profile.contact.address %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
+<p>Office: {{ profile.contact.office }}</p>
+{% endcall %}
+
+{% call section("Profiles", "profiles") %}
+<ul class="related profiles">
+  <li><a href="{{ '/cv.pdf' | url }}">Curriculum vitae (PDF)</a></li>
+  <li><a href="{{ L.scholar }}">Google Scholar</a></li>
+  <li><a href="{{ L.github }}">GitHub</a></li>
+  {%- if L.philpeople %}<li><a href="{{ L.philpeople }}">PhilPeople</a></li>{% endif %}
+  {%- if L.orcid %}<li><a href="{{ L.orcid }}">ORCID</a></li>{% endif %}
+</ul>
+{% endcall %}
+
+{% call section("Working with me", "working-with-me") %}
+<p data-verify="Draft wording modeled on Daniel Herrmann's Contact page; Aydin to confirm.">At Carnegie Mellon I advise graduate and undergraduate students in philosophy who work on AI safety, metascience, formal epistemology and game theory. If that is you, email me with a few lines on what you want to work on. I also welcome collaborators whose work touches mine, for a joint paper or a longer project.</p>
+{% endcall %}
+
+{% call section("Mentoring", "mentoring") %}
+<p>I mentor AI safety researchers through <a href="https://sparai.org/">SPAR</a>, and advise master&rsquo;s students in Logic, Computation, and Methodology at Carnegie Mellon. With <a href="https://www.danielherrmann.ca/">Daniel Herrmann</a>, I co-direct <a class="xp" href="https://exproof.ai/">{{ "" | exproofName | safe }}</a>; its <a href="https://exproof.ai/work-with-us.html">Work with us</a> page explains how to get involved.</p>
+{% endcall %}

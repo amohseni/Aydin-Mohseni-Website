@@ -2,7 +2,7 @@
 layout: layouts/base.njk
 title: About
 permalink: /about/
-description: "Aydin Mohseni: biography, appointments, education, profiles and contact."
+description: "Aydin Mohseni: biography, research, teaching, appointments and education."
 ---
 {%- from "partials/macros.njk" import section with context -%}
 {%- set L = profile.links -%}
@@ -50,22 +50,8 @@ description: "Aydin Mohseni: biography, appointments, education, profiles and co
 </dl>
 {% endcall %}
 
-{% call section("Profiles", "profiles") %}
-<ul class="related profiles">
-  <li><a href="{{ '/cv.pdf' | url }}">Curriculum vitae (PDF)</a></li>
-  <li><a href="{{ L.scholar }}">Google Scholar</a></li>
-  <li><a href="{{ L.github }}">GitHub</a></li>
-  {%- if L.philpeople %}<li><a href="{{ L.philpeople }}">PhilPeople</a></li>{% endif %}
-  {%- if L.orcid %}<li><a href="{{ L.orcid }}">ORCID</a></li>{% endif %}
-  <li><a href="https://exproof.ai/">{{ "" | exproofName | safe }}</a></li>
-</ul>
-{% endcall %}
-
-{% call section("Contact", "contact") %}
-<p class="lead">{{ profile.email_obfuscated }}</p>
-<p>{% for line in profile.contact.address %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
-<p>Office: {{ profile.contact.office }}</p>
-<p class="related"><a href="{{ '/meet/' | url }}"{% if profile.booking_url_verify %} data-verify="{{ profile.booking_url_note }}"{% endif %}>Schedule a meeting</a></p>
+{% call section("Teaching and mentoring", "teaching") %}
+<p>He teaches decision theory, game theory, AI safety, logic and philosophy of science at Carnegie Mellon, and taught earlier at the University of Pennsylvania and UC Irvine. The full list, with summer schools, is on the <a href="{{ '/teaching/' | url }}">Teaching</a> page. He also mentors AI safety researchers through <a href="https://sparai.org/">SPAR</a> and advises master&rsquo;s students; see <a href="{{ '/contact/' | url }}#mentoring">Contact</a>.</p>
 {% endcall %}
 
 {% call section("Colophon", "colophon") %}

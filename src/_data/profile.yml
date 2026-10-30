@@ -69,8 +69,8 @@ links_unverified:
   philpeople_note: "Found by web search; the page could not be fetched."
 
 booking_url: "https://calendar.app.google/pe98GGpL8dwdoqbp6"
-booking_url_verify: true
-booking_url_note: "Value from docs/BRIEF.md. The old home page's 'schedule a meeting' link is https://calendar.app.google/4AFnSgB8vVi3qtvZA. Confirm which is current."
+booking_url_verify: false
+booking_url_note: "Confirmed 30 Oct 2026: the live /meet redirect on the old site pointed here. Value from docs/BRIEF.md. The old home page's 'schedule a meeting' link is https://calendar.app.google/4AFnSgB8vVi3qtvZA. Confirm which is current."
 
 contact:
   address:

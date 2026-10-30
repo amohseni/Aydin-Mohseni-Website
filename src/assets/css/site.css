@@ -141,12 +141,21 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
 .nav a { color: var(--fg-2); padding-block: 0.15rem; }
 .nav a:hover { color: var(--fg); }
 .nav a[aria-current="page"] { color: var(--fg); box-shadow: inset 0 -1px 0 var(--red); }
-.nav .exists, .foot .exists { font-family: var(--math); font-size: 1.04em; line-height: 1; }
+.nav .exists, .foot .exists, a.xp .exists { font-family: var(--math); font-size: 1.04em; line-height: 1; color: var(--red-bright); margin-right: 0.02em; }
 .theme-toggle {
   font: inherit; letter-spacing: inherit; color: var(--fg-2); background: none; border: 0; cursor: pointer;
   padding: 0.15rem 0; margin: 0;
 }
 .theme-toggle:hover { color: var(--fg); }
+/* A half-filled disc before the word, as on danielherrmann.ca. */
+.theme-toggle::before {
+  content: ""; display: inline-block; width: 0.72em; height: 0.72em; margin-right: 0.4em; vertical-align: -0.06em;
+  border: 1px solid currentColor; border-radius: 50%; background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+}
+@media (max-width: 560px) {
+  .masthead { position: relative; }
+  .nav .theme-toggle { position: absolute; right: 0; top: 1.05rem; padding: 0.3rem 0.7rem; border: 1px solid var(--rule); border-radius: 999px; }
+}
 .theme-toggle .to-day { display: none; }
 :root[data-theme="dark"] .theme-toggle .to-day { display: inline; }
 :root[data-theme="dark"] .theme-toggle .to-night { display: none; }
@@ -154,6 +163,20 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
   :root:not([data-theme="light"]) .theme-toggle .to-day { display: inline; }
   :root:not([data-theme="light"]) .theme-toggle .to-night { display: none; }
 }
+
+/* ---------- The ∃xProof AI peek ----------
+   Hovering or focusing the ∃xProof AI link opens a small card that runs a miniature of the
+   exproof.ai background: a light searching a tree for a witness path (assets/js/xp-peek.js). */
+.xp-peek-host { position: relative; }
+.xp-peek {
+  position: absolute; top: calc(100% + 0.6rem); right: 0; z-index: 30; width: 15rem; padding: 0.6rem 0.7rem 0.55rem;
+  background: var(--bg); border: 1px solid var(--rule); box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+  opacity: 0; transform: translateY(-3px); pointer-events: none; transition: opacity 160ms ease, transform 160ms ease;
+}
+.xp-peek.open { opacity: 1; transform: none; }
+.xp-peek canvas { display: block; width: 100%; height: 7.5rem; }
+.xp-peek p { margin: 0.45rem 0 0; font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.02em; line-height: 1.45; color: var(--fg-2); }
+@media (hover: none), (max-width: 860px) { .xp-peek { display: none; } }
 
 /* ---------- Hero and page heads ---------- */
 .hero {
@@ -172,6 +195,8 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
 }
 .hero h1 em { font-style: italic; color: var(--red-bright); }
 .hero > :not(.eyebrow) { grid-column: 2; }
+.hero .lede a { color: var(--red-bright); }
+.hero .lede a:hover { color: var(--fg); }
 .hero .lede { max-width: var(--measure); margin: 1.8rem 0 0; color: var(--fg-2); font-size: 1.18rem; }
 .hero .who { margin: 1.8rem 0 0; font-family: var(--sans); font-size: 0.78rem; color: var(--fg-2); line-height: 1.7; }
 .hero .who b { color: var(--fg); font-weight: 500; }
@@ -189,6 +214,7 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
 .intro .bio { color: var(--fg); margin: 0 0 1rem; }
 .hero:has(> .intro) .eyebrow { padding-top: 0; }
 .hero > .intro { padding-top: 0.265rem; }   /* the eyebrow's capitals meet the top of the photo */
+.home-hero { padding-bottom: 2.575rem; }   /* 25% less space before the first section (7.7rem to 5.8rem) */
 
 .eyebrow, .label {
   font-family: var(--sans); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-2);
@@ -533,6 +559,7 @@ html.review .review-bar {
   .hero { padding-block: 3.2rem 2.8rem; }
   .hero .eyebrow { margin-bottom: 1.1rem; padding-top: 0; }
   .hero > .intro { padding-top: 0; }
+  .home-hero { padding-bottom: 1.5rem; }   /* 25% less space before the first section (5.2rem to 3.9rem) */
   .section { padding-block: 2.4rem var(--tail); }
   :root { --tail: 1.1rem; }
   .section > .label { position: static; padding: 0 0 1rem; }
