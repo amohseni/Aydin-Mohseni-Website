@@ -1,0 +1,9 @@
+HTTP/2 301 
+expires: Fri, 30 Oct 2026 04:01:15 GMT
+cache-control: max-age=3600
+x-redirect-by: redirection
+location: https://calendar.app.google/pe98GGpL8dwdoqbp6
+content-type: text/html; charset=UTF-8
+date: Fri, 30 Oct 2026 03:01:14 GMT
+server: Apache
+
