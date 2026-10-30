@@ -47,6 +47,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Prepare the CV source
+        # comment.sty needs \begin{comment} and \end{comment} at the start of a line; the source indents them.
+        run: sed -i -E 's/^[[:space:]]+(\\(begin|end)\{comment\})/\1/' cv/amohseni.CV.tex
+
       - name: Compile the CV
         id: cv
         continue-on-error: true
