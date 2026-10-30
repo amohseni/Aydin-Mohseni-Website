@@ -1,14 +1,14 @@
 # Profile. Bio text is the old home page bio (aydinmohseni.com, fetched 30 Oct 2026)
 # with one factual fix: "Perci" -> "Persi" Diaconis. Appointments and education from the CV.
 name: "Aydin Mohseni"
-tagline: "Mathematical philosopher"
+tagline: "Mathematical philosopher, metascientist, AI safety researcher"
 url: "https://aydinmohseni.com"
 
 short_bio: >-
-  I am a mathematical philosopher and assistant professor in the Department of
-  Philosophy at Carnegie Mellon University. I use evolutionary game theory and Bayesian
-  epistemology to study problems in AI safety and metascience. I am a core member of CMU's
-  Center for Conceptual Research on Safe AI and Institute for Complex Social Dynamics, and co-director of ∃xProof AI with Daniel Herrmann.
+  I'm an assistant professor in the Department of Philosophy at Carnegie Mellon University,
+  a core member of CMU's Center for Conceptual Research on Safe AI and Institute for Complex
+  Social Dynamics, and co-director of ∃xProof AI with Daniel Herrmann. I use evolutionary game
+  theory and Bayesian epistemology to study problems in AI safety and metascience.
 
 long_bio:
   - >-
