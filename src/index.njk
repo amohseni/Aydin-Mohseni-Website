@@ -44,7 +44,7 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
 {{ model(s.model, caption=s.caption, number=n, options={}, id="model-" ~ s.model, aspect="16 / 10") }}
 <h3 class="list-head">Selected work</h3>
 <ul class="featured">
-  {%- for slug in s.selected %}
+  {%- for slug in s.selected.slice(0, 3) %}
   {%- set w = publications | findBySlug(slug) %}
   {%- if w %}
   {%- set note = verifyNote(w) | string | trim %}
