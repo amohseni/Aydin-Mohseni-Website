@@ -46,7 +46,7 @@
     "Truth and Conformity on Networks": truth-and-conformity
     "The Best Paper You'll Read Today": best-paper
     "HARKing: from Misunderstanding to Misprescription": harking
-  selected: [social-sciences-hard, best-paper, truth-and-conformity, harking, optimal-grant-funding]
+  selected: [social-sciences-hard, best-paper, truth-and-conformity, harking, bayesian-grant-funding]
 
 - slug: methods
   title: "Methods"
@@ -55,8 +55,6 @@
   model: reflection
   caption: "Possible futures of an agent's credence that a coin is biased toward heads, simulated from its own present probabilities. For a Bayesian agent their average (red) stays level, as van Fraassen's Reflection principle requires. The toggle shows an agent who expects to change its mind."
   essay:
-    - text: "The methods strand covers Bayesian epistemology, decision theory, and evolutionary game theory."
-      sources: ["CV research summary", "old home page bio"]
     - text: "Stochastic Stability and Disagreements between Dynamics asks why the replicator dynamics and the Moran process can make different predictions, and traces the divergence to standard analytic techniques and to the idealizations each model makes. Limitations of Equilibrium Concepts in Evolutionary Games gives an explicit definition of evolutionary significance and shows that proposed equilibrium refinements make errors of omission or commission."
       sources: ["old Research page summaries of both papers"]
     - text: "With Simon Huttegger, he reconciles Kalai and Lehrer's result on Bayesian learning of Nash equilibrium with Foster and Young's impossibility theorem. With Cailin O'Connor and Hannah Rubin, he tested whether a difference in group size alone produces disadvantage for a minority: in a repeated Nash demand game, members of the minority group made low demands more often and earned lower payoffs."
