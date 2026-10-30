@@ -296,6 +296,22 @@
 
 # ---------------------------------------------------------------- in progress
 
+- slug: science-ai
+  title: "Why and How to Do Science When AI Is Better at It: A Framework Grounded in Human Understanding and Direction"
+  authors: ["Hoda Heidari", "Aydin Mohseni"]
+  year: 2026
+  status: in-progress
+  venue: ""
+  links:
+    arxiv: "2610.36116"
+  strand: metascience
+  selected: true
+  summary: "Science should keep aiming at shared human understanding, and that aim decides which research tasks AI can take over. From this aim the paper derives a two-part test, human understanding and human direction, for when a research task can be delegated to AI, and applies it to each phase of research."
+  summary_sources: ["exproof.ai publications.html (first sentence)", "arXiv:2610.36116 abstract (second sentence)"]
+  exproof: "https://exproof.ai/publications.html#science-ai"
+  verified: arxiv
+  verify_note: "Posted to arXiv 26 Oct 2026 (cs.AI, cs.CY). Not in the CV yet. Listed under In progress because no submission status is known."
+
 - slug: automated-safety-research
   title: "Bayes-Optimal Automated AI Safety Research via Judgement Aggregation under Resource Constraints"
   authors: ["Aydin Mohseni", "Kevin J. S. Zollman", "Simon DeDeo"]

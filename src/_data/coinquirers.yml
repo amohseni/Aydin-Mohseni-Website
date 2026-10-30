@@ -43,6 +43,12 @@
   works: [value-of-value-learning]
   constant: true
 
+- name: "Hoda Heidari"
+  display: "Hoda Heidari"
+  url: "https://www.cs.cmu.edu/~hheidari/"
+  url_source: exproof-publications
+  works: [science-ai]
+
 - name: "Simon Huttegger"
   display: "Simon Huttegger"
   url: "https://faculty.sites.uci.edu/shuttegg/"
