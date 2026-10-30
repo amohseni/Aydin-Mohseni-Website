@@ -143,7 +143,10 @@
   paper_slug: ""
   image: "/wp-content/uploads/2025/04/Screenshot-2025-04-15-at-12.28.06%E2%80%AFAM.png"
   images: ["/wp-content/uploads/2025/04/Screenshot-2025-04-15-at-12.28.06%E2%80%AFAM.png", "/wp-content/uploads/2025/04/Screenshot-2025-04-15-at-12.28.15%E2%80%AFAM.png"]
-  image_alt: "Screenshot of the Optimal Bidding in a First-Price, Sealed-Bid Auction model"
+  image_alt: "The app's plot of the probability that a bid is accepted, for one to five competitors, with the optimal bids and the valuation marked"
+  thumb: "/assets/img/models/first-price-auction.png"   # redrawn from app.R at its default inputs by tools/thumbs/first-price-auction.py
+  thumb_width: 960
+  thumb_height: 686
   verify_note: "File names contain a narrow no-break space (U+202F), percent-encoded here. Infrastructure: keep the file name byte-exact when mirroring."
 
 - slug: bounded-confidence
