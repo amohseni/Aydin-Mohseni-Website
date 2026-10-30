@@ -39,12 +39,4 @@ description: "Courses taught by Aydin Mohseni at Carnegie Mellon University, the
   <li>{{ t }}</li>
   {%- endfor %}
 </ul>
-{%- if teaching.workshops_designed and teaching.workshops_designed.length %}
-<h2 class="list-head">Workshops designed</h2>
-<ul class="plainlist">
-  {%- for t in teaching.workshops_designed %}
-  <li>{{ t }}</li>
-  {%- endfor %}
-</ul>
-{%- endif %}
 {% endcall %}
