@@ -104,8 +104,8 @@ body::after {
   padding-block: 0 4rem;
 }
 
-a { color: inherit; text-decoration: none; transition: color 120ms ease; }
-a:hover { color: var(--red-bright); }
+a { color: var(--red-bright); text-decoration: none; transition: color 120ms ease; }
+a:hover { color: var(--fg); }
 a:focus-visible, button:focus-visible, summary:focus-visible, label:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--red-bright); outline-offset: 2px; }
 ::selection { background: var(--red); color: var(--sel-fg); }
 img { height: auto; }
@@ -125,7 +125,7 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
   -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
   border-bottom: 1px solid color-mix(in srgb, var(--rule-strong) 50%, transparent);  /* --rule-strong at half strength */
 }
-/* Wordmark: a red delta (the simplex) and the name in CMU Serif. On hover the whole wordmark turns red. */
+/* Wordmark: the name in CMU Serif. On hover it turns red. */
 /* The masthead's translucent ground would hide the grain; it carries its own copy, fixed to the
    viewport so the two layers line up. */
 .masthead::before {
@@ -141,7 +141,7 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
 .nav a { color: var(--fg-2); padding-block: 0.15rem; }
 .nav a:hover { color: var(--fg); }
 .nav a[aria-current="page"] { color: var(--fg); box-shadow: inset 0 -1px 0 var(--red); }
-.nav .exists, .foot .exists, a.xp .exists, .bio .exists { font-family: var(--math); font-size: 1.04em; line-height: 1; color: var(--red-bright); margin-right: 0.02em; }
+.exists { font-family: var(--math); font-size: 1.04em; line-height: 1; color: var(--red-bright); margin-right: 0.02em; }
 .theme-toggle {
   font: inherit; letter-spacing: inherit; color: var(--fg-2); background: none; border: 0; cursor: pointer;
   padding: 0.15rem 0; margin: 0;
@@ -166,7 +166,6 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
 
 /* The Erdős path on About: its own centered line in the sans face. */
 .erdos-path { text-align: center; font-family: var(--sans); font-size: 0.95rem; letter-spacing: 0.02em; color: var(--fg); }
-.erdos-path a { color: inherit; }
 
 /* ---------- The ∃xProof AI peek ----------
    Hovering or focusing the ∃xProof AI link opens a small card that runs a miniature of the
@@ -199,8 +198,6 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
 }
 .hero h1 em { font-style: italic; color: var(--red-bright); }
 .hero > :not(.eyebrow) { grid-column: 2; }
-.hero .lede a { color: var(--red-bright); }
-.hero .lede a:hover { color: var(--fg); }
 .hero .lede { max-width: var(--measure); margin: 1.8rem 0 0; color: var(--fg-2); font-size: 1.18rem; }
 .hero .who { margin: 1.8rem 0 0; font-family: var(--sans); font-size: 0.78rem; color: var(--fg-2); line-height: 1.7; }
 .hero .who b { color: var(--fg); font-weight: 500; }
@@ -338,14 +335,14 @@ blockquote footer, .attribution { font-family: var(--sans); font-size: 0.74rem; 
 .areas--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .area { min-width: 0; }
 .area h3 { font-style: normal; font-size: 1.25rem; margin: 0 0 0.45rem; }
-.area h3 a:hover { color: var(--red-bright); }
+.area h3 a:hover { color: var(--fg); }
 .area p { font-size: 1rem; line-height: 1.38; color: var(--fg-2); margin: 0; }
 
 .featured { list-style: none; padding: 0; margin: 0; max-width: none; }
 .featured li { padding-block: 1rem; }
 .featured li:first-child { padding-top: 0; }
 .featured .t { font-size: 1.22rem; line-height: 1.3; display: block; margin-bottom: 0.2rem; }
-.featured .t a:hover { color: var(--red-bright); }
+.featured .t a:hover { color: var(--fg); }
 .featured .d { color: var(--fg-2); font-size: 1rem; display: block; }
 
 /* Cards: models and similar items with a thumbnail. */
@@ -536,11 +533,9 @@ pre.code { padding-right: 0.9rem; font-size: 0.8rem; }
 /* ---------- Footer ---------- */
 .foot { display: grid; grid-template-columns: var(--rail) minmax(0, 1fr); column-gap: var(--gap); padding-block: 2rem 0; font-family: var(--sans); font-size: 0.72rem; color: var(--fg-2); line-height: 1.7; }
 .foot nav { grid-column: 2; display: flex; flex-wrap: wrap; gap: 0.3rem 1.4rem; margin-bottom: 0.8rem; }
-.foot nav a { color: var(--fg); }
-.foot nav a:hover, .foot p a:hover { color: var(--red-bright); }
+.foot nav a:hover, .foot p a:hover { color: var(--fg); }
 .foot p { margin: 0; max-width: 42rem; grid-column: 2; }
 .foot .contact-line { display: flex; flex-wrap: wrap; gap: 0.3rem 1.4rem; margin-bottom: 0.4rem; }
-.foot .contact-line a { color: var(--fg); }
 .foot .brand-mark { grid-column: 1; grid-row: 1; align-self: start; }
 
 /* ---------- Review mode (#review) ---------- */
@@ -626,12 +621,11 @@ html.review .review-bar {
 .body > .featured + .related { margin-top: 1.6rem; }
 .related .exists, .profiles .exists, .contact-links .exists { font-family: var(--math); }
 .featured .tag { font-family: var(--sans); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg); margin-right: 0.35rem; }
-.featured .d a:hover { color: var(--red-bright); }
+.featured .d a:hover { color: var(--fg); }
 .stories .yr { color: var(--fg-2); font-size: 0.95rem; }
 .courses .d { font-family: var(--sans); font-size: 0.76rem; letter-spacing: 0.02em; margin-top: 0.15rem; }
 .courses li { padding-block: 0.6rem; }
-.names .d a { color: inherit; }
-.names .d a:hover { color: var(--red-bright); }
+.names .d a:hover { color: var(--fg); }
 .contact-links, .profiles { font-size: 0.8rem; }
 
 /* Verse: one line per span, wrapped lines hang. */
@@ -654,7 +648,7 @@ blockquote.epigraph p { font-size: 1.24rem; line-height: 1.45; font-style: itali
 .occasions .vid { font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.04em; color: var(--fg); margin-left: 0.4rem; }
 .occasions .vid:hover { color: var(--red-bright); }
 .works--upcoming { margin-bottom: 0.4rem; }
-.work .work-title a:hover { color: var(--red-bright); }
+.work .work-title a:hover { color: var(--fg); }
 
 /* Models: thumbnails are app screenshots on white, shown whole. */
 .card-thumb { object-fit: contain; background: #fff; padding: 0.4rem; }
@@ -669,7 +663,7 @@ blockquote.epigraph p { font-size: 1.24rem; line-height: 1.45; font-style: itali
   :root:not([data-theme="light"]) :is(.card-thumb, .gallery img) { filter: brightness(0.8) contrast(1.05); transition: filter 160ms ease; }
   :root:not([data-theme="light"]) :is(.card:hover, .card:focus-within, .gallery li:hover, .gallery li:focus-within) :is(.card-thumb, img) { filter: none; }
 }
-.card h3 a:hover { color: var(--red-bright); }
+.card h3 a:hover { color: var(--fg); }
 
 /* Sketchbook galleries: the panels of one infographic in a row of equal height. Each item's
    flex-grow is its image's aspect ratio (--ar, width / height, set from the file at build time),

@@ -62,7 +62,7 @@
 <div class="page">
 
 <header class="masthead">
-  <a class="wordmark" href="{{ '/' | url }}" id="top"{% if page.url == "/" %} aria-current="page"{% endif %}><span class="delta" aria-hidden="true">&Delta;</span><span class="name">{{ siteName }}</span></a>
+  <a class="wordmark" href="{{ '/' | url }}" id="top"{% if page.url == "/" %} aria-current="page"{% endif %}><span class="name">{{ siteName }}</span></a>
   <nav class="nav" aria-label="Site">
     {%- for item in nav %}
     {%- set current = page.url and ((item.match[0] and page.url.indexOf(item.match[0]) == 0) or (item.match[1] and page.url.indexOf(item.match[1]) == 0)) %}
@@ -78,7 +78,6 @@
 </main>
 
 <footer class="foot">
-  <span class="brand-mark" aria-hidden="true">&Delta;</span>
   <nav aria-label="Footer">
     <a href="{{ '/' | url }}">Home</a>
     {%- for item in nav %}
