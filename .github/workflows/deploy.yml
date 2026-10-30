@@ -72,6 +72,25 @@ jobs:
       - name: Add the CV to the site
         run: cp cv/amohseni.CV.pdf _site/cv.pdf
 
+      - name: Copy the CV to the old WordPress CV addresses
+        # Every path in src/_data/legacy_cv_paths.yml gets the current CV, so old links keep working.
+        run: |
+          node -e '
+            const fs = require("fs"), path = require("path"), yaml = require("js-yaml");
+            const paths = yaml.load(fs.readFileSync("src/_data/legacy_cv_paths.yml", "utf8")) || [];
+            for (const p of paths) {
+              const dest = path.join("_site", p.replace(/^\/+/, ""));
+              fs.mkdirSync(path.dirname(dest), { recursive: true });
+              fs.copyFileSync("_site/cv.pdf", dest);
+            }
+            console.log("Copied the CV to " + paths.length + " old addresses.");
+          '
+
+      - name: Test the models (agency and community)
+        run: |
+          node tools/test-models-agency.mjs
+          node tools/test-models-community.mjs
+
       - name: Check links, alt text, dashes and meta tags
         run: node tools/check.mjs
 

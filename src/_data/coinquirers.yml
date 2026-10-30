@@ -9,7 +9,7 @@
   url: "https://www.danielherrmann.ca/"
   url_source: exproof-readme
   works: [social-sciences-hard, bayesian-causation]
-  also: "Co-directs ∃xProof AI; co-organized the AI Agency & Interpretability Workshop (2026); co-presented 'Virtues and Vices of Analytic Philosophy with Respect to AI Safety' (ILIAD 2026)."
+  also: "Co-directs ∃xProof AI; co-organized the AI Agency and Interpretability Workshop (2026); co-presented 'Virtues and Vices of Analytic Philosophy with Respect to AI Safety' (ILIAD 2026)."
   exproof: "https://exproof.ai/"
   constant: true
 
@@ -52,7 +52,7 @@
   constant: false
 
 - name: "Benjamin A. Levinstein"
-  display: "Ben Levinstein"
+  display: "Benjamin A. Levinstein"
   url: "https://www.levinstein.org/"
   url_source: exproof-readme
   works: [bayesian-causation]

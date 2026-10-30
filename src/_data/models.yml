@@ -13,6 +13,9 @@
   paper_slug: optimal-grant-funding
   image: "/wp-content/uploads/2026/07/SC-GrantFundingModel.png"
   image_alt: "Screenshot of the Optimal Grant Funding for Scientific Production model"
+  thumb: "/assets/img/models/grant-funding.png"   # resized copy of `image`, for the Models page
+  thumb_width: 960
+  thumb_height: 428
   verify: true
   verify_note: "On the old page this image sat under 'Modeling Interventions in Science' and again under 'Prediction Markets Lab'; the file name says grant funding, so it is placed here. Paper link inferred."
 
@@ -26,6 +29,9 @@
   image: "/wp-content/uploads/2020/05/FDRA.png"
   images: ["/wp-content/uploads/2020/05/FDRA.png", "/wp-content/uploads/2020/05/FDRB.png"]
   image_alt: "Screenshot of the Modeling Interventions in Science model"
+  thumb: "/assets/img/models/interventions-in-science.png"   # resized copy of `image`, for the Models page
+  thumb_width: 960
+  thumb_height: 622
   verify_note: "The old Research page lists this app as the computational model for the HARKing paper."
 
 - slug: truth-and-conformity
@@ -38,6 +44,9 @@
   image: "/wp-content/uploads/2018/06/TC02-300x276.png"
   images: ["/wp-content/uploads/2018/06/TC02-300x276.png", "/wp-content/uploads/2018/06/TC01-279x300.png"]
   image_alt: "Screenshot of the Bayesian Learning with Conformity on Social Networks model"
+  thumb: "/assets/img/models/truth-and-conformity.png"   # resized copy of `image`, for the Models page
+  thumb_width: 960
+  thumb_height: 884
 
 - slug: self-assembling-networks
   title: "Self-Assembling Networks with Reinforcement Learning"
@@ -49,6 +58,9 @@
   image: "/wp-content/uploads/2018/06/SAN01-290x300.png"
   images: ["/wp-content/uploads/2018/06/SAN01-290x300.png", "/wp-content/uploads/2018/06/SAN02-285x300.png"]
   image_alt: "Screenshot of the Self-Assembling Networks with Reinforcement Learning model"
+  thumb: "/assets/img/models/self-assembling-networks.png"   # resized copy of `image`, for the Models page
+  thumb_width: 929
+  thumb_height: 960
 
 - slug: tragedies-of-the-commons
   title: "Tragedies of the Commons"
@@ -60,6 +72,9 @@
   image: "/wp-content/uploads/2020/05/PGGPlotGradientOfSelection.png"
   images: ["/wp-content/uploads/2020/05/PGGPlotGradientOfSelection.png", "/wp-content/uploads/2020/05/PGGPlotMeanPayoffs.png"]
   image_alt: "Screenshot of the Tragedies of the Commons model"
+  thumb: "/assets/img/models/tragedies-of-the-commons.png"   # resized copy of `image`, for the Models page
+  thumb_width: 960
+  thumb_height: 494
   verify_note: "The old page had no code link; the repository amohseni/Tragedies-of-the-Commons exists (GitHub, checked 30 Oct 2026: 'A model of AI policy public goods problems under the fermi dynamics')."
 
 - slug: reporting-bias
@@ -72,6 +87,9 @@
   image: "/wp-content/uploads/2018/06/NB01-300x162.png"
   images: ["/wp-content/uploads/2018/06/NB01-300x162.png", "/wp-content/uploads/2018/06/NB02-300x154.png"]
   image_alt: "Screenshot of the Reporting, Bias, and Belief Distortion model"
+  thumb: "/assets/img/models/reporting-bias.png"   # resized copy of `image`, for the Models page
+  thumb_width: 960
+  thumb_height: 518
   verify_note: "The old Research page lists this app and code under 'The Best Paper You'll Read Today'. Its Works in Progress also list 'Reporting, Bias, and Belief Distortion' (Mohseni, O'Connor, Weatherall) with app URL https://amohseni.shinyapps.io/ConfirmationBias-News-BeliefPolarization/, which differs from the app URL here."
 
 - slug: near-zero-sum
@@ -84,6 +102,9 @@
   image: "/wp-content/uploads/2018/06/RoN01-300x199.png"
   images: ["/wp-content/uploads/2018/06/RoN01-300x199.png", "/wp-content/uploads/2018/06/RoN02-300x200.png"]
   image_alt: "Screenshot of the Rationality and Prediction in Games of Uncertain Information model"
+  thumb: "/assets/img/models/near-zero-sum.png"   # resized copy of `image`, for the Models page
+  thumb_width: 960
+  thumb_height: 635
 
 - slug: schelling
   title: "Schelling's Segregation Model"
@@ -94,7 +115,10 @@
   paper_slug: ""
   image: "/wp-content/uploads/2026/09/Schelling0.png"
   images: ["/wp-content/uploads/2026/09/Schelling0.png", "/wp-content/uploads/2026/09/Schelling1.png"]
-  image_alt: "Screenshot of the Schelling's Segregation Model"
+  image_alt: "Screenshot of the Schelling’s Segregation Model"
+  thumb: "/assets/img/models/schelling.png"   # resized copy of `image`, for the Models page
+  thumb_width: 959
+  thumb_height: 960
 
 - slug: prediction-markets
   title: "Prediction Markets Lab"
@@ -105,6 +129,9 @@
   paper_slug: ""
   image: "/wp-content/uploads/2026/07/PredictionMarketPlot.png"
   image_alt: "Screenshot of the Prediction Markets Lab"
+  thumb: "/assets/img/models/prediction-markets.png"   # resized copy of `image`, for the Models page
+  thumb_width: 960
+  thumb_height: 677
   verify_note: "App path says 'Markets', repository name says 'Market', as on the old page."
 
 - slug: first-price-auction
@@ -129,6 +156,9 @@
   image: "/wp-content/uploads/2020/05/HKimage1.png"
   images: ["/wp-content/uploads/2020/05/HKimage1.png", "/wp-content/uploads/2020/05/HKimage2.png", "/wp-content/uploads/2020/05/HKimage3.png"]
   image_alt: "Screenshot of the bounded confidence model of opinion dynamics"
+  thumb: "/assets/img/models/bounded-confidence.png"   # resized copy of `image`, for the Models page
+  thumb_width: 960
+  thumb_height: 686
 
 - slug: moran-process
   title: "Frequency-Dependent Moran Process and Stability Concepts"
@@ -140,6 +170,9 @@
   image: "/wp-content/uploads/2018/06/MP02-300x199.png"
   images: ["/wp-content/uploads/2018/06/MP02-300x199.png", "/wp-content/uploads/2018/06/MP01-300x196.png"]
   image_alt: "Screenshot of the Frequency-Dependent Moran Process and Stability Concepts model"
+  thumb: "/assets/img/models/moran-process.png"   # resized copy of `image`, for the Models page
+  thumb_width: 960
+  thumb_height: 638
   verify_note: "Listed under Pedagogical Models on the old page, but the old Research page gives it as the model for 'Stochastic Stability and Disagreements between Dynamics'."
 
 - slug: em-algorithm
@@ -152,3 +185,6 @@
   image: "/wp-content/uploads/2018/07/EMA-1-300x207.png"
   images: ["/wp-content/uploads/2018/07/EMA-1-300x207.png", "/wp-content/uploads/2018/07/EMA-2-300x207.png"]
   image_alt: "Screenshot of the EM Algorithm for Gaussian Mixtures model"
+  thumb: "/assets/img/models/em-algorithm.png"   # resized copy of `image`, for the Models page
+  thumb_width: 960
+  thumb_height: 662

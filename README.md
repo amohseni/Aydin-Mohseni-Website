@@ -9,7 +9,7 @@ This repository replaces the WordPress site at aydinmohseni.com with a static si
 | Path | What it holds |
 |---|---|
 | `src/_data/*.yml` | All content that changes: profile, publications, talks, models, teaching, workshops, co-inquirers, sketchbook, influences, research strands. |
-| `src/*.njk`, `src/**/index.njk` | Page templates. |
+| `src/*.njk`, `src/workshops/workshop.njk` | Page templates (one workshop template makes a page for each workshop in `workshops.yml`). |
 | `src/_includes/` | The base layout and shared macros. |
 | `src/assets/` | Stylesheet, fonts (Computer Modern, self-hosted), images, and the JavaScript models. |
 | `src/redirects/` | Stub pages that send old WordPress addresses, and `/meet/`, to their new places. |
@@ -26,7 +26,10 @@ Requires Node 22.
 npm ci
 npx eleventy                      # builds src/ into _site/
 npx eleventy --serve --port 8080  # builds and serves with live reload at http://localhost:8080/
+DEV_PAGES=1 npx eleventy --serve  # also builds the style guide (/styleguide/) and the model test pages (/lab/)
 ```
+
+The style guide and the model test pages are development pages: they stay in the repository but are left out of the published build unless `DEV_PAGES=1` is set.
 
 The CV is compiled only in CI. To compile it locally you need a TeX distribution: `cd cv && latexmk -pdf amohseni.CV.tex`, then copy `cv/amohseni.CV.pdf` to `_site/cv.pdf`.
 
@@ -42,8 +45,10 @@ Run after a build, from the repository root. Each takes the same `PATH_PREFIX` t
 
 | Command | What it checks | In CI |
 |---|---|---|
-| `node tools/check.mjs` | Broken internal links (respecting the path prefix), images without alt text, em dashes in any HTML, pages missing a title, description, or Open Graph tags. Locally add `--allow-missing /cv.pdf`, since only CI builds the CV. | Fails the deploy |
+| `node tools/check.mjs` | Broken internal links (respecting the path prefix), images without alt text, em dashes in any HTML, pages missing a title, description, or Open Graph tags, double-escaped character references (such as `&amp;#39;` showing as text). Locally add `--allow-missing /cv.pdf`, since only CI builds the CV. | Fails the deploy |
 | `node tools/check_layout.mjs` | Every page at 390, 768, 1024, 1280 and 1600 pixels wide, in day and night themes: no sideways scrolling, content stays in its zone, margin notes do not overlap, no clipped text. Needs Playwright with Chromium. | Fails the deploy |
+| `node tools/test-models-agency.mjs` | The reflection and hypotheses models' numerics: a Bayesian agent's average future credence stays level and the other agent's drifts; total probability stays 1 through every update and refinement; cell masses match a full 19-value posterior; the stated rate of runs that settle on a wrong value holds. | Fails the deploy |
+| `node tools/test-models-community.mjs` | The network model's reliability and speed by network type (the figures stated in its "How it works" text), and that sparser networks are more reliable but slower, as in Zollman (2007). | Fails the deploy |
 | `node tools/check_consistency.mjs` | Titles, authors, venues, years and status of works in `publications.yml` against the CV and the ∃xProof AI Publications page. | Warnings only |
 
 ## How deploy works
@@ -54,8 +59,10 @@ Run after a build, from the repository root. Each takes the same `PATH_PREFIX` t
 2. compiles `cv/amohseni.CV.tex` with `xu-cheng/latex-action`;
 3. builds the site with Eleventy under the path prefix GitHub Pages reports for the site (`/<repository>/` on the github.io preview, `/` once the custom domain is set), unless the repository variable `PATH_PREFIX` overrides it;
 4. copies the CV to `_site/cv.pdf`;
-5. runs the three checks (link and layout checks block the deploy; the consistency check only warns);
-6. uploads `_site` and deploys it to GitHub Pages.
+5. copies the same CV to every old WordPress CV address listed in `src/_data/legacy_cv_paths.yml`, so old links serve the current CV;
+6. runs the model tests (`tools/test-models-agency.mjs`, `tools/test-models-community.mjs`);
+7. runs the three checks (link and layout checks block the deploy; the consistency check only warns);
+8. uploads `_site` and deploys it to GitHub Pages.
 
 GitHub disables scheduled workflows in a public repository after 60 days without activity. If the nightly run stops, re-enable it from the Actions tab.
 

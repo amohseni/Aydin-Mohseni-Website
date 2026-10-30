@@ -100,13 +100,12 @@ export function mount(container, options = {}) {
   root.className = inFigure ? "model-body model-body--reflection" : "model model--reflection";
   const id = "reflection-" + Math.random().toString(36).slice(2, 8);
   root.innerHTML = `
-<canvas class="model-canvas" role="img" tabindex="0" aria-describedby="${id}-desc"></canvas>
+<canvas class="model-canvas" role="img" aria-describedby="${id}-desc"></canvas>
 <p id="${id}-desc" class="model-desc${options.visibleDescription ? "" : " visually-hidden"}">${options.description || "Gray paths are possible futures of an agent's credence that a coin is biased toward heads, simulated from the agent's own present probabilities. For a Bayesian agent their average, in red, stays level at the present credence: it expects to become more certain, but not in a particular direction. Switch to the agent who expects to change its mind to see its average drift."}</p>
 <div class="model-controls">
+  <span class="model-actions"><button type="button" data-act="pause">Pause</button><button type="button" data-act="resample">New futures</button></span>
+  <button type="button" data-act="drift" aria-pressed="false">Expects to change its mind</button>
   <label>Credence now <input type="range" data-act="c0" min="0.05" max="0.95" step="0.05" value="0.5" aria-valuetext="0.50"></label>
-  <button type="button" data-act="drift" aria-pressed="false">Agent who expects to change its mind</button>
-  <button type="button" data-act="resample">New futures</button>
-  <button type="button" data-act="pause" aria-pressed="false">Pause</button>
 </div>
 <p class="model-desc" aria-live="polite"><output class="readout" data-act="readout"></output></p>
 <details class="model-how how"><summary>How it works</summary><div class="model-how-body">${HOW_HTML}</div></details>`;
@@ -138,9 +137,14 @@ export function mount(container, options = {}) {
     const step = sim.n / SHOWN;
     for (let i = 0; i < SHOWN; i++) shownIdx.push(Math.floor((i + 0.5) * step));
     if (reduced) { phase = "still"; tau = FLIPS; alpha = 1; }
+    else if (loop && !loop.running) heldStill();
     else { phase = "grow"; phaseT = 0; tau = 0; alpha = 1; }
     updateText();
   }
+
+  // While paused (site-wide "Pause motion" or the model's own Pause), new futures are shown
+  // grown and settled, as under reduced motion, and held: Play continues from that frame.
+  function heldStill() { phase = "hold2"; phaseT = 0; tau = FLIPS; alpha = 1; }
 
   function updateText() {
     const end = sim.mean[FLIPS], se = sim.sd[FLIPS] / Math.sqrt(sim.n);
@@ -155,7 +159,7 @@ export function mount(container, options = {}) {
   // ---------- Drawing ----------
 
   function layout() {
-    const sans = W < 420 ? 10 : 11;
+    const sans = W < 560 ? 12 : 13;   // canvas labels: 12px minimum, 13px from 560px
     const L = sans * 3.2, R = 14, Tp = 12, B = sans * 3;
     return { x0: L, x1: W - R, y0: Tp, y1: Hh - B, sans };
   }
@@ -287,7 +291,12 @@ export function mount(container, options = {}) {
   loop = new Loop(root, frame);
   function applyMotionPref() {
     if (reduced) { loop.stop(); phase = "still"; tau = FLIPS; alpha = 1; }
-    else { if (phase === "still") { phase = "hold2"; phaseT = 0; } loop.start(); }
+    else {
+      if (phase === "still") { phase = "hold2"; phaseT = 0; }
+      loop.start();
+      // Mounted while motion is paused: show the grown fan, not an empty first frame.
+      if (!loop.running && phase === "grow" && tau === 0) heldStill();
+    }
     controls.pause.style.display = reduced ? "none" : "";
     draw(performance.now());
   }
@@ -301,8 +310,10 @@ export function mount(container, options = {}) {
   controls.drift.addEventListener("click", () => { drift = !drift; resample(); draw(performance.now()); });
   controls.resample.addEventListener("click", () => { resample(); draw(performance.now()); });
   controls.pause.addEventListener("click", () => {
-    const p = controls.pause.getAttribute("aria-pressed") !== "true";
-    controls.pause.setAttribute("aria-pressed", String(p));
+    // A plain action button whose label changes (no aria-pressed: the red pressed style
+    // marks a selected mode, not a stopped animation).
+    const p = controls.pause.dataset.paused !== "true";
+    controls.pause.dataset.paused = String(p);
     controls.pause.textContent = p ? "Play" : "Pause";
     if (p) loop.pause(); else loop.resume();
   });

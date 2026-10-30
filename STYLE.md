@@ -1,6 +1,6 @@
 # Style guide
 
-Rules for every page on aydinmohseni.com, adapted from the ∃xProof AI style guide. Follow them when adding content, and run the checks (last section) before pushing. The live reference for every component is the style guide page at `/styleguide/` (not linked from the site).
+Rules for every page on aydinmohseni.com, adapted from the ∃xProof AI style guide. Follow them when adding content, and run the checks (last section) before pushing. The live reference for every component is the style guide page at `/styleguide/`. It and the model test pages in `src/lab/` are development pages, left out of the published build: build them with `DEV_PAGES=1 npx eleventy --serve`.
 
 ## 1. Layout rules
 
@@ -92,7 +92,10 @@ Body text contrast is at least 4.5:1 in both themes. The paper grain behind the 
 - State only what is true and confirmed. Never invent a fact, date, venue, co-author, quotation, URL or description of Aydin's views. Mark anything unconfirmed with `data-verify="what needs confirming"` and check the page with `#review` appended to its address before publishing. Record unknowns in `docs/OPEN-QUESTIONS.md`.
 - Plain, direct sentences. No em dashes, anywhere (content, comments, alt text): use commas, colons or parentheses. No slogans, clever turns or hype words.
 - One term per concept, used consistently across pages.
-- Link each co-inquirer's name to their personal website wherever it appears (from `coinquirers.yml`). Leave it unlinked if no URL is confirmed.
+- Link each co-inquirer's name to their personal website wherever it appears (from `coinquirers.yml`). Leave it unlinked if no URL is confirmed. In essay data (`strands.yml`) this is automatic: the `linkPhrases` filter links every `display` name it finds.
+- One name per person. The full author lines on the Research page print each name as the publication record gives it (Crossref, arXiv, or the CV for unpublished work: "Alex John London", "Daniel A. Herrmann"), because they are citations. Everywhere else (essays, "With ..." lines, talk co-presenters, workshop pages, the sketchbook) uses the person's `display` form from `coinquirers.yml` ("Alex J. London", "Daniel Herrmann", "Benjamin A. Levinstein", "Kevin Zollman"). For London and Levinstein the display form is the one in exproof.ai's README name table.
+- Write "∃xProof AI" in data as plain text; templates render it with the `exproofName` filter (a hidden ∃ and a visually hidden "E"), so screen readers say "ExProof AI" everywhere.
+- Shared material: where a work also appears on exproof.ai, its summary opens with exproof.ai's sentence word for word; anything added after it names its source in `summary_sources`.
 - Citations come from publisher records (Crossref, the journal, arXiv) first, then the CV.
 - Every image has alt text that says what it shows. Purely decorative images take `alt=""`.
 - Every internal URL goes through Eleventy's `url` filter: `{{ '/research/' | url }}`.

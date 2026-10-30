@@ -1,0 +1,73 @@
+---
+layout: layouts/base.njk
+title: About
+permalink: /about/
+description: "Aydin Mohseni: biography, appointments, education, profiles and contact."
+---
+{%- from "partials/macros.njk" import section with context -%}
+{%- set L = profile.links -%}
+
+{#- The shared page head (eyebrow in the rail, title at page-title size), as on the other
+    pages. The portrait leads the Home page, so it is not repeated here. -#}
+<section class="hero page-head" aria-labelledby="a-title">
+  <p class="eyebrow">About</p>
+  <h1 id="a-title">Aydin Mohseni</h1>
+  <p class="who">Assistant Professor of Philosophy, Carnegie Mellon University</p>
+</section>
+
+{% call section("Biography", "bio") %}
+{%- for para in profile.long_bio %}
+<p{% if loop.first and profile.center_name_note %} data-verify="{{ profile.center_name_note }}"{% endif %}>{{ para | linkPhrases(profile.bio_links) | replace("أزرو", '<span lang="ar" dir="rtl">أزرو</span>') | safe }}</p>
+{%- endfor %}
+{% endcall %}
+
+{% call section("Research", "areas") %}
+<dl class="timeline timeline--areas">
+  {%- for a in profile.research_areas %}
+  <dt>{{ a.area }}</dt>
+  <dd>{{ a.topics }}</dd>
+  {%- endfor %}
+</dl>
+{% endcall %}
+
+{% call section("Appointments", "appointments") %}
+<dl class="timeline">
+  {%- for inst in profile.appointments %}
+  {%- for r in inst.roles %}
+  <dt>{{ r.years | replace("-", "&ndash;") | safe }}</dt>
+  <dd{% if r.verify %} data-verify="{{ r.verify_note }}"{% endif %}>{{ r.title }}, {{ r.unit }}<br><span class="secondary">{{ inst.institution }}</span></dd>
+  {%- endfor %}
+  {%- endfor %}
+</dl>
+{% endcall %}
+
+{% call section("Education", "education") %}
+<dl class="timeline">
+  {%- for e in profile.education %}
+  <dt>{{ e.year }}</dt>
+  <dd>{{ e.degree }}, {{ e.field }}<br><span class="secondary">{{ e.institution }}</span>{% if e.thesis %}<br><span class="secondary">{{ e.thesis_label }}: <i>{{ e.thesis }}</i>. Committee: {{ e.committee | linkPhrases({}, { people: coinquirers }) | safe }}.</span>{% endif %}</dd>
+  {%- endfor %}
+</dl>
+{% endcall %}
+
+{% call section("Profiles", "profiles") %}
+<ul class="related profiles">
+  <li><a href="{{ '/cv.pdf' | url }}">Curriculum vitae (PDF)</a></li>
+  <li><a href="{{ L.scholar }}">Google Scholar</a></li>
+  <li><a href="{{ L.github }}">GitHub</a></li>
+  {%- if L.philpeople %}<li><a href="{{ L.philpeople }}">PhilPeople</a></li>{% endif %}
+  {%- if L.orcid %}<li><a href="{{ L.orcid }}">ORCID</a></li>{% endif %}
+  <li><a href="https://exproof.ai/">{{ "" | exproofName | safe }}</a></li>
+</ul>
+{% endcall %}
+
+{% call section("Contact", "contact") %}
+<p class="lead">{{ profile.email_obfuscated }}</p>
+<p>{% for line in profile.contact.address %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
+<p>Office: {{ profile.contact.office }}</p>
+<p class="related"><a href="{{ '/meet/' | url }}"{% if profile.booking_url_verify %} data-verify="{{ profile.booking_url_note }}"{% endif %}>Schedule a meeting</a></p>
+{% endcall %}
+
+{% call section("Colophon", "colophon") %}
+<p>This site is set in Computer Modern, the typeface Donald Knuth designed for TeX, in the Computer Modern Unicode versions (SIL Open Font License). Its design is shared with <a href="https://exproof.ai/">{{ "" | exproofName | safe }}</a>, and its organization follows <a href="https://www.danielherrmann.ca/">Daniel Herrmann&rsquo;s site</a>. The live models are plain JavaScript drawn on canvas. The pages are built with Eleventy from data files and served by GitHub Pages.</p>
+{% endcall %}

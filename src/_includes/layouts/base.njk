@@ -3,7 +3,8 @@
     description   meta and social description
     ogImage       site-relative path of a social card image (defaults to the portrait)
     ogType        "website" (default) or "article"
-    background    a model name (e.g. "chaos") to run full-page behind the content, via background.js
+    background    a model name to run full-page behind the content, via background.js. Defaults to
+                  "chaos" on every page; the home page sets false (it shows the chaos hero instead)
     noindex       true to keep a page out of search engines
     bodyClass     extra class on <body>
 -#}
@@ -13,6 +14,7 @@
 {%- set defaultDescription = "Aydin Mohseni, assistant professor of philosophy at Carnegie Mellon University." -%}
 {%- set pageDescription = description or defaultDescription -%}
 {%- set canonical = siteUrl ~ page.url -%}
+{%- set bg = (background if background is defined else "chaos") -%}
 {%- set ogImagePath = ogImage or "/assets/img/mohseni.jpg" -%}
 {%- set ogImageUrl = ogImagePath if ("://" in ogImagePath) else (siteUrl ~ ogImagePath) -%}
 {%- set nav = [
@@ -29,7 +31,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{{ pageTitle }}</title>
-<script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){var r=document.documentElement;try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")r.setAttribute("data-theme",t);if(localStorage.getItem("motion")==="paused")r.setAttribute("data-motion","paused");}catch(e){}})();</script>
 <meta name="description" content="{{ pageDescription }}">
 <link rel="canonical" href="{{ canonical }}">
 {%- if noindex %}
@@ -55,8 +57,8 @@
 </head>
 <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
 <a class="skip" href="#main">Skip to content</a>
-{%- if background %}
-<div class="model-background" id="model-background" data-model-background="{{ background }}" aria-hidden="true"></div>
+{%- if bg %}
+<div class="model-background" id="model-background" data-model-background="{{ bg }}" aria-hidden="true"></div>
 {%- endif %}
 <div class="page">
 
@@ -98,13 +100,14 @@
     {%- endif %}
   </p>
   <p>Set in Computer Modern, by Donald Knuth. Design shared with <a href="https://exproof.ai/" aria-label="ExProof AI"><span class="exists" aria-hidden="true">&exist;</span><span aria-hidden="true">xProof AI</span></a>.</p>
+  <p class="motion-line"><button class="motion-toggle" type="button" data-motion-toggle>Pause motion</button></p>
 </footer>
 
 </div>
 <div class="review-bar" role="status"><strong>Review mode</strong><span id="review-count"></span><span>Hover a highlight to see what needs confirming.</span><a href="{{ page.url | url }}">Exit review</a></div>
 <script src="{{ '/assets/js/theme.js' | url }}" defer></script>
 <script type="module" src="{{ '/assets/js/site.js' | url }}"></script>
-{%- if background %}
+{%- if bg %}
 <script type="module" src="{{ '/assets/js/background.js' | url }}"></script>
 {%- endif %}
 </body>

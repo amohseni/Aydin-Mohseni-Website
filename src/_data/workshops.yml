@@ -6,32 +6,41 @@
   page: true
   url: "/workshops/ai-agency-2026/"
   old_url: "/ai-agency-workshop/"
-  title: "AI Agency & Interpretability Workshop"
+  title: "AI Agency and Interpretability Workshop"   # exproof.ai's form; the old page and program write "AI Agency & Interpretability"
   title_cv: "CMU AI & Agency Workshop"
   dates: "19-20 September 2026"
   start: "2026-09-19"
   end: "2026-09-20"
   schedule:
     - "Saturday, 19 September 2026, 9:00am-5:00pm"
-    - "Sunday, 20 September 2026, 9:00am-3:00pm"
-  place: "Baker Hall A36, Adamson Wing, Carnegie Mellon University, Pittsburgh, PA"
+    - "Sunday, 20 September 2026, 9:00am-3:30pm"
+  place: "Steinberg Auditorium, Baker Hall A36, Adamson Wing, Carnegie Mellon University, Pittsburgh, PA"
+  # Organizers, Sunday end time, room and hosts follow the final program PDF (program_pdf below,
+  # read 30 Oct 2026): "The workshop is organized by Aydin Mohseni, Daniel Herrmann, and Kevin Kelly";
+  # "Sunday 9:00 am to 3:30 pm". The old pre-event page gave 3:00pm and named no organizers;
+  # exproof.ai names Mohseni and Herrmann only.
   organizers:
     - name: "Aydin Mohseni"
       url: "https://aydinmohseni.com/"
     - name: "Daniel Herrmann"
       url: "https://www.danielherrmann.ca/"
+    - name: "Kevin Kelly"
+      url: ""
   hosts:
     - name: "Institute for Complex Social Dynamics"
       url: "https://www.cmu.edu/dietrich/social-dynamics/"
     - name: "Center for Formal Epistemology"
       url: "https://www.cmu.edu/dietrich/philosophy/research/cfe/index.html"
-    - name: "Center for Conceptual Research on Safe AI (CoRe Safe AI)"
+    - name: "Center for Conceptual Research on the Foundations of Safe AI"
       url: "https://www.cs.cmu.edu/~coresafeai/"
+      verify: "The program PDF (September 2026) names it this way; the old About page and the CMU faculty page write 'Center for Conceptual Research on Safe AI (CoRe Safe AI)'. Official current name to confirm."
+    - name: "Foundations of Cooperative AI Lab"
+      url: ""
   speakers:
     - name: "Daniel Herrmann"
       affiliation: "Philosophy, University of North Carolina, Chapel Hill"
       url: "https://www.danielherrmann.ca/"
-    - name: "Ben Levinstein"
+    - name: "Benjamin A. Levinstein"
       affiliation: "Alignment, Anthropic"
       url: "https://www.levinstein.org/"
     - name: "Vincent Conitzer"
@@ -55,8 +64,8 @@
   registration: "https://form.jotform.com/261945223896064"
   registration_note: "Attendance was free; registration was requested."
   image: "/wp-content/uploads/2026/07/AI-Agency-Interp-825x510.png"
-  image_alt: "Header image of the AI Agency & Interpretability Workshop page"
-  verify_note: "Organizers from exproof.ai (the old page names hosts, not organizers). Description paraphrases the old page. CV title differs ('CMU AI & Agency Workshop', 'Fall 2026')."
+  image_alt: "Header image of the AI Agency and Interpretability Workshop page"
+  verify_note: "Organizers, hosts, room and Sunday end time from the program PDF. Description paraphrases the old page. CV title differs ('CMU AI & Agency Workshop', 'Fall 2026')."
 
 - slug: metascience-2025
   page: true
@@ -71,9 +80,12 @@
     - "Sunday, 3 August 2025, 9:00am-5:00pm"
   place: "Grand Room, Posner Hall 340, Carnegie Mellon University, Pittsburgh, PA"
   map: "https://maps.app.goo.gl/7Y1EBLVeazMyQb7L8"
+  # Organizers from the program PDF (program_pdf below, read 30 Oct 2026): "Organisers: Aydin Mohseni, Kevin J. S. Zollman".
   organizers:
     - name: "Aydin Mohseni"
       url: "https://aydinmohseni.com/"
+    - name: "Kevin Zollman"
+      url: "https://www.kevinzollman.com/"
   hosts:
     - name: "Institute for Complex Social Dynamics"
       url: "https://www.cmu.edu/dietrich/social-dynamics/"
@@ -98,7 +110,7 @@
     - name: "Edouard Machery"
       affiliation: "History and Philosophy of Science, University of Pittsburgh"
       url: ""
-    - name: "Kevin J. S. Zollman"
+    - name: "Kevin Zollman"
       affiliation: "Philosophy, Carnegie Mellon University"
       url: "https://www.kevinzollman.com/"
     - name: "Aydin Mohseni"
@@ -107,17 +119,16 @@
   description:
     - "A meeting on how formal models can help us understand and improve scientific practice and its incentive structures. Sessions cover Bayesian and game-theoretic analyses of the replication crisis, incentive-compatible research norms, network models of information flow, and decision-theoretic foundations for methodological reform."
   program_pdf: "/wp-content/uploads/2025/08/Workshop_Program___Formal_Models_in_Metascience.pdf"
-  program_pdf_verify: true
   registration: "https://form.jotform.com/251726081824154"
   registration_note: "Attendance was free; registration was requested."
   image: "/wp-content/uploads/2025/06/ChatGPT-Image-Jun-22-2025-05_30_47-PM.png"
   image_alt: "Header image of the Formal Models in Metascience Workshop page"
-  verify_note: "The old page's program link points to the AI Agency workshop PDF (2026/09/Workshop_Program___AI_Agency___Interpretability-1.pdf). The media library holds /wp-content/uploads/2025/08/Workshop_Program___Formal_Models_in_Metascience.pdf (uploaded 1 Aug 2025), used here unopened. CV: 'Formal Models in Metascience Workshop (Pittsburgh, Summer 2025)'. Organizer named from the CV only."
+  verify_note: "The old page's program link points to the AI Agency workshop PDF by mistake. The program used here (/wp-content/uploads/2025/08/Workshop_Program___Formal_Models_in_Metascience.pdf) was opened on 30 Oct 2026: its title, dates, room, hosts and speakers match this page, and it names the organizers. CV: 'Formal Models in Metascience Workshop (Pittsburgh, Summer 2025)'."
 
 # Other organizing listed in the CV (no page of its own; `page: false`).
 - slug: psa-2021-symposium
   page: false
-  title: "Philosophy of Science Association Symposium Panel: \"Modeling the Social Structure of Science\""
+  title: "Philosophy of Science Association Symposium Panel: “Modeling the Social Structure of Science”"
   role: "Organizer"
   place: "Baltimore"
   dates: "Fall 2021"

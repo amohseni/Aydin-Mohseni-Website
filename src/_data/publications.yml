@@ -5,6 +5,8 @@
 # `verify: true` marks a field or record that still needs Aydin's confirmation;
 # `verify_note` says what. Full source trail in docs/CONTENT-AUDIT.md.
 # Pre-print paths under /wp-content/uploads/ are the old WordPress paths, mirrored in src/wp-content/.
+# Summaries of works that exproof.ai also lists open with exproof.ai's sentence word for word;
+# anything added after it names its source in `summary_sources`.
 
 # ---------------------------------------------------------------- published
 
@@ -114,7 +116,8 @@
     code: "https://github.com/amohseni/Tragedies-of-the-Commons"
   strand: ai-safety
   selected: true
-  summary: "Treats compliance with AI ethics guidelines as a social dilemma, modeled with stochastic evolutionary game dynamics. Stochastic effects can make cooperation viable, which suggests coordinating in smaller groups where cooperation is cheap and the risk of failure is high."
+  summary: "Compliance with AI ethics guidelines as a social dilemma, modeled with stochastic evolutionary game dynamics, and the conditions under which cooperation among developers can hold. Stochastic effects can make cooperation viable, which suggests coordinating in smaller groups where cooperation is cheap and the risk of failure is high."
+  summary_sources: ["exproof.ai publications.html (first sentence)", "old Research page abstract (second sentence)"]
   exproof: ""
   verified: crossref
   verify_note: "CV gives 2023; Crossref published online and issued 2022-07-06. arXiv id from exproof.ai publications.html."
@@ -220,13 +223,14 @@
     pdf: "/wp-content/uploads/2026/03/A_Bayesian_Reduction_of_Causation.pdf"
   strand: ai-safety
   selected: true
-  summary: "Causal reasoning in structural causal models reduces to subjective probability once interventions are treated as events in the world, with a de Finetti-style representation theorem."
+  summary: "Causal reasoning in structural causal models reduces to subjective probability once interventions are treated as events in the world. The paper gives a de Finetti-style representation theorem."
+  summary_sources: ["exproof.ai publications.html (first sentence)", "old Research page abstract (second sentence)"]
   exproof: "https://exproof.ai/naturalizing-agency.html"
   verified: cv
 
 - slug: value-of-value-learning
   title: "Learning the Value of Value Learning"
-  authors: ["Alex John London", "Aydin Mohseni"]
+  authors: ["Alex John London", "Aydin Mohseni"]   # arXiv form (author lines follow the record; prose uses coinquirers.yml display "Alex J. London")
   year: 2025
   status: under-review
   venue: ""
@@ -234,10 +238,11 @@
     arxiv: "2511.17714"
   strand: ai-safety
   selected: true
-  summary: "Extends the Jeffrey-Bolker framework so that values, not only factual beliefs, can be refined, and proves a value-of-information theorem for this refinement. Between agents, mutual refinement tends to turn zero-sum games into positive-sum ones and can yield Pareto improvements in Nash bargaining."
+  summary: "Extends the Jeffrey–Bolker framework to the refinement of values, with a value-of-information theorem for learning what one values. Between agents, mutual refinement tends to turn zero-sum games into positive-sum ones and can yield Pareto improvements in Nash bargaining."
+  summary_sources: ["exproof.ai publications.html (first sentence)", "arXiv:2511.17714 abstract (second sentence)"]
   exproof: "https://exproof.ai/value-uncertainty.html"
   verified: arxiv
-  verify_note: "arXiv lists Alex John London (the CV and exproof.ai write 'A. J. London' / 'Alex J. London'). First submitted 2025-11-21, v5 2026-04-13; the old site dates it 2026."
+  verify_note: "arXiv lists Alex John London (the CV and exproof.ai write 'A. J. London' / 'Alex J. London'). First submitted 2025-11-21, v5 2026-04-13; the old site dates it 2026. Status 'under review' per CV R4; exproof.ai lists it as a working paper."
 
 - slug: harking
   title: "HARKing: from Misunderstanding to Misprescription"
@@ -256,7 +261,7 @@
   exproof: ""
   verified: cv
   verify: true
-  verify_note: "Title per CV ('Misunderstanding'). The old site, the PDF file name and PhilSci-Archive (2020 preprint, deposited 18 Dec 2020) use 'From Misdiagnosis to Misprescription'. Revise and resubmit per CV."
+  verify_note: "Title per CV of 26 Oct 2026 ('Misunderstanding'). The old site, the PDF file name and PhilSci-Archive (2020 preprint, deposited 18 Dec 2020) use 'From Misdiagnosis to Misprescription', and so does Aydin's own first-person Research page text of 12 Aug 2026 ('In HARKing: From Misdiagnosis to Misprescription, I argue ...'). Revise and resubmit per CV."
 
 - slug: replication-simpsons
   title: "Replication, Reform, and an Interventional Simpson's Paradox"
@@ -271,7 +276,7 @@
   exproof: ""
   verified: cv
   verify: true
-  verify_note: "No source for a summary. Possibly the successor of the old site's 'Intervention and Backfire in the Replication Crisis' (CV talk P6); not assumed."
+  verify_note: "No summary yet. Aydin's old Research page (modified 12 Aug 2026) says: 'In Intervention and Backfire in the Replication Crisis, I show that reforms such as lowering significance thresholds or adopting preregistration can improve every individual study yet worsen the published literature. This is an interventional Simpson's paradox, and it is general.' That ties 'Intervention and Backfire' (CV talk P6) to the interventional Simpson's paradox; whether it is this paper under its CV title is for Aydin to confirm before the sentence is used as its summary and the P6 talks are attached."
 
 - slug: equilibrium-concepts
   title: "Limitations of Equilibrium Concepts in Evolutionary Games"
@@ -347,10 +352,12 @@
   links: {}
   strand: ai-safety
   selected: true
-  summary: "Models AI alignment as a principal-agent problem, with formal models of delegation, incentives and misalignment between a principal and a more capable agent. Agents that optimize for reward rather than for the principal's intentions can outperform aligned agents."
+  summary: "Formal models of delegation, incentives, and misalignment."
+  summary_sources: ["exproof.ai publications.html"]
+  summary_unconfirmed: "The old Research page adds: agents that optimize for reward rather than for the principal's intentions can outperform aligned agents. Not shown until Aydin confirms (docs/OPEN-QUESTIONS.md)."
   exproof: "https://exproof.ai/delegation.html"
   verified: cv
-  verify_note: "Summary combines exproof.ai delegation.html and the old Research page. The old page linked a placeholder URL (/research/PREPRINT-URL-IF-ANY); no pre-print exists."
+  verify_note: "The old page linked a placeholder URL (/research/PREPRINT-URL-IF-ANY); no pre-print exists."
 
 - slug: goodmans-riddle
   title: "Goodman's Riddle & the Replicability of Interaction Effects"

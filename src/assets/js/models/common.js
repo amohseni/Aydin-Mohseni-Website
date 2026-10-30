@@ -190,12 +190,18 @@ export class Loop {
     this.io.observe(el);
     this.vis = () => { this.tabVisible = !document.hidden; this.update(); };
     document.addEventListener("visibilitychange", this.vis);
+    // Site-wide "Pause motion" (footer control, WCAG 2.2.2): <html data-motion="paused"> stops
+    // every loop; a "motionchange" event on document clears each model's own pause or play
+    // choice. A model's own Play button still runs that one model while motion is paused.
+    this.userResumed = false;
+    this.motion = () => { this.userPaused = false; this.userResumed = false; this.update(); };
+    document.addEventListener("motionchange", this.motion);
   }
-  get active() { return this.onScreen && this.tabVisible && !this.userPaused && this.started; }
+  get active() { return this.onScreen && this.tabVisible && !this.userPaused && this.started && (!motionPaused() || this.userResumed); }
   start() { this.started = true; this.update(); }
   stop() { this.started = false; this.update(); }
-  pause() { this.userPaused = true; this.update(); }
-  resume() { this.userPaused = false; this.update(); }
+  pause() { this.userPaused = true; this.userResumed = false; this.update(); }
+  resume() { this.userPaused = false; this.userResumed = true; this.update(); }
   update() {
     if (this.active && !this.running) { this.running = true; this.last = 0; this.raf = requestAnimationFrame(this.tick); }
     else if (!this.active && this.running) { this.running = false; cancelAnimationFrame(this.raf); }
@@ -211,7 +217,13 @@ export class Loop {
   destroy() {
     this.stop(); this.io.disconnect();
     document.removeEventListener("visibilitychange", this.vis);
+    document.removeEventListener("motionchange", this.motion);
   }
+}
+
+// True while the reader has paused motion site-wide (the footer control in site.js).
+export function motionPaused() {
+  return document.documentElement.getAttribute("data-motion") === "paused";
 }
 
 // ---------- Chalk ----------

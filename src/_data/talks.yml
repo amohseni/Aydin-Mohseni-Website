@@ -1,7 +1,8 @@
 # Talks: one entry per venue occurrence, newest first.
 # Source: CV (cv/amohseni.CV.tex, PRESENTATIONS P1-P15) unless `source` says otherwise.
 # The CV gives years only, so `date` is YYYY; within a year, order follows the CV.
-# `invited` follows the CV's dagger. `with` lists co-presenters named on exproof.ai.
+# `invited` follows the CV's dagger. `with` lists co-presenters named on exproof.ai, by their
+# coinquirers.yml `display` name.
 # `cv_id` is the CV's P-number. Old-site variants of titles and venue names are in docs/CONTENT-AUDIT.md.
 
 # P15
@@ -34,19 +35,19 @@
   date: "2026"
   invited: true
   video: ""
-  with: ["Daniel A. Herrmann"]
+  with: ["Daniel Herrmann"]
   cv_id: P13
 
 # P12: A Bayesian Reduction of Causation
 - title: "A Bayesian Reduction of Causation"
   paper_slug: bayesian-causation
-  venue: "Philosophy of Science Biennial Conference"
+  venue: "Philosophy of Science Association Biennial"   # CV: "Philosophy of Science Biennial Conference"; this site's name for the series (as for New Orleans and Pittsburgh, and on exproof.ai)
   city: "San Diego"
-  date: "2026"
+  date: "2026-11"
   invited: false
   video: ""
-  with: ["Daniel A. Herrmann"]
-  note: "November 2026 (upcoming), per exproof.ai"
+  with: ["Daniel Herrmann"]
+  note: "Month from exproof.ai publications.html ('upcoming, November 2026'); the CV gives the year only. Exact day not known."
   cv_id: P12
 - title: "A Bayesian Reduction of Causation"
   paper_slug: bayesian-causation
@@ -58,7 +59,7 @@
   cv_id: P12
 - title: "A Bayesian Reduction of Causation"
   paper_slug: bayesian-causation
-  venue: "PhilML'26 Philosophy of Machine Learning Conference"
+  venue: "PhilML’26 Philosophy of Machine Learning Conference"
   city: "Munich"
   date: "2026"
   invited: false

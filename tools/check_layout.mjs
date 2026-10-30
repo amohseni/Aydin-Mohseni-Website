@@ -141,6 +141,7 @@ const CHECK = (expectedBg) => {
     const cs = getComputedStyle(el);
     if (cs.overflowX === "auto" || cs.overflowX === "scroll" || cs.display === "inline") return;
     if (el.matches("canvas, svg, svg *")) return; // drawings size themselves
+    if (el.closest(".visually-hidden")) return; // screen-reader text is clipped to 1px on purpose
     if (isNote(el) || el.querySelector(".sidenote, .marginnote")) return; // notes hang into the margin by design
     if (el.scrollWidth > el.clientWidth + tol && el.clientWidth > 0)
       problems.push(`clipped content in ${name(el)} (${el.scrollWidth} > ${el.clientWidth})`);

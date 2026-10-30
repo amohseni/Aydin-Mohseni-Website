@@ -1,0 +1,66 @@
+---
+layout: layouts/base.njk
+title: Models
+permalink: /models/
+description: "Interactive computational models by Aydin Mohseni, from his papers and courses, with their code."
+---
+{%- from "partials/macros.njk" import section with context -%}
+{%- set research = '/research/' | url -%}
+{%- set home = '/' | url -%}
+{%- set researchModels = models | whereKind("research") -%}
+{%- set teachingModels = models | whereKind("teaching") -%}
+{%- set live = [
+  { title: "Chaos on the simplex", href: home ~ "#dynamics", summary: "The replicator dynamics for a four-strategy game, whose orbits fold into a strange attractor." },
+  { title: "Refining a hypothesis space", href: home ~ "#strand-ai-safety", summary: "Bayesian updating within a partition with a catch-all, which splits into new hypotheses as it gains probability." },
+  { title: "A community learning on a network", href: home ~ "#strand-metascience", summary: "Agents try two actions and share results with their neighbors, settling on the better action or locking in on the worse." },
+  { title: "Reflection", href: home ~ "#strand-methods", summary: "Simulated futures of a Bayesian agent's credence, whose average stays level, against an agent who expects to change its mind." }
+] -%}
+
+{% macro card(m) -%}
+<li class="card" id="model-{{ m.slug }}"{% if m.verify %} data-verify="{{ m.verify_note }}"{% endif %}>
+  {%- if m.thumb %}
+  <img class="card-thumb" src="{{ m.thumb | url }}" alt="{{ m.image_alt }}" width="{{ m.thumb_width }}" height="{{ m.thumb_height }}" loading="lazy" decoding="async">
+  {%- else %}
+  <span class="card-thumb card-thumb--empty" aria-hidden="true"></span>
+  {%- endif %}
+  <h3><a href="{{ m.app }}">{{ m.title }}</a></h3>
+  <p>{{ m.summary }}</p>
+  <div class="work-links">
+    <a href="{{ m.app }}">App</a>
+    {%- if m.code %}<a href="{{ m.code }}">Code</a>{% endif %}
+    {%- if m.paper_slug %}<a href="{{ research }}#pub-{{ m.paper_slug }}">Paper</a>{% endif %}
+  </div>
+</li>
+{%- endmacro %}
+
+<section class="hero page-head" aria-labelledby="m-title">
+  <p class="eyebrow">Models</p>
+  <h1 id="m-title">Computational models</h1>
+  <p class="lede">Interactive models from papers and courses. Each opens as an app in the browser; its code is on GitHub.</p>
+  <p class="who"><a href="#research-models">Research</a> ({{ researchModels.length }}) · <a href="#teaching-models">Teaching</a> ({{ teachingModels.length }}) · <a href="#on-this-site">On this site</a> ({{ live.length }})</p>
+</section>
+
+{% call section("Research", "research-models", wide=true) %}
+<ul class="cards">
+  {%- for m in researchModels %}
+  {{ card(m) }}
+  {%- endfor %}
+</ul>
+{% endcall %}
+
+{% call section("Teaching", "teaching-models", wide=true) %}
+<ul class="cards">
+  {%- for m in teachingModels %}
+  {{ card(m) }}
+  {%- endfor %}
+</ul>
+{% endcall %}
+
+{% call section("On this site", "on-this-site") %}
+<p>Four small models run live on the home page, one above the research strands and one in each strand. They are written for this site, and each has a &ldquo;How it works&rdquo; note that gives its sources.</p>
+<ul class="featured">
+  {%- for l in live %}
+  <li><span class="t"><a href="{{ l.href }}">{{ l.title }}</a></span><span class="d">{{ l.summary }}</span></li>
+  {%- endfor %}
+</ul>
+{% endcall %}

@@ -20,7 +20,7 @@ long_bio:
     inference, decision and game theory, network theory, and agent-based modeling to study
     problems ranging from scientific funding and reform to causal reasoning and value
     learning in artificial agents. He is a member of CMU's Institute for Complex Social
-    Dynamics (ICSD) and the center for Conceptual Research on Safe AI (CoRe Safe AI).
+    Dynamics (ICSD) and the Center for Conceptual Research on Safe AI (CoRe Safe AI).
   - >-
     Previously, he was a senior research fellow at the University of Pennsylvania and a
     postdoctoral research fellow at the Center for Philosophy of Science at the University
@@ -31,6 +31,10 @@ long_bio:
     Some years ago, he was a Peace Corps volunteer in Morocco, stationed near أزرو.
   - >-
     His Erdős number is 3. (By way of Brian Skyrms to Persi Diaconis to Paul Erdős.)
+
+# The center's name in the bio follows the old About page and the CMU faculty page. Newer sources
+# name it differently; the About page marks the paragraph for review until Aydin gives the name.
+center_name_note: "Center name to confirm. The old About page and the CMU faculty page: 'Conceptual Research on Safe AI (CoRe Safe AI)'; the CV: 'CoreSafe AI'; the AI Agency and Interpretability program (September 2026): 'Center for Conceptual Research on the Foundations of Safe AI'; Aydin's Research page text of 12 Aug 2026: 'CMU's Foundations of Safe AI initiative'."
 
 # Links that the old bio carried, for the template to attach to the matching phrases.
 bio_links:
@@ -86,7 +90,7 @@ appointments:
         unit: "CoRe Safe AI"
         years: "2025-present"
         verify: true
-        verify_note: "CV writes 'CoreSafe AI'; the old site, exproof.ai and the CMU page write 'Conceptual Research on Safe AI (CoRe Safe AI)'."
+        verify_note: "CV writes 'CoreSafe AI'; the old site, exproof.ai and the CMU page write 'Conceptual Research on Safe AI (CoRe Safe AI)'; the September 2026 workshop program writes 'Center for Conceptual Research on the Foundations of Safe AI'; the August 2026 Research page text says 'Foundations of Safe AI initiative'."
       - title: "Core Member"
         unit: "Institute for Complex Social Dynamics"
         years: "2024-present"
@@ -126,7 +130,7 @@ education:
     year: 2007
 
 research_areas:
-  - area: "AI Safety"
+  - area: "AI safety"
     topics: "AI agent foundations, value learning and alignment, automated research"
   - area: "Metascience"
     topics: "Grant funding, replication crisis, social epistemology of science"

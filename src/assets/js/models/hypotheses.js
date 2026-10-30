@@ -118,7 +118,7 @@ const HOW_HTML = `
 <p>A coin lands heads with some fixed chance, one of the 19 values 0.05, 0.10, &hellip;, 0.95, picked at random at the start of each run and hidden from the learner. The learner starts with three named hypotheses about the chance (0.20, 0.50 and 0.80) and a catch-all, &ldquo;other,&rdquo; that stands for the sixteen values it has not named. Its prior gives each named hypothesis 1/4 and the catch-all 1/4. The bar on the right is the current partition, each cell as tall as its probability; the chart to its left shows how the probabilities have moved, flip by flip. The hatched region is the catch-all. The label of the leading hypothesis is red, and a hypothesis turns green when its probability reaches ${SETTLED}. That is a stopping rule for the animation, not certainty: in simulation, about 3 runs in 100 end with a neighboring value at ${SETTLED}, and the readout then shows a true chance that differs from the green hypothesis. A run that reaches ${MAX_FLIPS.toLocaleString("en-US")} flips without settling ends without a green hypothesis.</p>
 <p>Each flip is evidence, and the learner updates by Bayes' rule within its current partition. A named hypothesis assigns heads the chance it names. The catch-all assigns heads the average chance of its members, weighted by how probable each member is given the catch-all, and those weights are updated by Bayes' rule as well. When the true chance is far from every named value, no named hypothesis fits the data well, and probability tends to flow into the catch-all.</p>
 <p>When the catch-all's probability passes the threshold set by the slider, the learner refines its partition: it names the ${SPLIT_K} members of the catch-all that are most probable given the catch-all. Each new hypothesis receives the catch-all's probability times its weight within the catch-all, and the catch-all keeps the remainder. No other cell changes, so probability is conserved, and the cells' probabilities are exactly what a learner with the same prior who had named all 19 values from the start would assign to them. The refinement adds propositions the learner can now distinguish; it does not revise any earlier credence. The total shown under the figure is the sum over all cells after each update and each refinement.</p>
-<p>This is refinement of a hypothesis space, an epistemic refinement. London and Mohseni (2025) extend the Jeffrey-Bolker framework to model refinements in values, prove a value-of-information theorem for this axiological refinement, and unify epistemic and axiological refinement under a single formalism. The model here is an illustration of refining a partition, not their formalism.</p>
+<p>This is refinement of a hypothesis space, an epistemic refinement. London and Mohseni (2025) extend the Jeffrey–Bolker framework to model refinements in values, prove a value-of-information theorem for this axiological refinement, and unify epistemic and axiological refinement under a single formalism. The model here is an illustration of refining a partition, not their formalism.</p>
 <p>Source: A. J. London and A. Mohseni (2025), &ldquo;Learning the Value of Value Learning,&rdquo; <a href="https://arxiv.org/abs/2511.17714">arXiv:2511.17714</a>.</p>
 `;
 
@@ -131,11 +131,10 @@ export function mount(container, options = {}) {
   root.className = inFigure ? "model-body model-body--hypotheses" : "model model--hypotheses";
   const id = "hypotheses-" + Math.random().toString(36).slice(2, 8);
   root.innerHTML = `
-<canvas class="model-canvas" role="img" tabindex="0" aria-describedby="${id}-desc"></canvas>
+<canvas class="model-canvas" role="img" aria-describedby="${id}-desc"></canvas>
 <p id="${id}-desc" class="model-desc${options.visibleDescription ? "" : " visually-hidden"}">${options.description || "A learner's hypotheses about a coin's chance of heads, drawn as a partition whose cells are as tall as their probabilities, with a catch-all for the values it has not named. As flips arrive, probability moves between cells by Bayes' rule. When the catch-all becomes probable enough, it splits into newly named hypotheses, and total probability stays 1."}</p>
 <div class="model-controls">
-  <button type="button" data-act="restart">New coin</button>
-  <button type="button" data-act="pause" aria-pressed="false">Pause</button>
+  <span class="model-actions"><button type="button" data-act="pause">Pause</button><button type="button" data-act="restart">New coin</button></span>
   <label>Split at <input type="range" data-act="threshold" min="0.3" max="0.8" step="0.05" value="0.5" aria-valuetext="0.50"></label>
 </div>
 <p class="model-desc" aria-live="off"><output class="readout" data-act="readout"></output></p>
@@ -171,6 +170,7 @@ export function mount(container, options = {}) {
     snapshot();
     xMaxShown = 40; alpha = 1;
     if (reduced) runStill();
+    else if (loop && !loop.running) heldStill();
     else { phase = "step"; phaseT = 0; }
     updateText();
   }
@@ -200,6 +200,10 @@ export function mount(container, options = {}) {
     phase = "still"; alpha = 1;
     xMaxShown = niceMax(space.flips);
   }
+
+  // While paused (site-wide "Pause motion" or the model's own Pause), a new run is shown as the
+  // same finished frame that reduced motion gets, held: Play continues from it to the next run.
+  function heldStill() { runStill(); phase = "hold"; phaseT = 0; }
 
   function niceMax(n) { const steps = [40, 80, 120, 200, 300, 500, 800, 1200, 1600, 2000, 3000]; for (const s of steps) if (n <= s) return s; return n; }
 
@@ -235,7 +239,7 @@ export function mount(container, options = {}) {
   }
 
   function layout() {
-    const sans = W < 420 ? 10 : 11;
+    const sans = W < 560 ? 12 : 13;   // canvas labels: 12px minimum, 13px from 560px
     const bandW = W < 420 ? 12 : 16, labelW = sans * 4.6;
     const x0 = sans * 3.2, xb = W - labelW - bandW - 4;
     return { x0, x1: xb - sans * 1.2, xb, bandW, y0: sans * 1.8, y1: Hh - sans * 3, sans };
@@ -436,7 +440,12 @@ export function mount(container, options = {}) {
   loop = new Loop(root, frame);
   function applyMotionPref() {
     if (reduced) { loop.stop(); if (phase !== "still") runStill(); updateText(); }
-    else { if (phase === "still") { phase = "hold"; phaseT = 0; } loop.start(); }
+    else {
+      if (phase === "still") { phase = "hold"; phaseT = 0; }
+      loop.start();
+      // Mounted while motion is paused: show the finished run, not an empty first frame.
+      if (!loop.running && phase === "step" && space.flips === 0) { heldStill(); updateText(); }
+    }
     controls.pause.style.display = reduced ? "none" : "";
     draw(performance.now());
   }
@@ -451,8 +460,10 @@ export function mount(container, options = {}) {
     if (reduced) { newRun(); draw(performance.now()); }
   });
   controls.pause.addEventListener("click", () => {
-    const p = controls.pause.getAttribute("aria-pressed") !== "true";
-    controls.pause.setAttribute("aria-pressed", String(p));
+    // A plain action button whose label changes (no aria-pressed: the red pressed style
+    // marks a selected mode, not a stopped animation).
+    const p = controls.pause.dataset.paused !== "true";
+    controls.pause.dataset.paused = String(p);
     controls.pause.textContent = p ? "Play" : "Pause";
     if (p) loop.pause(); else loop.resume();
   });

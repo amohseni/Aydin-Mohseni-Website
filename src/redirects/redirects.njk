@@ -3,7 +3,8 @@
 # Each page refreshes at once, calls location.replace as a backup, and shows a plain link
 # for readers with neither. Every stub is noindex and names its target as canonical.
 # To add a redirect, add an entry below; "to" is a site path (passed through the url filter)
-# or a full https:// address.
+# or a full https:// address. `label` is the target page's title (typographic apostrophes:
+# the label also goes into attributes, which the apostrophe transform does not touch).
 pagination:
   data: redirects
   size: 1
@@ -17,7 +18,7 @@ redirects:
     label: Teaching
   - from: /computational-models/
     to: /models/
-    label: Computational models
+    label: Models
   - from: /infographics/
     to: /sketchbook/
     label: Sketchbook (infographics)
@@ -26,13 +27,13 @@ redirects:
     label: Sketchbook (sketches)
   - from: /ai-agency-workshop/
     to: /workshops/ai-agency-2026/
-    label: AI agency workshop, 2026
+    label: AI Agency and Interpretability Workshop
   - from: /formal-models-in-science-workshop/
     to: /workshops/metascience-2025/
-    label: Metascience workshop, 2025
+    label: Formal Models in Metascience Workshop
   - from: /meet/
     to: https://calendar.app.google/pe98GGpL8dwdoqbp6
-    label: Aydin Mohseni's booking calendar
+    label: Aydin Mohseni’s booking calendar
 permalink: "{{ r.from }}"
 eleventyExcludeFromCollections: true
 ---

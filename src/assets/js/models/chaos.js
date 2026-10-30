@@ -1,4 +1,4 @@
-// Chaos on the simplex: the replicator dynamic for a four-strategy game whose orbits trace a
+// Chaos on the simplex: the replicator dynamics for a four-strategy game whose orbits trace a
 // strange attractor inside the tetrahedron of population states.
 //
 //   x_i' = x_i ((Ax)_i - x.Ax),   A = [[0,-12,0,22],[20,0,0,-10],[-21,-4,0,35],[10,-2,2,0]]
@@ -130,11 +130,11 @@ const MATRIX_HTML = A.map((row) => "<tr>" + row.map((v) => `<td>${v < 0 ? "−" 
 
 const HOW_HTML = `
 <p>Four strategies compete in a large population. The state of the population is the share using each strategy, x = (x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>, x<sub>4</sub>), which is a point in a tetrahedron (the 3-simplex). Each corner is a population in which everyone uses one strategy; the center is the population in which each strategy has a quarter of the users.</p>
-<p>Under the replicator dynamic, a strategy's share grows in proportion to how much better it does than the population average: x&#775;<sub>i</sub> = x<sub>i</sub>((Ax)<sub>i</sub> &minus; x&middot;Ax). Here the payoff matrix A is</p>
+<p>Under the replicator dynamics, a strategy's share grows in proportion to how much better it does than the population average: x&#775;<sub>i</sub> = x<sub>i</sub>((Ax)<sub>i</sub> &minus; x&middot;Ax). Here the payoff matrix A is</p>
 <table aria-label="Payoff matrix A, rows are the strategy's own payoff against each column strategy"><tbody>${MATRIX_HTML}</tbody></table>
 <p>The only equilibrium inside the tetrahedron is the center, (1/4, 1/4, 1/4, 1/4), and it is unstable. A population that starts near it spirals outward and settles onto a strange attractor: the folded set that the trace fills in. Two populations that start almost together separate at an average exponential rate of about 0.16 per unit of time (the largest Lyapunov exponent, which we estimated numerically), so the long-run path cannot be predicted from an approximate starting point. Starts far from the center can instead run to the boundary, where some strategies die out, so each new start here is drawn close to the center.</p>
-<p><strong>Why four strategies.</strong> With n strategies the state space has n &minus; 1 dimensions. With three strategies it is a triangle, a region of the plane, and the Poincar&eacute;-Bendixson theorem says that a bounded orbit in the plane can only approach an equilibrium, a closed cycle, or a set of equilibria joined by orbits. Chaos needs at least three dimensions, so four is the smallest number of strategies for which the replicator dynamic can be chaotic.</p>
-<p>The replicator dynamic with four strategies is equivalent to a Lotka-Volterra system with three species (Hofbauer 1981), so the strange attractor that Arneodo, Coullet and Tresser (1980) found in a three-species Lotka-Volterra system appears in a four-strategy game. Skyrms (1992), citing Zeeman's analysis of three-strategy games, noted that chaos does not occur with three strategies, and gave numerical evidence that it does occur with four. <span data-verify="matrix confirmed from Sandholm's Dynamo gallery and his 2007 survey; the section number comes from the 2009 draft table of contents; the printed book was not checked">Sandholm presents this game as an example of chaotic evolutionary dynamics (2010, section 9.3).</span></p>
+<p><strong>Why four strategies.</strong> With n strategies the state space has n &minus; 1 dimensions. With three strategies it is a triangle, a region of the plane, and the Poincar&eacute;-Bendixson theorem says that a bounded orbit in the plane can only approach an equilibrium, a closed cycle, or a set of equilibria joined by orbits. Chaos needs at least three dimensions, so four is the smallest number of strategies for which the replicator dynamics can be chaotic.</p>
+<p>The replicator dynamics with four strategies is equivalent to a Lotka-Volterra system with three species (Hofbauer 1981), so the strange attractor that Arneodo, Coullet and Tresser (1980) found in a three-species Lotka-Volterra system appears in a four-strategy game. Skyrms (1992), citing Zeeman's analysis of three-strategy games, noted that chaos does not occur with three strategies, and gave numerical evidence that it does occur with four. <span data-verify="matrix confirmed from Sandholm's Dynamo gallery and his 2007 survey; the section number comes from the 2009 draft table of contents; the printed book was not checked">Sandholm presents this game as an example of chaotic evolutionary dynamics (2010, section 9.3).</span></p>
 <p>The orbit is computed in your browser with the fourth-order Runge-Kutta method, step 0.002.</p>
 <p class="model-sources"><strong>Sources.</strong><br>
 A. Arneodo, P. Coullet and C. Tresser (1980), &ldquo;Occurence of strange attractors in three-dimensional Volterra equations,&rdquo; <i>Physics Letters A</i> 79(4), 259-263, <a href="https://doi.org/10.1016/0375-9601(80)90342-4">doi:10.1016/0375-9601(80)90342-4</a>.<br>
@@ -143,7 +143,7 @@ B. Skyrms (1992), &ldquo;Chaos in game dynamics,&rdquo; <i>Journal of Logic, Lan
 W. H. Sandholm (2010), <i>Population Games and Evolutionary Dynamics</i>, MIT Press.</p>
 `;
 
-const ARIA = "Animated orbit of the replicator dynamic for a four-strategy game, drawn inside a slowly rotating tetrahedron whose corners are the four strategies. Starting near the center, the orbit spirals outward and traces a strange attractor.";
+const ARIA = "Animated orbit of the replicator dynamics for a four-strategy game, drawn inside a slowly rotating tetrahedron whose corners are the four strategies. Starting near the center, the orbit spirals outward and traces a strange attractor.";
 
 // ---------- Mount ----------
 
@@ -185,10 +185,9 @@ export function mount(container, options = {}) {
     const id = "chaos-" + Math.random().toString(36).slice(2, 8);
     root.innerHTML = `
 <canvas class="model-canvas" role="img" tabindex="0" aria-label="${ARIA}" aria-describedby="${id}-desc"></canvas>
-<p id="${id}-desc" class="model-desc${options.visibleDescription ? "" : " visually-hidden"}">${options.description || "The replicator dynamic for four strategies has no stable resting point inside the tetrahedron of population states. Its orbits fold into a strange attractor, so small differences in where a population starts grow until its path cannot be predicted. Drag the figure, or use the arrow keys, to rotate it."}</p>
+<p id="${id}-desc" class="model-desc${options.visibleDescription ? "" : " visually-hidden"}">${options.description || "The replicator dynamics for four strategies has no stable resting point inside the tetrahedron of population states. Its orbits fold into a strange attractor, so small differences in where a population starts grow until its path cannot be predicted. Drag the figure, or use the arrow keys, to rotate it."}</p>
 <div class="model-controls">
-  <button type="button" data-act="restart">New start</button>
-  <button type="button" data-act="pause" aria-pressed="false">Pause</button>
+  <span class="model-actions"><button type="button" data-act="pause">Pause</button><button type="button" data-act="restart">New start</button></span>
   <label>Speed <input type="range" data-act="speed" min="-2" max="2" step="0.1" value="0" aria-valuetext="1 times"></label>
   <span class="model-hint" aria-hidden="true">Drag to rotate</span>
 </div>
@@ -225,7 +224,9 @@ export function mount(container, options = {}) {
     } else ghost = null;
     traj.reset(newStart());
     appear = 0;
-    if (reduced) { settleStill(); draw(performance.now()); }
+    // Reduced motion, or paused (site-wide "Pause motion" or the model's own Pause): show the
+    // new orbit's settled attractor at once, as a still frame; Play continues from it.
+    if (reduced || (loop && !loop.running)) { settleStill(); draw(performance.now()); }
   }
 
   // Reduced motion: one still frame, the attractor after the spiral has settled. The orbit
@@ -344,7 +345,9 @@ export function mount(container, options = {}) {
   function drawTrace(ctx, t, alphaMul, tk, dark) {
     const n = project(t, screen, depth);
     const chunk = 24, first = t.first, newest = t.count;
-    const base = (isBg ? (dark ? 0.26 : 0.24) : (dark ? 0.62 : 0.58)) * alphaMul;
+    // On phones (under 560px) the text column covers the screen, so the background cannot be
+    // dimmed beside it: it is drawn at half strength instead, gray only (see draw()).
+    const base = (isBg ? (dark ? 0.26 : 0.24) * (W < 560 ? 0.5 : 1) : (dark ? 0.62 : 0.58)) * alphaMul;
     chalkStroke(ctx, screen.subarray(0, n * 2), {
       color: tk["--chalk"], width: isBg ? 1.0 : 1.05, jitter: 0.2, chunk, indexOffset: first,
       dpr: sizer.dpr, alpha: base,
@@ -368,7 +371,7 @@ export function mount(container, options = {}) {
     ctx.save();
     for (const [a, b] of EDGES) {
       const zmid = (vs[a][2] + vs[b][2]) / 2;
-      const al = (isBg ? 0.10 * maskAt((vs[a][0] + vs[b][0]) / 2) : 0.26) * clamp(0.7 + 0.3 * zmid, 0.4, 1);
+      const al = (isBg ? 0.10 * (W < 560 ? 0.5 : 1) * maskAt((vs[a][0] + vs[b][0]) / 2) : 0.26) * clamp(0.7 + 0.3 * zmid, 0.4, 1);
       chalkStroke(ctx, [vs[a][0], vs[a][1], vs[b][0], vs[b][1]], {
         color: tk["--chalk"], width: 0.8, jitter: 0, chunk: 2, alpha: al, dpr: sizer.dpr, salt: a * 7 + b
       });
@@ -395,7 +398,8 @@ export function mount(container, options = {}) {
     }
     const n = drawTrace(ctx, traj, 1, tk, dark);
 
-    // The light: the current state of the population.
+    // The light: the current state of the population. Not drawn behind text on phones.
+    if (isBg && W < 560) return;
     const hx = screen[(n - 1) * 2], hy = screen[(n - 1) * 2 + 1];
     const I = appear * (isBg ? Math.max(0.7, maskAt(hx)) * (dark ? 0.95 : 0.85) : 1);
     drawLight(ctx, hx, hy, tk["--red"], tk["--red-bright"], { intensity: I, scale: isBg ? 1 : 0.9 });
@@ -437,7 +441,12 @@ export function mount(container, options = {}) {
   loop = new Loop(isBg ? canvas : root, frame, { fps: cfg.fps });
   function applyMotionPref() {
     if (reduced) { loop.stop(); if (traj.count < 1000) settleStill(); appear = 1; draw(performance.now()); }
-    else loop.start();
+    else {
+      loop.start();
+      // Mounted while motion is paused: draw the full attractor (the reduced-motion still),
+      // not the first few loops of the spiral. Play continues from it.
+      if (!loop.running && traj.count < 1000) { settleStill(); }
+    }
     // Inline display, because the site stylesheet sets display on these controls.
     if (controls.pause) controls.pause.style.display = reduced ? "none" : "";
     if (controls.speed) controls.speed.parentElement.style.display = reduced ? "none" : "";
@@ -459,8 +468,10 @@ export function mount(container, options = {}) {
   if (!isBg) {
     controls.restart.addEventListener("click", () => restart(!reduced));
     controls.pause.addEventListener("click", () => {
-      const p = controls.pause.getAttribute("aria-pressed") !== "true";
-      controls.pause.setAttribute("aria-pressed", String(p));
+      // A plain action button whose label changes (no aria-pressed: the red pressed style
+      // marks a selected mode, not a stopped animation).
+      const p = controls.pause.dataset.paused !== "true";
+      controls.pause.dataset.paused = String(p);
       controls.pause.textContent = p ? "Play" : "Pause";
       if (p) loop.pause(); else loop.resume();
     });

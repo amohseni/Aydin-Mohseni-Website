@@ -55,7 +55,9 @@ The citation in `publications.yml` follows Crossref in every field below. Title 
 | Stochastic Stability (A1) | title | "...Disagreements Between Dynamics" | "...Disagreements between Dynamics" | as CV |
 | | other | 2019, 86(3), 497-521 | matches; DOI 10.1086/703581 | |
 
-Decisions taken in the data (Aydin may overrule): year shown is Crossref's issued year, except Truth and Conformity and Red King, where the print year (2021) is shown and the online year (2019) is noted. The CV's A9 "Part A" is dropped because the journal's current name has no part.
+Decisions taken in the data (Aydin may overrule): years follow the print-year rule below. The CV's A9 "Part A" is dropped because the journal's current name has no part.
+
+**Year rule (decided 30 Oct 2026, integration): every published article is cited with the year of its journal volume and issue (the print year), never the online-first year.** Checked against the Crossref records above, the data already follows it for all nine published works: Social Sciences Hard 2026 (vol. 119), Methods for Modelers 2025 (the book's year), Best Paper 2022 (vol. 50, no. 2), Tragedy of the AI Commons 2022 (vol. 200, no. 4), Truth and Conformity 2021 (vol. 86, no. 6; online 2019), Red King 2021 (vol. 198, no. 6; online 2019), Self-Assembling Networks 2019 (vol. 70, no. 1), Stochastic Stability 2019 (vol. 86, no. 3); Role of Modeling is forthcoming. The Research page says so under the Published list. Where the CV gives another year (Best Paper 2024, AI Commons 2023, Red King 2019), the CV differs from this rule, not the site.
 
 ## Under review and in progress
 
@@ -96,14 +98,23 @@ Thirteen models from the old Computational Models page (7 research, 6 teaching).
 
 ## Workshops
 
-- AI Agency & Interpretability Workshop: dates, room, hosts, speakers, registration, program PDF and image from the old page; organizers (Mohseni and Herrmann) from exproof.ai. The CV calls it "CMU AI & Agency Workshop (Pittsburgh, Fall 2026)".
-- Formal Models in Metascience Workshop: from the old page. Its program link points to the AI Agency PDF; the data uses `/wp-content/uploads/2025/08/Workshop_Program___Formal_Models_in_Metascience.pdf`, found in the media library and not opened.
+- AI Agency and Interpretability Workshop: dates, speakers, registration and description from the old pre-event page. Organizers, room, hosts and the Sunday end time follow the final program PDF (`/wp-content/uploads/2026/09/Workshop_Program___AI_Agency___Interpretability-1.pdf`, read 30 Oct 2026, fixer pass), which contradicts the old page and exproof.ai: organizers Aydin Mohseni, Daniel Herrmann and Kevin Kelly (exproof.ai: Mohseni and Herrmann; old page: none named); Sunday 9:00am to 3:30pm (old page: 3:00pm); room Steinberg Auditorium, Baker Hall A36; support from the Center for Formal Epistemology, the "Center for Conceptual Research on the Foundations of Safe AI", the Foundations of Cooperative AI Lab and the Institute for Complex Social Dynamics (old page: three hosts, the center named "Center for Conceptual Research on Safe AI (CoRe Safe AI)"). The title is written with "and", as on exproof.ai; the old page and program write "AI Agency & Interpretability". The CV calls it "CMU AI & Agency Workshop (Pittsburgh, Fall 2026)".
+- Formal Models in Metascience Workshop: from the old page. Its program link points to the AI Agency PDF by mistake; the data uses `/wp-content/uploads/2025/08/Workshop_Program___Formal_Models_in_Metascience.pdf`, now opened: title, dates (2-3 August 2025), room (Grand Room, Posner Hall 340), hosts (ICSD, CFE) and the eight speakers match the page, and it reads "Organisers: Aydin Mohseni, Kevin J. S. Zollman". Kevin Zollman is now listed as co-organizer.
 - Speaker URLs are filled only where already confirmed (exproof.ai README table).
+
+## Names and shared summaries (fixer pass, 30 Oct 2026)
+
+- **One name per person.** Full author lines on the Research page print names as the publication record gives them (Crossref, arXiv, or the CV for unpublished work). Everything else (essays, Home "With ..." lines, talk co-presenters, workshop pages, sketchbook) uses `coinquirers.yml` `display`. Display forms changed: "Ben Levinstein" to "Benjamin A. Levinstein" (exproof.ai README); talk co-presenter "Daniel A. Herrmann" to "Daniel Herrmann"; workshop speaker "Kevin J. S. Zollman" to "Kevin Zollman". The arXiv author line "Alex John London" stays on the Research page; exproof.ai writes "Alex J. London" in its author line for the same paper (open question for both sites).
+- **Summaries shared with exproof.ai** now open with exproof.ai's sentence word for word: The Tragedy of the AI Commons, A Bayesian Reduction of Causation, Learning the Value of Value Learning, AI Alignment as a Principal-Agent Problem. Sentences added after it name their source in `summary_sources` (old Research page abstract; arXiv abstract). The principal-agent sentence from the old Research page ("agents that optimize for reward rather than for the principal's intentions can outperform aligned agents") is held in `summary_unconfirmed` until Aydin confirms it.
+- **Status of Learning the Value of Value Learning:** under review per the CV (R4); exproof.ai lists it as a working paper.
+- **PSA venue name:** the 2026 San Diego talk now reads "Philosophy of Science Association Biennial", as for New Orleans and Pittsburgh and on exproof.ai; the CV writes "Philosophy of Science Biennial Conference".
+- **New evidence on HARKing and R2** from the old Research page as modified 12 Aug 2026 (WordPress REST JSON, first person): it titles the paper "HARKing: From Misdiagnosis to Misprescription", and it says "In Intervention and Backfire in the Replication Crisis, I show that reforms such as lowering significance thresholds or adopting preregistration can improve every individual study yet worsen the published literature. This is an interventional Simpson's paradox, and it is general." The same page calls the center "CMU's Foundations of Safe AI initiative".
+- **Sketchbook:** the "Probability simplex" image (the old Infographics page's header, no caption, no poster or paper) is no longer listed as an infographic.
 
 ## Bio and profile
 
 - `long_bio` is the old home-page bio. The fetch tool returned it as verbatim text on request; it should still be diffed against the WordPress source once the export is available. One fix: "Perci Diaconis" to "Persi Diaconis". No other change.
-- CoRe Safe AI: the CV writes "CoreSafe AI"; the old bio, exproof.ai and the CMU page write "Conceptual Research on Safe AI (CoRe Safe AI)". The data uses "CoRe Safe AI".
+- CoRe Safe AI: the CV writes "CoreSafe AI"; the old bio, exproof.ai and the CMU page write "Conceptual Research on Safe AI (CoRe Safe AI)". The data uses "CoRe Safe AI" (with "Center" capitalized; the old bio's lower-case "center" was a typo). Newer sources differ: the September 2026 workshop program writes "Center for Conceptual Research on the Foundations of Safe AI" and the August 2026 Research page "Foundations of Safe AI initiative". The About bio paragraph and the workshop host line are marked `data-verify` until Aydin gives the current name.
 - Booking link: the brief gives https://calendar.app.google/pe98GGpL8dwdoqbp6; the old home page links https://calendar.app.google/4AFnSgB8vVi3qtvZA.
 - ORCID 0000-0002-4054-0058 appears with Aydin's name in the Elsevier Crossref deposit (not authenticated). Kept in `links_unverified`, so the footer does not show it.
 - OSF: the old site links https://osf.io/ (the OSF home page), not a profile. Dropped.
@@ -124,12 +135,12 @@ Strand membership of each work (`strand` in `publications.yml`) and the selected
 3. exproof.ai `publications.html` summary of A Bayesian Reduction of Causation; exproof.ai `delegation.html` (second strand led by Mohseni and Demo).
 
 **Metascience**
-1. Old home-page bio (two questions; methods; "scientific funding and reform"); CV research summary (grant funding, replication crisis, social epistemology of science).
+1. Old home-page bio (two questions; methods; "scientific funding and reform"); CV research summary (grant funding, replication crisis, social epistemology of science). The opening no longer calls this his "second question" (the bio lists it first and gives no order).
 2. Old Research page summaries of Truth and Conformity on Networks and The Best Paper You'll Read Today.
 3. PhilSci-Archive 18523 abstract and old Research page (HARKing); old Computational Models page (Optimal Grant Funding for Scientific Production).
 
 **Methods**
-1. CV research summary; old home-page bio (the methods he uses). The phrase "the formal tools Aydin uses to study scientific communities and artificial agents" joins the two; confirm.
+1. CV research summary. (The earlier phrase "the formal tools Aydin uses to study scientific communities and artificial agents" was not in any source and was removed: the CV lists these as research areas, not tools.)
 2. Old Research page summaries of Stochastic Stability and Limitations of Equilibrium Concepts.
 3. Old Research page summaries of "Are Nash Equilibria Rational?" (taken to be CV W2) and of the Red King paper.
 

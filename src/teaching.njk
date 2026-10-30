@@ -1,0 +1,50 @@
+---
+layout: layouts/base.njk
+title: Teaching
+permalink: /teaching/
+description: "Courses taught by Aydin Mohseni at Carnegie Mellon University, the University of Pennsylvania and the University of California, Irvine, with summer schools and teaching training."
+---
+{%- from "partials/macros.njk" import section with context -%}
+{%- set institutions = [] -%}
+{%- for c in teaching.courses %}{% if c.institution not in institutions %}{% set institutions = institutions.concat([c.institution]) %}{% endif %}{% endfor -%}
+
+<section class="hero page-head" aria-labelledby="t-title">
+  <p class="eyebrow">Teaching</p>
+  <h1 id="t-title">Courses and summer schools</h1>
+  <p class="who"><a href="#courses">University courses</a> ({{ teaching.courses.length }}) · <a href="#short-courses">Summer schools</a> ({{ teaching.short_courses.length }}) · <a href="#training">Training</a> · <a href="{{ '/models/' | url }}#teaching-models">Teaching models</a></p>
+</section>
+
+{% call section("Courses", "courses") %}
+{%- for inst in institutions %}
+<h2 class="list-head{% if loop.first %} list-head--first{% endif %}">{{ inst }}</h2>
+<ul class="featured courses">
+  {%- for c in teaching.courses %}{% if c.institution == inst %}
+  <li><span class="t">{{ c.title }}</span><span class="d">{{ c.terms | join(", ") }}</span></li>
+  {%- endif %}{% endfor %}
+</ul>
+{%- endfor %}
+{% endcall %}
+
+{% call section("Summer schools", "short-courses") %}
+<ul class="featured courses">
+  {%- for c in teaching.short_courses %}
+  <li><span class="t">{{ c.title }}</span><span class="d">{{ c.program }}, {{ c.institution }}, {{ c.term }}</span></li>
+  {%- endfor %}
+</ul>
+{% endcall %}
+
+{% call section("Training", "training") %}
+<ul class="plainlist">
+  {%- for t in teaching.training %}
+  <li>{{ t }}</li>
+  {%- endfor %}
+</ul>
+{%- if teaching.workshops_designed and teaching.workshops_designed.length %}
+<h2 class="list-head">Workshops designed</h2>
+<ul class="plainlist">
+  {%- for t in teaching.workshops_designed %}
+  <li>{{ t }}</li>
+  {%- endfor %}
+</ul>
+{%- endif %}
+{% endcall %}

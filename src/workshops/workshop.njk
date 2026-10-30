@@ -1,0 +1,64 @@
+---js
+{
+  layout: "layouts/base.njk",
+  pagination: {
+    data: "workshops",
+    size: 1,
+    alias: "ws",
+    before: (items) => items.filter((w) => w.page)
+  },
+  permalink: (data) => data.ws.url,
+  eleventyComputed: {
+    title: (data) => data.ws.title,
+    description: (data) => `${data.ws.title}, ${data.ws.dates}, at Carnegie Mellon University. Speakers, program and organizers.`
+  }
+}
+---
+{%- from "partials/macros.njk" import section with context -%}
+{#- One page per workshop in workshops.yml with page: true. Whether the workshop is upcoming is
+    decided at build time from its end date; registration is shown only while it is. -#}
+{%- set isUpcoming = ws.end | isUpcoming -%}
+
+<section class="hero page-head" aria-labelledby="ws-title">
+  <p class="eyebrow">Workshop</p>
+  <h1 id="ws-title">{{ ws.title }}</h1>
+  {#- Status first, as a small tag (like "Upcoming" on talks); each segment stays whole, so a
+      separator never ends a line. -#}
+  <p class="who"><span class="tag">{{ "Upcoming" if isUpcoming else "Past event" }}</span> <span class="nw"><b>{{ ws.dates | replace("-", "&ndash;") | safe }}</b></span> <span class="seg">·&nbsp;{{ ws.place }}</span></p>
+</section>
+
+{% call section("About", "about") %}
+{%- for p in ws.description %}
+<p class="lead">{{ p }}</p>
+{%- endfor %}
+<ul class="related">
+  {%- if ws.program_pdf %}<li><a href="{{ ws.program_pdf | url }}">Program (PDF)</a></li>{% endif %}
+  {%- if isUpcoming and ws.registration %}<li><a href="{{ ws.registration }}">Register</a></li>{% endif %}
+  <li><a href="{{ '/research/' | url }}#workshops">All workshops</a></li>
+</ul>
+{% endcall %}
+
+{% call section("Speakers", "speakers", wide=true) %}
+<ul class="names">
+  {%- for s in ws.speakers %}
+  <li>{% if s.url and "aydinmohseni.com" not in s.url %}<a href="{{ s.url }}">{{ s.name }}</a>{% else %}{{ s.name }}{% endif %}<span class="d">{{ s.affiliation }}</span></li>
+  {%- endfor %}
+</ul>
+{% endcall %}
+
+{% call section("Dates", "schedule") %}
+<ul class="plainlist">
+  {%- for d in ws.schedule %}
+  <li>{{ d | replace("-", "&ndash;") | safe }}</li>
+  {%- endfor %}
+</ul>
+<p>{{ ws.place }}{% if ws.map %} (<a href="{{ ws.map }}">map</a>){% endif %}.</p>
+{%- if ws.registration_note %}
+<p class="secondary">{{ ws.registration_note }}</p>
+{%- endif %}
+{% endcall %}
+
+{% call section("Organizers", "organizers") %}
+<p>{% for o in ws.organizers %}{% if not loop.first %}{{ ((", and " if loop.length > 2 else " and ") if loop.last else ", ") }}{% endif %}{% if o.url and "aydinmohseni.com" not in o.url %}<a href="{{ o.url }}">{{ o.name }}</a>{% else %}{{ o.name }}{% endif %}{% endfor %}.</p>
+<p class="secondary">Hosted by {% for h in ws.hosts %}{% if not loop.first %}{{ (", and " if loop.length > 2 else " and ") if loop.last else ", " }}{% endif %}<span{% if h.verify %} data-verify="{{ h.verify }}"{% endif %}>the {% if h.url %}<a href="{{ h.url }}">{{ h.name }}</a>{% else %}{{ h.name }}{% endif %}</span>{% endfor %}.</p>
+{% endcall %}

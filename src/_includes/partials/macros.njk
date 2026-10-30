@@ -32,74 +32,111 @@
 {% macro href(u) -%}{{ (u | url) if (u and u[0] == "/") else u }}{%- endmacro %}
 
 {#- The author line. Aydin's name is set in ink; co-authors link to their sites when
-    people (a list of {name, url}, e.g. coinquirers) has a URL for them. -#}
-{% macro authorLine(authors, people=[]) -%}
+    people (a list of {name, url, display}, e.g. coinquirers) has a URL for them.
+    display=true prints each person's display name (the form used in prose, e.g. "Alex J. London")
+    instead of the name on the publication record (STYLE.md: full author lines on the Research
+    page follow the record; every other mention uses the display name). -#}
+{% macro authorLine(authors, people=[], display=false) -%}
 {%- for a in authors -%}
-{%- set linked -%}{%- for p in people %}{% if p.name == a and p.url %}<a href="{{ p.url }}">{{ a }}</a>{% endif %}{% endfor -%}{%- endset -%}
+{%- set shown -%}{%- for p in people %}{% if p.name == a %}{{ (p.display if (display and p.display) else a) | safe }}{% endif %}{% endfor -%}{%- endset -%}
+{%- set shown = (shown | trim) or a -%}
+{%- set linked -%}{%- for p in people %}{% if p.name == a and p.url %}<a href="{{ p.url }}">{{ shown }}</a>{% endif %}{% endfor -%}{%- endset -%}
 {%- if loop.index > 1 %}{% if loop.last %}{% if loop.length > 2 %},{% endif %} and {% else %}, {% endif %}{% endif -%}
 {%- if "Mohseni" in a %}<span class="me">{{ a }}</span>
 {%- elif linked | trim %}{{ linked | safe }}
-{%- else %}{{ a }}{% endif -%}
+{%- else %}{{ shown }}{% endif -%}
 {%- endfor -%}
 {%- endmacro %}
 
+{#- The review note for a work, or "" when nothing about it needs confirming. The Research page
+    and the Home strands both use it, so a work flagged on one is flagged on the other. A published
+    work cited from the CV alone is flagged (it should have a publisher record); unpublished work
+    is cited from the CV by design (docs/BRIEF.md), so only its own `verify` flag marks it.
+    Test the result with `| length` (a macro returns a SafeString, which is truthy even when empty). -#}
+{% macro verifyNote(w) -%}
+{{ (w.verify_note if w.verify else "") or ("Citation taken from the CV; confirm against the publisher record" if w.verified == "cv" and w.status == "published" else "") }}
+{%- endmacro %}
+
 {#- One work, from publications.yml. Renders <li class="work" id="pub-<slug>">.
-    kind: the small label under the year (e.g. "Paper", "Book"); defaults to w.kind if present.
-    cite: true adds a BibTeX box with a Copy button, built from the record. -#}
+    kind: the small label under the year (e.g. "Article", "Chapter"); defaults to w.kind if present.
+    cite: true adds a BibTeX box with a Copy button, built from the record.
+    Venue line: articles "<i>Journal</i> volume(issue): pages."; chapters (bibtype incollection)
+    "In <i>Book</i>, ed. Editors. Publisher, Year." -#}
 {% macro work(w, people=[], kind="", cite=false) -%}
 {%- set k = kind or w.kind or "" -%}
 {%- set L = w.links or {} -%}
-<li class="work" id="pub-{{ w.slug }}" data-status="{{ w.status }}"{% if w.strand %} data-strand="{{ w.strand }}"{% endif %}{% if k %} data-type="{{ k | lower }}"{% endif %}{% if w.verified == "cv" %} data-verify="Citation taken from the CV; confirm against the publisher record"{% endif %}>
-  <div class="work-meta"><span class="year">{{ w.year if w.year else "" }}</span>{% if k %}<span class="type">{{ k }}</span>{% endif %}</div>
+{%- set isChapter = (w.bibtype == "incollection") -%}
+{%- set forthcoming = (w.forthcoming or w.year == "forthcoming") -%}
+{%- set note = verifyNote(w) | string | trim -%}
+<li class="work" id="pub-{{ w.slug }}" data-status="{{ w.status }}"{% if w.strand %} data-strand="{{ w.strand }}"{% endif %}{% if k %} data-type="{{ k | lower }}"{% endif %}{% if note | length %} data-verify="{{ note }}"{% endif %}>
+  <div class="work-meta"><span class="year">{{ ("Forthcoming" if forthcoming else w.year) if w.year else "" }}</span>{% if k %}<span class="type">{{ k }}</span>{% endif %}</div>
   <div>
     <p class="work-title">{{ w.title }}</p>
     {%- if w.authors and w.authors.length %}
     <p class="work-authors">{{ authorLine(w.authors, people) }}</p>
     {%- endif %}
-    {%- if w.venue %}
-    <p class="work-venue"><i>{{ w.venue }}</i>{% if w.volume %} {{ w.volume }}{% endif %}{% if w.issue %}({{ w.issue }}){% endif %}{% if w.pages %}: {{ w.pages | replace("-", "&ndash;") | safe }}{% endif %}{% if w.status == "under-review" %} (under review){% endif %}.</p>
+    {%- if w.venue and isChapter %}
+    <p class="work-venue">In <i>{{ w.venue }}</i>{% if w.editors and w.editors.length %}, {{ "eds." if w.editors.length > 1 else "ed." }} {{ w.editors | join(" and ") if w.editors.length == 2 else w.editors | join(", ") }}{% endif %}. {% if w.publisher %}{{ w.publisher }}, {% endif %}{{ w.year }}.</p>
+    {%- elif w.venue %}
+    <p class="work-venue"><i>{{ w.venue }}</i>{% if w.volume %} {{ w.volume }}{% endif %}{% if w.issue %}({{ w.issue }}){% endif %}{% if w.pages %}{% if w.article_number and w.pages == w.article_number %}, article {{ w.pages }}{% else %}: {{ w.pages | replace("-", "&ndash;") | safe }}{% endif %}{% endif %}{% if forthcoming %}, forthcoming{% endif %}{% if w.commissioned %} (commissioned){% endif %}.</p>
     {%- endif %}
     {%- if w.summary %}
     <p class="work-summary">{{ w.summary }}</p>
     {%- endif %}
+    {%- set anyLink = L.journal or w.doi or L.pdf or L.preprint or L.arxiv or L.philsci or L.model or L.code or L.data or L.slides or w.exproof or cite %}
+    {%- if anyLink %}
     <div class="work-links">
-      {%- if L.journal %}<a href="{{ L.journal }}">Journal</a>{% elif w.doi %}<a href="https://doi.org/{{ w.doi }}">DOI</a>{% endif %}
+      {%- if L.journal %}<a href="{{ L.journal }}">Journal</a>{% elif w.doi %}<a href="https://doi.org/{{ w.doi }}">Journal</a>{% endif %}
       {%- if L.pdf %}<a href="{{ href(L.pdf) }}">PDF</a>{% endif %}
+      {%- if L.preprint %}<a href="{{ href(L.preprint) }}">Preprint</a>{% endif %}
       {%- if L.arxiv %}{% if "://" in L.arxiv %}<a href="{{ L.arxiv }}">arXiv</a>{% else %}<a href="https://arxiv.org/abs/{{ L.arxiv }}">arXiv:{{ L.arxiv }}</a>{% endif %}{% endif %}
       {%- if L.philsci %}<a href="{{ L.philsci }}">PhilSci Archive</a>{% endif %}
       {%- if L.model %}<a href="{{ href(L.model) }}">Model</a>{% endif %}
       {%- if L.code %}<a href="{{ L.code }}">Code</a>{% endif %}
       {%- if L.data %}<a href="{{ L.data }}">Data</a>{% endif %}
-      {%- if w.exproof %}<a href="{{ w.exproof }}" aria-label="Related ExProof AI program"><span class="exists" aria-hidden="true">&exist;</span><span aria-hidden="true">xProof AI</span></a>{% endif %}
+      {%- if L.slides %}<a href="{{ href(L.slides) }}">Slides</a>{% endif %}
+      {%- if w.exproof %}<a href="{{ w.exproof }}" aria-label="Related ExProof AI program">{{ "" | exproofName | safe }}</a>{% endif %}
       {%- if cite %}
       {%- set bibtype = w.bibtype or ("article" if (w.status == "published" and w.venue) else "unpublished") %}
       <details class="cite"><summary>Cite</summary><div class="cite-box"><pre>@{{ bibtype }}{ {{- w.slug }},
-  author  = { {{- bibAuthors(w.authors) -}} },
-  title   = { {{- w.title -}} },
+  author    = { {{- bibAuthors(w.authors) -}} },
+  title     = { {{- w.title -}} },
 {%- if w.venue and bibtype == "article" %}
-  journal = { {{- w.venue -}} },
+  journal   = { {{- w.venue -}} },
+{%- endif %}
+{%- if w.venue and bibtype == "incollection" %}
+  booktitle = { {{- w.venue -}} },
+{%- if w.editors and w.editors.length %}
+  editor    = { {{- bibAuthors(w.editors) -}} },
+{%- endif %}
+{%- if w.publisher %}
+  publisher = { {{- w.publisher -}} },
+{%- endif %}
 {%- endif %}
 {%- if w.volume %}
-  volume  = { {{- w.volume -}} },
+  volume    = { {{- w.volume -}} },
 {%- endif %}
 {%- if w.issue %}
-  number  = { {{- w.issue -}} },
+  number    = { {{- w.issue -}} },
 {%- endif %}
 {%- if w.pages %}
-  pages   = { {{- w.pages | replace("-", "--") -}} },
+  pages     = { {{- w.pages | replace("-", "--") -}} },
 {%- endif %}
-{%- if w.year %}
-  year    = { {{- w.year -}} },
+{%- if w.year and not forthcoming %}
+  year      = { {{- w.year -}} },
 {%- endif %}
 {%- if w.doi %}
-  doi     = { {{- w.doi -}} },
+  doi       = { {{- w.doi -}} },
 {%- endif %}
-{%- if bibtype == "unpublished" %}
-  note    = { {{- "Under review" if w.status == "under-review" else "Manuscript" -}} },
+{%- if forthcoming %}
+  note      = {Forthcoming},
+{%- elif bibtype == "unpublished" %}
+  note      = { {{- ("Revise and resubmit" if w.revise_and_resubmit else "Under review") if w.status == "under-review" else "Manuscript" -}} },
 {%- endif %}
 }</pre><button class="copy" type="button">Copy</button></div></details>
       {%- endif %}
     </div>
+    {%- endif %}
   </div>
 </li>
 {%- endmacro %}

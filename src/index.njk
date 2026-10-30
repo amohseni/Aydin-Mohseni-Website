@@ -1,0 +1,124 @@
+---
+layout: layouts/base.njk
+permalink: /
+background: false
+description: "Aydin Mohseni is a scientific philosopher and assistant professor of philosophy at Carnegie Mellon University, working on AI safety, metascience, and methods (formal epistemology and game theory)."
+---
+{%- from "partials/macros.njk" import section, model, authorLine, verifyNote with context -%}
+{#- The home page carries the argument, in the section order of docs/BRIEF.md: who, a live model,
+    the research strands, talks, co-inquirers, influences, contact. Within a strand the order is
+    danielherrmann.ca's: heading, essay, model with caption and "How it works", selected work,
+    related ∃xProof AI programs. Content comes from src/_data; nothing here states a view of
+    Aydin's that the data does not source. Anything the Research page marks data-verify is
+    marked here too (verifyNote for works, the talk's own flag for talks). -#}
+{%- set research = '/research/' | url -%}
+
+<section class="hero home-hero" aria-labelledby="home-title">
+  <div class="intro">
+    <img class="intro-photo" src="{{ '/assets/img/mohseni.jpg' | url }}" alt="Portrait of Aydin Mohseni" width="360" height="360">
+    <div class="intro-text">
+      <h1 class="tagline" id="home-title"><span class="visually-hidden">Aydin Mohseni, </span>{{ profile.tagline }}</h1>
+      <p class="bio">{{ profile.short_bio | linkPhrases(profile.bio_links) | safe }}</p>
+      <p class="who"><a href="#strand-ai-safety">AI safety</a> · <a href="#strand-metascience">Metascience</a> · <a href="#strand-methods">Methods</a> · <a href="{{ research }}">All research</a> · <a href="{{ '/cv.pdf' | url }}">CV</a></p>
+    </div>
+  </div>
+</section>
+
+{% call section("Dynamics", "dynamics") %}
+<h2>Chaos on the simplex</h2>
+{{ model("chaos",
+  caption="The replicator dynamics for a game with four strategies (Arneodo, Coullet and Tresser 1980). Each point of the tetrahedron is a population state, its corners the four pure strategies. Started near the center, the orbit never settles: it folds into a strange attractor, and nearby starts drift apart. With three strategies this cannot happen. Drag the figure to rotate it.",
+  number="1",
+  options={ mode: "hero" },
+  id="model-chaos",
+  aspect="10 / 9") }}
+{% endcall %}
+
+{%- for s in strands %}
+{%- set n = loop.index + 1 %}
+{% call section(s.title, "strand-" ~ s.slug) %}
+<h2>{{ s.topics }}</h2>
+{%- for para in s.essay %}
+<p{% if para.verify %} data-verify="{{ para.verify }}"{% endif %}>{{ para.text | linkPhrases(s.links, { slugBase: research, quote: true, people: coinquirers }) | safe }}</p>
+{%- endfor %}
+{{ model(s.model, caption=s.caption, number=n, options={}, id="model-" ~ s.model, aspect="16 / 10") }}
+<h3 class="list-head">Selected work</h3>
+<ul class="featured">
+  {%- for slug in s.selected %}
+  {%- set w = publications | findBySlug(slug) %}
+  {%- if w %}
+  {%- set note = verifyNote(w) | string | trim %}
+  <li{% if note | length %} data-verify="{{ note }}"{% endif %}><span class="t"><a href="{{ research }}#pub-{{ w.slug }}">{{ w.title }}</a></span><span class="d">
+    {%- if w.status == "published" and w.venue %}<i>{{ w.venue }}</i>, {{ "forthcoming" if w.forthcoming else w.year }}.
+    {%- elif w.status == "under-review" %}{{ "Revise and resubmit." if w.revise_and_resubmit else "Under review." }}
+    {%- else %}In progress.{% endif %}
+    {%- set others = w.authors | coauthors %}
+    {%- if others.length %} With {{ authorLine(others, coinquirers, true) }}.{% endif %}</span></li>
+  {%- endif %}
+  {%- endfor %}
+</ul>
+{%- if s.exproof and s.exproof.length %}
+<ul class="related">
+  <li class="label">Related {{ "" | exproofName | safe }} programs</li>
+  {%- for x in s.exproof %}
+  <li><a href="{{ x.url }}">{{ x.title }}</a></li>
+  {%- endfor %}
+</ul>
+{%- endif %}
+{% endcall %}
+{%- endfor %}
+
+{%- set upcomingTalks = talks | upcoming | soonestFirst %}
+{%- set pastTalks = talks | past %}
+{% call section("Talks", "talks") %}
+<ul class="featured talks-list">
+  {%- for t in upcomingTalks %}
+  <li{% if t.verify %} data-verify="{{ t.verify_note }}"{% endif %}><span class="t">{% if t.paper_slug %}<a href="{{ research }}#pub-{{ t.paper_slug }}">{{ t.title }}</a>{% else %}{{ t.title }}{% endif %}</span><span class="d"><span class="tag">Upcoming</span> {{ t.venue }}, {{ t.city }}, {{ t.date | formatDate }}.</span></li>
+  {%- endfor %}
+  {%- for t in pastTalks.slice(0, 4) %}
+  <li{% if t.verify %} data-verify="{{ t.verify_note }}"{% endif %}><span class="t">{% if t.paper_slug %}<a href="{{ research }}#pub-{{ t.paper_slug }}">{{ t.title }}</a>{% else %}{{ t.title }}{% endif %}</span><span class="d">{{ t.venue }}, {{ t.city }}, {{ t.date | formatDate }}.{% if t.video %} <a href="{{ t.video }}">Video</a>.{% endif %}</span></li>
+  {%- endfor %}
+</ul>
+<p class="more"><a href="{{ research }}#talks">All talks</a></p>
+{% endcall %}
+
+{% call section("Co-inquirers", "coinquirers", wide=true) %}
+<ul class="names">
+  {%- for c in coinquirers %}{% if c.constant %}
+  <li>{% if c.url %}<a href="{{ c.url }}">{{ c.display }}</a>{% else %}{{ c.display }}{% endif %}<span class="d">
+    {%- for slug in c.works %}{% set w = publications | findBySlug(slug) %}{% if w %}<a href="{{ research }}#pub-{{ w.slug }}">{{ w.title }}</a>{% if not loop.last %}; {% endif %}{% endif %}{% endfor %}</span></li>
+  {%- endif %}{% endfor %}
+</ul>
+{% endcall %}
+
+{%- set g = influences.gibran %}
+{% call section("Influences", "influences") %}
+<h3 class="list-head">{{ g.author }}</h3>
+<p class="poem-title">&ldquo;{{ g.title }}&rdquo; <span class="yr">({{ g.year }})</span></p>
+<div class="verse poem"{% if g.verify %} data-verify="{{ g.verify_note }}"{% endif %}>
+  <p>{% for l in g.intro %}<span class="line">{{ l.html | safe }}</span>{% endfor %}</p>
+  {%- for st in g.stanzas %}
+  <p>{% for l in st %}<span class="line">{{ l }}</span>{% endfor %}</p>
+  {%- endfor %}
+</div>
+<p class="attribution">{{ g.author }}, &ldquo;{{ g.title }},&rdquo; from <i>{{ g.book }}</i> ({{ g.place }}: {{ g.publisher }}, {{ g.year }}).</p>
+
+<h3 class="list-head">{{ influences.borges.author }}</h3>
+<ul class="featured stories">
+  {%- for st in influences.borges.stories %}
+  <li><span class="t">&ldquo;{{ st.title }}&rdquo; <span class="yr">({{ st.year }})</span></span><span class="d">{{ st.about | replace("Don Quixote", "<i>Don Quixote</i>") | safe }}</span></li>
+  {%- endfor %}
+</ul>
+{% endcall %}
+
+{% call section("Contact", "contact") %}
+<p class="lead">{{ profile.email_obfuscated }}</p>
+<p>{% for line in profile.contact.address %}{{ line }}<br>{% endfor %}Office: {{ profile.contact.office }}</p>
+<p class="related contact-links">
+  <a href="{{ '/meet/' | url }}"{% if profile.booking_url_verify %} data-verify="{{ profile.booking_url_note }}"{% endif %}>Schedule a meeting</a>
+  <a href="{{ '/cv.pdf' | url }}">CV</a>
+  <a href="{{ profile.links.scholar }}">Google Scholar</a>
+  <a href="{{ profile.links.github }}">GitHub</a>
+  <a href="{{ '/about/' | url }}">About</a>
+</p>
+{% endcall %}

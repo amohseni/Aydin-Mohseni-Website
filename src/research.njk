@@ -1,0 +1,102 @@
+---
+layout: layouts/base.njk
+title: Research
+permalink: /research/
+description: "Papers, talks and workshops by Aydin Mohseni on AI safety, metascience, and methods (formal epistemology and game theory)."
+---
+{%- from "partials/macros.njk" import section, work with context -%}
+{#- Structure of exproof.ai publications.html: a count line with jump links, then one section per
+    status, then talks and workshops. Every work has the anchor #pub-<slug>. Talks are grouped by
+    title, one entry per talk with every occasion it was given; upcoming occasions are computed at
+    build time from each date (see eleventy.config.js). -#}
+{%- set published = publications | whereStatus("published") -%}
+{%- set review = publications | whereStatus("under-review") -%}
+{%- set progress = publications | whereStatus("in-progress") -%}
+{%- set groups = talks | groupTalks -%}
+{%- set upcomingTalks = talks | upcoming | soonestFirst -%}
+{%- set organized = workshops -%}
+
+<section class="hero page-head" aria-labelledby="r-title">
+  <p class="eyebrow">Research</p>
+  <h1 id="r-title">Papers, talks and workshops</h1>
+  <p class="who"><a href="#published">Published</a> ({{ published.length }}) · <a href="#under-review">Under review</a> ({{ review.length }}) · <a href="#in-progress">In progress</a> ({{ progress.length }}) · <a href="#talks">Talks</a> ({{ talks.length }}) · <a href="#workshops">Workshops</a> ({{ organized.length }})</p>
+</section>
+
+{% call section("Published", "published") %}
+<ol class="works">
+  {%- for w in published %}
+  {{ work(w, people=coinquirers, kind=("Chapter" if w.bibtype == "incollection" else "Article"), cite=true) }}
+  {%- endfor %}
+</ol>
+<p class="more">Years are those of the printed volume. Online-first dates are on the journal pages.</p>
+{% endcall %}
+
+{% call section("Under review", "under-review") %}
+<ol class="works">
+  {%- for w in review %}
+  {{ work(w, people=coinquirers, kind=("Revise and resubmit" if w.revise_and_resubmit else "Paper"), cite=true) }}
+  {%- endfor %}
+</ol>
+{% endcall %}
+
+{% call section("In progress", "in-progress") %}
+<ol class="works">
+  {%- for w in progress %}
+  {{ work(w, people=coinquirers, kind="Paper") }}
+  {%- endfor %}
+</ol>
+{% endcall %}
+
+{% call section("Talks", "talks") %}
+{%- if upcomingTalks.length %}
+<h2 class="list-head" id="upcoming">Upcoming</h2>
+<ol class="works works--upcoming">
+  {%- for t in upcomingTalks %}
+  <li class="work talk">
+    <div class="work-meta"><span class="year">{{ t.date | formatDate }}</span><span class="type">{{ "Invited talk" if t.invited else "Talk" }}</span></div>
+    <div>
+      <p class="work-title">{% if t.paper_slug %}<a href="#pub-{{ t.paper_slug }}">{{ t.title }}</a>{% else %}{{ t.title }}{% endif %}</p>
+      <p class="work-summary">{{ t.venue }}, {{ t.city }}{% if t.with and t.with.length %}. With {{ t.with | join(" and ") }}{% endif %}.</p>
+    </div>
+  </li>
+  {%- endfor %}
+</ol>
+<h2 class="list-head">All talks</h2>
+{%- endif %}
+<ol class="works">
+  {%- for g in groups %}
+  {%- set first = g.occasions[0] %}
+  {%- set last = g.occasions[g.occasions.length - 1] %}
+  {%- set y1 = (last.date | string).slice(0, 4) %}
+  {%- set y2 = (first.date | string).slice(0, 4) %}
+  <li class="work talk" id="talk-{{ g.title | slugify }}">
+    <div class="work-meta"><span class="year">{{ y2 if y1 == y2 else (y1 ~ "&ndash;" ~ y2) | safe }}</span><span class="type">{{ g.occasions.length }} {{ "talk" if g.occasions.length == 1 else "talks" }}</span></div>
+    <div>
+      <p class="work-title">{% if g.paper_slug %}<a href="#pub-{{ g.paper_slug }}">{{ g.title }}</a>{% else %}{{ g.title }}{% endif %}</p>
+      <ul class="occasions">
+        {%- for t in g.occasions %}
+        <li{% if t.verify %} data-verify="{{ t.verify_note }}"{% endif %}>{{ t.venue }}, {{ t.city }}, <span class="nw">{{ t.date | formatDate }}{% if t.upcoming %} (upcoming){% endif %}{% if t.invited %} <span class="inv">invited</span>{% endif %}{% if t.video %} <a class="vid" href="{{ t.video }}">Video</a>{% endif %}</span>{% if t.with and t.with.length %} <span class="inv nw">with {{ t.with | join(" and ") }}</span>{% endif %}</li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </li>
+  {%- endfor %}
+</ol>
+{% endcall %}
+
+{% call section("Workshops", "workshops") %}
+<ol class="works">
+  {%- for ws in organized %}
+  <li class="work" id="workshop-{{ ws.slug }}">
+    <div class="work-meta"><span class="year">{{ (ws.start | string).slice(0, 4) if ws.start else (ws.dates | string).slice(-4) }}</span><span class="type">{{ "Workshop" if ws.page else "Symposium" }}</span></div>
+    <div>
+      <p class="work-title">{% if ws.page %}<a href="{{ ws.url | url }}">{{ ws.title }}</a>{% else %}{{ ws.title }}{% endif %}</p>
+      <p class="work-summary">{% if ws.page %}{{ ws.dates | replace("-", "&ndash;") | safe }}. {{ ws.place }}.{% if ws.organizers and ws.organizers.length %} Organized by {% for o in ws.organizers %}{% if not loop.first %}{{ ((", and " if loop.length > 2 else " and ") if loop.last else ", ") }}{% endif %}{{ o.name }}{% endfor %}.{% endif %}{% else %}{{ ws.role }}. {{ ws.place }}, {{ ws.dates }}.{% endif %}</p>
+      {%- if ws.page %}
+      <div class="work-links"><a href="{{ ws.url | url }}">Workshop page</a>{% if ws.program_pdf %}<a href="{{ ws.program_pdf | url }}">Program (PDF)</a>{% endif %}</div>
+      {%- endif %}
+    </div>
+  </li>
+  {%- endfor %}
+</ol>
+{% endcall %}

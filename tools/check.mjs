@@ -10,6 +10,7 @@
 //   4. pages missing <title>, a meta description, or the Open Graph tags
 //      og:title, og:description, og:type, og:url and og:image.
 //      Redirect stubs (pages with a meta refresh) need a title, a canonical link and noindex instead.
+//   5. double-escaped character references (such as "&amp;#39;"), which show as literal code.
 //
 // Warns (no failure) on: links to #fragments that no element on the target page carries
 // (fail with --strict-fragments), img with alt="" (allowed for decorative images),
@@ -113,6 +114,9 @@ for (const file of htmlFiles) {
   const name = rel(file);
   const raw = fs.readFileSync(file, "utf8");
   checkEmDashes(file, raw, true);
+  for (const m of raw.matchAll(/&amp;(#[0-9]+|#x[0-9a-f]+|[a-z]+);/gi)) {
+    err(name, `double-escaped "&${m[1]};" on line ${lineOf(raw, m.index)}`);
+  }
 
   // Remove comments and the bodies of inline scripts and styles before reading attributes.
   const html = raw

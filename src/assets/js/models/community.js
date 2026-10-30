@@ -172,17 +172,16 @@ export function mount(container, options = {}) {
   root.className = inFigure ? "model-body model-body--community" : "model model--community";
   const id = "community-" + Math.random().toString(36).slice(2, 8);
   root.innerHTML = `
-<canvas class="model-canvas" role="img" tabindex="0" aria-describedby="${id}-desc"></canvas>
+<canvas class="model-canvas" role="img" aria-describedby="${id}-desc"></canvas>
 <p id="${id}-desc" class="model-desc${options.visibleDescription ? "" : " visually-hidden"}">${options.description || `${N_AGENTS} agents try two actions, one slightly better than the other, and share their results with the agents they are linked to. Each node's shade is the agent's credence that B is better than A; B is in fact slightly better. When every agent settles on the better action the network sweeps green; when every agent settles on the worse one, it is marked red. Sparse networks settle on the better action more often but more slowly.`}</p>
 <div class="model-controls">
+  <span class="model-actions"><button type="button" data-act="pause">Pause</button><button type="button" data-act="restart">Restart</button></span>
   <span class="segmented" role="group" aria-label="Network">
     ${NETWORKS.map((k) => `<button type="button" data-net="${k}" aria-pressed="false">${NETWORK_LABELS[k]}</button>`).join("")}
   </span>
   <span class="segmented" role="group" aria-label="Evidence shared with">
     <button type="button" data-share="neighbors" aria-pressed="true">Neighbors</button><button type="button" data-share="everyone" aria-pressed="false">Everyone</button>
   </span>
-  <button type="button" data-act="restart">Restart</button>
-  <button type="button" data-act="pause" aria-pressed="false">Pause</button>
 </div>
 <p class="model-desc" aria-live="off"><output class="readout" data-act="readout"></output></p>
 <p class="model-desc" aria-live="polite"><output class="readout" data-act="tally"></output></p>
@@ -219,6 +218,7 @@ export function mount(container, options = {}) {
     run = runTrial({ network, share, rng, keep: true });
     edges = edgeList(run.adj);
     if (reduced) { phase = "still"; tau = run.totalRounds; alpha = 1; recordOutcome(); }
+    else if (loop && !loop.running) heldStill();
     else { phase = "play"; phaseT = 0; tau = 0; alpha = 1; }
     if (!reduced && controls.tally.dataset.key !== key()) controls.tally.textContent = tallyText();
     controls.tally.dataset.key = key();
@@ -226,6 +226,10 @@ export function mount(container, options = {}) {
     shareButtons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.share === share)));
     updateText();
   }
+
+  // While paused (site-wide "Pause motion" or the model's own Pause), a new run is shown played
+  // out and marked, as under reduced motion, and held: Play continues from that frame.
+  function heldStill() { phase = "hold"; phaseT = 0; tau = run.totalRounds; alpha = 1; recordOutcome(); }
 
   function key() { return network + "/" + share; }
   function recordOutcome() {
@@ -255,7 +259,7 @@ export function mount(container, options = {}) {
   // ---------- Drawing ----------
 
   function layout() {
-    const sans = W < 420 ? 10 : 11;
+    const sans = W < 560 ? 12 : 13;   // canvas labels: 12px minimum, 13px from 560px
     const chartH = Math.max(58, Math.round(Hh * 0.2));
     const netH = Hh - chartH - 14;
     const legendH = sans * 3.2;
@@ -407,6 +411,8 @@ export function mount(container, options = {}) {
     } else {
       if (phase === "still") { phase = "hold"; phaseT = 0; }
       loop.start();
+      // Mounted while motion is paused: show the run played out, not round 0.
+      if (!loop.running && phase === "play" && tau === 0) heldStill();
     }
     controls.pause.style.display = reduced ? "none" : "";
     updateText(); draw();
@@ -421,8 +427,10 @@ export function mount(container, options = {}) {
   shareButtons.forEach((b) => b.addEventListener("click", () => { share = b.dataset.share; restart(); draw(); }));
   controls.restart.addEventListener("click", () => { restart(); draw(); });
   controls.pause.addEventListener("click", () => {
-    const p = controls.pause.getAttribute("aria-pressed") !== "true";
-    controls.pause.setAttribute("aria-pressed", String(p));
+    // A plain action button whose label changes (no aria-pressed: the red pressed style
+    // marks a selected mode, not a stopped animation).
+    const p = controls.pause.dataset.paused !== "true";
+    controls.pause.dataset.paused = String(p);
     controls.pause.textContent = p ? "Play" : "Pause";
     if (p) loop.pause(); else loop.resume();
   });

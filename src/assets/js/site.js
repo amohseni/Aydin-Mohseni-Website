@@ -5,6 +5,9 @@
 // 2. Margin notes: on phones, the toggles open notes in place; this adds keyboard access.
 // 3. Review mode (#review) highlights every element marked data-verify.
 // 4. Filters for lists of works, and Copy buttons for citations.
+// 5. "Pause motion" in the footer (WCAG 2.2.2): stops every animation on the site, remembered
+//    in localStorage. The head script applies a stored choice before first paint as
+//    <html data-motion="paused">; every model's animation loop (models/common.js) reads it.
 
 const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -27,7 +30,14 @@ function mountModel(fig) {
       container.querySelectorAll(".model-fallback").forEach((n) => n.remove());
       return fn(container, options);
     })
-    .then(() => { fig.dataset.mounted = "true"; })
+    .then(() => {
+      fig.dataset.mounted = "true";
+      // Caption directly under the figure, "How it works" after it (as on danielherrmann.ca).
+      const cap = fig.querySelector(":scope > figcaption");
+      const how = container.querySelector("details.model-how, details.how");
+      if (cap && how) fig.appendChild(how);
+      syncModelButtons(fig);
+    })
     .catch((err) => {
       fig.dataset.mounted = "error";
       console.error(err);
@@ -83,19 +93,23 @@ if (narrow.addEventListener) narrow.addEventListener("change", syncToggleFocus);
 /* ---------- 3. Review mode ---------- */
 (function review() {
   const root = document.documentElement;
+  // The notes in data-verify are for Aydin's review, not for visitors: they become hover
+  // titles only while #review is on, and are removed again when it is turned off.
   function sync() {
     const on = location.hash === "#review";
     root.classList.toggle("review", on);
-    const n = document.querySelectorAll("[data-verify]").length;
+    const marked = document.querySelectorAll("[data-verify]");
+    marked.forEach((el) => {
+      const note = el.getAttribute("data-verify");
+      if (on && note && !el.title) { el.title = "To confirm: " + note; el.dataset.reviewTitle = "1"; }
+      else if (!on && el.dataset.reviewTitle) { el.removeAttribute("title"); delete el.dataset.reviewTitle; }
+    });
+    const n = marked.length;
     const count = document.getElementById("review-count");
     if (count) count.textContent = n === 1 ? "1 claim to confirm" : n + " claims to confirm";
   }
   window.addEventListener("hashchange", sync);
   sync();
-  document.querySelectorAll("[data-verify]").forEach((el) => {
-    const note = el.getAttribute("data-verify");
-    if (note && !el.title) el.title = "To confirm: " + note;
-  });
 })();
 
 /* ---------- 4. Filters and citation copy ---------- */
@@ -129,3 +143,38 @@ document.querySelectorAll(".copy").forEach((btn) => {
     else fallback();
   });
 });
+
+/* ---------- 5. Pause motion, site-wide ---------- */
+function motionIsPaused() { return document.documentElement.getAttribute("data-motion") === "paused"; }
+
+// Keep each model's own Pause/Play button in step with the site-wide setting.
+function syncModelButtons(scope) {
+  const paused = motionIsPaused();
+  (scope || document).querySelectorAll('.model button[data-act="pause"]').forEach((b) => {
+    if (b.style.display === "none") return;
+    b.dataset.paused = String(paused);
+    b.textContent = paused ? "Play" : "Pause";
+  });
+}
+
+(function motionToggle() {
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll("[data-motion-toggle]");
+  function label() {
+    const paused = motionIsPaused();
+    buttons.forEach((b) => {
+      b.textContent = paused ? "Resume motion" : "Pause motion";
+    });
+  }
+  buttons.forEach((b) => b.addEventListener("click", () => {
+    const paused = !motionIsPaused();
+    if (paused) root.setAttribute("data-motion", "paused"); else root.removeAttribute("data-motion");
+    try { localStorage.setItem("motion", paused ? "paused" : "on"); } catch (e) { /* storage blocked: the choice lasts for this page */ }
+    label();
+    syncModelButtons();
+    let ev;
+    try { ev = new CustomEvent("motionchange", { detail: { paused } }); } catch (e) { ev = document.createEvent("CustomEvent"); ev.initCustomEvent("motionchange", false, false, { paused }); }
+    document.dispatchEvent(ev);
+  }));
+  label();
+})();
