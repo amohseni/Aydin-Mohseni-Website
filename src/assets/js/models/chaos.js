@@ -153,7 +153,7 @@ export function mount(container, options = {}) {
   ensureModelStyles();
 
   const cfg = {
-    speed: options.speed || (isBg ? 0.7 : 1.2),         // time units per second
+    speed: options.speed || (isBg ? 0.7 : 1.08),         // time units per second
     cap: options.cap || (isBg ? 7000 : 9000),            // trace points kept (0.02 time units each)
     yawRate: (2 * Math.PI) / (isBg ? 140 : 75),          // radians per second of slow rotation
     pitch: 0.36,
@@ -188,7 +188,7 @@ export function mount(container, options = {}) {
 <p id="${id}-desc" class="model-desc${options.visibleDescription ? "" : " visually-hidden"}">${options.description || "The replicator dynamics for four strategies has no stable resting point inside the tetrahedron of population states. Its orbits fold into a strange attractor, so small differences in where a population starts grow until its path cannot be predicted. Drag the figure, or use the arrow keys, to rotate it."}</p>
 <div class="model-controls">
   <span class="model-actions"><button type="button" data-act="pause">Pause</button><button type="button" data-act="restart">New start</button></span>
-  <label>Speed <input type="range" data-act="speed" min="-2" max="2" step="0.1" value="0" aria-valuetext="1 times"></label>
+  <label>Speed <input type="range" data-act="speed" min="-2" max="2.6" step="0.1" value="0" aria-valuetext="1 times"></label>
   <span class="model-hint" aria-hidden="true">Drag to rotate</span>
 </div>
 <details class="model-how"><summary>How it works</summary><div class="model-how-body">${HOW_HTML}</div></details>`;

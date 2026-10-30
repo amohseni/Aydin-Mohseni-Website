@@ -38,7 +38,7 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
 {%- set n = loop.index + 1 %}
 {% call section(s.title, "strand-" ~ s.slug) %}
 <h2>{{ s.topics }}</h2>
-{%- for para in s.essay %}
+{%- for para in s.essay.slice(0, 1) %}
 <p{% if para.verify %} data-verify="{{ para.verify }}"{% endif %}>{{ para.text | linkPhrases(s.links, { slugBase: research, quote: true, people: coinquirers }) | safe }}</p>
 {%- endfor %}
 {{ model(s.model, caption=s.caption, number=n, options={}, id="model-" ~ s.model, aspect="16 / 10") }}
@@ -75,7 +75,7 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
   {%- for t in upcomingTalks %}
   <li{% if t.verify %} data-verify="{{ t.verify_note }}"{% endif %}><span class="t">{% if t.paper_slug %}<a href="{{ research }}#pub-{{ t.paper_slug }}">{{ t.title }}</a>{% else %}{{ t.title }}{% endif %}</span><span class="d"><span class="tag">Upcoming</span> {{ t.venue }}, {{ t.city }}, {{ t.date | formatDate }}.</span></li>
   {%- endfor %}
-  {%- for t in pastTalks.slice(0, 4) %}
+  {%- for t in pastTalks.slice(0, (3 - upcomingTalks.length) if upcomingTalks.length < 3 else 0) %}
   <li{% if t.verify %} data-verify="{{ t.verify_note }}"{% endif %}><span class="t">{% if t.paper_slug %}<a href="{{ research }}#pub-{{ t.paper_slug }}">{{ t.title }}</a>{% else %}{{ t.title }}{% endif %}</span><span class="d">{{ t.venue }}, {{ t.city }}, {{ t.date | formatDate }}.{% if t.video %} <a href="{{ t.video }}">Video</a>.{% endif %}</span></li>
   {%- endfor %}
 </ul>
@@ -91,34 +91,12 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
 </ul>
 {% endcall %}
 
-{%- set g = influences.gibran %}
-{% call section("Influences", "influences") %}
-<h3 class="list-head">{{ g.author }}</h3>
-<p class="poem-title">&ldquo;{{ g.title }}&rdquo; <span class="yr">({{ g.year }})</span></p>
-<div class="verse poem"{% if g.verify %} data-verify="{{ g.verify_note }}"{% endif %}>
-  <p>{% for l in g.intro %}<span class="line">{{ l.html | safe }}</span>{% endfor %}</p>
-  {%- for st in g.stanzas %}
-  <p>{% for l in st %}<span class="line">{{ l }}</span>{% endfor %}</p>
-  {%- endfor %}
-</div>
-<p class="attribution">{{ g.author }}, &ldquo;{{ g.title }},&rdquo; from <i>{{ g.book }}</i> ({{ g.place }}: {{ g.publisher }}, {{ g.year }}).</p>
-
-<h3 class="list-head">{{ influences.borges.author }}</h3>
-<ul class="featured stories">
-  {%- for st in influences.borges.stories %}
-  <li><span class="t">&ldquo;{{ st.title }}&rdquo; <span class="yr">({{ st.year }})</span></span><span class="d">{{ st.about | replace("Don Quixote", "<i>Don Quixote</i>") | safe }}</span></li>
-  {%- endfor %}
-</ul>
-{% endcall %}
-
 {% call section("Contact", "contact") %}
-<p class="lead">{{ profile.email_obfuscated }}</p>
-<p>{% for line in profile.contact.address %}{{ line }}<br>{% endfor %}Office: {{ profile.contact.office }}</p>
+<p class="lead"><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></p>
 <p class="related contact-links">
-  <a href="{{ '/meet/' | url }}"{% if profile.booking_url_verify %} data-verify="{{ profile.booking_url_note }}"{% endif %}>Schedule a meeting</a>
+  <a href="{{ '/contact/' | url }}#working-with-me">Working with me</a>
   <a href="{{ '/cv.pdf' | url }}">CV</a>
   <a href="{{ profile.links.scholar }}">Google Scholar</a>
   <a href="{{ profile.links.github }}">GitHub</a>
-  <a href="{{ '/about/' | url }}">About</a>
 </p>
 {% endcall %}

@@ -30,7 +30,7 @@ long_bio:
   - >-
     Some years ago, he was a Peace Corps volunteer in Morocco, stationed near أزرو.
   - >-
-    His Erdős number is 3. (By way of Brian Skyrms to Persi Diaconis to Paul Erdős.)
+    I have an Erdős number of 3, along the following path: Aydin Mohseni → Brian Skyrms → Persi Diaconis → Paul Erdős
 
 # The center's name in the bio follows the old About page and the CMU faculty page. Newer sources
 # name it differently; the About page marks the paragraph for review until Aydin gives the name.
@@ -52,7 +52,7 @@ bio_links:
   "Persi Diaconis": "https://en.wikipedia.org/wiki/Persi_Diaconis"
   "Paul Erdős": "https://en.wikipedia.org/wiki/Paul_Erd%C5%91s"
 
-email_obfuscated: "amohseni [at] cmu [dot] edu"
+email: "amohseni@cmu.edu"
 
 links:
   scholar: "https://scholar.google.com/citations?user=CvN3cf4AAAAJ&hl=en"

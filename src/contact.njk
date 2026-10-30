@@ -12,7 +12,7 @@ description: "How to reach Aydin Mohseni, and how to work with him."
 <section class="hero page-head" aria-labelledby="c-title">
   <p class="eyebrow">Contact</p>
   <h1 id="c-title">Contact</h1>
-  <p class="lede">Email is the best way to reach me: {{ profile.email_obfuscated }}. To talk in person or by video, <a href="{{ '/meet/' | url }}">schedule a meeting</a>.</p>
+  <p class="lede">Email is the best way to reach me: <a href="mailto:{{ profile.email }}">{{ profile.email }}</a>. To talk in person or by video, <a href="{{ '/meet/' | url }}">schedule a meeting</a>.</p>
 </section>
 
 {% call section("Office", "office") %}

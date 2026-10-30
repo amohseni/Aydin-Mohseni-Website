@@ -87,20 +87,7 @@
     {%- endfor %}
     <a href="https://exproof.ai/" aria-label="ExProof AI (external site)"><span class="exists" aria-hidden="true">&exist;</span><span aria-hidden="true">xProof AI</span></a>
   </nav>
-  {%- set links = (profile.links if profile and profile.links else {}) %}
-  <p class="contact-line">
-    <span>{{ profile.email_obfuscated if profile and profile.email_obfuscated else "amohseni [at] cmu [dot] edu" }}</span>
-    <a href="{{ links.scholar or 'https://scholar.google.com/citations?user=CvN3cf4AAAAJ&hl=en' }}">Google Scholar</a>
-    <a href="{{ links.github or 'https://github.com/amohseni' }}">GitHub</a>
-    {%- if links.philpeople %}
-    <a href="{{ links.philpeople }}">PhilPeople</a>
-    {%- endif %}
-    {%- if links.orcid %}
-    <a href="{{ links.orcid }}">ORCID</a>
-    {%- endif %}
-  </p>
   <p>Set in Computer Modern, by Donald Knuth. Design shared with <a href="https://exproof.ai/" aria-label="ExProof AI"><span class="exists" aria-hidden="true">&exist;</span><span aria-hidden="true">xProof AI</span></a>.</p>
-  <p class="motion-line"><button class="motion-toggle" type="button" data-motion-toggle>Pause motion</button></p>
 </footer>
 
 </div>
