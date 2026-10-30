@@ -1,21 +1,21 @@
 # Profile. Bio text is the old home page bio (aydinmohseni.com, fetched 30 Oct 2026)
 # with one factual fix: "Perci" -> "Persi" Diaconis. Appointments and education from the CV.
 name: "Aydin Mohseni"
-tagline: "Scientific philosopher"
+tagline: "Mathematical philosopher"
 url: "https://aydinmohseni.com"
 
 short_bio: >-
-  Aydin Mohseni is a scientific philosopher and assistant professor in the Department of
-  Philosophy at Carnegie Mellon University. His research centers on two questions: how
-  scientific communities produce knowledge, and how agents represent the world, value
-  outcomes, and act.
+  Aydin Mohseni is a mathematical philosopher and assistant professor in the Department of
+  Philosophy at Carnegie Mellon University. He uses evolutionary dynamics, probability, and
+  complex systems to study problems in AI safety and metascience.
 
 long_bio:
   - >-
-    Aydin Mohseni is a scientific philosopher and assistant professor in the Department of
-    Philosophy at Carnegie Mellon University. His research centers on two questions: how
-    scientific communities produce knowledge, and how agents represent the world, value
-    outcomes, and act. His work on agency focuses especially on artificial intelligence,
+    Aydin Mohseni is a mathematical philosopher and assistant professor in the Department of
+    Philosophy at Carnegie Mellon University. He uses evolutionary dynamics, probability, and
+    complex systems to study problems in AI safety and metascience: how agents
+    represent the world, value outcomes, and act, and how scientific communities produce
+    knowledge. His work on agency focuses especially on artificial intelligence,
     including the foundations of AI safety, agency, and alignment. He uses Bayesian
     inference, decision and game theory, network theory, and agent-based modeling to study
     problems ranging from scientific funding and reform to causal reasoning and value

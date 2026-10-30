@@ -41,7 +41,7 @@ Eleventy 3 (already installed; `npx eleventy` builds `src/` to `_site/`). Nunjuc
 
 | URL | Page | Notes |
 |---|---|---|
-| `/` | Home | Intro (photo `src/assets/img/mohseni.jpg`, from exproof.ai), one line "Scientific philosopher" plus a short bio; hero model (chaos); three research strands; recent and upcoming talks (from data, by date); co-inquirers; influences; contact |
+| `/` | Home | Intro (photo `src/assets/img/mohseni.jpg`, from exproof.ai), one line "Mathematical philosopher" plus a short bio; hero model (chaos); three research strands; recent and upcoming talks (from data, by date); co-inquirers; influences; contact |
 | `/research/` | Research | exproof.ai `publications.html` structure: Published, Under review, In progress, Talks, Workshops; count line with jump links; one anchor per work `#pub-<slug>`; filters optional |
 | `/models/` | Computational models | Research models and teaching models; thumbnail, summary, app link, code link, related paper |
 | `/teaching/` | Teaching | University courses, summer schools and short courses, teaching training (condensed) |
