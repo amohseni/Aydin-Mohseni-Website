@@ -9,7 +9,7 @@ infographics:
       - "/wp-content/uploads/2018/06/3x3C-180x300.png"
       - "/wp-content/uploads/2018/06/3x3B-1-180x300.png"
       - "/wp-content/uploads/2018/06/3x3A-1-179x300.png"
-    local: ["/assets/img/sketchbook/3x3-a.png", "/assets/img/sketchbook/3x3-b.png", "/assets/img/sketchbook/3x3-c.png"]   # resized copies of the full-size originals
+    thumb: "/assets/img/sketchbook/thumb-3x3.png"
     pdf: "/wp-content/uploads/2016/03/3x3-games-under-RD.pdf"
     paper_slug: equilibrium-concepts
     paper_slug_verify: true
@@ -20,7 +20,7 @@ infographics:
     images:
       - "/wp-content/uploads/2018/06/3x3B-300x236.png"
       - "/wp-content/uploads/2018/06/3x3A-300x236.png"
-    local: ["/assets/img/sketchbook/2x2-a.png", "/assets/img/sketchbook/2x2-b.png"]
+    thumb: "/assets/img/sketchbook/thumb-2x2.png"
     pdf: "/wp-content/uploads/2016/03/2x2-games-under-RD.pdf"
     paper_slug: equilibrium-concepts
     paper_slug_verify: true
@@ -33,7 +33,7 @@ infographics:
     images:
       - "/wp-content/uploads/2019/01/Occam3-300x243.png"
       - "/wp-content/uploads/2019/01/Occam2-211x300.png"
-    local: ["/assets/img/sketchbook/occam-a.png", "/assets/img/sketchbook/occam-b.png"]
+    thumb: "/assets/img/sketchbook/thumb-occam.png"
     pdf: "/wp-content/uploads/2019/01/Daniel-AntiOccam.pdf"
     paper_slug: ""
     alt: "Poster on PAC learning and Occam’s razor"
