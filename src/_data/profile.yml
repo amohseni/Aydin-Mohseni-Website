@@ -8,7 +8,7 @@ short_bio: >-
   I am a mathematical philosopher and assistant professor in the Department of
   Philosophy at Carnegie Mellon University. I use evolutionary game theory and Bayesian
   epistemology to study problems in AI safety and metascience. I am a core member of CMU's
-  Institute for Complex Social Dynamics, and co-director of ∃xProof AI with Daniel Herrmann.
+  Center for Conceptual Research on Safe AI and Institute for Complex Social Dynamics, and co-director of ∃xProof AI with Daniel Herrmann.
 
 long_bio:
   - >-
@@ -34,18 +34,18 @@ long_bio:
     I have an Erdős number of 3, along the following path: Aydin Mohseni → Brian Skyrms → Persi Diaconis → Paul Erdős
 
 # The center's name in the bio follows the old About page and the CMU faculty page. Newer sources
-# name it differently; the About page marks the paragraph for review until Aydin gives the name.
-center_name_note: "Center name to confirm. The old About page and the CMU faculty page: 'Conceptual Research on Safe AI (CoRe Safe AI)'; the CV: 'CoreSafe AI'; the AI Agency and Interpretability program (September 2026): 'Center for Conceptual Research on the Foundations of Safe AI'; Aydin's Research page text of 12 Aug 2026: 'CMU's Foundations of Safe AI initiative'."
+# name it differently; Aydin confirmed 'Center for Conceptual Research on Safe AI' on 30 Oct 2026.
 
 # Links that the old bio carried, for the template to attach to the matching phrases.
 bio_links:
   "Department of Philosophy": "https://www.cmu.edu/dietrich/philosophy/"
   "Carnegie Mellon University": "https://www.cmu.edu/"
   "Institute for Complex Social Dynamics (ICSD)": "https://www.cmu.edu/dietrich/social-dynamics/"
+  "Center for Conceptual Research on Safe AI": "https://www.cs.cmu.edu/~coresafeai/"
   "Institute for Complex Social Dynamics": "https://www.cmu.edu/dietrich/social-dynamics/"
   "∃xProof AI": "https://exproof.ai/"
   "Daniel Herrmann": "https://danielherrmann.ca/"
-  "Conceptual Research on Safe AI (CoRe Safe AI)": "https://www.cs.cmu.edu/~coresafeai/"
+  "Center for Conceptual Research on Safe AI (CoRe Safe AI)": "https://www.cs.cmu.edu/~coresafeai/"
   "Center for Philosophy of Science": "https://www.centerphilsci.pitt.edu/"
   "Department of Logic and Philosophy of Science": "http://www.lps.uci.edu"
   "Dr. Simon Huttegger": "https://faculty.sites.uci.edu/shuttegg/"
