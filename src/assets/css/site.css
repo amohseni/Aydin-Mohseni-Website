@@ -107,11 +107,9 @@ body::after {
 a { color: inherit; text-decoration: none; transition: color 120ms ease; }
 a:hover { color: var(--red-bright); }
 /* Links inside running text are red, as on danielherrmann.ca, so a reader can tell they are links.
-   Titles, menus and link rows keep their own colors. */
-.bio a, .lede a, .lead a, .erdos-path a, .body > p:not([class]) a, .work-authors a, .d a,
-.secondary a, figcaption a { color: var(--red-bright); }
-.bio a:hover, .lede a:hover, .lead a:hover, .erdos-path a:hover, .body > p:not([class]) a:hover, .work-authors a:hover,
-.d a:hover, .secondary a:hover, figcaption a:hover { color: var(--fg); }
+   Titles, author lines, menus and link rows keep their own colors. */
+.bio a, .lede a, .erdos-path a, .body > p:not([class]) a, figcaption a { color: var(--red-bright); }
+.bio a:hover, .lede a:hover, .erdos-path a:hover, .body > p:not([class]) a:hover, figcaption a:hover { color: var(--fg); }
 a:focus-visible, button:focus-visible, summary:focus-visible, label:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--red-bright); outline-offset: 2px; }
 ::selection { background: var(--red); color: var(--sel-fg); }
 img { height: auto; }
