@@ -454,6 +454,17 @@ export function mount(container, options = {}) {
     if (controls.pause) controls.pause.style.display = reduced ? "none" : "";
     if (controls.speed) controls.speed.parentElement.style.display = reduced ? "none" : "";
   }
+  // Hero mode: the orbit starts fresh the first time the figure scrolls into view, then runs
+  // on without restarting unless the visitor presses New start.
+  let firstView = null;
+  if (!isBg && !reduced && "IntersectionObserver" in window) {
+    firstView = new IntersectionObserver((es) => {
+      if (!es.some((e) => e.isIntersecting)) return;
+      firstView.disconnect(); firstView = null;
+      restart(false);
+    }, { threshold: 0.25 });
+    firstView.observe(canvas);
+  }
   const unReduce = onReducedMotionChange((r) => { reduced = r; applyMotionPref(); });
   ready = true;
   applyMotionPref();
@@ -532,7 +543,7 @@ export function mount(container, options = {}) {
     redraw() { measureScrim(); draw(performance.now()); },
     destroy() {
       save();
-      loop.destroy(); sizer.destroy(); tokens.destroy(); unReduce();
+      loop.destroy(); sizer.destroy(); tokens.destroy(); unReduce(); if (firstView) firstView.disconnect();
       window.removeEventListener("resize", onResize);
       if (cfg.storageKey) { window.removeEventListener("pagehide", onPageHide); document.removeEventListener("visibilitychange", onVis); }
       root.remove();
