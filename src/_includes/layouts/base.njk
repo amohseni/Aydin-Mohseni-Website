@@ -31,7 +31,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{{ pageTitle }}</title>
-<script>(function(){var r=document.documentElement;try{var t=localStorage.getItem("theme");r.setAttribute("data-theme",t==="dark"?"dark":"light");if(localStorage.getItem("motion")==="paused")r.setAttribute("data-motion","paused");}catch(e){}})();</script>
+<script>(function(){var r=document.documentElement;try{var t=localStorage.getItem("theme");r.setAttribute("data-theme",t==="dark"?"dark":"light");localStorage.removeItem("motion");}catch(e){}})();</script>
 <meta name="description" content="{{ pageDescription }}">
 <link rel="canonical" href="{{ canonical }}">
 {%- if noindex %}
