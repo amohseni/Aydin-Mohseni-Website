@@ -1,0 +1,104 @@
+# Build the site with Eleventy, compile the CV, run the checks, and deploy to GitHub Pages.
+#
+# Runs on every push to main, nightly (so upcoming talks move to past without a commit),
+# and by hand from the Actions tab (workflow_dispatch).
+#
+# PATH_PREFIX: the github.io preview is served under /<repository>/, so every internal URL
+# needs that prefix; on the custom domain it is "/". By default the workflow reads the prefix from
+# GitHub Pages itself (the base_path output of actions/configure-pages: "/<repository>" for the
+# preview, "" once a custom domain is set), so it is right before and after the cutover, whatever
+# the repository's name or capitalization. To override it, set the repository variable PATH_PREFIX
+# (Settings > Secrets and variables > Actions > Variables), for example "/Aydin-Mohseni-Website/".
+
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 6 * * *"   # 06:17 UTC every day
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  PLAYWRIGHT_VERSION: "1.63.0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Compile the CV
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: amohseni.CV.tex
+          working_directory: cv
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Set the path prefix
+        env:
+          OVERRIDE: ${{ vars.PATH_PREFIX }}
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: |
+          if [ -n "$OVERRIDE" ]; then prefix="$OVERRIDE"; else prefix="${BASE_PATH%/}/"; fi
+          echo "PATH_PREFIX=$prefix" >> "$GITHUB_ENV"
+          echo "Path prefix: $prefix"
+
+      - name: Build the site
+        run: npx eleventy
+
+      - name: Add the CV to the site
+        run: cp cv/amohseni.CV.pdf _site/cv.pdf
+
+      - name: Check links, alt text, dashes and meta tags
+        run: node tools/check.mjs
+
+      - name: Install Chromium for the layout check
+        run: |
+          npm install --no-save "playwright@${PLAYWRIGHT_VERSION}"
+          npx playwright install --with-deps chromium
+
+      - name: Check layout at five widths, day and night
+        run: node tools/check_layout.mjs
+
+      - name: Compare publications with the CV (warnings only)
+        continue-on-error: true
+        run: node tools/check_consistency.mjs --xproof https://exproof.ai/publications.html
+
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

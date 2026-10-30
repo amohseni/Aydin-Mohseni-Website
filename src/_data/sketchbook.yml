@@ -1,0 +1,61 @@
+# Sketchbook: infographics and sketches, from the old Infographics and Sketches pages (fetched 30 Oct 2026).
+# Image paths are the thumbnails the old page displayed; full-size originals were not confirmed.
+# Captions paraphrase the old page.
+
+infographics:
+  - title: "Bomze's Classification of 3×3 Games under the Replicator Dynamics"
+    caption: "The 49 qualitatively distinct replicator dynamics for populations of three types, their stability properties, and how they relate to the equilibrium concepts ESS, NSS and ESSet."
+    images:
+      - "/wp-content/uploads/2018/06/3x3C-180x300.png"
+      - "/wp-content/uploads/2018/06/3x3B-1-180x300.png"
+      - "/wp-content/uploads/2018/06/3x3A-1-179x300.png"
+    pdf: "/wp-content/uploads/2016/03/3x3-games-under-RD.pdf"
+    paper_slug: equilibrium-concepts
+    paper_slug_verify: true
+    alt: "Infographic classifying 3×3 games under the replicator dynamics"
+
+  - title: "Classification of 2×2 Games under the Replicator Dynamics"
+    caption: "The five qualitative dynamics possible with two types, including the Prisoner's Dilemma, Prisoner's Delight, Stag Hunt and Hawk-Dove. With two types, the ESS captures every evolutionarily significant outcome."
+    images:
+      - "/wp-content/uploads/2018/06/3x3B-300x236.png"
+      - "/wp-content/uploads/2018/06/3x3A-300x236.png"
+    pdf: "/wp-content/uploads/2016/03/2x2-games-under-RD.pdf"
+    paper_slug: equilibrium-concepts
+    paper_slug_verify: true
+    alt: "Infographic classifying 2×2 games under the replicator dynamics"
+    verify_note: "The image file names say 3x3 but sit under the 2×2 section on the old page; confirm."
+
+  - title: "PAC Learning, Occam's Razor, and the Transfinite Hierarchy"
+    with: "Daniel Herrmann"
+    caption: "Does the PAC-learning theorem of Blumer et al. (1987) justify Occam's razor? Herrmann argues that the theorem's work is done by further inductive assumptions, not by simplicity, so it cannot justify the razor."
+    images:
+      - "/wp-content/uploads/2019/01/Occam3-300x243.png"
+      - "/wp-content/uploads/2019/01/Occam2-211x300.png"
+    pdf: "/wp-content/uploads/2019/01/Daniel-AntiOccam.pdf"
+    paper_slug: ""
+    alt: "Poster on PAC learning and Occam's razor"
+
+  - title: "Probability simplex"
+    caption: ""
+    images:
+      - "/wp-content/uploads/2019/10/Probability-simplex-280x300.jpeg"
+    pdf: ""
+    paper_slug: ""
+    alt: "Drawing of a probability simplex"
+    verify: true
+    verify_note: "Header image of the old Infographics page, with no caption; title here is from the file name."
+
+infographics_intro_source: "The old page opens with a line from Sellars (p. 361) on seeing how things hang together. Its exact wording was not retrieved, so it is not reproduced."
+
+sketches:
+  intro:
+    - "One way I unwind from work is to take out a sketch pad and begin sketching."
+  intro_source: "First sentence of the old Sketches page, as returned by the fetch. The rest of the page (portraits of people around him, thanks to his models) was paraphrased by the fetch tool and is not reproduced."
+  epigraph:
+    text: "The line, in actual construction, must come first; but as mental construction must precede physical, so the concept of mass must come first, that of plane second, that of line last."
+    source: "George Bridgman, Constructive Anatomy, p. ix"
+    verify: true
+    note: "Reassembled from two quoted fragments returned by the fetch tool; the join after 'physical,' is assumed. Check against the old page or the 1920 text."
+  images: []
+  verify: true
+  verify_note: "The old Sketches page shows no images to the fetch tool (no src, srcset or data-src), and the WordPress media API listing did not include sketch files. Aydin to supply the sketch image files."

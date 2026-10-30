@@ -1,0 +1,81 @@
+# Teaching, from the CV (UNIVERSITY TEACHING, SUMMER SCHOOLS & SHORT COURSES, TEACHING TRAINING).
+# Course titles follow the CV; old-site variants are listed in docs/CONTENT-AUDIT.md.
+# Courses are newest first; a course taught in several terms is one entry.
+
+courses:
+  - title: "Decision Theory & AI Agent Foundations"
+    institution: "Carnegie Mellon University"
+    terms: ["Spring 2026"]
+  - title: "Philosophy Core II Graduate Seminar"
+    institution: "Carnegie Mellon University"
+    terms: ["Spring 2026", "Spring 2025"]
+  - title: "Introduction to Philosophy"
+    institution: "Carnegie Mellon University"
+    terms: ["Fall 2025", "Fall 2024"]
+  - title: "Game Theory, AI & X-Risk"
+    institution: "Carnegie Mellon University"
+    terms: ["Spring 2025"]
+  - title: "Game Theory, AI & X-Risk"
+    institution: "University of Pennsylvania"
+    terms: ["Spring 2024"]
+  - title: "Introduction to Logic"
+    institution: "University of Pennsylvania"
+    terms: ["Spring 2024"]
+  - title: "Topics in Philosophy of Science"
+    institution: "University of Pennsylvania"
+    terms: ["Fall 2023", "Fall 2022"]
+  - title: "Introduction to Philosophy of Science"
+    institution: "University of Pennsylvania"
+    terms: ["Fall 2023", "Fall 2022"]
+  - title: "Introduction to Philosophy"
+    institution: "University of Pennsylvania"
+    terms: ["Spring 2023"]
+  - title: "Metaphysics & Epistemology"
+    institution: "University of Pennsylvania"
+    terms: ["Spring 2023"]
+  - title: "Making Modern Science"
+    institution: "University of California, Irvine"
+    terms: ["Fall 2020"]
+  - title: "Introduction to Inductive Logic"
+    institution: "University of California, Irvine"
+    terms: ["Summer 2020"]
+
+short_courses:
+  - title: "Decision Theory & AI Agent Foundations"
+    program: "17th Pitt–Tsinghua Summer School"
+    institution: "Tsinghua University"
+    institution_cv: "THU"
+    term: "Summer 2026"
+  - title: "Decision Theory & AI Agent Foundations"
+    program: "Summer School in Logic and Formal Epistemology"
+    institution: "Carnegie Mellon University"
+    term: "Summer 2026"
+  - title: "Bayesian Epistemology & Metascience"
+    program: "Summer School in Logic and Formal Epistemology"
+    institution: "Carnegie Mellon University"
+    term: "Summer 2025"
+  - title: "Social Epistemology & the Replication Crisis"
+    program: "Pittsburgh Summer Program"
+    institution: "University of Pittsburgh"
+    term: "Summer 2025"
+
+# Condensed from the CV's TEACHING TRAINING list.
+training:
+  - "CMU Supporting Student Well-Being: faculty professional development in recognizing and assisting students in distress (2026)"
+  - "UCI DTEI Certificate of Teaching Excellence (2019) and Certificate of Course Design (2018)"
+  - "UCI courses in pedagogy (Uni Stu 390X, S90A, 390B, 390C; 2018-19) and advanced course design (Uni Stu 390Z; 2020)"
+  - "UCI DTEI Mentoring Excellence Program workshops (2020): Mentoring Across Differences; Balancing Academics and Wellness"
+  - "UCI Diversity and Inclusion in the Classroom workshops (2019-20): inclusive course design; inclusive classroom practices and pedagogies; enhancing diversity and equitable inclusion"
+
+# Teaching-related service from the CV (SERVICE TO THE PROFESSION), for optional display.
+workshops_designed:
+  - "Twelve-hour TA Professional Development Program workshop for philosophy graduate students (Fall 2019)"
+  - "Two-hour workshops on diversity and inclusion for graduate students in the School of Social Sciences (Winter 2020, Spring 2020)"
+
+# Syllabus files present in the old WordPress media library (not linked from the old Teaching page).
+# Which course and term each belongs to is not confirmed; not shown until Aydin says.
+syllabi_unlinked:
+  - "/wp-content/uploads/2023/12/aMohseniSyllabi.pdf"
+  - "/wp-content/uploads/2023/12/aMohseniSyllabusPhilosophyOfScience.pdf"
+  - "/wp-content/uploads/2019/11/SyllabusPhilosophyOfScience.pdf"
+  - "/wp-content/uploads/2019/11/SyllabusInductiveLogic.pdf"

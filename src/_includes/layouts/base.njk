@@ -1,0 +1,111 @@
+{#- Base layout. Front matter it reads:
+    title         page title (the home page leaves it out)
+    description   meta and social description
+    ogImage       site-relative path of a social card image (defaults to the portrait)
+    ogType        "website" (default) or "article"
+    background    a model name (e.g. "chaos") to run full-page behind the content, via background.js
+    noindex       true to keep a page out of search engines
+    bodyClass     extra class on <body>
+-#}
+{%- set siteUrl = (profile.url if profile and profile.url else "https://aydinmohseni.com") -%}
+{%- set siteName = (profile.name if profile and profile.name else "Aydin Mohseni") -%}
+{%- set pageTitle = (title ~ " · " ~ siteName) if title else siteName -%}
+{%- set defaultDescription = "Aydin Mohseni, assistant professor of philosophy at Carnegie Mellon University." -%}
+{%- set pageDescription = description or defaultDescription -%}
+{%- set canonical = siteUrl ~ page.url -%}
+{%- set ogImagePath = ogImage or "/assets/img/mohseni.jpg" -%}
+{%- set ogImageUrl = ogImagePath if ("://" in ogImagePath) else (siteUrl ~ ogImagePath) -%}
+{%- set nav = [
+  { label: "Research", href: "/research/", match: ["/research/", "/workshops/"] },
+  { label: "Models", href: "/models/", match: ["/models/"] },
+  { label: "Teaching", href: "/teaching/", match: ["/teaching/"] },
+  { label: "Sketchbook", href: "/sketchbook/", match: ["/sketchbook/"] },
+  { label: "About", href: "/about/", match: ["/about/"] },
+  { label: "CV", href: "/cv.pdf", match: [] }
+] -%}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ pageTitle }}</title>
+<script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<meta name="description" content="{{ pageDescription }}">
+<link rel="canonical" href="{{ canonical }}">
+{%- if noindex %}
+<meta name="robots" content="noindex">
+{%- endif %}
+<meta property="og:type" content="{{ ogType or 'website' }}">
+<meta property="og:site_name" content="{{ siteName }}">
+<meta property="og:title" content="{{ title or siteName }}">
+<meta property="og:description" content="{{ pageDescription }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ ogImageUrl }}">
+<meta property="og:image:alt" content="{{ ogImageAlt or 'Portrait of Aydin Mohseni' }}">
+<meta name="twitter:card" content="{{ 'summary_large_image' if ogImage else 'summary' }}">
+<meta name="twitter:title" content="{{ title or siteName }}">
+<meta name="twitter:description" content="{{ pageDescription }}">
+<meta name="twitter:image" content="{{ ogImageUrl }}">
+<meta name="theme-color" content="#fcfcfa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 9 L57 55 H7 Z' fill='none' stroke='%23d11c3d' stroke-width='6' stroke-linejoin='miter'/%3E%3C/svg%3E">
+<link rel="preload" href="{{ '/assets/fonts/cmu-serif-500-roman.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/cmu-sans-serif-500-roman.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/css/site.css' | url }}">
+</head>
+<body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
+<a class="skip" href="#main">Skip to content</a>
+{%- if background %}
+<div class="model-background" id="model-background" data-model-background="{{ background }}" aria-hidden="true"></div>
+{%- endif %}
+<div class="page">
+
+<header class="masthead">
+  <a class="wordmark" href="{{ '/' | url }}" id="top"{% if page.url == "/" %} aria-current="page"{% endif %}><span class="delta" aria-hidden="true">&Delta;</span><span class="name">{{ siteName }}</span></a>
+  <nav class="nav" aria-label="Site">
+    {%- for item in nav %}
+    {%- set current = page.url and ((item.match[0] and page.url.indexOf(item.match[0]) == 0) or (item.match[1] and page.url.indexOf(item.match[1]) == 0)) %}
+    <a href="{{ item.href | url }}"{% if current %} aria-current="page"{% endif %}>{{ item.label }}</a>
+    {%- endfor %}
+    <a href="https://exproof.ai/" aria-label="ExProof AI (external site)"><span class="exists" aria-hidden="true">&exist;</span><span aria-hidden="true">xProof AI</span></a>
+    <button class="theme-toggle" type="button" data-theme-toggle title="Switch between day and night"><span class="to-night">Night</span><span class="to-day">Day</span></button>
+  </nav>
+</header>
+
+<main id="main" tabindex="-1">
+{{ content | safe }}
+</main>
+
+<footer class="foot">
+  <span class="brand-mark" aria-hidden="true">&Delta;</span>
+  <nav aria-label="Footer">
+    <a href="{{ '/' | url }}">Home</a>
+    {%- for item in nav %}
+    <a href="{{ item.href | url }}">{{ item.label }}</a>
+    {%- endfor %}
+    <a href="https://exproof.ai/" aria-label="ExProof AI (external site)"><span class="exists" aria-hidden="true">&exist;</span><span aria-hidden="true">xProof AI</span></a>
+  </nav>
+  {%- set links = (profile.links if profile and profile.links else {}) %}
+  <p class="contact-line">
+    <span>{{ profile.email_obfuscated if profile and profile.email_obfuscated else "amohseni [at] cmu [dot] edu" }}</span>
+    <a href="{{ links.scholar or 'https://scholar.google.com/citations?user=CvN3cf4AAAAJ&hl=en' }}">Google Scholar</a>
+    <a href="{{ links.github or 'https://github.com/amohseni' }}">GitHub</a>
+    {%- if links.philpeople %}
+    <a href="{{ links.philpeople }}">PhilPeople</a>
+    {%- endif %}
+    {%- if links.orcid %}
+    <a href="{{ links.orcid }}">ORCID</a>
+    {%- endif %}
+  </p>
+  <p>Set in Computer Modern, by Donald Knuth. Design shared with <a href="https://exproof.ai/" aria-label="ExProof AI"><span class="exists" aria-hidden="true">&exist;</span><span aria-hidden="true">xProof AI</span></a>.</p>
+</footer>
+
+</div>
+<div class="review-bar" role="status"><strong>Review mode</strong><span id="review-count"></span><span>Hover a highlight to see what needs confirming.</span><a href="{{ page.url | url }}">Exit review</a></div>
+<script src="{{ '/assets/js/theme.js' | url }}" defer></script>
+<script type="module" src="{{ '/assets/js/site.js' | url }}"></script>
+{%- if background %}
+<script type="module" src="{{ '/assets/js/background.js' | url }}"></script>
+{%- endif %}
+</body>
+</html>

@@ -1,0 +1,134 @@
+# Profile. Bio text is the old home page bio (aydinmohseni.com, fetched 30 Oct 2026)
+# with one factual fix: "Perci" -> "Persi" Diaconis. Appointments and education from the CV.
+name: "Aydin Mohseni"
+tagline: "Scientific philosopher"
+url: "https://aydinmohseni.com"
+
+short_bio: >-
+  Aydin Mohseni is a scientific philosopher and assistant professor in the Department of
+  Philosophy at Carnegie Mellon University. His research centers on two questions: how
+  scientific communities produce knowledge, and how agents represent the world, value
+  outcomes, and act.
+
+long_bio:
+  - >-
+    Aydin Mohseni is a scientific philosopher and assistant professor in the Department of
+    Philosophy at Carnegie Mellon University. His research centers on two questions: how
+    scientific communities produce knowledge, and how agents represent the world, value
+    outcomes, and act. His work on agency focuses especially on artificial intelligence,
+    including the foundations of AI safety, agency, and alignment. He uses Bayesian
+    inference, decision and game theory, network theory, and agent-based modeling to study
+    problems ranging from scientific funding and reform to causal reasoning and value
+    learning in artificial agents. He is a member of CMU's Institute for Complex Social
+    Dynamics (ICSD) and the center for Conceptual Research on Safe AI (CoRe Safe AI).
+  - >-
+    Previously, he was a senior research fellow at the University of Pennsylvania and a
+    postdoctoral research fellow at the Center for Philosophy of Science at the University
+    of Pittsburgh. He completed his doctorate in the Department of Logic and Philosophy of
+    Science at the University of California, Irvine, supervised by Dr. Simon Huttegger and
+    Dr. Cailin O'Connor.
+  - >-
+    Some years ago, he was a Peace Corps volunteer in Morocco, stationed near أزرو.
+  - >-
+    His Erdős number is 3. (By way of Brian Skyrms to Persi Diaconis to Paul Erdős.)
+
+# Links that the old bio carried, for the template to attach to the matching phrases.
+bio_links:
+  "Department of Philosophy": "https://www.cmu.edu/dietrich/philosophy/"
+  "Carnegie Mellon University": "https://www.cmu.edu/"
+  "Institute for Complex Social Dynamics (ICSD)": "https://www.cmu.edu/dietrich/social-dynamics/"
+  "Conceptual Research on Safe AI (CoRe Safe AI)": "https://www.cs.cmu.edu/~coresafeai/"
+  "Center for Philosophy of Science": "https://www.centerphilsci.pitt.edu/"
+  "Department of Logic and Philosophy of Science": "http://www.lps.uci.edu"
+  "Dr. Simon Huttegger": "https://faculty.sites.uci.edu/shuttegg/"
+  "Dr. Cailin O'Connor": "http://cailinoconnor.com"
+  "Peace Corps": "https://www.peacecorps.gov"
+  "Erdős number": "https://oakland.edu/enp/"
+  "Brian Skyrms": "https://en.wikipedia.org/wiki/Brian_Skyrms"
+  "Persi Diaconis": "https://en.wikipedia.org/wiki/Persi_Diaconis"
+  "Paul Erdős": "https://en.wikipedia.org/wiki/Paul_Erd%C5%91s"
+
+email_obfuscated: "amohseni [at] cmu [dot] edu"
+
+links:
+  scholar: "https://scholar.google.com/citations?user=CvN3cf4AAAAJ&hl=en"
+  github: "https://github.com/amohseni"
+  # osf: the old site linked https://osf.io/ (the OSF home page, not a profile). Omitted.
+  # philpeople: not verified (profile page could not be fetched). Omitted.
+  # orcid: see links_unverified.
+
+# Not shown by the templates until Aydin confirms.
+links_unverified:
+  orcid: "https://orcid.org/0000-0002-4054-0058"
+  orcid_note: "Attached to Aydin Mohseni in the Crossref record for doi:10.1016/j.shpsa.2026.102197 (authenticated-orcid: false). The ORCID page itself could not be read."
+  philpeople: "https://philpeople.org/profiles/aydin-mohseni"
+  philpeople_note: "Found by web search; the page could not be fetched."
+
+booking_url: "https://calendar.app.google/pe98GGpL8dwdoqbp6"
+booking_url_verify: true
+booking_url_note: "Value from docs/BRIEF.md. The old home page's 'schedule a meeting' link is https://calendar.app.google/4AFnSgB8vVi3qtvZA. Confirm which is current."
+
+contact:
+  address:
+    - "Carnegie Mellon University"
+    - "Department of Philosophy (Baker Hall 161)"
+    - "5000 Forbes Ave, Pittsburgh, PA 15213"
+  office: "Baker Hall 145F"
+  office_source: "CMU faculty page, fetched 30 Oct 2026"
+
+appointments:
+  - institution: "Carnegie Mellon University"
+    roles:
+      - title: "Assistant Professor"
+        unit: "Department of Philosophy"
+        years: "2024-present"
+      - title: "Core Member"
+        unit: "CoRe Safe AI"
+        years: "2025-present"
+        verify: true
+        verify_note: "CV writes 'CoreSafe AI'; the old site, exproof.ai and the CMU page write 'Conceptual Research on Safe AI (CoRe Safe AI)'."
+      - title: "Core Member"
+        unit: "Institute for Complex Social Dynamics"
+        years: "2024-present"
+  - institution: "University of Pennsylvania"
+    roles:
+      - title: "Senior Research Fellow"
+        unit: "Department of Philosophy"
+        years: "2022-2024"
+  - institution: "University of Pittsburgh"
+    roles:
+      - title: "Postdoctoral Research Fellow"
+        unit: "Center for Philosophy of Science"
+        years: "2021-2022"
+
+education:
+  - degree: "PhD"
+    field: "Logic and Philosophy of Science"
+    institution: "University of California, Irvine"
+    year: 2021
+    thesis_label: "Dissertation"
+    thesis: "Essays on the Social Epistemology of Science"
+    committee: "Cailin O'Connor and Simon Huttegger (co-chairs), Brian Skyrms, Kyle Stanford"
+  - degree: "MA"
+    field: "Mathematical Behavioral Sciences"
+    institution: "University of California, Irvine"
+    year: 2020
+  - degree: "MS"
+    field: "Logic, Computation, and Methodology"
+    institution: "Carnegie Mellon University"
+    year: 2015
+    thesis_label: "Thesis"
+    thesis: "The Limitations of Equilibrium Concepts in Evolutionary Game Theory"
+    committee: "Kevin Zollman (chair) and Teddy Seidenfeld"
+  - degree: "BFA"
+    field: "Interactive Media"
+    institution: "Minneapolis College of Art and Design"
+    year: 2007
+
+research_areas:
+  - area: "AI Safety"
+    topics: "AI agent foundations, value learning and alignment, automated research"
+  - area: "Metascience"
+    topics: "Grant funding, replication crisis, social epistemology of science"
+  - area: "Methods"
+    topics: "Bayesian epistemology, decision theory, evolutionary game theory"

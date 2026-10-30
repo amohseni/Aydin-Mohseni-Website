@@ -1,0 +1,153 @@
+{#- Shared components. Import in a page with
+      {% from "partials/macros.njk" import section, sidenote, marginnote, work, featuredWork, talk, model with context %}
+    Every internal URL goes through the url filter. -#}
+
+{#- A section on the three-zone grid. Use with call:
+      {% call section("Label", "id") %} ...body... {% endcall %}
+    wide=true makes a wide section (no margin column; margin notes hidden). -#}
+{% macro section(label, id="", wide=false, labelId="") -%}
+{%- set lid = labelId or ((id ~ "-label") if id else "") -%}
+<section class="section{% if wide %} section--wide{% endif %}"{% if id %} id="{{ id }}"{% endif %}{% if label and lid %} aria-labelledby="{{ lid }}"{% endif %}>
+  {%- if label %}
+  <h2 class="label"{% if lid %} id="{{ lid }}"{% endif %}>{{ label }}</h2>
+  {%- endif %}
+  <div class="body">
+{{ caller() }}
+  </div>
+</section>
+{%- endmacro %}
+
+{#- A numbered sidenote, placed right after the word it annotates (no space before the call).
+    id must be unique on the page. text may contain HTML. -#}
+{% macro sidenote(id, text) -%}
+<label for="{{ id }}" class="margin-toggle sidenote-number"></label><input type="checkbox" id="{{ id }}" class="margin-toggle"><span class="sidenote">{{ text | safe }}</span>
+{%- endmacro %}
+
+{#- An unnumbered margin note. On phones it opens from a small red plus. -#}
+{% macro marginnote(id, text) -%}
+<label for="{{ id }}" class="margin-toggle"></label><input type="checkbox" id="{{ id }}" class="margin-toggle"><span class="marginnote">{{ text | safe }}</span>
+{%- endmacro %}
+
+{#- Link to an internal path through the url filter, or pass an external URL through. -#}
+{% macro href(u) -%}{{ (u | url) if (u and u[0] == "/") else u }}{%- endmacro %}
+
+{#- The author line. Aydin's name is set in ink; co-authors link to their sites when
+    people (a list of {name, url}, e.g. coinquirers) has a URL for them. -#}
+{% macro authorLine(authors, people=[]) -%}
+{%- for a in authors -%}
+{%- set linked -%}{%- for p in people %}{% if p.name == a and p.url %}<a href="{{ p.url }}">{{ a }}</a>{% endif %}{% endfor -%}{%- endset -%}
+{%- if loop.index > 1 %}{% if loop.last %}{% if loop.length > 2 %},{% endif %} and {% else %}, {% endif %}{% endif -%}
+{%- if "Mohseni" in a %}<span class="me">{{ a }}</span>
+{%- elif linked | trim %}{{ linked | safe }}
+{%- else %}{{ a }}{% endif -%}
+{%- endfor -%}
+{%- endmacro %}
+
+{#- One work, from publications.yml. Renders <li class="work" id="pub-<slug>">.
+    kind: the small label under the year (e.g. "Paper", "Book"); defaults to w.kind if present.
+    cite: true adds a BibTeX box with a Copy button, built from the record. -#}
+{% macro work(w, people=[], kind="", cite=false) -%}
+{%- set k = kind or w.kind or "" -%}
+{%- set L = w.links or {} -%}
+<li class="work" id="pub-{{ w.slug }}" data-status="{{ w.status }}"{% if w.strand %} data-strand="{{ w.strand }}"{% endif %}{% if k %} data-type="{{ k | lower }}"{% endif %}{% if w.verified == "cv" %} data-verify="Citation taken from the CV; confirm against the publisher record"{% endif %}>
+  <div class="work-meta"><span class="year">{{ w.year if w.year else "" }}</span>{% if k %}<span class="type">{{ k }}</span>{% endif %}</div>
+  <div>
+    <p class="work-title">{{ w.title }}</p>
+    {%- if w.authors and w.authors.length %}
+    <p class="work-authors">{{ authorLine(w.authors, people) }}</p>
+    {%- endif %}
+    {%- if w.venue %}
+    <p class="work-venue"><i>{{ w.venue }}</i>{% if w.volume %} {{ w.volume }}{% endif %}{% if w.issue %}({{ w.issue }}){% endif %}{% if w.pages %}: {{ w.pages | replace("-", "&ndash;") | safe }}{% endif %}{% if w.status == "under-review" %} (under review){% endif %}.</p>
+    {%- endif %}
+    {%- if w.summary %}
+    <p class="work-summary">{{ w.summary }}</p>
+    {%- endif %}
+    <div class="work-links">
+      {%- if L.journal %}<a href="{{ L.journal }}">Journal</a>{% elif w.doi %}<a href="https://doi.org/{{ w.doi }}">DOI</a>{% endif %}
+      {%- if L.pdf %}<a href="{{ href(L.pdf) }}">PDF</a>{% endif %}
+      {%- if L.arxiv %}{% if "://" in L.arxiv %}<a href="{{ L.arxiv }}">arXiv</a>{% else %}<a href="https://arxiv.org/abs/{{ L.arxiv }}">arXiv:{{ L.arxiv }}</a>{% endif %}{% endif %}
+      {%- if L.philsci %}<a href="{{ L.philsci }}">PhilSci Archive</a>{% endif %}
+      {%- if L.model %}<a href="{{ href(L.model) }}">Model</a>{% endif %}
+      {%- if L.code %}<a href="{{ L.code }}">Code</a>{% endif %}
+      {%- if L.data %}<a href="{{ L.data }}">Data</a>{% endif %}
+      {%- if w.exproof %}<a href="{{ w.exproof }}" aria-label="Related ExProof AI program"><span class="exists" aria-hidden="true">&exist;</span><span aria-hidden="true">xProof AI</span></a>{% endif %}
+      {%- if cite %}
+      {%- set bibtype = w.bibtype or ("article" if (w.status == "published" and w.venue) else "unpublished") %}
+      <details class="cite"><summary>Cite</summary><div class="cite-box"><pre>@{{ bibtype }}{ {{- w.slug }},
+  author  = { {{- bibAuthors(w.authors) -}} },
+  title   = { {{- w.title -}} },
+{%- if w.venue and bibtype == "article" %}
+  journal = { {{- w.venue -}} },
+{%- endif %}
+{%- if w.volume %}
+  volume  = { {{- w.volume -}} },
+{%- endif %}
+{%- if w.issue %}
+  number  = { {{- w.issue -}} },
+{%- endif %}
+{%- if w.pages %}
+  pages   = { {{- w.pages | replace("-", "--") -}} },
+{%- endif %}
+{%- if w.year %}
+  year    = { {{- w.year -}} },
+{%- endif %}
+{%- if w.doi %}
+  doi     = { {{- w.doi -}} },
+{%- endif %}
+{%- if bibtype == "unpublished" %}
+  note    = { {{- "Under review" if w.status == "under-review" else "Manuscript" -}} },
+{%- endif %}
+}</pre><button class="copy" type="button">Copy</button></div></details>
+      {%- endif %}
+    </div>
+  </div>
+</li>
+{%- endmacro %}
+
+{#- BibTeX author list: "Last, First and Last, First". Splits on the final space, so check
+    names with particles (de, van) in the output. -#}
+{% macro bibAuthors(authors) -%}
+{%- for a in authors -%}
+{%- set parts = a.split(" ") -%}
+{{ parts | last }}, {{ parts.slice(0, parts.length - 1) | join(" ") }}{% if not loop.last %} and {% endif %}
+{%- endfor -%}
+{%- endmacro %}
+
+{#- A short entry for selected work (home page strands): title linked to its Research anchor. -#}
+{% macro featuredWork(w) -%}
+<li><span class="t"><a href="{{ '/research/' | url }}#pub-{{ w.slug }}">{{ w.title }}</a></span><span class="d">{% if w.venue %}<i>{{ w.venue }}</i>{% if w.year %}, {{ w.year }}{% endif %}.{% elif w.year %}{{ w.year }}.{% endif %}{% if w.summary %} {{ w.summary }}{% endif %}</span></li>
+{%- endmacro %}
+
+{#- The year of a date given as 2026, "2026", "2026-03", or a YAML date. -#}
+{% macro yearOf(d) -%}{{ d if (d | string).length == 4 else (d | year) }}{%- endmacro %}
+
+{#- One talk, from talks.yml, as an entry in a works list. -#}
+{% macro talk(t, upcoming=false) -%}
+<li class="work talk">
+  <div class="work-meta"><span class="year">{{ yearOf(t.date) if t.date else "" }}</span><span class="type">{{ "Invited talk" if t.invited else "Talk" }}</span></div>
+  <div>
+    <p class="work-title">{% if t.paper_slug %}<a href="{{ '/research/' | url }}#pub-{{ t.paper_slug }}">{{ t.title }}</a>{% else %}{{ t.title }}{% endif %}</p>
+    <p class="work-summary">{{ t.venue }}{% if t.city %}, {{ t.city }}{% endif %}{% if upcoming %} (upcoming){% endif %}</p>
+    {%- if t.video %}
+    <div class="work-links"><a href="{{ t.video }}">Video</a></div>
+    {%- endif %}
+  </div>
+</li>
+{%- endmacro %}
+
+{#- A live model. site.js imports /assets/js/models/<name>.js when the figure nears the viewport
+    and calls mount(figure's .model-mount, options).
+      name     model module name: chaos, reflection, hypotheses, community
+      caption  figcaption HTML (optional); number gives "Figure N"
+      options  object passed to mount() (e.g. { mode: "hero" })
+      label    accessible name for the figure (the model adds its own canvas aria-label)
+      aspect   reserved aspect ratio before mounting, e.g. "4 / 3" -#}
+{% macro model(name, caption="", number="", options={}, label="", id="", aspect="4 / 3") -%}
+{%- set fid = id or ("model-" ~ name) -%}
+<figure class="model" id="{{ fid }}" data-model="{{ name }}" data-model-options="{{ options | dump | escape }}"{% if caption %} aria-labelledby="{{ fid }}-cap"{% elif label %} aria-label="{{ label }}"{% endif %}>
+  <div class="model-mount" style="--aspect: {{ aspect }}"><noscript><p class="model-fallback">This figure is an interactive model. It needs JavaScript.</p></noscript></div>
+  {%- if caption %}
+  <figcaption id="{{ fid }}-cap">{% if number %}<span class="label">Figure {{ number }}</span>{% endif %}{{ caption | safe }}</figcaption>
+  {%- endif %}
+</figure>
+{%- endmacro %}

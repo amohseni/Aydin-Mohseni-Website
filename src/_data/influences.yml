@@ -1,0 +1,74 @@
+# Influences (Aydin's choices, 30 Oct 2026; see docs/BRIEF.md).
+
+gibran:
+  author: "Kahlil Gibran"
+  title: "On Children"
+  book: "The Prophet"
+  publisher: "Alfred A. Knopf"
+  place: "New York"
+  year: 1923
+  rights: "Public domain in the United States."
+  source: "Project Gutenberg eBook #58585 (title page: 'THE PROPHET / By Kahlil Gibran / New York: Alfred A. Knopf / 1923'), https://www.gutenberg.org/ebooks/58585"
+  # Stanzas follow the usual layout of the 1923 text. The Gutenberg file sets each line as its own
+  # paragraph; the grouping into stanzas is a layout choice, not a textual one.
+  # `html` carries the one italic word ("Children", italic in the source).
+  intro:
+    - text: "And a woman who held a babe against her bosom said, Speak to us of Children."
+      html: "And a woman who held a babe against her bosom said, Speak to us of <i>Children</i>."
+    - text: "And he said:"
+      html: "And he said:"
+  stanzas:
+    - - "Your children are not your children."
+      - "They are the sons and daughters of Life’s longing for itself."
+      - "They come through you but not from you,"
+      - "And though they are with you yet they belong not to you."
+    - - "You may give them your love but not your thoughts,"
+      - "For they have their own thoughts."
+      - "You may house their bodies but not their souls,"
+      - "For their souls dwell in the house of tomorrow, which you cannot visit, not even in your dreams."
+      - "You may strive to be like them, but seek not to make them like you."
+      - "For life goes not backward nor tarries with yesterday."
+    - - "You are the bows from which your children as living arrows are sent forth."
+      - "The archer sees the mark upon the path of the infinite, and He bends you with His might that His arrows may go swift and far."
+      - "Let your bending in the Archer’s hand be for gladness;"
+      - "For even as he loves the arrow that flies, so He loves also the bow that is stable."
+  verify: true
+  verify_note: "Text checked line by line against the Gutenberg file through a fetch tool that could not return the passage whole (see docs/CONTENT-AUDIT.md). Gutenberg reads 'tomorrow' (not 'to-morrow'), 'Archer’s' (capital A) and 'he loves ... so He loves'. Confirm against a scan of the 1923 Knopf printing before launch."
+
+borges:
+  author: "Jorge Luis Borges"
+  note: "English translations are under copyright: titles, years and our own one-sentence descriptions only. No quotations."
+  stories:
+    - title: "The Library of Babel"
+      original_title: "La biblioteca de Babel"
+      year: 1941
+      year_note: "First published in El jardín de senderos que se bifurcan (1941); collected in Ficciones (1944)."
+      about: "The universe is a library of identical hexagonal rooms whose books hold every possible arrangement of a few letters, so every true and every false text is somewhere on its shelves, and its librarians spend their lives looking for the books that would explain it."
+      quote: ""
+      translation: ""
+    - title: "The Lottery in Babylon"
+      original_title: "La lotería en Babilonia"
+      year: 1941
+      year_note: "First published in Sur (1941); collected in El jardín de senderos que se bifurcan (1941) and Ficciones (1944)."
+      about: "A lottery in Babylon spreads until chance decides every part of a citizen's life, rewards and punishments alike, and no one can tell whether the Company that runs it exists."
+      quote: ""
+      translation: ""
+    - title: "Pierre Menard, Author of the Quixote"
+      original_title: "Pierre Menard, autor del Quijote"
+      year: 1939
+      year_note: "First published in Sur, May 1939; collected in El jardín de senderos que se bifurcan (1941)."
+      about: "A twentieth-century French writer sets out to compose, without copying, pages of Don Quixote that match Cervantes's word for word, and the narrator argues that the identical text now means something different."
+      quote: ""
+      translation: ""
+    - title: "On Exactitude in Science"
+      original_title: "Del rigor en la ciencia"
+      year: 1946
+      year_note: "First published in Los Anales de Buenos Aires, March 1946 (in 'Museo', under the pseudonym B. Lynch Davis, shared with Adolfo Bioy Casares); collected in the 1946 edition of Historia universal de la infamia."
+      about: "An empire's cartographers draw a map as large as the empire itself, matching it point for point, and the next generations, finding it useless, leave its tatters to the weather."
+      quote: ""
+      translation: ""
+  sources:
+    - "https://en.wikipedia.org/wiki/The_Library_of_Babel"
+    - "https://en.wikipedia.org/wiki/The_Lottery_in_Babylon"
+    - "https://en.wikipedia.org/wiki/Pierre_Menard,_Author_of_the_Quixote"
+    - "https://en.wikipedia.org/wiki/On_Exactitude_in_Science"

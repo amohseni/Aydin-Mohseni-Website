@@ -1,0 +1,61 @@
+# Research strands for the home page. Strand names and topic lists from the CV research summary.
+# Essays are built only from sourced descriptions; each paragraph lists its sources (`sources`),
+# repeated with detail in docs/CONTENT-AUDIT.md. Model ids per docs/BRIEF.md.
+# Paragraphs are plain text; the template may link paper titles to /research/#pub-<slug>
+# using the `links` map (title string -> slug).
+
+- slug: ai-safety
+  title: "AI safety"
+  topics: "AI agent foundations, value learning and alignment, automated research"
+  model: hypotheses
+  essay:
+    - text: "Aydin's work on agency focuses on artificial intelligence: the foundations of AI safety, agency, and alignment. With Daniel Herrmann he directs ∃xProof AI, an AI safety research group that uses decision and game theory, mechanistic interpretability, and philosophical analysis to understand advanced AI systems as agents."
+      sources: ["old home page bio", "exproof.ai index.html", "exproof.ai people.html", "CV research summary"]
+    - text: "Standard decision theory lets an agent learn about the world while its values stay fixed. In Learning the Value of Value Learning, Alex J. London and Aydin extend the Jeffrey-Bolker framework so that values themselves can be refined, and prove a value-of-information theorem for this refinement. Between agents, mutual refinement tends to turn zero-sum games into positive-sum ones."
+      sources: ["arXiv:2511.17714 abstract", "exproof.ai value-uncertainty.html"]
+    - text: "With Daniel Herrmann, Ben Levinstein and Bruce Rushing, he shows that causal reasoning in structural causal models reduces to subjective probability once interventions are treated as events in the world. With L. G. Demo, he treats alignment as a principal-agent problem, with formal models of delegation, incentives and misalignment between a principal and a more capable agent."
+      sources: ["exproof.ai publications.html (Bayesian Reduction of Causation summary)", "exproof.ai delegation.html"]
+  links:
+    "Learning the Value of Value Learning": value-of-value-learning
+  selected: [value-of-value-learning, bayesian-causation, principal-agent, ai-commons]
+  exproof:
+    - title: "Decision under Value Uncertainty"
+      url: "https://exproof.ai/value-uncertainty.html"
+    - title: "Naturalizing Agency"
+      url: "https://exproof.ai/naturalizing-agency.html"
+    - title: "AI Alignment and Delegation"
+      url: "https://exproof.ai/delegation.html"
+
+- slug: metascience
+  title: "Metascience"
+  topics: "Grant funding, replication crisis, social epistemology of science"
+  model: community
+  essay:
+    - text: "The second question in Aydin's research is how scientific communities produce knowledge. He studies grant funding, the replication crisis, and the social epistemology of science, using Bayesian inference, game theory, network theory, and agent-based models."
+      sources: ["old home page bio", "CV research summary"]
+    - text: "Several papers model how information moves through a community. In Truth and Conformity on Networks, written with Cole Williams, agents learn from private evidence and from what their neighbors say, while trading accuracy against conformity; networks that sustain a diversity of opinion support honest communication and reliable true belief. The Best Paper You'll Read Today, with Cailin O'Connor and James Owen Weatherall, shows how standard practices in science journalism can distort public belief and drive polarization."
+      sources: ["old Research page summaries of Truth and Conformity on Networks and The Best Paper You'll Read Today"]
+    - text: "Other work asks what reforms do. HARKing: from Misunderstanding to Misprescription argues that the effect of hypothesizing after the results are known depends on the prior probabilities of the hypotheses chosen before and after the data, and that misdiagnosing it leads to poor reforms. A Bayesian model of grant funding, in which output depends on talent and resources and funding compounds talent over time, compares allocation strategies from peer review to uniform seed funding."
+      sources: ["PhilSci-Archive 18523 abstract", "old Research page (HARKing)", "old Computational Models page (Optimal Grant Funding for Scientific Production)"]
+  links:
+    "Truth and Conformity on Networks": truth-and-conformity
+    "The Best Paper You'll Read Today": best-paper
+    "HARKing: from Misunderstanding to Misprescription": harking
+  selected: [social-sciences-hard, best-paper, truth-and-conformity, harking, optimal-grant-funding]
+
+- slug: methods
+  title: "Methods"
+  subtitle: "Formal epistemology and game theory"
+  topics: "Bayesian epistemology, decision theory, evolutionary game theory"
+  model: reflection
+  essay:
+    - text: "The methods strand covers Bayesian epistemology, decision theory, and evolutionary game theory: the formal tools Aydin uses to study scientific communities and artificial agents."
+      sources: ["CV research summary", "old home page bio"]
+    - text: "Stochastic Stability and Disagreements between Dynamics asks why the replicator dynamics and the Moran process can make different predictions, and traces the divergence to standard analytic techniques and to the idealizations each model makes. Limitations of Equilibrium Concepts in Evolutionary Games gives an explicit definition of evolutionary significance and shows that proposed equilibrium refinements make errors of omission or commission."
+      sources: ["old Research page summaries of both papers"]
+    - text: "With Simon Huttegger, he reconciles Kalai and Lehrer's result on Bayesian learning of Nash equilibrium with Foster and Young's impossibility theorem. With Cailin O'Connor and Hannah Rubin, he tested whether a difference in group size alone produces disadvantage for a minority: in a repeated Nash demand game, members of the minority group made low demands more often and earned lower payoffs."
+      sources: ["old Research page ('Are Nash Equilibria Rational?', taken to be CV W2 'The Rationality of Nash Equilibria')", "old Research page (Red King)"]
+  links:
+    "Stochastic Stability and Disagreements between Dynamics": stochastic-stability
+    "Limitations of Equilibrium Concepts in Evolutionary Games": equilibrium-concepts
+  selected: [stochastic-stability, equilibrium-concepts, red-king, rationality-nash]

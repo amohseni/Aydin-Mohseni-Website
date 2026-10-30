@@ -1,0 +1,71 @@
+---
+# Redirect stubs: one page per old WordPress URL, plus /meet/.
+# Each page refreshes at once, calls location.replace as a backup, and shows a plain link
+# for readers with neither. Every stub is noindex and names its target as canonical.
+# To add a redirect, add an entry below; "to" is a site path (passed through the url filter)
+# or a full https:// address.
+pagination:
+  data: redirects
+  size: 1
+  alias: r
+redirects:
+  - from: /talks/
+    to: /research/#talks
+    label: Talks, now on the Research page
+  - from: /teaching-2/
+    to: /teaching/
+    label: Teaching
+  - from: /computational-models/
+    to: /models/
+    label: Computational models
+  - from: /infographics/
+    to: /sketchbook/
+    label: Sketchbook (infographics)
+  - from: /sketches/
+    to: /sketchbook/
+    label: Sketchbook (sketches)
+  - from: /ai-agency-workshop/
+    to: /workshops/ai-agency-2026/
+    label: AI agency workshop, 2026
+  - from: /formal-models-in-science-workshop/
+    to: /workshops/metascience-2025/
+    label: Metascience workshop, 2025
+  - from: /meet/
+    to: https://calendar.app.google/pe98GGpL8dwdoqbp6
+    label: Aydin Mohseni's booking calendar
+permalink: "{{ r.from }}"
+eleventyExcludeFromCollections: true
+---
+{%- set external = ("://" in r.to) -%}
+{%- set target = r.to if external else (r.to | url) -%}
+{%- set canonical = r.to if external else ("https://aydinmohseni.com" ~ r.to) -%}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redirecting to {{ r.label }}</title>
+<meta name="description" content="This address has moved. Redirecting to {{ r.label }}.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="{{ canonical }}">
+<meta http-equiv="refresh" content="0; url={{ target }}">
+<script>location.replace({{ target | dump | safe }});</script>
+<style>
+  @font-face { font-family: "CMU Serif"; src: url("{{ '/assets/fonts/cmu-serif-500-roman.woff2' | url }}") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+  :root { color-scheme: light dark; }
+  body { margin: 0; padding: 4rem 1rem; background: #fcfcfa; color: #141413; font: 1.1rem/1.5 "CMU Serif", "Latin Modern Roman", "Computer Modern", Georgia, serif; }
+  a { color: inherit; }
+  a:hover, a:focus-visible { color: #b0122b; }
+  main { max-width: 34rem; margin: 0 auto; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #050505; color: #f5f5f2; }
+    a:hover, a:focus-visible { color: #d11c3d; }
+  }
+</style>
+</head>
+<body>
+<main>
+<p>This page has moved to <a href="{{ target }}">{{ r.label }}</a>.</p>
+</main>
+</body>
+</html>

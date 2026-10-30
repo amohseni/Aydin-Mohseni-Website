@@ -1,0 +1,154 @@
+# Computational models, from the old Computational Models page (fetched 30 Oct 2026).
+# Summaries paraphrase the old page's descriptions. `image` paths are old WordPress paths
+# (mirrored under src/wp-content/). Alt text is generic: the images were not viewed. Where the media library confirmed a full-size file it is
+# used; otherwise the thumbnail path that the old page displayed.
+# `kind`: research (the old page's "Original Models") | teaching ("Pedagogical Models").
+
+- slug: grant-funding
+  title: "Optimal Grant Funding for Scientific Production"
+  kind: research
+  summary: "A Bayesian model of grant funding in which research output depends on talent and resources, and funding compounds talent over time. The optimal allocation funds the gap between capabilities and resources; the app compares strategies from peer review to uniform seed funding."
+  app: "https://amohseni.shinyapps.io/Grant-Funding-and-Scientific-Output-Model/"
+  code: "https://github.com/amohseni/Grant-Funding-and-Scientific-Output-Model"
+  paper_slug: optimal-grant-funding
+  image: "/wp-content/uploads/2026/07/SC-GrantFundingModel.png"
+  image_alt: "Screenshot of the Optimal Grant Funding for Scientific Production model"
+  verify: true
+  verify_note: "On the old page this image sat under 'Modeling Interventions in Science' and again under 'Prediction Markets Lab'; the file name says grant funding, so it is placed here. Paper link inferred."
+
+- slug: interventions-in-science
+  title: "Modeling Interventions in Science"
+  kind: research
+  summary: "How proposed reforms to scientific practice (redefining statistical significance, preregistration, rewarding null results) affect the reliability and fecundity of science under different background assumptions."
+  app: "https://amohseni.shinyapps.io/Reporting-Protocols-and-the-Reliability-of-Science/"
+  code: "https://github.com/amohseni/Reporting-Protocols-and-the-Reliability-of-Science"
+  paper_slug: harking
+  image: "/wp-content/uploads/2020/05/FDRA.png"
+  images: ["/wp-content/uploads/2020/05/FDRA.png", "/wp-content/uploads/2020/05/FDRB.png"]
+  image_alt: "Screenshot of the Modeling Interventions in Science model"
+  verify_note: "The old Research page lists this app as the computational model for the HARKing paper."
+
+- slug: truth-and-conformity
+  title: "Bayesian Learning with Conformity on Social Networks"
+  kind: research
+  summary: "How social networks and conformity bias together shape the flow and reliability of information in social learning."
+  app: "https://amohseni.shinyapps.io/Truth-and-Conformity-on-Networks/"
+  code: "https://github.com/amohseni/Truth-and-Conformity-on-Networks"
+  paper_slug: truth-and-conformity
+  image: "/wp-content/uploads/2018/06/TC02-300x276.png"
+  images: ["/wp-content/uploads/2018/06/TC02-300x276.png", "/wp-content/uploads/2018/06/TC01-279x300.png"]
+  image_alt: "Screenshot of the Bayesian Learning with Conformity on Social Networks model"
+
+- slug: self-assembling-networks
+  title: "Self-Assembling Networks with Reinforcement Learning"
+  kind: research
+  summary: "How an epistemic network might assemble itself as agents of differing ability investigate nature and each other."
+  app: "https://amohseni.shinyapps.io/Self-Assembling-Networks/"
+  code: "https://github.com/amohseni/Self-Assembling-Networks"
+  paper_slug: self-assembling-networks
+  image: "/wp-content/uploads/2018/06/SAN01-290x300.png"
+  images: ["/wp-content/uploads/2018/06/SAN01-290x300.png", "/wp-content/uploads/2018/06/SAN02-285x300.png"]
+  image_alt: "Screenshot of the Self-Assembling Networks with Reinforcement Learning model"
+
+- slug: tragedies-of-the-commons
+  title: "Tragedies of the Commons"
+  kind: research
+  summary: "How the perceived risk and size of the consequences of failing to cooperate, the cost of cooperation, and the size of the cooperating group affect N-person public goods games."
+  app: "https://amohseni.shinyapps.io/tragedies-of-the-commons/"
+  code: "https://github.com/amohseni/Tragedies-of-the-Commons"
+  paper_slug: ai-commons
+  image: "/wp-content/uploads/2020/05/PGGPlotGradientOfSelection.png"
+  images: ["/wp-content/uploads/2020/05/PGGPlotGradientOfSelection.png", "/wp-content/uploads/2020/05/PGGPlotMeanPayoffs.png"]
+  image_alt: "Screenshot of the Tragedies of the Commons model"
+  verify_note: "The old page had no code link; the repository amohseni/Tragedies-of-the-Commons exists (GitHub, checked 30 Oct 2026: 'A model of AI policy public goods problems under the fermi dynamics')."
+
+- slug: reporting-bias
+  title: "Reporting, Bias, and Belief Distortion"
+  kind: research
+  summary: "How individual confirmation bias, combined with selective or distorted news reporting, can lead to belief polarization."
+  app: "https://amohseni.shinyapps.io/Reporting-and-Bias-Beta/"
+  code: "https://github.com/amohseni/ConfirmationBias-News-BeliefPolarization"
+  paper_slug: best-paper
+  image: "/wp-content/uploads/2018/06/NB01-300x162.png"
+  images: ["/wp-content/uploads/2018/06/NB01-300x162.png", "/wp-content/uploads/2018/06/NB02-300x154.png"]
+  image_alt: "Screenshot of the Reporting, Bias, and Belief Distortion model"
+  verify_note: "The old Research page lists this app and code under 'The Best Paper You'll Read Today'. Its Works in Progress also list 'Reporting, Bias, and Belief Distortion' (Mohseni, O'Connor, Weatherall) with app URL https://amohseni.shinyapps.io/ConfirmationBias-News-BeliefPolarization/, which differs from the app URL here."
+
+- slug: near-zero-sum
+  title: "Rationality and Prediction in Games of Uncertain Information"
+  kind: research
+  summary: "The tension between rationality and prediction in near-zero-sum games, based on Foster and Young's (2001) impossibility theorem, and how that tension might be resolved."
+  app: "https://amohseni.shinyapps.io/Near-Zero-Sum-Game/"
+  code: "https://github.com/amohseni/Near-Zero-Sum-Game"
+  paper_slug: rationality-nash
+  image: "/wp-content/uploads/2018/06/RoN01-300x199.png"
+  images: ["/wp-content/uploads/2018/06/RoN01-300x199.png", "/wp-content/uploads/2018/06/RoN02-300x200.png"]
+  image_alt: "Screenshot of the Rationality and Prediction in Games of Uncertain Information model"
+
+- slug: schelling
+  title: "Schelling's Segregation Model"
+  kind: teaching
+  summary: "How mild preferences for similar neighbors can produce strong segregation. Adjustable preference strength, density, lattice size, neighborhood type, number of types, and switching frequency."
+  app: "https://amohseni.github.io/Schelling-Segregation-Model/"
+  code: "https://github.com/amohseni/Schelling-Segregation-Model"
+  paper_slug: ""
+  image: "/wp-content/uploads/2026/09/Schelling0.png"
+  images: ["/wp-content/uploads/2026/09/Schelling0.png", "/wp-content/uploads/2026/09/Schelling1.png"]
+  image_alt: "Screenshot of the Schelling's Segregation Model"
+
+- slug: prediction-markets
+  title: "Prediction Markets Lab"
+  kind: teaching
+  summary: "The robustness of prediction markets: a binary market on an LMSR automated market maker, with Bayesian agents taking Kelly-sized positions under fees, participation costs, correlation, wealth inequality, herding, and manipulation. Run, dissect, and sweep the market's parameters."
+  app: "https://amohseni.shinyapps.io/Prediction-Markets-Lab/"
+  code: "https://github.com/amohseni/Prediction-Market-Lab"
+  paper_slug: ""
+  image: "/wp-content/uploads/2026/07/PredictionMarketPlot.png"
+  image_alt: "Screenshot of the Prediction Markets Lab"
+  verify_note: "App path says 'Markets', repository name says 'Market', as on the old page."
+
+- slug: first-price-auction
+  title: "Optimal Bidding in a First-Price, Sealed-Bid Auction"
+  kind: teaching
+  summary: "A bidding strategy that balances bidding low to keep surplus against bidding high enough to win, with competitors' bids modeled as normally distributed around an average."
+  app: "https://amohseni.shinyapps.io/Optimal-Strategy-for-First-Price-Sealed-Bid-Auction/"
+  code: "https://github.com/amohseni/Optimal-Strategy-for-First-Price-Sealed-Bid-Auction"
+  paper_slug: ""
+  image: "/wp-content/uploads/2025/04/Screenshot-2025-04-15-at-12.28.06%E2%80%AFAM.png"
+  images: ["/wp-content/uploads/2025/04/Screenshot-2025-04-15-at-12.28.06%E2%80%AFAM.png", "/wp-content/uploads/2025/04/Screenshot-2025-04-15-at-12.28.15%E2%80%AFAM.png"]
+  image_alt: "Screenshot of the Optimal Bidding in a First-Price, Sealed-Bid Auction model"
+  verify_note: "File names contain a narrow no-break space (U+202F), percent-encoded here. Infrastructure: keep the file name byte-exact when mirroring."
+
+- slug: bounded-confidence
+  title: "Bounded Confidence Model of Opinion Dynamics"
+  kind: teaching
+  summary: "When opinion formation in a group leads to consensus, polarization, or fragmentation, in the Hegselmann-Krause bounded confidence model."
+  app: "https://amohseni.shinyapps.io/Bounded-Confidence-Model/"
+  code: "https://github.com/amohseni/Bounded-Confidence-Model"
+  paper_slug: ""
+  image: "/wp-content/uploads/2020/05/HKimage1.png"
+  images: ["/wp-content/uploads/2020/05/HKimage1.png", "/wp-content/uploads/2020/05/HKimage2.png", "/wp-content/uploads/2020/05/HKimage3.png"]
+  image_alt: "Screenshot of the bounded confidence model of opinion dynamics"
+
+- slug: moran-process
+  title: "Frequency-Dependent Moran Process and Stability Concepts"
+  kind: teaching
+  summary: "Evolution with two interacting types in a fixed finite population, using the Moran process, which Nowak calls the simplest stochastic model of selection in a finite population (Evolutionary Dynamics, p. 94)."
+  app: "https://amohseni.shinyapps.io/Moran-Process"
+  code: "https://github.com/amohseni/Frequency-Dependent-Moran-Process"
+  paper_slug: stochastic-stability
+  image: "/wp-content/uploads/2018/06/MP02-300x199.png"
+  images: ["/wp-content/uploads/2018/06/MP02-300x199.png", "/wp-content/uploads/2018/06/MP01-300x196.png"]
+  image_alt: "Screenshot of the Frequency-Dependent Moran Process and Stability Concepts model"
+  verify_note: "Listed under Pedagogical Models on the old page, but the old Research page gives it as the model for 'Stochastic Stability and Disagreements between Dynamics'."
+
+- slug: em-algorithm
+  title: "EM Algorithm for Gaussian Mixtures"
+  kind: teaching
+  summary: "The expectation-maximization algorithm for unsupervised learning and clustering: an iterative route to a maximum likelihood solution when data are missing or no analytic solution exists."
+  app: "https://amohseni.shinyapps.io/EM-Algorithm-for-Gaussian-Mixtures/"
+  code: "https://github.com/amohseni/EM-Algorithm-for-Gaussian-Mixtures"
+  paper_slug: ""
+  image: "/wp-content/uploads/2018/07/EMA-1-300x207.png"
+  images: ["/wp-content/uploads/2018/07/EMA-1-300x207.png", "/wp-content/uploads/2018/07/EMA-2-300x207.png"]
+  image_alt: "Screenshot of the EM Algorithm for Gaussian Mixtures model"

@@ -1,0 +1,26 @@
+---
+layout: layouts/base.njk
+title: Chaos model test
+description: Test page for the chaos model in hero and background modes.
+background: chaos
+noindex: true
+permalink: /lab/chaos/
+eleventyExcludeFromCollections: true
+---
+{% from "partials/macros.njk" import section with context %}
+
+{% call section("Test", "test") %}
+<p>This page is for development. It mounts the chaos model twice: in hero mode in the section below, and in background mode behind the whole page, dimmed under the text column. With reduced motion turned on in the operating system, both show a single still frame.</p>
+{% endcall %}
+
+{% call section("Hero", "hero", wide=true) %}
+<figure class="model" data-model="chaos" data-model-options='{"mode":"hero","visibleDescription":true}' style="--aspect: 10 / 9">
+  <div class="model-mount"></div>
+</figure>
+{% endcall %}
+
+{% call section("Background", "background") %}
+<p>The background runs the same dynamics with a slower clock and a frame cap of 30 per second. It stops when the tab is hidden, and the orbit and its trace carry over to the next page in the same tab.</p>
+<p>Text sits over the dimmed part of the background. The orbit, the trace and the tetrahedron are drawn in the chalk color; the moving light is red.</p>
+<p>Paragraphs here exist only to give the page some length so that scrolling can be checked. The background is fixed to the viewport and does not scroll with the content.</p>
+{% endcall %}

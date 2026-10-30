@@ -1,0 +1,14 @@
+---
+layout: layouts/base.njk
+title: Not found
+description: No page exists at this address.
+permalink: /404.html
+noindex: true
+eleventyExcludeFromCollections: true
+---
+<style>.not-found .lede a { color: var(--fg); } .not-found .lede a:hover { color: var(--red-bright); }</style>
+<section class="hero page-head not-found" aria-labelledby="nf-title">
+  <p class="eyebrow">404</p>
+  <h1 id="nf-title">No page exists at this address.</h1>
+  <p class="lede">Some addresses from the old site have changed. Try <a href="{{ '/research/' | url }}">Research</a>, <a href="{{ '/models/' | url }}">Models</a>, <a href="{{ '/teaching/' | url }}">Teaching</a>, or <a href="{{ '/' | url }}">the home page</a>.</p>
+</section>

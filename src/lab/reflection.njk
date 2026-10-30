@@ -1,0 +1,19 @@
+---
+layout: layouts/base.njk
+title: Reflection model test
+description: Test page for the Reflection model.
+noindex: true
+permalink: /lab/reflection/
+eleventyExcludeFromCollections: true
+---
+{% from "partials/macros.njk" import section with context %}
+
+{% call section("Test", "test") %}
+<p>This page is for development. It mounts the Reflection model. With reduced motion turned on in the operating system, the model shows a single still frame.</p>
+{% endcall %}
+
+{% call section("Reflection", "reflection", wide=true) %}
+<figure class="model" data-model="reflection" data-model-options='{"visibleDescription":true}' style="--aspect: 16 / 10">
+  <div class="model-mount"></div>
+</figure>
+{% endcall %}

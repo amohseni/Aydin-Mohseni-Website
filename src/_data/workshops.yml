@@ -1,0 +1,123 @@
+# Workshops Aydin organized. Sources: the old workshop pages (fetched 30 Oct 2026),
+# the CV (SERVICE TO THE PROFESSION, Conference Organizer), exproof.ai publications.html.
+# Speaker URLs only where already verified elsewhere (exproof.ai README table, or confirmed for coinquirers.yml); others blank.
+
+- slug: ai-agency-2026
+  page: true
+  url: "/workshops/ai-agency-2026/"
+  old_url: "/ai-agency-workshop/"
+  title: "AI Agency & Interpretability Workshop"
+  title_cv: "CMU AI & Agency Workshop"
+  dates: "19-20 September 2026"
+  start: "2026-09-19"
+  end: "2026-09-20"
+  schedule:
+    - "Saturday, 19 September 2026, 9:00am-5:00pm"
+    - "Sunday, 20 September 2026, 9:00am-3:00pm"
+  place: "Baker Hall A36, Adamson Wing, Carnegie Mellon University, Pittsburgh, PA"
+  organizers:
+    - name: "Aydin Mohseni"
+      url: "https://aydinmohseni.com/"
+    - name: "Daniel Herrmann"
+      url: "https://www.danielherrmann.ca/"
+  hosts:
+    - name: "Institute for Complex Social Dynamics"
+      url: "https://www.cmu.edu/dietrich/social-dynamics/"
+    - name: "Center for Formal Epistemology"
+      url: "https://www.cmu.edu/dietrich/philosophy/research/cfe/index.html"
+    - name: "Center for Conceptual Research on Safe AI (CoRe Safe AI)"
+      url: "https://www.cs.cmu.edu/~coresafeai/"
+  speakers:
+    - name: "Daniel Herrmann"
+      affiliation: "Philosophy, University of North Carolina, Chapel Hill"
+      url: "https://www.danielherrmann.ca/"
+    - name: "Ben Levinstein"
+      affiliation: "Alignment, Anthropic"
+      url: "https://www.levinstein.org/"
+    - name: "Vincent Conitzer"
+      affiliation: "Computer Science, Carnegie Mellon University"
+      url: ""
+    - name: "Aran Nayebi"
+      affiliation: "Machine Learning, Carnegie Mellon University"
+      url: ""
+    - name: "Bryan Wilder"
+      affiliation: "Machine Learning, Carnegie Mellon University"
+      url: ""
+    - name: "Aydin Mohseni"
+      affiliation: "Philosophy, Carnegie Mellon University"
+      url: "https://aydinmohseni.com/"
+    - name: "Sven Neth"
+      affiliation: "Philosophy, University of Pittsburgh"
+      url: "https://www.ocf.berkeley.edu/~nethsven/"
+  description:
+    - "An interdisciplinary meeting on how formal methods from game and decision theory can help interpret, explain, and predict the behavior of frontier AI systems. Sessions cover AI agency and interpretability, belief elicitation, preference elicitation, and instrumental convergence."
+  program_pdf: "/wp-content/uploads/2026/09/Workshop_Program___AI_Agency___Interpretability-1.pdf"
+  registration: "https://form.jotform.com/261945223896064"
+  registration_note: "Attendance was free; registration was requested."
+  image: "/wp-content/uploads/2026/07/AI-Agency-Interp-825x510.png"
+  image_alt: "Header image of the AI Agency & Interpretability Workshop page"
+  verify_note: "Organizers from exproof.ai (the old page names hosts, not organizers). Description paraphrases the old page. CV title differs ('CMU AI & Agency Workshop', 'Fall 2026')."
+
+- slug: metascience-2025
+  page: true
+  url: "/workshops/metascience-2025/"
+  old_url: "/formal-models-in-science-workshop/"
+  title: "Formal Models in Metascience Workshop"
+  dates: "2-3 August 2025"
+  start: "2025-08-02"
+  end: "2025-08-03"
+  schedule:
+    - "Saturday, 2 August 2025, 9:00am-5:00pm"
+    - "Sunday, 3 August 2025, 9:00am-5:00pm"
+  place: "Grand Room, Posner Hall 340, Carnegie Mellon University, Pittsburgh, PA"
+  map: "https://maps.app.goo.gl/7Y1EBLVeazMyQb7L8"
+  organizers:
+    - name: "Aydin Mohseni"
+      url: "https://aydinmohseni.com/"
+  hosts:
+    - name: "Institute for Complex Social Dynamics"
+      url: "https://www.cmu.edu/dietrich/social-dynamics/"
+    - name: "Center for Formal Epistemology"
+      url: "https://www.cmu.edu/dietrich/philosophy/research/cfe/index.html"
+  speakers:
+    - name: "Alice C. W. Huang"
+      affiliation: "Computer Science and Philosophy, Western University"
+      url: ""
+    - name: "Remco Heesen"
+      affiliation: "Philosophy, Logic and Scientific Method, London School of Economics"
+      url: ""
+    - name: "Kevin Gross"
+      affiliation: "Statistics, North Carolina State University"
+      url: ""
+    - name: "Zacharias Maniadis"
+      affiliation: "Economics, University of Southampton"
+      url: ""
+    - name: "Eoin Perry"
+      affiliation: "Philosophy and Statistics, University of Bristol"
+      url: ""
+    - name: "Edouard Machery"
+      affiliation: "History and Philosophy of Science, University of Pittsburgh"
+      url: ""
+    - name: "Kevin J. S. Zollman"
+      affiliation: "Philosophy, Carnegie Mellon University"
+      url: "https://www.kevinzollman.com/"
+    - name: "Aydin Mohseni"
+      affiliation: "Philosophy, Carnegie Mellon University"
+      url: "https://aydinmohseni.com/"
+  description:
+    - "A meeting on how formal models can help us understand and improve scientific practice and its incentive structures. Sessions cover Bayesian and game-theoretic analyses of the replication crisis, incentive-compatible research norms, network models of information flow, and decision-theoretic foundations for methodological reform."
+  program_pdf: "/wp-content/uploads/2025/08/Workshop_Program___Formal_Models_in_Metascience.pdf"
+  program_pdf_verify: true
+  registration: "https://form.jotform.com/251726081824154"
+  registration_note: "Attendance was free; registration was requested."
+  image: "/wp-content/uploads/2025/06/ChatGPT-Image-Jun-22-2025-05_30_47-PM.png"
+  image_alt: "Header image of the Formal Models in Metascience Workshop page"
+  verify_note: "The old page's program link points to the AI Agency workshop PDF (2026/09/Workshop_Program___AI_Agency___Interpretability-1.pdf). The media library holds /wp-content/uploads/2025/08/Workshop_Program___Formal_Models_in_Metascience.pdf (uploaded 1 Aug 2025), used here unopened. CV: 'Formal Models in Metascience Workshop (Pittsburgh, Summer 2025)'. Organizer named from the CV only."
+
+# Other organizing listed in the CV (no page of its own; `page: false`).
+- slug: psa-2021-symposium
+  page: false
+  title: "Philosophy of Science Association Symposium Panel: \"Modeling the Social Structure of Science\""
+  role: "Organizer"
+  place: "Baltimore"
+  dates: "Fall 2021"

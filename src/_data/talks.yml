@@ -1,0 +1,453 @@
+# Talks: one entry per venue occurrence, newest first.
+# Source: CV (cv/amohseni.CV.tex, PRESENTATIONS P1-P15) unless `source` says otherwise.
+# The CV gives years only, so `date` is YYYY; within a year, order follows the CV.
+# `invited` follows the CV's dagger. `with` lists co-presenters named on exproof.ai.
+# `cv_id` is the CV's P-number. Old-site variants of titles and venue names are in docs/CONTENT-AUDIT.md.
+
+# P15
+- title: "A Bayesian Model of Optimal Science Funding"
+  paper_slug: optimal-grant-funding
+  venue: "Manifest Conference"
+  city: "Berkeley"
+  date: "2026"
+  invited: true
+  video: ""
+  cv_id: P15
+  verify: true
+  verify_note: "Link to the paper 'A Bayesian Model of Optimal Grant Funding' is inferred from the title."
+
+# P14
+- title: "A Mathematical Unification of Learning and Evolution"
+  paper_slug: ""
+  venue: "ILIAD 2026 Conference"
+  city: "Berkeley"
+  date: "2026"
+  invited: true
+  video: ""
+  cv_id: P14
+
+# P13
+- title: "Virtues and Vices of Analytic Philosophy with Respect to AI Safety"
+  paper_slug: ""
+  venue: "ILIAD 2026 Conference"
+  city: "Berkeley"
+  date: "2026"
+  invited: true
+  video: ""
+  with: ["Daniel A. Herrmann"]
+  cv_id: P13
+
+# P12: A Bayesian Reduction of Causation
+- title: "A Bayesian Reduction of Causation"
+  paper_slug: bayesian-causation
+  venue: "Philosophy of Science Biennial Conference"
+  city: "San Diego"
+  date: "2026"
+  invited: false
+  video: ""
+  with: ["Daniel A. Herrmann"]
+  note: "November 2026 (upcoming), per exproof.ai"
+  cv_id: P12
+- title: "A Bayesian Reduction of Causation"
+  paper_slug: bayesian-causation
+  venue: "The Society for Philosophy of Causation Conference"
+  city: "Paris"
+  date: "2026"
+  invited: false
+  video: ""
+  cv_id: P12
+- title: "A Bayesian Reduction of Causation"
+  paper_slug: bayesian-causation
+  venue: "PhilML'26 Philosophy of Machine Learning Conference"
+  city: "Munich"
+  date: "2026"
+  invited: false
+  video: ""
+  cv_id: P12
+
+# P11: Learning the Value of Value Learning (2026 venues)
+- title: "Learning the Value of Value Learning"
+  paper_slug: value-of-value-learning
+  venue: "Philosophy, Politics, and Economics Conference"
+  city: "London"
+  date: "2026"
+  invited: false
+  video: ""
+  cv_id: P11
+- title: "Learning the Value of Value Learning"
+  paper_slug: value-of-value-learning
+  venue: "Beyond Basic Bayesianism Workshop"
+  city: "Helsinki"
+  date: "2026"
+  invited: false
+  video: ""
+  cv_id: P11
+- title: "Learning the Value of Value Learning"
+  paper_slug: value-of-value-learning
+  venue: "Formal Ethics Workshop"
+  city: "Buffalo"
+  date: "2026"
+  invited: false
+  video: ""
+  cv_id: P11
+- title: "Learning the Value of Value Learning"
+  paper_slug: value-of-value-learning
+  venue: "Agent Foundations Conference"
+  city: "Pittsburgh"
+  date: "2026"
+  invited: false
+  video: ""
+  cv_id: P11
+
+# 2025
+- title: "A Bayesian Reduction of Causation"
+  paper_slug: bayesian-causation
+  venue: "PPE 9th Annual Meeting"
+  city: "New Orleans"
+  date: "2025"
+  invited: true
+  video: ""
+  cv_id: P12
+- title: "A Bayesian Reduction of Causation"
+  paper_slug: bayesian-causation
+  venue: "ILIAD 2025 Conference: ODYSSEY"
+  city: "Berkeley"
+  date: "2025"
+  invited: true
+  video: ""
+  cv_id: P12
+- title: "Learning the Value of Value Learning"
+  paper_slug: value-of-value-learning
+  venue: "ILIAD 2025 Conference: ODYSSEY"
+  city: "Berkeley"
+  date: "2025"
+  invited: true
+  video: ""
+  cv_id: P11
+- title: "A Bayesian Reduction of Causation"
+  paper_slug: bayesian-causation
+  venue: "Center for Philosophy of Science Lunch Time Talks"
+  city: "Pittsburgh"
+  date: "2025-09-19"
+  invited: true
+  video: "https://www.youtube.com/watch?v=3_PTLhkZG6c"
+  video_title: "Lunchtime Talk - Aydin Mohseni 9/19/25 (Center for Philosophy of Science channel)"
+  cv_id: P12
+  verify_note: "Video from the old Presentations page (link label 'LT Talk', under 'A Bayesian Reduction of Causation in Causal Models')."
+- title: "A Bayesian Reduction of Causation"
+  paper_slug: bayesian-causation
+  venue: "4th Formal and Experimental Philosophy Conference"
+  city: "Amherst"
+  date: "2025"
+  invited: true
+  video: ""
+  cv_id: P12
+- title: "A Bayesian Reduction of Causation"
+  paper_slug: bayesian-causation
+  venue: "12th Workshop on Combining Probability and Logic"
+  city: "Pittsburgh"
+  date: "2025"
+  invited: false
+  video: ""
+  cv_id: P12
+- title: "A Bayesian Reduction of Causation"
+  paper_slug: bayesian-causation
+  venue: "Logic and Philosophy of Science Colloquium"
+  city: "Irvine"
+  date: "2025"
+  invited: true
+  video: ""
+  cv_id: P12
+- title: "A Bayesian Reduction of Causation"
+  paper_slug: bayesian-causation
+  venue: "Agent Foundations Workshop"
+  city: "Pittsburgh"
+  date: "2025"
+  invited: true
+  video: ""
+  cv_id: P12
+- title: "Intervention and Backfire in the Replication Crisis"
+  paper_slug: ""
+  venue: "Center for Philosophy of Science"
+  city: "Pittsburgh"
+  date: "2025"
+  invited: true
+  video: "https://www.youtube.com/watch?v=Ep4pyhoD-jg&t=34s"
+  video_title: "\"Modeling Interventions in the Replication Crisis\" by Aydin Mohseni (Center for Philosophy of Science channel)"
+  source: old-site
+  verify: true
+  verify_note: "Not in the CV. Venue shortened to 'Center for Philosophy of Science' (the CV's naming); the old Presentations page lists 'Pittsburgh Center for Philosophy of Science, CF Talk, Pittsburgh 2025' (invited) with this video. The meaning of 'CF' is not stated there; the year 2025 is as printed on the old page; the YouTube oEmbed record gives no date, and Aydin's Pitt fellowship was 2021-2022, so the year needs checking."
+
+# 2024
+- title: "Learning the Value of Value Learning"
+  paper_slug: value-of-value-learning
+  venue: "ICSD Workshop"
+  city: "Pittsburgh"
+  date: "2024"
+  invited: false
+  video: ""
+  cv_id: P11
+- title: "AI Alignment as a Principal-Agent Problem"
+  paper_slug: principal-agent
+  venue: "Foundations of Cooperative AI Lab Seminar"
+  city: "Pittsburgh"
+  date: "2024"
+  invited: false
+  video: ""
+  cv_id: P10
+- title: "AI Alignment as a Principal-Agent Problem"
+  paper_slug: principal-agent
+  venue: "Philosophy, Politics, and Economics Society Conference"
+  city: "New Orleans"
+  date: "2024"
+  invited: false
+  video: ""
+  cv_id: P10
+- title: "AI Alignment as a Principal-Agent Problem"
+  paper_slug: principal-agent
+  venue: "Philosophy of Science Meets Machine Learning Conference"
+  city: "Tübingen"
+  date: "2024"
+  invited: false
+  video: ""
+  cv_id: P10
+- title: "AI Alignment as a Principal-Agent Problem"
+  paper_slug: principal-agent
+  venue: "ILIAD Conference"
+  city: "Berkeley"
+  date: "2024"
+  invited: true
+  video: ""
+  cv_id: P10
+- title: "Bayesian Epistemology: Foundations, Limits, and Open Questions"
+  paper_slug: ""
+  venue: "ILIAD Conference"
+  city: "Berkeley"
+  date: "2024"
+  invited: true
+  video: ""
+  cv_id: P9
+- title: "Why are the Social Sciences Hard? Two New Hypotheses"
+  paper_slug: social-sciences-hard
+  venue: "Ninth Quadrennial Fellows Conference"
+  city: "Miami"
+  date: "2024"
+  invited: false
+  video: ""
+  cv_id: P8
+
+# 2023
+- title: "Why are the Social Sciences Hard? Two New Hypotheses"
+  paper_slug: social-sciences-hard
+  venue: "Formal and Experimental Philosophy Workshop"
+  city: "Pittsburgh"
+  date: "2023"
+  invited: false
+  video: ""
+  cv_id: P8
+- title: "Why are the Social Sciences Hard? Two New Hypotheses"
+  paper_slug: social-sciences-hard
+  venue: "CLMPST: Science and Values in an Uncertain World"
+  city: "Buenos Aires"
+  date: "2023"
+  invited: false
+  video: ""
+  cv_id: P8
+
+# 2022
+- title: "HARKing: from Misunderstanding to Misprescription"
+  paper_slug: harking
+  venue: "Scientific Progress: Individual and Collective"
+  city: "Amsterdam"
+  date: "2022"
+  invited: true
+  video: ""
+  cv_id: P7
+
+# 2021
+- title: "HARKing: from Misunderstanding to Misprescription"
+  paper_slug: harking
+  venue: "Society for Philosophy and Psychology Annual Meeting"
+  city: "Virtual"
+  date: "2021"
+  invited: false
+  video: ""
+  cv_id: P7
+- title: "HARKing: from Misunderstanding to Misprescription"
+  paper_slug: harking
+  venue: "Center for Philosophy of Science, Lunch Time Talk"
+  city: "Pittsburgh"
+  date: "2021"
+  invited: true
+  video: ""
+  cv_id: P7
+- title: "HARKing: from Misunderstanding to Misprescription"
+  paper_slug: harking
+  venue: "ANPOSS/ENPOSS/POSS-RT Joint Conference"
+  city: "Tokyo"
+  date: "2021"
+  invited: false
+  video: ""
+  cv_id: P7
+- title: "Intervention and Backfire in the Replication Crisis"
+  paper_slug: ""
+  venue: "Philosophy of Science Association Biennial"
+  city: "Baltimore"
+  date: "2021"
+  invited: false
+  video: ""
+  cv_id: P6
+
+# 2020
+- title: "Intervention and Backfire in the Replication Crisis"
+  paper_slug: ""
+  venue: "Society for Philosophy of Science in Practice Biennial"
+  city: "Lansing"
+  date: "2020"
+  invited: false
+  video: ""
+  cv_id: P6
+- title: "Intervention and Backfire in the Replication Crisis"
+  paper_slug: ""
+  venue: "Public Choice Society Annual Meeting"
+  city: "Newport Beach"
+  date: "2020"
+  invited: true
+  video: ""
+  cv_id: P6
+- title: "Intervention and Backfire in the Replication Crisis"
+  paper_slug: ""
+  venue: "Philosophy of Social Science Round Table"
+  city: "Atlanta"
+  date: "2020"
+  invited: false
+  video: ""
+  cv_id: P6
+
+# 2019
+- title: "Intervention and Backfire in the Replication Crisis"
+  paper_slug: ""
+  venue: "12th Munich-Sydney-Tilburg/Turin (MuST) Conference in Philosophy of Science"
+  city: "Munich"
+  date: "2019"
+  invited: false
+  video: ""
+  cv_id: P6
+- title: "On the Emergence of Minority Disadvantage"
+  paper_slug: red-king
+  venue: "APA: Central Division Meeting"
+  city: "Denver"
+  date: "2019"
+  invited: true
+  video: ""
+  cv_id: P5
+- title: "On the Emergence of Minority Disadvantage"
+  paper_slug: red-king
+  venue: "APA: Pacific Division Meeting"
+  city: "Vancouver"
+  date: "2019"
+  invited: false
+  video: ""
+  cv_id: P5
+- title: "On the Emergence of Minority Disadvantage"
+  paper_slug: red-king
+  venue: "Agent-Based Models in Philosophy Conference"
+  city: "Bochum"
+  date: "2019"
+  invited: false
+  video: ""
+  cv_id: P5
+- title: "On the Emergence of Minority Disadvantage"
+  paper_slug: red-king
+  venue: "Philosophy, Politics & Economics Society Meeting"
+  city: "New Orleans"
+  date: "2019"
+  invited: true
+  video: ""
+  cv_id: P5
+
+# 2018
+- title: "On the Emergence of Minority Disadvantage"
+  paper_slug: red-king
+  venue: "Philosophy and Complex Systems Seminar"
+  city: "Moscow"
+  date: "2018"
+  invited: true
+  video: ""
+  cv_id: P5
+- title: "Truth and Conformity on Networks"
+  paper_slug: truth-and-conformity
+  venue: "Philosophy of Science Association Biennial"
+  city: "Seattle"
+  date: "2018"
+  invited: false
+  video: ""
+  cv_id: P4
+- title: "Truth and Conformity on Networks"
+  paper_slug: truth-and-conformity
+  venue: "Computational Modeling in Philosophy Conference"
+  city: "Munich"
+  date: "2018"
+  invited: false
+  video: ""
+  cv_id: P4
+- title: "Truth and Conformity on Networks"
+  paper_slug: truth-and-conformity
+  venue: "Formal Social Epistemology Workshop"
+  city: "Irvine"
+  date: "2018"
+  invited: true
+  video: ""
+  cv_id: P4
+- title: "Stochastic Stability and Disagreements Between Dynamics"
+  paper_slug: stochastic-stability
+  venue: "Generalized Theory of Evolution Conference"
+  city: "Düsseldorf"
+  date: "2018"
+  invited: false
+  video: ""
+  cv_id: P3
+
+# 2017
+- title: "Truth and Conformity on Networks"
+  paper_slug: truth-and-conformity
+  venue: "IMBS R. D. Luce Conference"
+  city: "Irvine"
+  date: "2017"
+  invited: false
+  video: ""
+  cv_id: P4
+- title: "Stochastic Stability and Disagreements Between Dynamics"
+  paper_slug: stochastic-stability
+  venue: "Infinite Idealizations in Science Conference"
+  city: "Munich"
+  date: "2017"
+  invited: false
+  video: ""
+  cv_id: P3
+
+# 2015
+- title: "Self-Assembling Networks"
+  paper_slug: self-assembling-networks
+  venue: "IMBS R. D. Luce Conference"
+  city: "Irvine"
+  date: "2015"
+  invited: false
+  video: ""
+  cv_id: P2
+- title: "Limitations of Equilibrium Concepts in Evolutionary Games"
+  paper_slug: equilibrium-concepts
+  venue: "International Society for History, Philosophy & Social Studies of Biology Biennial Meeting"
+  city: "Montreal"
+  date: "2015"
+  invited: false
+  video: ""
+  cv_id: P1
+- title: "Limitations of Equilibrium Concepts in Evolutionary Games"
+  paper_slug: equilibrium-concepts
+  venue: "Decisions, Games and Logic Conference"
+  city: "London"
+  date: "2015"
+  invited: false
+  video: ""
+  cv_id: P1

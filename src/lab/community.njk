@@ -1,0 +1,19 @@
+---
+layout: layouts/base.njk
+title: Community model test
+description: Test page for the network epistemology model.
+noindex: true
+permalink: /lab/community/
+eleventyExcludeFromCollections: true
+---
+{% from "partials/macros.njk" import section with context %}
+
+{% call section("Test", "test") %}
+<p>This page is for development. It mounts the community model: agents on a network try two actions, one slightly better than the other, and share their results with the agents they are linked to. With reduced motion turned on in the operating system, the model shows the final state of one run.</p>
+{% endcall %}
+
+{% call section("Model", "model", wide=true) %}
+<figure class="model" data-model="community" data-model-options='{"visibleDescription":true}' style="--aspect: 16 / 11">
+  <div class="model-mount"></div>
+</figure>
+{% endcall %}

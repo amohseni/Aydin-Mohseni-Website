@@ -1,0 +1,409 @@
+# Publications and works in progress.
+# Scope: every item in cv/amohseni.CV.tex (peer-reviewed, under review, in progress).
+# Citations for published works come from the Crossref record (see `verified`).
+# Order within each status: newest first, following the CV order.
+# `verify: true` marks a field or record that still needs Aydin's confirmation;
+# `verify_note` says what. Full source trail in docs/CONTENT-AUDIT.md.
+# Pre-print paths under /wp-content/uploads/ are the old WordPress paths, mirrored in src/wp-content/.
+
+# ---------------------------------------------------------------- published
+
+- slug: social-sciences-hard
+  title: "Why are the Social Sciences Hard? Two New Hypotheses"
+  authors: ["Aydin Mohseni", "Daniel A. Herrmann", "Gabe Avakian Orona"]
+  year: 2026
+  status: published
+  venue: "Studies in History and Philosophy of Science"
+  volume: "119"
+  issue: ""
+  pages: "102197"
+  article_number: "102197"
+  doi: "10.1016/j.shpsa.2026.102197"
+  links:
+    pdf: "/wp-content/uploads/2024/06/Herrmann-Mohseni-Orona-2024-Why-are-the-Human-Sciences-Hard.pdf"
+    journal: "https://doi.org/10.1016/j.shpsa.2026.102197"
+  strand: metascience
+  selected: true
+  summary: "Proposes two reasons the social sciences are hard: researchers are committed to a fixed set of prediction targets and cannot switch to more tractable ones, and human baseline performance on easy behavioral predictions is already high. Offers a formal framework for judging how hard a discipline is and how much its achievements mean."
+  exproof: ""
+  verified: crossref
+  verify_note: "Crossref prints the title in sentence case ('Why are the social sciences hard? Two new hypotheses'); title case here follows the CV. The pre-print PDF on the old site carries the earlier title 'Why are the Human Sciences Hard?' and the old author order Herrmann, Mohseni, Orona."
+
+- slug: role-of-modeling
+  title: "The Role of Modeling in Improving Science"
+  authors: ["Aydin Mohseni"]
+  year: "forthcoming"
+  status: published
+  forthcoming: true
+  commissioned: true
+  venue: "Philosophy Compass"
+  volume: ""
+  issue: ""
+  pages: ""
+  doi: ""
+  links: {}
+  strand: metascience
+  selected: false
+  summary: ""
+  exproof: ""
+  verified: cv
+  verify: true
+  verify_note: "No Crossref record found (query 30 Oct 2026). Citation from the CV only; commissioned article. No summary source available."
+
+- slug: methods-for-modelers
+  title: "Methods for Modelers of Science"
+  authors: ["Aydin Mohseni"]
+  year: 2025
+  status: published
+  bibtype: incollection
+  venue: "Methods in the Philosophy of Science: A User's Guide"
+  editors: ["Sophie J. Veigl", "Adrian Currie"]
+  publisher: "The MIT Press"
+  volume: ""
+  issue: ""
+  pages: "485-506"
+  doi: "10.7551/mitpress/15452.003.0036"
+  links:
+    pdf: "/wp-content/uploads/2024/06/Mohseni-2023-Methods-for-Modelers-of-Science.pdf"
+    journal: "https://doi.org/10.7551/mitpress/15452.003.0036"
+  strand: metascience
+  selected: false
+  summary: "A guide for philosophers and metascientists who model science: the implicit know-how of modeling, and the challenges and good practices of studying the social and epistemic structure of research."
+  exproof: ""
+  verified: crossref
+
+- slug: best-paper
+  title: "The Best Paper You'll Read Today: Media Biases and the Public Understanding of Science"
+  authors: ["Aydin Mohseni", "Cailin O'Connor", "James Owen Weatherall"]
+  year: 2022
+  status: published
+  venue: "Philosophical Topics"
+  volume: "50"
+  issue: "2"
+  pages: "127-153"
+  doi: "10.5840/philtopics202250220"
+  links:
+    pdf: "/wp-content/uploads/2024/06/Mohseni-et-al-2023-Media-Biases-and-the-Public-Understanding-of-Science.pdf"
+    journal: "https://doi.org/10.5840/philtopics202250220"
+    model: "https://amohseni.shinyapps.io/Reporting-and-Bias-Beta/"
+    code: "https://github.com/amohseni/ConfirmationBias-News-BeliefPolarization"
+    preprint: "https://doi.org/10.31222/osf.io/hpks9"
+  strand: metascience
+  selected: true
+  summary: "Computational models of how journalists' selection and sharing of scientific evidence shape public belief. Standard practices can distort belief substantially, existing errors can compound, some practices that look harmless do real epistemic harm, and some drive polarization."
+  exproof: ""
+  verified: crossref
+  verify_note: "Crossref issued year is 2022 (vol. 50, no. 2). The CV says 2024 and the old site 2023; confirm which year Aydin wants shown. The MetaArXiv preprint (2023) lists the authors as O'Connor, Weatherall, Mohseni and says 'Media Bias' (singular)."
+
+- slug: ai-commons
+  title: "The Tragedy of the AI Commons"
+  authors: ["Travis LaCroix", "Aydin Mohseni"]
+  year: 2022
+  status: published
+  venue: "Synthese"
+  volume: "200"
+  issue: "4"
+  pages: "289"
+  article_number: "289"
+  doi: "10.1007/s11229-022-03763-2"
+  links:
+    pdf: "/wp-content/uploads/2022/05/LaCroix-Mohseni-2022-Tragedy-of-the-AI-Commons.pdf"
+    journal: "https://doi.org/10.1007/s11229-022-03763-2"
+    arxiv: "2006.05203"
+    model: "https://amohseni.shinyapps.io/tragedies-of-the-commons/"
+    code: "https://github.com/amohseni/Tragedies-of-the-Commons"
+  strand: ai-safety
+  selected: true
+  summary: "Treats compliance with AI ethics guidelines as a social dilemma, modeled with stochastic evolutionary game dynamics. Stochastic effects can make cooperation viable, which suggests coordinating in smaller groups where cooperation is cheap and the risk of failure is high."
+  exproof: ""
+  verified: crossref
+  verify_note: "CV gives 2023; Crossref published online and issued 2022-07-06. arXiv id from exproof.ai publications.html."
+
+- slug: truth-and-conformity
+  title: "Truth and Conformity on Networks"
+  authors: ["Aydin Mohseni", "Cole Randall Williams"]
+  year: 2021
+  status: published
+  venue: "Erkenntnis"
+  volume: "86"
+  issue: "6"
+  pages: "1509-1530"
+  doi: "10.1007/s10670-019-00167-6"
+  links:
+    pdf: "/wp-content/uploads/2019/09/Mohseni-and-Williams-2019-Truth-and-Conformity-on-Networks.pdf"
+    journal: "https://doi.org/10.1007/s10670-019-00167-6"
+    model: "https://amohseni.shinyapps.io/Truth-and-Conformity-on-Networks/"
+    code: "https://github.com/amohseni/Truth-and-Conformity-on-Networks"
+    slides: "/wp-content/uploads/2019/10/SlidesTruthAndConformity.pdf"
+  strand: metascience
+  selected: true
+  summary: "Agents learn by Bayesian conditionalization from private evidence and from what their neighbors say, while trading accuracy against conformity. Networks that sustain a diversity of opinion support honest communication and reliable true belief; less centralized and less connected networks do best."
+  exproof: ""
+  verified: crossref
+
+- slug: red-king
+  title: "On the Emergence of Minority Disadvantage: Testing the Cultural Red King Hypothesis"
+  authors: ["Aydin Mohseni", "Cailin O'Connor", "Hannah Rubin"]
+  year: 2021
+  status: published
+  venue: "Synthese"
+  volume: "198"
+  issue: "6"
+  pages: "5599-5621"
+  doi: "10.1007/s11229-019-02424-1"
+  links:
+    pdf: "/wp-content/uploads/2019/09/Mohseni-OConnor-Rubin-2020-Red-King-Experiment.pdf"
+    journal: "https://doi.org/10.1007/s11229-019-02424-1"
+    data: "https://osf.io/mtc9f/"
+    slides: "/wp-content/uploads/2019/10/SlidesEmergenceOfMinorityDisadvantage.pdf"
+  strand: methods
+  selected: true
+  summary: "Tests whether a difference in group size alone can produce inequitable outcomes for a minority, without explicit or implicit bias. In experiments with 112 participants playing a repeated Nash demand game, members of the minority group made low demands more often and received lower payoffs."
+  exproof: ""
+  verified: crossref
+  verify_note: "Crossref: online 2019-10-25, print 2021-06, vol. 198 no. 6. CV gives 2019 and issue 2. Year shown is the print year; confirm."
+
+- slug: self-assembling-networks
+  title: "Self-Assembling Networks"
+  authors: ["Jeffrey A. Barrett", "Brian Skyrms", "Aydin Mohseni"]
+  year: 2019
+  status: published
+  venue: "The British Journal for the Philosophy of Science"
+  volume: "70"
+  issue: "1"
+  pages: "301-325"
+  doi: "10.1093/bjps/axx039"
+  links:
+    pdf: "/wp-content/uploads/2019/01/Barret-Skyrms-Mohseni-2018-Self-Assembling-Networks.pdf"
+    journal: "https://doi.org/10.1093/bjps/axx039"
+    model: "https://amohseni.shinyapps.io/Self-Assembling-Networks/"
+    code: "https://github.com/amohseni/Self-Assembling-Networks"
+  strand: metascience
+  selected: false
+  summary: "How an epistemic network might form from the reinforcement-learning decisions of inquirers who differ in ability. Such networks can outperform solitary inquiry and reduce epistemic risk; the paper compares them under perfect and imperfect communication."
+  exproof: ""
+  verified: crossref
+  verify_note: "CV says 'British Journal of Philosophy of Science' 70(2); Crossref says 'The British Journal for the Philosophy of Science' 70(1)."
+
+- slug: stochastic-stability
+  title: "Stochastic Stability and Disagreements between Dynamics"
+  authors: ["Aydin Mohseni"]
+  year: 2019
+  status: published
+  venue: "Philosophy of Science"
+  volume: "86"
+  issue: "3"
+  pages: "497-521"
+  doi: "10.1086/703581"
+  links:
+    pdf: "/wp-content/uploads/2019/09/Mohseni-2019-Stochastic-Stability.pdf"
+    journal: "https://doi.org/10.1086/703581"
+    model: "https://amohseni.shinyapps.io/Moran-Process"
+    code: "https://github.com/amohseni/Frequency-Dependent-Moran-Process"
+    slides: "/wp-content/uploads/2019/10/SlidesStochasticStabiility.pdf"
+  strand: methods
+  selected: true
+  summary: "The replicator dynamics and the Moran process can make different predictions. The paper traces the divergence to standard analytic techniques and to the idealizations each model makes, identifies problems for stochastic stability analysis in a broad class of games, and identifies a domain where the two dynamics agree."
+  exproof: ""
+  verified: crossref
+  verify_note: "Crossref writes 'between' in lower case; the CV writes 'Between'."
+
+# ---------------------------------------------------------------- under review
+
+- slug: bayesian-causation
+  title: "A Bayesian Reduction of Causation"
+  authors: ["Daniel A. Herrmann", "Aydin Mohseni", "Benjamin A. Levinstein", "Bruce Rushing"]
+  year: 2026
+  status: under-review
+  venue: ""
+  links:
+    pdf: "/wp-content/uploads/2026/03/A_Bayesian_Reduction_of_Causation.pdf"
+  strand: ai-safety
+  selected: true
+  summary: "Causal reasoning in structural causal models reduces to subjective probability once interventions are treated as events in the world, with a de Finetti-style representation theorem."
+  exproof: "https://exproof.ai/naturalizing-agency.html"
+  verified: cv
+
+- slug: value-of-value-learning
+  title: "Learning the Value of Value Learning"
+  authors: ["Alex John London", "Aydin Mohseni"]
+  year: 2025
+  status: under-review
+  venue: ""
+  links:
+    arxiv: "2511.17714"
+  strand: ai-safety
+  selected: true
+  summary: "Extends the Jeffrey-Bolker framework so that values, not only factual beliefs, can be refined, and proves a value-of-information theorem for this refinement. Between agents, mutual refinement tends to turn zero-sum games into positive-sum ones and can yield Pareto improvements in Nash bargaining."
+  exproof: "https://exproof.ai/value-uncertainty.html"
+  verified: arxiv
+  verify_note: "arXiv lists Alex John London (the CV and exproof.ai write 'A. J. London' / 'Alex J. London'). First submitted 2025-11-21, v5 2026-04-13; the old site dates it 2026."
+
+- slug: harking
+  title: "HARKing: from Misunderstanding to Misprescription"
+  authors: ["Aydin Mohseni"]
+  year: 2020
+  status: under-review
+  revise_and_resubmit: true
+  venue: ""
+  links:
+    pdf: "/wp-content/uploads/2020/11/Mohseni-2020-HARKing-from-Misdiagnosis-to-Misprescription-2.pdf"
+    philsci: "https://philsci-archive.pitt.edu/18523"
+    model: "https://amohseni.shinyapps.io/Reporting-Protocols-and-the-Reliability-of-Science/"
+  strand: metascience
+  selected: true
+  summary: "The usual explanations of why hypothesizing after the results are known (HARKing) harms reliability are mistaken. Its effect depends on how the prior probabilities of hypotheses chosen before and after seeing the data differ, and misdiagnosing it leads to poor reforms."
+  exproof: ""
+  verified: cv
+  verify: true
+  verify_note: "Title per CV ('Misunderstanding'). The old site, the PDF file name and PhilSci-Archive (2020 preprint, deposited 18 Dec 2020) use 'From Misdiagnosis to Misprescription'. Revise and resubmit per CV."
+
+- slug: replication-simpsons
+  title: "Replication, Reform, and an Interventional Simpson's Paradox"
+  authors: ["Aydin Mohseni"]
+  year: ""
+  status: under-review
+  venue: ""
+  links: {}
+  strand: metascience
+  selected: false
+  summary: ""
+  exproof: ""
+  verified: cv
+  verify: true
+  verify_note: "No source for a summary. Possibly the successor of the old site's 'Intervention and Backfire in the Replication Crisis' (CV talk P6); not assumed."
+
+- slug: equilibrium-concepts
+  title: "Limitations of Equilibrium Concepts in Evolutionary Games"
+  authors: ["Aydin Mohseni"]
+  year: 2019
+  status: under-review
+  venue: ""
+  links:
+    pdf: "/wp-content/uploads/2019/09/Mohseni-2019-Limits-of-Equilibrium-Concepts.pdf"
+    slides: "/wp-content/uploads/2019/10/SlidesLimitsOfECinEGT.pdf"
+  strand: methods
+  selected: true
+  summary: "Gives an explicit definition of evolutionary significance and uses it to show that proposed equilibrium refinements make errors of omission or commission, even under favorable assumptions."
+  exproof: ""
+  verified: cv
+  verify_note: "PhilSci-Archive lists a 2019 preprint 'The Limitations of Equilibrium Concepts in Evolutionary Games' (item URL not retrieved)."
+
+# ---------------------------------------------------------------- in progress
+
+- slug: automated-safety-research
+  title: "Bayes-Optimal Automated AI Safety Research via Judgement Aggregation under Resource Constraints"
+  authors: ["Aydin Mohseni", "Kevin J. S. Zollman", "Simon DeDeo"]
+  year: ""
+  status: in-progress
+  venue: ""
+  links: {}
+  strand: ai-safety
+  selected: false
+  summary: ""
+  exproof: ""
+  verified: cv
+  verify: true
+  verify_note: "exproof.ai lists a related working paper 'Bayes-Optimal Research Protocols for Automated Research' by Mohseni and DeDeo only ('How to allocate compute across research directions when AI systems do the research.'). Same project? Title and authors differ; summary left blank."
+
+- slug: bayesian-grant-funding
+  title: "A Bayesian Model of Grant Funding"
+  authors: ["Aydin Mohseni", "Kevin J. S. Zollman", "Simon DeDeo"]
+  year: ""
+  status: in-progress
+  venue: ""
+  links: {}
+  strand: metascience
+  selected: false
+  summary: ""
+  exproof: ""
+  verified: cv
+  verify: true
+  verify_note: "CV lists W7 'A Bayesian Model of Grant Funding' and W6 'A Bayesian Model of Optimal Grant Funding' with the same authors. Confirm these are two papers."
+
+- slug: optimal-grant-funding
+  title: "A Bayesian Model of Optimal Grant Funding"
+  authors: ["Aydin Mohseni", "Kevin J. S. Zollman", "Simon DeDeo"]
+  year: ""
+  status: in-progress
+  venue: ""
+  links:
+    model: "https://amohseni.shinyapps.io/Grant-Funding-and-Scientific-Output-Model/"
+    code: "https://github.com/amohseni/Grant-Funding-and-Scientific-Output-Model"
+  strand: metascience
+  selected: true
+  summary: "A Bayesian model of grant funding in which research output depends on both talent and resources, and funding compounds talent over time. The optimal allocation funds the gap between capabilities and resources; the model compares strategies from peer review to uniform seed funding."
+  exproof: ""
+  verified: cv
+  verify: true
+  verify_note: "Summary and model links come from the old Computational Models page ('Optimal Grant Funding for Scientific Production'). The link between that model and this paper (rather than W7) is an inference."
+
+- slug: principal-agent
+  title: "AI Alignment as a Principal-Agent Problem"
+  authors: ["Aydin Mohseni", "L. G. Demo"]
+  year: ""
+  status: in-progress
+  venue: ""
+  links: {}
+  strand: ai-safety
+  selected: true
+  summary: "Models AI alignment as a principal-agent problem, with formal models of delegation, incentives and misalignment between a principal and a more capable agent. Agents that optimize for reward rather than for the principal's intentions can outperform aligned agents."
+  exproof: "https://exproof.ai/delegation.html"
+  verified: cv
+  verify_note: "Summary combines exproof.ai delegation.html and the old Research page. The old page linked a placeholder URL (/research/PREPRINT-URL-IF-ANY); no pre-print exists."
+
+- slug: goodmans-riddle
+  title: "Goodman's Riddle & the Replicability of Interaction Effects"
+  authors: ["Aydin Mohseni"]
+  year: ""
+  status: in-progress
+  venue: ""
+  links: {}
+  strand: metascience
+  selected: false
+  summary: ""
+  exproof: ""
+  verified: cv
+
+- slug: changing-norms
+  title: "Changing Scientific Norms: Epistemic Trade-Offs from Classical and Bayesian Perspectives"
+  authors: ["Aydin Mohseni"]
+  year: ""
+  status: in-progress
+  venue: ""
+  links: {}
+  strand: metascience
+  selected: false
+  summary: ""
+  exproof: ""
+  verified: cv
+
+- slug: rationality-nash
+  title: "The Rationality of Nash Equilibria"
+  authors: ["Aydin Mohseni", "Simon Huttegger"]
+  year: ""
+  status: in-progress
+  venue: ""
+  links:
+    model: "https://amohseni.shinyapps.io/Near-Zero-Sum-Game/"
+    code: "https://github.com/amohseni/Near-Zero-Sum-Game"
+  strand: methods
+  selected: true
+  summary: "Reconciles Kalai and Lehrer's result on Bayesian learning of Nash equilibrium with Foster and Young's impossibility theorem, and argues that Bayesian learning gives a more robust justification of Nash play than Foster and Young suggest."
+  exproof: ""
+  verified: cv
+  verify: true
+  verify_note: "Summary and links from the old site's entry 'Are Nash Equilibria Rational?' (Mohseni and Huttegger), assumed to be this paper under its CV title."
+
+- slug: intermediate-regimes
+  title: "Stochasticity and Intermediate Evolutionary Regimes"
+  authors: ["Aydin Mohseni"]
+  year: ""
+  status: in-progress
+  venue: ""
+  links: {}
+  strand: methods
+  selected: false
+  summary: ""
+  exproof: ""
+  verified: cv

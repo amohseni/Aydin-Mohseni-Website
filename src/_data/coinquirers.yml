@@ -1,0 +1,118 @@
+# Co-inquirers: Aydin's co-authors, with the works they share (slugs in publications.yml).
+# `name` is the exact string used in publications.yml author lists (the `work` macro matches on it);
+# `display` is the short form for the home page. URLs: exproof.ai README name-URL table, or
+# fetched and confirmed on 30 Oct 2026 (`url_source`). Blank url = no confirmed personal page.
+# `constant: true` marks a suggested short list for the home page (editorial; Aydin to confirm).
+
+- name: "Daniel A. Herrmann"
+  display: "Daniel Herrmann"
+  url: "https://www.danielherrmann.ca/"
+  url_source: exproof-readme
+  works: [social-sciences-hard, bayesian-causation]
+  also: "Co-directs ∃xProof AI; co-organized the AI Agency & Interpretability Workshop (2026); co-presented 'Virtues and Vices of Analytic Philosophy with Respect to AI Safety' (ILIAD 2026)."
+  exproof: "https://exproof.ai/"
+  constant: true
+
+- name: "Cailin O'Connor"
+  display: "Cailin O'Connor"
+  url: "http://cailinoconnor.com"
+  url_source: old-site, fetched
+  works: [best-paper, red-king]
+  also: "PhD co-chair (with Simon Huttegger)."
+  constant: true
+
+- name: "Kevin J. S. Zollman"
+  display: "Kevin Zollman"
+  url: "https://www.kevinzollman.com/"
+  url_source: "CMU faculty page, fetched"
+  works: [automated-safety-research, bayesian-grant-funding, optimal-grant-funding]
+  also: "MS thesis chair (CMU, 2015)."
+  constant: true
+
+- name: "Simon DeDeo"
+  display: "Simon DeDeo"
+  url: "https://www.cmu.edu/dietrich/sds/people/faculty/simon-dedeo.html"
+  url_source: exproof-readme
+  works: [automated-safety-research, bayesian-grant-funding, optimal-grant-funding]
+  constant: true
+
+- name: "Alex John London"
+  display: "Alex J. London"
+  url: "https://www.cmu.edu/dietrich/philosophy/people/faculty/london.html"
+  url_source: exproof-readme
+  works: [value-of-value-learning]
+  constant: true
+
+- name: "Simon Huttegger"
+  display: "Simon Huttegger"
+  url: "https://faculty.sites.uci.edu/shuttegg/"
+  url_source: old-site, fetched
+  works: [rationality-nash]
+  also: "PhD co-chair (with Cailin O'Connor)."
+  constant: false
+
+- name: "Benjamin A. Levinstein"
+  display: "Ben Levinstein"
+  url: "https://www.levinstein.org/"
+  url_source: exproof-readme
+  works: [bayesian-causation]
+  constant: false
+
+- name: "Bruce Rushing"
+  display: "Bruce Rushing"
+  url: "https://brucemrushing.com/"
+  url_source: exproof-readme
+  works: [bayesian-causation]
+  constant: false
+
+- name: "James Owen Weatherall"
+  display: "James Owen Weatherall"
+  url: "https://jamesowenweatherall.com/"
+  url_source: fetched
+  works: [best-paper]
+  constant: false
+
+- name: "Travis LaCroix"
+  display: "Travis LaCroix"
+  url: "https://durham.ac.uk/staff/travis-lacroix"
+  url_source: exproof-readme
+  works: [ai-commons]
+  constant: false
+
+- name: "Jeffrey A. Barrett"
+  display: "Jeffrey Barrett"
+  url: "https://faculty.sites.uci.edu/jeffreybarrett/"
+  url_source: fetched
+  works: [self-assembling-networks]
+  constant: false
+
+- name: "Brian Skyrms"
+  display: "Brian Skyrms"
+  url: ""
+  works: [self-assembling-networks]
+  constant: false
+
+- name: "Hannah Rubin"
+  display: "Hannah Rubin"
+  url: ""
+  works: [red-king]
+  constant: false
+
+- name: "Cole Randall Williams"
+  display: "Cole Williams"
+  url: ""
+  works: [truth-and-conformity]
+  constant: false
+
+- name: "Gabe Avakian Orona"
+  display: "Gabe Avakian Orona"
+  url: ""
+  works: [social-sciences-hard]
+  constant: false
+
+- name: "L. G. Demo"
+  display: "L. G. Demo"
+  url: ""
+  url_note: "exproof.ai README: no confirmed URL."
+  works: [principal-agent]
+  constant: false

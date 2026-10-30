@@ -1,0 +1,208 @@
+---
+layout: layouts/base.njk
+title: Style guide
+description: Every component of the site's design system on one page, for checking layout, type and color.
+permalink: /styleguide/
+noindex: true
+eleventyExcludeFromCollections: true
+---
+{%- from "partials/macros.njk" import section, sidenote, marginnote, work, featuredWork, talk, model with context -%}
+{#- Sample text only. Nothing on this page is a claim about Aydin or his work. -#}
+<section class="hero page-head" aria-labelledby="sg-title">
+  <p class="eyebrow">Style guide</p>
+  <h1 id="sg-title">Components of the design system</h1>
+  <p class="who"><a href="#text">Text</a> · <a href="#notes">Margin notes</a> · <a href="#works">Works</a> · <a href="#table">Table</a> · <a href="#figure">Figures</a> · <a href="#controls">Controls</a> · <a href="#wide">Wide sections</a></p>
+</section>
+
+<section class="hero" aria-labelledby="sg-intro">
+  <p class="eyebrow" id="sg-intro">Intro</p>
+  <div class="intro">
+    <img class="intro-photo" src="{{ '/assets/img/mohseni.jpg' | url }}" alt="Sample portrait" width="360" height="360">
+    <div class="intro-text">
+      <p class="tagline">A one-line tagline sits beside the photo</p>
+      <p class="bio">The home page opens with a portrait and a short paragraph. The eyebrow on the left lines up with the top of the photo. On phones the photo stacks above the text.</p>
+    </div>
+  </div>
+</section>
+
+{% call section("Text", "text") %}
+<p class="question">A question set larger than body text opens a section.</p>
+<p>Body text is CMU Serif at 1.15rem with a line height of 1.5, in a column up to 34rem wide, which holds about 65 characters. Links are ink at rest and turn <a href="#text">red on hover</a>. <i>Italic</i> marks emphasis, titles and terms being defined; <b>bold</b> is rare. Inline <code>code</code> is set in CMU Typewriter Text.</p>
+<p class="scheme">A formal statement: <var>x</var><sub>i</sub>&prime; = <var>x</var><sub>i</sub>((<var>Ax</var>)<sub>i</sub> &minus; <var>x</var> &middot; <var>Ax</var>).</p>
+<h3>A subheading in italic</h3>
+<p>Lists inside the text column:</p>
+<ul>
+  <li>First item of a plain list.</li>
+  <li>Second item, long enough to wrap onto a second line so the hanging indent and the spacing between items can be checked.</li>
+</ul>
+<blockquote>
+  <p>A short quotation is indented from the text column and set at body size.</p>
+  <footer>Attribution line, in CMU Sans Serif</footer>
+</blockquote>
+<details class="expand">
+  <summary>More</summary>
+  <div class="expand-body"><p>Longer text opens in place under a "More" toggle.</p></div>
+</details>
+<p class="more"><a href="#top">A closing note sits midway</a></p>
+{% endcall %}
+
+{% call section("Margin notes", "notes") %}
+<p>A numbered sidenote sits in the margin column beside the line it annotates.{{ sidenote("sn-1", "Sidenotes are numbered automatically. On phones the number becomes a toggle that opens the note in place.") }} A second paragraph continues the text so the note has room to sit beside it, and an unnumbered margin note follows.{{ marginnote("mn-1", "A margin note has no number. On phones it opens from a small red plus.") }}</p>
+<p>The rail label on the left stays pinned below the menu while the section scrolls, and its capitals line up with the capitals of the first line beside it.{{ sidenote("sn-2", "A second sidenote, to check that notes stack without overlapping.") }}</p>
+{% endcall %}
+
+{% call section("Works", "works") %}
+<ol class="works">
+  {{ work({
+    slug: "sample-published",
+    title: "Sample Title of a Published Paper",
+    authors: ["Author One", "Aydin Mohseni"],
+    year: 2025, status: "published", venue: "Journal Name", volume: 12, issue: 3, pages: "101-130",
+    doi: "10.0000/sample",
+    links: { pdf: "/assets/files/sample.pdf", code: "https://github.com/amohseni" },
+    summary: "A one- or two-sentence summary of the work, taken from its abstract."
+  }, people=[{ name: "Author One", url: "#works" }], kind="Paper", cite=true) }}
+  {{ work({
+    slug: "sample-review",
+    title: "Sample Title of a Paper under Review",
+    authors: ["Aydin Mohseni", "Author Two", "Author Three"],
+    year: 2026, status: "under-review",
+    links: { arxiv: "0000.00000" },
+    summary: "Entries without a venue show only their authors, summary and links."
+  }, kind="Paper") }}
+  {{ talk({ title: "Sample Talk Title", venue: "Sample Workshop", city: "City", date: "2026-03-05", invited: true, video: "#works" }) }}
+</ol>
+{% endcall %}
+
+{% call section("Featured", "featured") %}
+<ul class="featured">
+  {{ featuredWork({ slug: "sample-published", title: "Sample Title of a Published Paper", venue: "Journal Name", year: 2025, summary: "The short form used for selected work on the home page." }) }}
+  {{ featuredWork({ slug: "sample-review", title: "Sample Title of a Paper under Review", year: 2026, summary: "Without a venue the year stands alone." }) }}
+</ul>
+<p class="more"><a href="#works">All works</a></p>
+{% endcall %}
+
+{% call section("Dates", "dates") %}
+<dl class="timeline">
+  <dt>2020 to now</dt><dd>Position title<br><span class="secondary">Institution</span></dd>
+  <dt>2015</dt><dd>Degree<br><span class="secondary">Institution</span></dd>
+</dl>
+{% endcall %}
+
+{% call section("Table", "table") %}
+<p>Tables fit the text column; a wider table scrolls sideways inside it.</p>
+<figure aria-labelledby="tab-1-cap">
+  <div class="table-wrap">
+    <table class="compare">
+      <thead><tr><th>Row</th><th>Column one</th><th class="num">Value</th></tr></thead>
+      <tbody>
+        <tr><th>First</th><td>Short entry</td><td class="num">0.16</td></tr>
+        <tr><th>Second</th><td>A longer entry that wraps within its cell</td><td class="num">12</td></tr>
+        <tr><th>Third</th><td>Entry</td><td class="num">2,048</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <figcaption id="tab-1-cap"><span class="label">Table 1</span>Captions are labeled by kind and numbered within the page.</figcaption>
+</figure>
+{% endcall %}
+
+{% call section("Figures", "figure") %}
+<p>A live model mounts into a figure. If its module is missing, a plain notice takes its place.</p>
+{{ model("chaos", caption="A live model, mounted by site.js from <code>data-model</code>.", number=1, options={ mode: "hero" }) }}
+<figure aria-labelledby="fig-2-cap">
+  <svg viewBox="0 0 400 220" role="img" aria-label="A placeholder drawing: a triangle with a curve inside it" style="width:100%;height:auto;display:block">
+    <path d="M200 20 L380 200 H20 Z" fill="none" stroke="var(--chalk)" stroke-width="1.2"/>
+    <path d="M90 180 C150 60, 260 60, 310 180" fill="none" stroke="var(--rule-strong)" stroke-width="1"/>
+    <circle cx="200" cy="96" r="4" fill="var(--red-bright)"/>
+  </svg>
+  <figcaption id="fig-2-cap"><span class="label">Figure 2</span>A static figure. Strokes use <code>--chalk</code>, marks use red.</figcaption>
+</figure>
+{% endcall %}
+
+{% call section("Controls", "controls") %}
+<p>Buttons and filters share one style: small capitals in CMU Sans Serif with a hairline border. The active one carries a red underline.</p>
+<div class="filters" role="group" aria-label="Filter sample">
+  <button type="button" data-filter="all" aria-pressed="true">All</button>
+  <button type="button" data-filter="paper" aria-pressed="false">Papers</button>
+  <button type="button" data-filter="talk" aria-pressed="false">Talks</button>
+</div>
+<p><a class="btn" href="#controls">Link button</a> <button class="btn" type="button">Button</button> <button class="btn" type="button" disabled>Disabled</button></p>
+<figure class="model" aria-label="Sample model controls">
+  <div class="model-controls">
+    <button type="button">Restart</button>
+    <span class="segmented"><button type="button" aria-pressed="true">Neighbors</button><button type="button" aria-pressed="false">Everyone</button></span>
+    <label>Speed <input type="range" min="0" max="10" value="5"></label>
+    <label><input type="checkbox"> Rotate</label>
+    <span>Step <output class="readout">128</output></span>
+  </div>
+  <details class="how">
+    <summary>How it works</summary>
+    <p>Each model has a "How it works" disclosure under its controls, set at a slightly smaller size than body text.</p>
+  </details>
+</figure>
+<p><span class="status active">Active mark</span> &nbsp; <span class="status out">Filled mark</span> &nbsp; <span class="status">Open mark</span></p>
+<ul class="addresses">
+  <li><span class="who">Email</span><span class="addr">name [at] example [dot] edu</span></li>
+</ul>
+{% endcall %}
+
+{% call section("Verse", "verse") %}
+<blockquote class="verse"><p>Verse keeps its line breaks,
+each line as written,
+and stanzas are separated by space.</p><p>A second stanza
+follows the first.</p><footer>Attribution for a quoted poem</footer></blockquote>
+{% endcall %}
+
+{% call section("Strands", "wide", wide=true) %}
+<div class="areas">
+  <div class="area"><h3><a href="#wide">First strand</a></h3><p>A wide section spans the text and margin columns. Use it only for grids of short, parallel items.</p></div>
+  <div class="area"><h3><a href="#wide">Second strand</a></h3><p>Three columns on wide screens, one under 860px.</p></div>
+  <div class="area"><h3><a href="#wide">Third strand</a></h3><p>Each item carries a title and one or two sentences.</p></div>
+</div>
+{% endcall %}
+
+{% call section("Cards", "cards", wide=true) %}
+<ul class="cards">
+  {%- for i in [1, 2, 3] %}
+  <li class="card">
+    <svg class="card-thumb" viewBox="0 0 160 100" role="img" aria-label="Thumbnail placeholder"><path d="M80 14 L140 86 H20 Z" fill="none" stroke="var(--chalk)" stroke-width="0.8"/></svg>
+    <h3><a href="#cards">Model title {{ i }}</a></h3>
+    <p>One sentence on what the model shows.</p>
+    <p class="work-links"><a href="#cards">App</a><a href="#cards">Code</a><a href="#cards">Paper</a></p>
+  </li>
+  {%- endfor %}
+</ul>
+{% endcall %}
+
+{% call section("People", "people", wide=true) %}
+<div class="people">
+  <div class="person">
+    <div class="person-head">
+      <a class="portrait-link" href="#people" tabindex="-1" aria-hidden="true"><img class="portrait" src="{{ '/assets/img/mohseni.jpg' | url }}" alt="" width="360" height="360" loading="lazy"></a>
+      <div class="person-id">
+        <h3><a href="#people">Person name</a></h3>
+        <p class="role">Role, Institution</p>
+      </div>
+    </div>
+    <p>A sentence about shared work.</p>
+  </div>
+  <div class="person">
+    <div class="person-head">
+      <div class="person-id">
+        <h3>Person without a portrait</h3>
+        <p class="role">Role, Institution</p>
+      </div>
+    </div>
+    <p>Names without a confirmed URL stay unlinked.</p>
+  </div>
+</div>
+{% endcall %}
+
+{% call section("Names", "names") %}
+<ul class="names">
+  <li><a href="#names">Co-inquirer name</a><span class="d">Title of shared work</span></li>
+  <li>Unlinked name<span class="d">Title of shared work</span></li>
+  <li><a href="#names">Third name</a><span class="d">Two shared works</span></li>
+  <li><a href="#names">Fourth name</a><span class="d">Title of shared work</span></li>
+</ul>
+{% endcall %}

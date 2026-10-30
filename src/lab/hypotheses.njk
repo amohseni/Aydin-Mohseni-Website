@@ -1,0 +1,19 @@
+---
+layout: layouts/base.njk
+title: Hypothesis refinement model test
+description: Test page for the hypothesis-space refinement model.
+noindex: true
+permalink: /lab/hypotheses/
+eleventyExcludeFromCollections: true
+---
+{% from "partials/macros.njk" import section with context %}
+
+{% call section("Test", "test") %}
+<p>This page is for development. It mounts the hypothesis-space refinement model. With reduced motion turned on in the operating system, the model shows a single still frame.</p>
+{% endcall %}
+
+{% call section("Hypotheses", "hypotheses", wide=true) %}
+<figure class="model" data-model="hypotheses" data-model-options='{"visibleDescription":true}' style="--aspect: 16 / 10">
+  <div class="model-mount"></div>
+</figure>
+{% endcall %}
