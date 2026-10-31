@@ -41,7 +41,7 @@ description: "Papers and talks by Aydin Mohseni on AI safety, metascience, and m
 {% call section("In progress", "in-progress") %}
 <ol class="works">
   {%- for w in progress %}
-  {{ work(w, people=coinquirers, kind="Paper") }}
+  {{ work(w, people=coinquirers, kind="Paper", cite=true) }}
   {%- endfor %}
 </ol>
 {% endcall %}
@@ -55,7 +55,7 @@ description: "Papers and talks by Aydin Mohseni on AI safety, metascience, and m
     <div class="work-meta"><span class="year">{{ t.date | formatDate }}</span><span class="type">{{ "Invited talk" if t.invited else "Talk" }}</span></div>
     <div>
       <p class="work-title">{% if t.paper_slug %}<a href="#pub-{{ t.paper_slug }}">{{ t.title }}</a>{% else %}{{ t.title }}{% endif %}</p>
-      <p class="work-summary">{{ t.venue }}, {{ t.city }}{% if t.with and t.with.length %}. With {{ t.with | join(" and ") }}{% endif %}.</p>
+      <p class="work-summary">{{ t.venue }}, {{ t.city }}{% if t.with and t.with.length %}. With {% for nm in t.with %}{% if not loop.first %} and {% endif %}{% set u = nm | personUrl(coinquirers) %}{% if u %}<a href="{{ u }}">{{ nm }}</a>{% else %}{{ nm }}{% endif %}{% endfor %}{% endif %}.</p>
     </div>
   </li>
   {%- endfor %}
@@ -74,7 +74,7 @@ description: "Papers and talks by Aydin Mohseni on AI safety, metascience, and m
       <p class="work-title">{% if g.paper_slug %}<a href="#pub-{{ g.paper_slug }}">{{ g.title }}</a>{% else %}{{ g.title }}{% endif %}</p>
       <ul class="occasions">
         {%- for t in g.occasions %}
-        <li{% if t.verify %} data-verify="{{ t.verify_note }}"{% endif %}>{{ t.venue }}, {{ t.city }}, <span class="nw">{{ t.date | formatDate }}{% if t.upcoming %} (upcoming){% endif %}{% if t.invited %} <span class="inv">invited</span>{% endif %}{% if t.video %} <a class="vid" href="{{ t.video }}">Video</a>{% endif %}</span>{% if t.with and t.with.length %} <span class="inv nw">with {{ t.with | join(" and ") }}</span>{% endif %}</li>
+        <li{% if t.verify %} data-verify="{{ t.verify_note }}"{% endif %}>{{ t.venue }}, {{ t.city }}, <span class="nw">{{ t.date | formatDate }}{% if t.upcoming %} (upcoming){% endif %}{% if t.invited %} <span class="inv">invited</span>{% endif %}{% if t.video %} <a class="vid" href="{{ t.video }}">Video</a>{% endif %}</span>{% if t.with and t.with.length %} <span class="inv nw">with {% for nm in t.with %}{% if not loop.first %} and {% endif %}{% set u = nm | personUrl(coinquirers) %}{% if u %}<a href="{{ u }}">{{ nm }}</a>{% else %}{{ nm }}{% endif %}{% endfor %}</span>{% endif %}</li>
         {%- endfor %}
       </ul>
     </div>

@@ -60,8 +60,8 @@
 {#- One work, from publications.yml. Renders <li class="work" id="pub-<slug>">.
     kind: the small label under the year (e.g. "Article", "Chapter"); defaults to w.kind if present.
     cite: true adds a BibTeX box with a Copy button, built from the record.
-    Venue line: articles "<i>Journal</i> volume(issue): pages."; chapters (bibtype incollection)
-    "In <i>Book</i>, ed. Editors. Publisher, Year." -#}
+    Layout after danielherrmann.ca: title; the venue in italics, linked to the article, "with" the
+    co-authors; a row of links (Draft, arXiv, ...); then Abstract and Cite disclosures. -#}
 {% macro work(w, people=[], kind="", cite=false) -%}
 {%- set k = kind or w.kind or "" -%}
 {%- set L = w.links or {} -%}
@@ -72,30 +72,32 @@
   <div class="work-meta"><span class="year">{{ ("Forthcoming" if forthcoming else w.year) if w.year else "" }}</span>{% if k %}<span class="type">{{ k }}</span>{% endif %}</div>
   <div>
     <p class="work-title">{{ w.title }}</p>
-    {%- if w.authors and w.authors.length %}
-    <p class="work-authors">{{ authorLine(w.authors, people) }}</p>
+    {%- set others = w.authors | coauthors %}
+    {%- set venueLink = L.journal or (("https://doi.org/" ~ w.doi) if w.doi else "") %}
+    {%- if w.venue or others.length %}
+    {#- As on danielherrmann.ca: the venue in italics, linked to the article, then "with" the co-authors. -#}
+    <p class="work-venue">
+      {%- if w.venue %}{% if isChapter %}In {% endif %}{% if venueLink %}<a href="{{ venueLink }}"><i>{{ w.venue }}</i></a>{% else %}<i>{{ w.venue }}</i>{% endif %}{% if forthcoming %}, forthcoming{% endif %}{% if w.commissioned %} (commissioned){% endif %}{% if others.length %}, with {{ authorLine(others, people) }}{% endif %}.
+      {%- else %}With {{ authorLine(others, people) }}.{% endif %}</p>
     {%- endif %}
-    {%- if w.venue and isChapter %}
-    <p class="work-venue">In <i>{{ w.venue }}</i>{% if w.editors and w.editors.length %}, {{ "eds." if w.editors.length > 1 else "ed." }} {{ w.editors | join(" and ") if w.editors.length == 2 else w.editors | join(", ") }}{% endif %}. {% if w.publisher %}{{ w.publisher }}, {% endif %}{{ w.year }}.</p>
-    {%- elif w.venue %}
-    <p class="work-venue"><i>{{ w.venue }}</i>{% if w.volume %} {{ w.volume }}{% endif %}{% if w.issue %}({{ w.issue }}){% endif %}{% if w.pages %}{% if w.article_number and w.pages == w.article_number %}, article {{ w.pages }}{% else %}: {{ w.pages | replace("-", "&ndash;") | safe }}{% endif %}{% endif %}{% if forthcoming %}, forthcoming{% endif %}{% if w.commissioned %} (commissioned){% endif %}.</p>
-    {%- endif %}
-    {%- if w.summary %}
-    <p class="work-summary">{{ w.summary }}</p>
-    {%- endif %}
-    {%- set anyLink = L.journal or w.doi or L.pdf or L.preprint or L.arxiv or L.philsci or L.model or L.code or L.data or L.slides or w.exproof or cite %}
+    {%- set anyLink = (venueLink and not w.venue) or L.pdf or L.preprint or L.arxiv or L.philsci or L.model or L.code or L.data or L.slides or w.exproof %}
     {%- if anyLink %}
-    <div class="work-links">
-      {%- if L.journal %}<a href="{{ L.journal }}">Journal</a>{% elif w.doi %}<a href="https://doi.org/{{ w.doi }}">Journal</a>{% endif %}
-      {%- if L.pdf %}<a href="{{ href(L.pdf) }}">PDF</a>{% endif %}
+    <p class="work-links">
+      {%- if venueLink and not w.venue %}<a href="{{ venueLink }}">Journal</a>{% endif %}
+      {%- if L.pdf %}<a href="{{ href(L.pdf) }}">Draft</a>{% endif %}
       {%- if L.preprint %}<a href="{{ href(L.preprint) }}">Preprint</a>{% endif %}
-      {%- if L.arxiv %}{% if "://" in L.arxiv %}<a href="{{ L.arxiv }}">arXiv</a>{% else %}<a href="https://arxiv.org/abs/{{ L.arxiv }}">arXiv:{{ L.arxiv }}</a>{% endif %}{% endif %}
-      {%- if L.philsci %}<a href="{{ L.philsci }}">PhilSci Archive</a>{% endif %}
+      {%- if L.arxiv %}<a href="{{ L.arxiv if '://' in L.arxiv else 'https://arxiv.org/abs/' ~ L.arxiv }}">arXiv</a>{% endif %}
+      {%- if L.philsci %}<a href="{{ L.philsci }}">PhilSci</a>{% endif %}
       {%- if L.model %}<a href="{{ href(L.model) }}">Model</a>{% endif %}
       {%- if L.code %}<a href="{{ L.code }}">Code</a>{% endif %}
       {%- if L.data %}<a href="{{ L.data }}">Data</a>{% endif %}
       {%- if L.slides %}<a href="{{ href(L.slides) }}">Slides</a>{% endif %}
       {%- if w.exproof %}<a href="{{ w.exproof }}" aria-label="Related ExProof AI program">{{ "" | exproofName | safe }}</a>{% endif %}
+    </p>
+    {%- endif %}
+    {%- if w.summary or cite %}
+    <div class="work-more">
+      {%- if w.summary %}<details class="abstract"><summary>Abstract</summary><p>{{ w.summary }}</p></details>{% endif %}
       {%- if cite %}
       {%- set bibtype = w.bibtype or ("article" if (w.status == "published" and w.venue) else "unpublished") %}
       <details class="cite"><summary>Cite</summary><div class="cite-box"><pre>@{{ bibtype }}{ {{- w.slug }},

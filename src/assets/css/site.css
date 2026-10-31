@@ -735,3 +735,19 @@ figcaption .how-link:hover { text-decoration: underline; text-decoration-thickne
 /* KaTeX math at the size of the surrounding text. */
 .katex { font-size: 1.02em; }
 .katex-display { margin: 0.7rem 0; overflow-x: auto; overflow-y: hidden; }
+
+/* Publications, after danielherrmann.ca: venue and co-authors in one line; links red, underlined on
+   hover; Abstract and Cite open below. */
+.work-venue a, .work-links a, .work-venue .me + a { color: var(--red-bright); }
+.work-venue a:hover, .work-links a:hover { color: var(--red-bright); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+.work-links { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.66rem; margin-bottom: 0.35rem; }
+.work-links a[aria-label] { text-transform: none; letter-spacing: 0.02em; font-size: 0.74rem; }
+.work-more { display: flex; flex-wrap: wrap; gap: 0.3rem 1.3rem; align-items: baseline; }
+.work-more details > summary { list-style: none; cursor: pointer; display: inline-flex; align-items: baseline; gap: 0.35rem;
+  font: 500 0.66rem var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-2); }
+.work-more details > summary::-webkit-details-marker { display: none; }
+.work-more details > summary::before { content: "+"; color: var(--red-bright); font-size: 0.9rem; line-height: 1; }
+.work-more details[open] > summary::before { content: "\2212"; }
+.work-more details > summary:hover, .work-more details[open] > summary { color: var(--fg); }
+.work-more details[open] { flex-basis: 100%; }
+.work-more details.abstract > p { margin: 0.5rem 0 0.4rem; font-size: 0.98rem; max-width: var(--measure); }

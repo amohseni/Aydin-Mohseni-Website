@@ -105,7 +105,7 @@
 
 - name: "Brian Skyrms"
   display: "Brian Skyrms"
-  url: ""
+  url: "https://faculty.sites.uci.edu/skyrms"
   works: [self-assembling-networks]
   constant: false
 
