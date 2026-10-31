@@ -32,10 +32,12 @@ function mountModel(fig) {
     })
     .then(() => {
       fig.dataset.mounted = "true";
-      // Caption directly under the figure, "How it works" after it (as on danielherrmann.ca).
+      // As on danielherrmann.ca: the caption ends with a "How it works" link that opens the
+      // explanation below it.
       const cap = fig.querySelector(":scope > figcaption");
       const how = container.querySelector("details.model-how, details.how");
-      if (cap && how) fig.appendChild(how);
+      if (cap && how) linkHow(fig, cap, how);
+      typeset(fig);
       syncModelButtons(fig);
     })
     .catch((err) => {
@@ -49,6 +51,29 @@ function mountModel(fig) {
       }
     });
 }
+
+let howCount = 0;
+function linkHow(fig, cap, how) {
+  fig.appendChild(how);
+  how.classList.add("how--linked");
+  const body = how.querySelector(".model-how-body") || how;
+  if (!body.id) body.id = (fig.id || "model") + "-how-" + (++howCount);
+  const link = document.createElement("button");
+  link.type = "button"; link.className = "how-link"; link.textContent = "How it works";
+  link.setAttribute("aria-controls", body.id);
+  const sync = () => link.setAttribute("aria-expanded", String(how.open));
+  link.addEventListener("click", () => { how.open = !how.open; sync(); if (how.open) typeset(how); });
+  how.addEventListener("toggle", sync);
+  sync();
+  cap.append(" ", link);
+}
+
+// Math: KaTeX (loaded with defer before this module) typesets \( \) and \[ \] in Computer Modern.
+const MATH = { delimiters: [{ left: "\\[", right: "\\]", display: true }, { left: "\\(", right: "\\)", display: false }], throwOnError: false };
+function typeset(el) {
+  if (typeof window.renderMathInElement === "function") window.renderMathInElement(el, MATH);
+}
+typeset(document.body);
 
 const figures = document.querySelectorAll("[data-model]");
 if (figures.length) {

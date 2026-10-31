@@ -54,6 +54,7 @@
 <link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | url }}">
 <link rel="preload" href="{{ '/assets/fonts/cmu-serif-500-roman.woff2' | url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ '/assets/fonts/cmu-sans-serif-500-roman.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/vendor/katex/katex.min.css' | url }}">
 <link rel="stylesheet" href="{{ '/assets/css/site.css' | url }}">
 </head>
 <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
@@ -87,12 +88,14 @@
     {%- endfor %}
     <a href="https://exproof.ai/" aria-label="ExProof AI (external site)"><span class="exists" aria-hidden="true">&exist;</span><span aria-hidden="true">xProof AI</span></a>
   </nav>
-  <p>Set in Computer Modern, by Donald Knuth. Design shared with <a href="https://exproof.ai/" aria-label="ExProof AI"><span class="exists" aria-hidden="true">&exist;</span><span aria-hidden="true">xProof AI</span></a>.</p>
+  <p>Set in Computer Modern, by Donald Knuth. Built with <a href="https://www.11ty.dev/">Eleventy</a>, math typeset with <a href="https://katex.org/">KaTeX</a>, models written in JavaScript on HTML canvas, hosted on <a href="https://pages.github.com/">GitHub Pages</a>.</p>
 </footer>
 
 </div>
 <div class="review-bar" role="status"><strong>Review mode</strong><span id="review-count"></span><span>Hover a highlight to see what needs confirming.</span><a href="{{ page.url | url }}">Exit review</a></div>
 <script src="{{ '/assets/js/theme.js' | url }}" defer></script>
+<script defer src="{{ '/assets/vendor/katex/katex.min.js' | url }}"></script>
+<script defer src="{{ '/assets/vendor/katex/auto-render.min.js' | url }}"></script>
 <script type="module" src="{{ '/assets/js/site.js' | url }}"></script>
 {%- if bg %}
 <script type="module" src="{{ '/assets/js/background.js' | url }}"></script>
