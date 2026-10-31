@@ -140,6 +140,13 @@ export default function (eleventyConfig) {
     return groups;
   });
 
+  // A person's site from coinquirers.yml, matched on the full name or on first and last names
+  // (so "Daniel Herrmann" finds "Daniel A. Herrmann"). "" when there is none.
+  eleventyConfig.addFilter("personUrl", (name, people = []) => {
+    const key = (n) => { const p = String(n).trim().split(/\s+/); return (p[0] + " " + p[p.length - 1]).toLowerCase(); };
+    const hit = (people || []).find((x) => x.name === name || key(x.name) === key(name));
+    return (hit && hit.url) || "";
+  });
   eleventyConfig.addFilter("coauthors", (authors) => (authors || []).filter((a) => !a.includes("Mohseni")));
   eleventyConfig.addFilter("findBy", (list, key, value) => (list || []).find((x) => x[key] === value));
   eleventyConfig.addFilter("findBySlug", (list, slug) => (list || []).find((x) => x.slug === slug));

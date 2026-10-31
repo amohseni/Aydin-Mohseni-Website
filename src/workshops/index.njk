@@ -19,7 +19,7 @@ description: "Workshops and symposia organized by Aydin Mohseni."
     <div class="work-meta"><span class="year">{{ (ws.start | string).slice(0, 4) if ws.start else (ws.dates | string).slice(-4) }}</span><span class="type">{{ "Workshop" if ws.page else "Symposium" }}</span></div>
     <div>
       <p class="work-title">{% if ws.page %}<a href="{{ ws.url | url }}">{{ ws.title }}</a>{% else %}{{ ws.title }}{% endif %}</p>
-      <p class="work-summary">{% if ws.page %}{{ ws.dates | replace("-", "&ndash;") | safe }}. {{ ws.place }}.{% if ws.organizers and ws.organizers.length %} Organized by {% for o in ws.organizers %}{% if not loop.first %}{{ ((", and " if loop.length > 2 else " and ") if loop.last else ", ") }}{% endif %}{{ o.name }}{% endfor %}.{% endif %}{% else %}{{ ws.role }}. {{ ws.place }}, {{ ws.dates }}.{% endif %}</p>
+      <p class="work-summary">{% if ws.page %}{{ ws.dates | replace("-", "&ndash;") | safe }}. {{ ws.place }}.{% if ws.organizers and ws.organizers.length %} Organized by {% for o in ws.organizers %}{% if not loop.first %}{{ ((", and " if loop.length > 2 else " and ") if loop.last else ", ") }}{% endif %}{% if o.url and "aydinmohseni.com" not in o.url %}<a href="{{ o.url }}">{{ o.name }}</a>{% else %}{{ o.name }}{% endif %}{% endfor %}.{% endif %}{% else %}{{ ws.role }}. {{ ws.place }}, {{ ws.dates }}.{% endif %}</p>
       {%- if ws.page %}
       <div class="work-links"><a href="{{ ws.url | url }}">Workshop page</a>{% if ws.program_pdf %}<a href="{{ ws.program_pdf | url }}">Program (PDF)</a>{% endif %}</div>
       {%- endif %}
