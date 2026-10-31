@@ -14,13 +14,10 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
 {%- set research = '/publications/' | url -%}
 
 <section class="hero home-hero" aria-labelledby="home-title">
-  <div class="intro">
-    <img class="intro-photo" src="{{ '/assets/img/mohseni.jpg' | url }}" alt="Portrait of Aydin Mohseni" width="360" height="360">
-    <div class="intro-text">
-      <h1 class="tagline" id="home-title"><span class="visually-hidden">Aydin Mohseni, </span>{{ profile.tagline }}</h1>
-      <p class="bio">{{ profile.short_bio | linkPhrases(profile.bio_links) | replace("∃", '<span class="exists">∃</span>') | safe }}</p>
-      <p class="who"><a href="#strand-ai-safety">AI safety</a> · <a href="#strand-metascience">Metascience</a> · <a href="#strand-methods">Methods</a> · <a href="{{ research }}">All research</a> · <a href="{{ '/cv.pdf' | url }}">CV</a></p>
-    </div>
+  <img class="intro-photo" src="{{ '/assets/img/mohseni.jpg' | url }}" alt="Portrait of Aydin Mohseni" width="360" height="360">
+  <div class="intro-text">
+    <h1 class="tagline" id="home-title"><span class="visually-hidden">Aydin Mohseni, </span>{{ profile.tagline }}</h1>
+    <p class="bio">{{ profile.short_bio | linkPhrases(profile.bio_links) | replace("∃", '<span class="exists">∃</span>') | safe }}</p>
   </div>
 </section>
 

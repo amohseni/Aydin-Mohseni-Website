@@ -200,16 +200,14 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
 .page-head { padding-block: 4rem 3rem; }
 .page-head { --h1: clamp(1.9rem, 4vw, 2.7rem); }
 
-/* Home intro: a portrait beside the opening text. The eyebrow aligns with the top of the photo. */
-.intro { display: grid; grid-template-columns: 9rem minmax(0, 1fr); column-gap: 2rem; align-items: start; max-width: calc(var(--measure) + 11rem); }
-.intro-photo { display: block; width: 9rem; height: 9rem; border-radius: 50%; object-fit: cover; }
+/* Home intro: the portrait fills the label column (like "Dynamics" below it); the text starts on the
+   body column's left edge, the same grid as "Chaos on the simplex" (Aydin, 31 Oct 2026). */
+.home-hero > .intro-photo { grid-column: 1; display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; }
 :root:not([data-theme="dark"]) .intro-photo { filter: brightness(1.2); }   /* day mode only (Aydin, 31 Oct 2026) */
-.intro-text { min-width: 0; }
+.home-hero > .intro-text { grid-column: 2; min-width: 0; max-width: var(--measure); }
 .intro-text > *:first-child { margin-top: 0; }
-.intro .tagline { font-size: 1.62rem; line-height: 1.2; margin: 0 0 0.9rem; }
-.intro .bio { color: var(--fg); margin: 0 0 1rem; }
-.hero:has(> .intro) .eyebrow { padding-top: 0; }
-.hero > .intro { padding-top: 0.265rem; }   /* the eyebrow's capitals meet the top of the photo */
+.home-hero .tagline { font-size: 1.62rem; line-height: 1.2; margin: 0 0 0.9rem; }
+.home-hero .bio { color: var(--fg); margin: 0; }
 .home-hero { padding-bottom: 2.575rem; }   /* 25% less space before the first section (7.7rem to 5.8rem) */
 
 .eyebrow, .label {
@@ -554,7 +552,6 @@ html.review .review-bar {
   .foot .brand-mark { margin-bottom: 0.6rem; }
   .hero { padding-block: 3.2rem 2.8rem; }
   .hero .eyebrow { margin-bottom: 1.1rem; padding-top: 0; }
-  .hero > .intro { padding-top: 0; }
   .home-hero { padding-bottom: 1.5rem; }   /* 25% less space before the first section (5.2rem to 3.9rem) */
   .section { padding-block: 2.4rem var(--tail); }
   :root { --tail: 1.1rem; }
@@ -575,8 +572,7 @@ html.review .review-bar {
   .areas { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; }
   .people { grid-template-columns: minmax(0, 1fr); }
   .nav { gap: 0.3rem 1.1rem; }
-  .intro { grid-template-columns: 6.5rem minmax(0, 1fr); column-gap: 1.4rem; }
-  .intro-photo { width: 6.5rem; height: 6.5rem; }
+  .home-hero > .intro-photo { width: 6.5rem; margin-bottom: 1.2rem; }
 }
 @media (max-width: 560px) {
   [id], main > .section[id], .work[id], .featured li[id], .work[id]:first-child, .featured li[id]:first-child { scroll-margin-top: 1rem; }   /* the menu bar is not pinned here */
@@ -588,8 +584,7 @@ html.review .review-bar {
   .work-meta { flex-direction: row; flex-wrap: wrap; gap: 0.2rem 1rem; align-items: center; }
   .addresses li { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .problems li { grid-template-columns: 2.2rem minmax(0, 1fr); }
-  .intro { grid-template-columns: minmax(0, 1fr); row-gap: 1.2rem; }
-  .intro .tagline { font-size: 1.45rem; }
+  .home-hero .tagline { font-size: 1.45rem; }
 }
 
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
@@ -675,7 +670,7 @@ blockquote.epigraph p { font-size: 1.24rem; line-height: 1.45; font-style: itali
 .plainlist li:first-child { padding-top: 0; }
 .section:has(> .body > .plainlist:first-child) { --label-pt: 0.150rem; }
 
-.intro h1.tagline { font-weight: 400; }
+.home-hero h1.tagline { font-weight: 400; }
 .timeline--areas dt { text-transform: none; }
 
 /* Footer: the site-wide motion control, quiet. Hidden when the system asks for reduced motion,
