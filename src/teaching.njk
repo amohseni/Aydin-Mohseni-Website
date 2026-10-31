@@ -9,7 +9,6 @@ description: "Courses taught by Aydin Mohseni at Carnegie Mellon University, the
 {%- for c in teaching.courses %}{% if c.institution not in institutions %}{% set institutions = institutions.concat([c.institution]) %}{% endif %}{% endfor -%}
 
 <section class="hero page-head" aria-labelledby="t-title">
-  <p class="eyebrow">Teaching</p>
   <h1 id="t-title">Courses and summer schools</h1>
   <p class="who"><a href="#courses">University courses</a> ({{ teaching.courses.length }}) · <a href="#short-courses">Summer schools</a> ({{ teaching.short_courses.length }}) · <a href="#training">Training</a> · <a href="{{ '/models/' | url }}#teaching-models">Teaching models</a></p>
 </section>
