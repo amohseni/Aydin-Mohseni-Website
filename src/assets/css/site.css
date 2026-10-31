@@ -727,3 +727,6 @@ details.selected-work > .featured { margin-top: 0; }
 .xp-mark { font-size: 1.5rem; line-height: 1.1; letter-spacing: 0.005em; }
 .xp-line { font: 0.86rem/1.5 var(--sans); color: var(--fg-2); }
 .xp-go { font: 0.78rem var(--sans); color: var(--red-bright); }
+
+/* About: the talk photo under the page head. */
+.about-photo { display: block; width: 100%; max-width: 26rem; height: auto; margin: 1.6rem 0 0; }
