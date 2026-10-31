@@ -49,7 +49,9 @@
 <meta name="twitter:description" content="{{ pageDescription }}">
 <meta name="twitter:image" content="{{ ogImageUrl }}">
 <meta name="theme-color" content="#fcfcfa">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 9 L57 55 H7 Z' fill='none' stroke='%23d11c3d' stroke-width='6' stroke-linejoin='miter'/%3E%3C/svg%3E">
+<link rel="icon" href="{{ '/assets/img/favicon.svg' | url }}" type="image/svg+xml">
+<link rel="icon" href="{{ '/assets/img/favicon-32.png' | url }}" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | url }}">
 <link rel="preload" href="{{ '/assets/fonts/cmu-serif-500-roman.woff2' | url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ '/assets/fonts/cmu-sans-serif-500-roman.woff2' | url }}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{ '/assets/css/site.css' | url }}">
@@ -68,7 +70,7 @@
     {%- set current = page.url and ((item.match[0] and page.url.indexOf(item.match[0]) == 0) or (item.match[1] and page.url.indexOf(item.match[1]) == 0)) %}
     <a href="{{ item.href | url }}"{% if current %} aria-current="page"{% endif %}>{{ item.label }}</a>
     {%- endfor %}
-    <span class="xp-peek-host" data-xp-peek><a class="xp-link" href="https://exproof.ai/" aria-label="ExProof AI (external site)"><span class="exists" aria-hidden="true">&exist;</span><span aria-hidden="true">xProof AI</span></a></span>
+    <a class="nav-xp" href="https://exproof.ai/" aria-label="ExProof AI (external site)"><span class="exists" aria-hidden="true">&exist;</span><span aria-hidden="true">xProof AI</span></a>
     <button class="theme-toggle" type="button" data-theme-toggle title="Switch between day and night"><span class="to-night">Night</span><span class="to-day">Day</span></button>
   </nav>
 </header>
@@ -91,7 +93,6 @@
 </div>
 <div class="review-bar" role="status"><strong>Review mode</strong><span id="review-count"></span><span>Hover a highlight to see what needs confirming.</span><a href="{{ page.url | url }}">Exit review</a></div>
 <script src="{{ '/assets/js/theme.js' | url }}" defer></script>
-<script src="{{ '/assets/js/xp-peek.js' | url }}" defer></script>
 <script type="module" src="{{ '/assets/js/site.js' | url }}"></script>
 {%- if bg %}
 <script type="module" src="{{ '/assets/js/background.js' | url }}"></script>

@@ -49,7 +49,8 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
 <p{% if para.verify %} data-verify="{{ para.verify }}"{% endif %}>{{ para.text | linkPhrases(s.links, { slugBase: research, quote: true, people: coinquirers }) | safe }}</p>
 {%- endfor %}
 {{ model(s.model, caption=s.caption, number=n, options={}, id="model-" ~ s.model, aspect="16 / 10") }}
-<h3 class="list-head">Selected work</h3>
+<details class="expand selected-work">
+<summary>Selected work</summary>
 <ul class="featured">
   {%- for slug in s.selected.slice(0, 3) %}
   {%- set w = publications | findBySlug(slug) %}
@@ -64,13 +65,14 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
   {%- endif %}
   {%- endfor %}
 </ul>
+</details>
 {%- if s.exproof and s.exproof.length %}
-<ul class="related">
-  <li class="label">Related {{ "" | exproofName | safe }} programs</li>
-  {%- for x in s.exproof %}
-  <li><a href="{{ x.url }}">{{ x.title }}</a></li>
-  {%- endfor %}
-</ul>
+{#- As on danielherrmann.ca: a card for the group after the AI safety strand. -#}
+<a class="xp-card" href="https://exproof.ai/">
+  <span class="xp-mark"><span class="exists" aria-hidden="true">&exist;</span><span class="visually-hidden">E</span>xProof AI</span>
+  <span class="xp-line">The research group I co-direct with Daniel Herrmann, searching for a path to safe AI, if one exists.</span>
+  <span class="xp-go">exproof.ai &rarr;</span>
+</a>
 {%- endif %}
 {% endcall %}
 {%- endfor %}

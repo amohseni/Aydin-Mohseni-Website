@@ -144,6 +144,8 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
 .nav { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 1.5rem; font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.05em; }
 .nav a { color: var(--fg-2); padding-block: 0.15rem; }
 .nav a:hover { color: var(--fg); }
+.nav .nav-xp { color: var(--fg); }
+.nav .nav-xp:hover, .nav .nav-xp:focus-visible { color: var(--red-bright); }
 .nav a[aria-current="page"] { color: var(--fg); box-shadow: inset 0 -1px 0 var(--red); }
 .exists { font-family: var(--math); font-size: 1.04em; line-height: 1; color: var(--red-bright); margin-right: 0.02em; }
 .theme-toggle {
@@ -171,19 +173,6 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
 /* The Erdős path on About: its own centered line in the sans face. */
 .erdos-path { text-align: center; font-family: var(--sans); font-size: 0.95rem; letter-spacing: 0.02em; color: var(--fg); }
 
-/* ---------- The ∃xProof AI peek ----------
-   Hovering or focusing the ∃xProof AI link opens a small card that runs a miniature of the
-   exproof.ai background: a light searching a tree for a witness path (assets/js/xp-peek.js). */
-.xp-peek-host { position: relative; }
-.xp-peek {
-  position: absolute; top: calc(100% + 0.6rem); right: 0; z-index: 30; width: 15rem; padding: 0.6rem 0.7rem 0.55rem;
-  background: var(--bg); border: 1px solid var(--rule); box-shadow: 0 6px 24px rgba(0,0,0,0.08);
-  opacity: 0; transform: translateY(-3px); pointer-events: none; transition: opacity 160ms ease, transform 160ms ease;
-}
-.xp-peek.open { opacity: 1; transform: none; }
-.xp-peek canvas { display: block; width: 100%; height: 7.5rem; }
-.xp-peek p { margin: 0.45rem 0 0; font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.02em; line-height: 1.45; color: var(--fg-2); }
-@media (hover: none), (max-width: 860px) { .xp-peek { display: none; } }
 
 /* ---------- Hero and page heads ---------- */
 .hero {
@@ -723,3 +712,18 @@ blockquote.epigraph p { font-size: 1.24rem; line-height: 1.45; font-style: itali
   a { text-decoration: none; }
   html.review [data-verify] { background: none; box-shadow: none; }
 }
+
+/* Selected work on the home page: closed by default, opened with the + as elsewhere. */
+details.selected-work { margin-top: 1.6rem; }
+details.selected-work > .featured { margin-top: 0; }
+
+/* ∃xProof AI card after the AI safety strand, after danielherrmann.ca's: a thin rule, a red left
+   edge, and on hover a red border and an underlined link line. */
+.xp-card { display: grid; gap: 0.45rem; margin: 2rem 0 0; padding: 1.3rem 1.5rem 1.25rem;
+  border: 1px solid var(--rule); border-left: 2px solid var(--red-bright); color: var(--fg);
+  text-decoration: none; transition: border-color 0.2s ease; max-width: 40rem; }
+.xp-card:hover, .xp-card:focus-visible { border-color: var(--red-bright); color: var(--fg); }
+.xp-card:hover .xp-go, .xp-card:focus-visible .xp-go { text-decoration: underline; text-underline-offset: 0.15em; }
+.xp-mark { font-size: 1.5rem; line-height: 1.1; letter-spacing: 0.005em; }
+.xp-line { font: 0.86rem/1.5 var(--sans); color: var(--fg-2); }
+.xp-go { font: 0.78rem var(--sans); color: var(--red-bright); }
