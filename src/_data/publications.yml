@@ -272,11 +272,11 @@
   links: {}
   strand: metascience
   selected: false
-  summary: ""
+  summary: "Shows that reforms meant to raise reliability, such as lowering the significance threshold or adopting voluntary preregistration, can improve every individual study yet worsen the published literature, because they filter sound studies more stringently than unsound ones. The result is an interventional Simpson's paradox, and it holds for false-discovery rates, sign errors and exaggeration ratios alike."
   exproof: ""
   verified: cv
-  verify: true
-  verify_note: "No summary yet. Aydin's old Research page (modified 12 Aug 2026) says: 'In Intervention and Backfire in the Replication Crisis, I show that reforms such as lowering significance thresholds or adopting preregistration can improve every individual study yet worsen the published literature. This is an interventional Simpson's paradox, and it is general.' That ties 'Intervention and Backfire' (CV talk P6) to the interventional Simpson's paradox; whether it is this paper under its CV title is for Aydin to confirm before the sentence is used as its summary and the P6 talks are attached."
+  verify: false
+  verify_note: "Summary from Aydin's research statement (27 Aug 2026), which names this paper by its CV title. The old Research page called it 'Intervention and Backfire in the Replication Crisis' (CV talk P6)."
 
 - slug: equilibrium-concepts
   title: "Limitations of Equilibrium Concepts in Evolutionary Games"
@@ -321,11 +321,11 @@
   links: {}
   strand: ai-safety
   selected: false
-  summary: ""
+  summary: "Bayesian models of how to allocate compute across many AI agents doing open-ended safety research: pooling AI judges' estimates of which approaches are promising, then dividing a finite budget among them, so that safety research goes faster per unit of compute. Tested on automated theorem proving, where success can be checked."
   exproof: ""
   verified: cv
   verify: true
-  verify_note: "Authors from the CV of 30 Oct 2026 (W8), which spells 'Kasemi'; exproof.ai and CIFAR spell 'Kazemi'. exproof.ai lists the SPAR project as 'Bayes-optimal research protocols for automated research' and a working paper 'Bayes-Optimal Research Protocols for Automated Research' by Mohseni and DeDeo ('How to allocate compute across research directions when AI systems do the research.'). Same project? Title and authors differ; summary left blank."
+  verify_note: "Summary from Aydin's SPAR proposal (21 Jul 2026) and the project's working state. Authors from the CV of 30 Oct 2026 (W8), which spells 'Kasemi'; exproof.ai and CIFAR spell 'Kazemi'."
 
 - slug: bayesian-grant-funding
   title: "A Bayesian Model of Grant Funding"
@@ -381,7 +381,7 @@
   links: {}
   strand: metascience
   selected: false
-  summary: ""
+  summary: "Questions the focus on raising replication rates, from the frequentist and the Bayesian meta-analyst's perspectives in turn. Argues that the Bayesian value of sample information, underused in the replication-crisis literature, clarifies standing puzzles, and that norms for good science must make a field's values and risk preferences explicit."
   exproof: ""
   verified: cv
 
