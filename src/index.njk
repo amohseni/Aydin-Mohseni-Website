@@ -27,7 +27,7 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
 {% call section("Dynamics", "dynamics") %}
 <h2>Chaos on the simplex</h2>
 {{ model("chaos",
-  caption="The replicator dynamics for a game with four strategies (Arneodo, Coullet and Tresser 1980). Each point of the tetrahedron is a population state, its corners the four pure strategies. Started near the center, the orbit never settles: it folds into a strange attractor, and nearby starts drift apart. With three strategies this cannot happen. Drag the figure to rotate it.",
+  caption="The replicator dynamics for a four-strategy game. Each point of the tetrahedron is a population state. Started near the center, the orbit never settles: it folds into a strange attractor, and nearby starts drift apart. Drag to rotate.",
   number="1",
   options={ mode: "hero" },
   id="model-chaos",
@@ -72,7 +72,7 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
 
 {%- set upcomingTalks = talks | upcoming | soonestFirst %}
 {%- set pastTalks = talks | past %}
-{% call section("Talks", "talks") %}
+{% call section("Recent and upcoming talks", "talks") %}
 <ul class="featured talks-list">
   {%- for t in upcomingTalks %}
   <li{% if t.verify %} data-verify="{{ t.verify_note }}"{% endif %}><span class="t">{% if t.paper_slug %}<a href="{{ research }}#pub-{{ t.paper_slug }}">{{ t.title }}</a>{% else %}{{ t.title }}{% endif %}</span><span class="d"><span class="tag">Upcoming</span> {{ t.venue }}, {{ t.city }}, {{ t.date | formatDate }}.</span></li>
@@ -87,10 +87,4 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
 
 {% call section("Contact", "contact") %}
 <p class="lead"><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></p>
-<p class="related contact-links">
-  <a href="{{ '/contact/' | url }}#working-with-me">Working with me</a>
-  <a href="{{ '/cv.pdf' | url }}">CV</a>
-  <a href="{{ profile.links.scholar }}">Google Scholar</a>
-  <a href="{{ profile.links.github }}">GitHub</a>
-</p>
 {% endcall %}

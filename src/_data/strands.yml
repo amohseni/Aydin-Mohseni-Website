@@ -10,7 +10,7 @@
   title: "AI safety"
   topics: "AI agent foundations, value learning and alignment, automated research"
   model: hypotheses
-  caption: "A learner's hypotheses about a coin's chance of heads, as cells as tall as their probabilities, with a catch-all for the values it has not named. Each flip moves probability by Bayes' rule within the current partition; when the catch-all grows probable enough, it splits into newly named hypotheses and total probability stays 1."
+  caption: "A learner's hypotheses about a coin's chance of heads, each cell as tall as its probability, with a catch-all for the values it has not named. When the catch-all grows probable enough, it splits into new named hypotheses."
   essay:
     - text: "My work on agency focuses especially on artificial intelligence: the foundations of AI safety, agency, and alignment. With Daniel Herrmann I direct ∃xProof AI, an AI safety research group that uses decision and game theory, mechanistic interpretability, and philosophical analysis to understand advanced AI systems as agents."
       sources: ["old home page bio", "exproof.ai index.html", "exproof.ai people.html", "CV research summary"]
@@ -33,9 +33,9 @@
   title: "Metascience"
   topics: "Grant funding, replication crisis, social epistemology of science"
   model: community
-  caption: "Twelve agents try two actions, one slightly better, and share their results with the agents they are linked to (the network model of Bala and Goyal 1998 and Zollman 2007). Each node's shade is its credence that the better action is better. Green: the community settles on the better action. Red: it locks in on the worse one."
+  caption: "Twelve agents try two actions, one slightly better, and share results with the agents they are linked to. A node's shade is its credence that the better action is better. Green: the community settles on it. Red: it locks in on the worse one."
   essay:
-    - text: "My metascience work asks how scientific communities produce knowledge. I study grant funding, the replication crisis, and the social epistemology of science, using Bayesian inference, game theory, network theory, and agent-based models."
+    - text: "My metascience work asks how scientific communities produce knowledge, and how to do it better. I study grant funding, the replication crisis, and the social epistemology of science, using Bayesian inference, game theory, network theory, and agent-based models."
       sources: ["old home page bio", "CV research summary"]
     - text: "Several papers model how information moves through a community. In Truth and Conformity on Networks, written with Cole Williams, agents learn from private evidence and from what their neighbors say, while trading accuracy against conformity; networks that sustain a diversity of opinion support honest communication and reliable true belief. The Best Paper You'll Read Today, with Cailin O'Connor and James Owen Weatherall, shows how standard practices in science journalism can distort public belief and drive polarization."
       sources: ["old Research page summaries of Truth and Conformity on Networks and The Best Paper You'll Read Today"]
@@ -53,10 +53,10 @@
   subtitle: "Formal epistemology and game theory"
   topics: "Bayesian epistemology, decision theory, evolutionary game theory"
   model: reflection
-  caption: "Possible futures of an agent's credence that a coin is biased toward heads, simulated from its own present probabilities. For a Bayesian agent their average (red) stays level, as van Fraassen's Reflection principle requires. The toggle shows an agent who expects to change its mind."
+  caption: "Possible futures of an agent's credence that a coin is biased toward heads, simulated from its own probabilities. For a Bayesian, their average (red) stays level, as Reflection requires. The toggle shows an agent who expects to change its mind."
   essay:
-    - text: "Stochastic Stability and Disagreements between Dynamics asks why the replicator dynamics and the Moran process can make different predictions, and traces the divergence to standard analytic techniques and to the idealizations each model makes. Limitations of Equilibrium Concepts in Evolutionary Games gives an explicit definition of evolutionary significance and shows that proposed equilibrium refinements make errors of omission or commission."
-      sources: ["old Research page summaries of both papers"]
+    - text: "My methods are formal: Bayesian epistemology, decision theory, and evolutionary game theory. I also study the methods themselves: when different models of evolution, such as the replicator dynamics and the Moran process, disagree about what evolves, and why; and when equilibrium concepts pick out the outcomes that matter for evolution and when they miss them."
+      sources: ["CV research summary (methods)", "old Research page summaries of Stochastic Stability and Disagreements between Dynamics and Limitations of Equilibrium Concepts in Evolutionary Games"]
     - text: "With Simon Huttegger, I reconcile Kalai and Lehrer's result on Bayesian learning of Nash equilibrium with Foster and Young's impossibility theorem. With Cailin O'Connor and Hannah Rubin, I tested whether a difference in group size alone produces disadvantage for a minority: in a repeated Nash demand game, members of the minority group made low demands more often and earned lower payoffs."
       sources: ["old Research page ('Are Nash Equilibria Rational?', taken to be CV W2 'The Rationality of Nash Equilibria')", "old Research page (Red King)"]
       verify: "The first sentence uses the old site's abstract of 'Are Nash Equilibria Rational?' (Mohseni and Huttegger), assumed to be CV W2 'The Rationality of Nash Equilibria'."

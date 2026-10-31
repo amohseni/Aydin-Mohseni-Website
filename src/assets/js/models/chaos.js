@@ -126,16 +126,14 @@ class Trajectory {
 
 // ---------- Text ----------
 
-const MATRIX_HTML = A.map((row) => "<tr>" + row.map((v) => `<td>${v < 0 ? "−" + -v : v}</td>`).join("") + "</tr>").join("");
+const MATRIX_TEX = "\\begin{pmatrix}" + A.map((row) => row.join(" & ")).join(" \\\\ ") + "\\end{pmatrix}";
 
 const HOW_HTML = `
-<p>Four strategies compete in a large population. The state of the population is the share using each strategy, x = (x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>, x<sub>4</sub>), which is a point in a tetrahedron (the 3-simplex). Each corner is a population in which everyone uses one strategy; the center is the population in which each strategy has a quarter of the users.</p>
-<p>Under the replicator dynamics, a strategy's share grows in proportion to how much better it does than the population average: x&#775;<sub>i</sub> = x<sub>i</sub>((Ax)<sub>i</sub> &minus; x&middot;Ax). Here the payoff matrix A is</p>
-<table aria-label="Payoff matrix A, rows are the strategy's own payoff against each column strategy"><tbody>${MATRIX_HTML}</tbody></table>
-<p>The only equilibrium inside the tetrahedron is the center, (1/4, 1/4, 1/4, 1/4), and it is unstable. A population that starts near it spirals outward and settles onto a strange attractor: the folded set that the trace fills in. Two populations that start almost together separate at an average exponential rate of about 0.16 per unit of time (the largest Lyapunov exponent, which we estimated numerically), so the long-run path cannot be predicted from an approximate starting point. Starts far from the center can instead run to the boundary, where some strategies die out, so each new start here is drawn close to the center.</p>
-<p><strong>Why four strategies.</strong> With n strategies the state space has n &minus; 1 dimensions. With three strategies it is a triangle, a region of the plane, and the Poincar&eacute;-Bendixson theorem says that a bounded orbit in the plane can only approach an equilibrium, a closed cycle, or a set of equilibria joined by orbits. Chaos needs at least three dimensions, so four is the smallest number of strategies for which the replicator dynamics can be chaotic.</p>
-<p>The replicator dynamics with four strategies is equivalent to a Lotka-Volterra system with three species (Hofbauer 1981), so the strange attractor that Arneodo, Coullet and Tresser (1980) found in a three-species Lotka-Volterra system appears in a four-strategy game. Skyrms (1992), citing Zeeman's analysis of three-strategy games, noted that chaos does not occur with three strategies, and gave numerical evidence that it does occur with four. <span data-verify="matrix confirmed from Sandholm's Dynamo gallery and his 2007 survey; the section number comes from the 2009 draft table of contents; the printed book was not checked">Sandholm presents this game as an example of chaotic evolutionary dynamics (2010, section 9.3).</span></p>
-<p>The orbit is computed in your browser with the fourth-order Runge-Kutta method, step 0.002.</p>
+<p>The population state is the share using each of four strategies, \\(x = (x_1, x_2, x_3, x_4)\\), a point in a tetrahedron (the 3-simplex). Under the replicator dynamics, a strategy grows in proportion to how much better than average it does:</p>
+\\[\\dot{x}_i = x_i\\big((Ax)_i - x^{\\top}\\!Ax\\big), \\qquad A = ${MATRIX_TEX}.\\]
+<p>The center is the only interior equilibrium, and it is unstable. Orbits spiral away from it onto a strange attractor, and nearby starts separate at an average rate of about 0.16 per unit of time (the largest Lyapunov exponent, estimated numerically), so the long-run path cannot be predicted. New starts are drawn near the center, because starts far from it can run to the boundary.</p>
+<p><strong>Why four strategies.</strong> With three, the state space is a triangle, and by the Poincar&eacute;&ndash;Bendixson theorem a bounded orbit in the plane can only approach an equilibrium, a cycle, or a chain of equilibria. Chaos needs three dimensions, so four strategies.</p>
+<p>The four-strategy replicator dynamics is equivalent to a three-species Lotka&ndash;Volterra system (Hofbauer 1981), in which Arneodo, Coullet and Tresser (1980) found this attractor. Skyrms (1992) gave numerical evidence of chaos with four strategies. <span data-verify="matrix confirmed from Sandholm's Dynamo gallery and his 2007 survey; the section number comes from the 2009 draft table of contents; the printed book was not checked">Sandholm (2010, &sect;9.3) presents this game.</span> The orbit is computed in your browser by fourth-order Runge&ndash;Kutta, step 0.002.</p>
 <p class="model-sources"><strong>Sources.</strong><br>
 A. Arneodo, P. Coullet and C. Tresser (1980), &ldquo;Occurence of strange attractors in three-dimensional Volterra equations,&rdquo; <i>Physics Letters A</i> 79(4), 259-263, <a href="https://doi.org/10.1016/0375-9601(80)90342-4">doi:10.1016/0375-9601(80)90342-4</a>.<br>
 J. Hofbauer (1981), &ldquo;On the occurrence of limit cycles in the Volterra-Lotka equation,&rdquo; <i>Nonlinear Analysis: Theory, Methods &amp; Applications</i> 5(9), 1003-1007, <a href="https://doi.org/10.1016/0362-546X(81)90059-6">doi:10.1016/0362-546X(81)90059-6</a>.<br>
@@ -188,7 +186,7 @@ export function mount(container, options = {}) {
 <p id="${id}-desc" class="model-desc${options.visibleDescription ? "" : " visually-hidden"}">${options.description || "The replicator dynamics for four strategies has no stable resting point inside the tetrahedron of population states. Its orbits fold into a strange attractor, so small differences in where a population starts grow until its path cannot be predicted. Drag the figure, or use the arrow keys, to rotate it."}</p>
 <div class="model-controls">
   <span class="model-actions"><button type="button" data-act="pause">Pause</button><button type="button" data-act="restart">New start</button></span>
-  <label>Speed <input type="range" data-act="speed" min="-2" max="2.6" step="0.1" value="0" aria-valuetext="1 times"></label>
+  <label>Speed <input type="range" data-act="speed" min="-2" max="3.6" step="0.1" value="2.4" aria-valuetext="5.28 times"></label>
   <span class="model-hint" aria-hidden="true">Drag to rotate</span>
 </div>
 <details class="model-how"><summary>How it works</summary><div class="model-how-body">${HOW_HTML}</div></details>`;
@@ -209,7 +207,7 @@ export function mount(container, options = {}) {
   const traj = new Trajectory(cfg.cap);
   let ghost = null;          // previous trajectory, fading out after a restart
   let yaw = 0.6, pitch = cfg.pitch, yawVel = 0, dragging = false;
-  let speedMul = 1, W = 1, Hh = 1, scrim = null;
+  let speedMul = isBg ? 1 : Math.pow(2, 2.4), W = 1, Hh = 1, scrim = null;
   let screen = new Float32Array((cfg.cap + 1) * 2), depth = new Float32Array(cfg.cap + 1);
   let stepCarry = 0, appear = 0, runMs = 0;
   const BG_RESTART_MS = 5 * 60 * 1000;   // the background starts a new orbit every 5 minutes of motion, so it never looks frozen
