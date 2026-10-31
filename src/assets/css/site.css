@@ -203,6 +203,7 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
 /* Home intro: a portrait beside the opening text. The eyebrow aligns with the top of the photo. */
 .intro { display: grid; grid-template-columns: 9rem minmax(0, 1fr); column-gap: 2rem; align-items: start; max-width: calc(var(--measure) + 11rem); }
 .intro-photo { display: block; width: 9rem; height: 9rem; border-radius: 50%; object-fit: cover; }
+:root:not([data-theme="dark"]) .intro-photo { filter: brightness(1.2); }   /* day mode only (Aydin, 31 Oct 2026) */
 .intro-text { min-width: 0; }
 .intro-text > *:first-child { margin-top: 0; }
 .intro .tagline { font-size: 1.62rem; line-height: 1.2; margin: 0 0 0.9rem; }
