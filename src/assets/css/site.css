@@ -209,7 +209,13 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
 .intro .bio { color: var(--fg); margin: 0 0 1rem; }
 .hero:has(> .intro) .eyebrow { padding-top: 0; }
 .hero > .intro { padding-top: 0.265rem; }   /* the eyebrow's capitals meet the top of the photo */
-.home-hero { padding-bottom: 2.575rem; }   /* 25% less space before the first section (7.7rem to 5.8rem) */
+.home-hero { padding-bottom: 2.575rem; }
+/* Home intro after danielherrmann.ca: portrait in the rail, a one-line identity as the title, a lede in the voice of the page. */
+.home-hero--intro { align-items: center; --h1: clamp(1.8rem, 3.4vw, 2.6rem); }
+.home-hero--intro .intro-photo { grid-column: 1; width: 100%; max-width: var(--rail); height: auto; aspect-ratio: 1; }
+.home-hero--intro .intro-text { grid-column: 2; max-width: calc(var(--measure) + 6rem); }
+.home-hero--intro h1 { font-size: var(--h1); line-height: 1.12; margin: 0; text-wrap: balance; }
+.home-hero--intro .lede { margin-top: 1.4rem; }   /* 25% less space before the first section (7.7rem to 5.8rem) */
 
 .eyebrow, .label {
   font-family: var(--sans); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-2);
@@ -554,7 +560,8 @@ html.review .review-bar {
   .hero { padding-block: 3.2rem 2.8rem; }
   .hero .eyebrow { margin-bottom: 1.1rem; padding-top: 0; }
   .hero > .intro { padding-top: 0; }
-  .home-hero { padding-bottom: 1.5rem; }   /* 25% less space before the first section (5.2rem to 3.9rem) */
+  .home-hero { padding-bottom: 1.5rem; }
+  .home-hero--intro .intro-photo { width: 7rem; margin-bottom: 1.2rem; }   /* 25% less space before the first section (5.2rem to 3.9rem) */
   .section { padding-block: 2.4rem var(--tail); }
   :root { --tail: 1.1rem; }
   .section > .label { position: static; padding: 0 0 1rem; }

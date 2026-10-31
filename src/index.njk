@@ -13,25 +13,32 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
     marked here too (verifyNote for works, the talk's own flag for talks). -#}
 {%- set research = '/publications/' | url -%}
 
-<section class="hero home-hero" aria-labelledby="home-title">
-  <div class="intro">
-    <img class="intro-photo" src="{{ '/assets/img/mohseni.jpg' | url }}" alt="Portrait of Aydin Mohseni" width="360" height="360">
-    <div class="intro-text">
-      <h1 class="tagline" id="home-title"><span class="visually-hidden">Aydin Mohseni, </span>{{ profile.tagline }}</h1>
-      <p class="bio">{{ profile.short_bio | linkPhrases(profile.bio_links) | replace("∃", '<span class="exists">∃</span>') | safe }}</p>
-      <p class="who"><a href="#strand-ai-safety">AI safety</a> · <a href="#strand-metascience">Metascience</a> · <a href="#strand-methods">Methods</a> · <a href="{{ research }}">All research</a> · <a href="{{ '/cv.pdf' | url }}">CV</a></p>
-    </div>
+<section class="hero home-hero home-hero--intro" aria-labelledby="home-title">
+  <img class="intro-photo" src="{{ '/assets/img/mohseni.jpg' | url }}" alt="Portrait of Aydin Mohseni" width="360" height="360">
+  <div class="intro-text">
+    <h1 id="home-title"><span class="visually-hidden">Aydin Mohseni, </span>Evolutionary game theorist, Bayesian epistemologist, and philosopher of science and of AI.</h1>
+    <p class="lede">I am an Assistant Professor of <a href="https://www.cmu.edu/dietrich/philosophy/">Philosophy at Carnegie Mellon</a>, a core member of the <a href="https://www.cmu.edu/dietrich/social-dynamics/">Institute for Complex Social Dynamics</a>, and co-director of <a class="xp" href="https://exproof.ai/">{{ "" | exproofName | safe }}</a> with <a href="https://www.danielherrmann.ca/">Daniel Herrmann</a>. I use evolutionary game theory and Bayesian epistemology to study problems in AI safety and metascience.</p>
   </div>
 </section>
 
-{% call section("Dynamics", "dynamics") %}
-<h2>Chaos on the simplex</h2>
+{% call section("", "dynamics") %}
+<h2>Selection need not settle</h2>
+<p data-verify="Draft in Aydin's voice; his to approve or rewrite.">Most of what I study, from scientific communities to AI systems, is a population of adaptive agents. Equilibrium analysis asks where such a population comes to rest. But selection and learning need not come to rest. The replicator dynamics, the simplest model of selection and also the limit of simple reinforcement learning, can wander forever, and four strategies are already enough. Below is that minimal case.</p>
 {{ model("chaos",
   caption="The replicator dynamics for a four-strategy game. Each point of the tetrahedron is a population state. Started near the center, the orbit never settles: it folds into a strange attractor, and nearby starts drift apart. Drag to rotate.",
   number="1",
   options={ mode: "hero" },
   id="model-chaos",
   aspect="10 / 9") }}
+{% endcall %}
+
+{% call section("Constant co-inquirers", "coinquirers", wide=true) %}
+<ul class="names">
+  {%- for c in coinquirers %}{% if c.constant %}
+  <li>{% if c.url %}<a href="{{ c.url }}">{{ c.display }}</a>{% else %}{{ c.display }}{% endif %}<span class="d">
+    {%- for slug in c.works %}{% set w = publications | findBySlug(slug) %}{% if w %}<a href="{{ research }}#pub-{{ w.slug }}">{{ w.title }}</a>{% if not loop.last %}; {% endif %}{% endif %}{% endfor %}</span></li>
+  {%- endif %}{% endfor %}
+</ul>
 {% endcall %}
 
 {%- for s in strands %}
@@ -83,6 +90,7 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
 </ul>
 <p class="more"><a href="{{ research }}#talks">All talks</a></p>
 {% endcall %}
+
 
 
 {% call section("Contact", "contact") %}
