@@ -2,7 +2,7 @@
 layout: layouts/base.njk
 title: About
 permalink: /about/
-description: "Aydin Mohseni: biography, research, teaching, appointments and education."
+description: "Aydin Mohseni: research, teaching and mentoring, public writing, and background."
 ---
 {%- from "partials/macros.njk" import section with context -%}
 {%- set L = profile.links -%}
@@ -12,49 +12,46 @@ description: "Aydin Mohseni: biography, research, teaching, appointments and edu
 <section class="hero page-head" aria-labelledby="a-title">
   <p class="eyebrow">About</p>
   <h1 id="a-title">Aydin Mohseni</h1>
-  <p class="who">Assistant Professor of Philosophy, Carnegie Mellon University</p>
+  <p class="lede">I&rsquo;m a mathematical philosopher, metascientist, and AI safety researcher. I&rsquo;m an Assistant Professor of Philosophy at <a href="https://www.cmu.edu/dietrich/philosophy/">Carnegie Mellon University</a>, and a core member of its <a href="https://www.cs.cmu.edu/~coresafeai/">Center for Conceptual Research on Safe AI</a> and <a href="https://www.cmu.edu/dietrich/social-dynamics/">Institute for Complex Social Dynamics</a>.</p>
   <img class="about-photo" src="{{ '/assets/img/about-talk.jpg' | url }}" alt="Aydin Mohseni giving a talk at Carnegie Mellon, beside a slide quoting Nick Bostrom on instrumentally convergent values" width="422" height="360">
 </section>
 
-{% call section("Biography", "bio") %}
-{%- for para in profile.long_bio %}
-<p{% if loop.first and profile.center_name_note %} data-verify="{{ profile.center_name_note }}"{% endif %}>{{ para | linkPhrases(profile.bio_links) | replace("أزرو", '<span lang="ar" dir="rtl">أزرو</span>') | replace("following path: ", 'following path:</p><p class="erdos-path">') | safe }}</p>
-{%- endfor %}
-{% endcall %}
-
-{% call section("Research", "areas") %}
-<dl class="timeline timeline--areas">
-  {%- for a in profile.research_areas %}
-  <dt>{{ a.area }}</dt>
-  <dd>{{ a.topics }}</dd>
-  {%- endfor %}
-</dl>
-{% endcall %}
-
-{% call section("Appointments", "appointments") %}
-<dl class="timeline">
-  {%- for inst in profile.appointments %}
-  {%- for r in inst.roles %}
-  <dt>{{ r.years | replace("-", "&ndash;") | safe }}</dt>
-  <dd{% if r.verify %} data-verify="{{ r.verify_note }}"{% endif %}>{{ r.title }}, {{ r.unit }}<br><span class="secondary">{{ inst.institution }}</span></dd>
-  {%- endfor %}
-  {%- endfor %}
-</dl>
-{% endcall %}
-
-{% call section("Education", "education") %}
-<dl class="timeline">
-  {%- for e in profile.education %}
-  <dt>{{ e.year }}</dt>
-  <dd>{{ e.degree }}, {{ e.field }}<br><span class="secondary">{{ e.institution }}</span>{% if e.thesis %}<br><span class="secondary">{{ e.thesis_label }}: <i>{{ e.thesis }}</i>. Committee: {{ e.committee | linkPhrases({}, { people: coinquirers }) | safe }}.</span>{% endif %}</dd>
-  {%- endfor %}
-</dl>
+{#- Sections follow danielherrmann.ca's About page: Research, Teaching and mentoring, Public
+    writing, Previously, Contact. -#}
+{% call section("Research", "research") %}
+<p><i>AI safety.</i> How AI agents represent the world, value outcomes, and act, and how to make them safe: value learning and alignment, causal reasoning, and automated safety research. With <a href="https://www.danielherrmann.ca/">Daniel Herrmann</a> I co-direct <a href="https://exproof.ai/"><span class="exists" aria-hidden="true">&exist;</span><span class="visually-hidden">E</span>xProof AI</a>.</p>
+<p><i>Metascience.</i> How scientific communities produce knowledge, and how to do it better: grant funding, replication and reform, and the social epistemology of science.</p>
+<p><i>Methods.</i> Bayesian epistemology, decision theory, and evolutionary game theory, and the limits of these tools themselves.</p>
+<p>Current funding: I am Principal Investigator on the Templeton-funded project <i>Identifying Breakthrough Science: Modeling, Measurement, and Funding Implications</i>, with Kevin Zollman and Simon DeDeo.</p>
 {% endcall %}
 
 {% call section("Teaching and mentoring", "teaching") %}
-<p>I teach decision theory, game theory, AI safety, logic and philosophy of science at Carnegie Mellon, and taught earlier at the University of Pennsylvania and UC Irvine. The full list, with summer schools, is on the <a href="{{ '/teaching/' | url }}">Teaching</a> page. I also mentor AI safety researchers through <a href="https://sparai.org/">SPAR</a> and advise master&rsquo;s students; see <a href="{{ '/contact/' | url }}#mentoring">Contact</a>.</p>
+<p>I teach decision theory, game theory, AI safety, logic, and philosophy of science at Carnegie Mellon; the full list is on the <a href="{{ '/teaching/' | url }}">Teaching</a> page. I mentor AI safety researchers through <a href="https://sparai.org/">SPAR</a> and advise master&rsquo;s students.</p>
 {% endcall %}
 
-{% call section("Colophon", "colophon") %}
-<p>This site is set in Computer Modern, the typeface Donald Knuth designed for TeX, in the Computer Modern Unicode versions (SIL Open Font License). The pages are built with Eleventy from data files and served by GitHub Pages.</p>
+{% call section("Public writing", "writing") %}
+<p>I write philosophy posts on <a href="https://www.lesswrong.com/users/aydin-mohseni">LessWrong</a>, among them <a href="https://www.lesswrong.com/posts/auSfqhbMKEvzt4unG/chance-is-in-the-map-not-the-territory">Chance is in the Map, not the Territory</a> and <a href="https://www.lesswrong.com/posts/qQTXjpXbcXMHvExmf/evolution-and-the-low-road-to-nash">Evolution and the Low Road to Nash</a>.</p>
+{% endcall %}
+
+{% call section("Previously", "previously") %}
+<dl class="timeline">
+  {%- for inst in profile.appointments %}{% if inst.institution != "Carnegie Mellon University" %}
+  {%- for r in inst.roles %}
+  <dt>{{ r.years | replace("-", "&ndash;") | safe }}</dt>
+  <dd>{{ r.title }}, {{ r.unit }}<br><span class="secondary">{{ inst.institution }}</span></dd>
+  {%- endfor %}
+  {%- endif %}{% endfor %}
+  {%- for e in profile.education %}
+  <dt>{{ e.year }}</dt>
+  <dd>{{ e.degree }}, {{ e.field }}<br><span class="secondary">{{ e.institution }}</span>{% if e.thesis %}<br><span class="secondary">{{ e.thesis_label }}: <i>{{ e.thesis }}</i>. Committee: {{ e.committee }}.</span>{% endif %}</dd>
+  {%- endfor %}
+</dl>
+<p>Some years ago, I was a <a href="https://www.peacecorps.gov">Peace Corps</a> volunteer in Morocco, stationed near <span lang="ar" dir="rtl">أزرو</span>.</p>
+<p>I have an <a href="https://oakland.edu/enp/">Erd&odblac;s number</a> of 3, along the following path:</p>
+<p class="erdos-path">Aydin Mohseni &rarr; <a href="https://en.wikipedia.org/wiki/Brian_Skyrms">Brian Skyrms</a> &rarr; <a href="https://en.wikipedia.org/wiki/Persi_Diaconis">Persi Diaconis</a> &rarr; <a href="https://en.wikipedia.org/wiki/Paul_Erd%C5%91s">Paul Erd&odblac;s</a></p>
+{% endcall %}
+
+{% call section("Contact", "contact") %}
+<p><a href="mailto:{{ profile.email }}">{{ profile.email }}</a>. See also <a href="{{ '/contact/' | url }}#working-with-me">Working with me</a>.</p>
+<p class="related contact-links"><a href="{{ '/cv.pdf' | url }}">CV</a> <a href="{{ profile.links.scholar }}">Google Scholar</a> <a href="{{ profile.links.github }}">GitHub</a></p>
 {% endcall %}
