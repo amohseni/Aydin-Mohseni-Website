@@ -18,10 +18,9 @@ description: "Aydin Mohseni: research, teaching and mentoring, public writing, a
 {#- Sections follow danielherrmann.ca's About page: Research, Teaching and mentoring, Public
     writing, Previously, Contact. -#}
 {% call section("Research", "research") %}
-<p><i>AI safety.</i> How AI agents represent the world, value outcomes, and act, and how to make them safe: value learning and alignment, causal reasoning, and automated safety research. With <a href="https://www.danielherrmann.ca/">Daniel Herrmann</a> I co-direct <a href="https://exproof.ai/"><span class="exists" aria-hidden="true">&exist;</span><span class="visually-hidden">E</span>xProof AI</a>.</p>
-<p><i>Metascience.</i> How scientific communities produce knowledge, and how to do it better: grant funding, replication and reform, and the social epistemology of science.</p>
-<p><i>Methods.</i> Bayesian epistemology, decision theory, and evolutionary game theory, and the limits of these tools themselves.</p>
-<p>Current funding: I am Principal Investigator on the Templeton-funded project <i>Identifying Breakthrough Science: Modeling, Measurement, and Funding Implications</i>, with Kevin Zollman and Simon DeDeo.</p>
+<p>I pursue three research programs. The first is on the foundations of AI safety. How should an artificial agent represent the world, value outcomes, and act? With <a href="https://www.cmu.edu/dietrich/philosophy/people/faculty/london.html">Alex London</a>, I extend decision theory so that an agent can refine its values as well as its beliefs, and prove a value-of-information theorem for learning about values. With <a href="https://www.danielherrmann.ca/">Daniel Herrmann</a>, Ben Levinstein, and Bruce Rushing, I show that causal reasoning reduces to subjective probability once interventions are treated as events in the world. I also study when we should delegate to AI systems whose aims may diverge from ours, and how to allocate compute when AI agents do safety research themselves. With Daniel, I co-direct <a href="https://exproof.ai/"><span class="exists" aria-hidden="true">&exist;</span><span class="visually-hidden">E</span>xProof AI</a>.</p>
+<p>The second is metascience: how scientific communities produce knowledge, and how to do it better. What a community learns depends on how individual inquiry is aggregated, connected, incentivized, and funded, and these properties often cannot be read off individual reasoning. A reform can improve every study and still worsen the published literature. I study grant funding, replication and reform, and how networks of scientists learn from one another.</p>
+<p>The third is on method. I use Bayesian epistemology, decision theory, and evolutionary game theory, and I study when these tools mislead: when different models of evolution disagree about what evolves, and why, and when equilibrium concepts miss the outcomes that matter.</p>
 {% endcall %}
 
 {% call section("Teaching and mentoring", "teaching") %}
@@ -33,18 +32,7 @@ description: "Aydin Mohseni: research, teaching and mentoring, public writing, a
 {% endcall %}
 
 {% call section("Previously", "previously") %}
-<dl class="timeline">
-  {%- for inst in profile.appointments %}{% if inst.institution != "Carnegie Mellon University" %}
-  {%- for r in inst.roles %}
-  <dt>{{ r.years | replace("-", "&ndash;") | safe }}</dt>
-  <dd>{{ r.title }}, {{ r.unit }}<br><span class="secondary">{{ inst.institution }}</span></dd>
-  {%- endfor %}
-  {%- endif %}{% endfor %}
-  {%- for e in profile.education %}
-  <dt>{{ e.year }}</dt>
-  <dd>{{ e.degree }}, {{ e.field }}<br><span class="secondary">{{ e.institution }}</span>{% if e.thesis %}<br><span class="secondary">{{ e.thesis_label }}: <i>{{ e.thesis }}</i>. Committee: {{ e.committee }}.</span>{% endif %}</dd>
-  {%- endfor %}
-</dl>
+<p>I did my PhD in Logic and Philosophy of Science at UC Irvine, with Cailin O&rsquo;Connor and Simon Huttegger. My full history is on my <a href="{{ '/cv.pdf' | url }}">CV</a>.</p>
 <p>Some years ago, I was a <a href="https://www.peacecorps.gov">Peace Corps</a> volunteer in Morocco, stationed near <span lang="ar" dir="rtl">أزرو</span>.</p>
 <p>I have an <a href="https://oakland.edu/enp/">Erd&odblac;s number</a> of 3, along the following path:</p>
 <p class="erdos-path">Aydin Mohseni &rarr; <a href="https://en.wikipedia.org/wiki/Brian_Skyrms">Brian Skyrms</a> &rarr; <a href="https://en.wikipedia.org/wiki/Persi_Diaconis">Persi Diaconis</a> &rarr; <a href="https://en.wikipedia.org/wiki/Paul_Erd%C5%91s">Paul Erd&odblac;s</a></p>

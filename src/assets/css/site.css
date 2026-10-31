@@ -109,7 +109,8 @@ a:hover { color: var(--red-bright); }
 /* Links inside running text are red, as on danielherrmann.ca, so a reader can tell they are links.
    Titles, author lines, menus and link rows keep their own colors. */
 .bio a, .lede a, .erdos-path a, .body > p:not([class]) a, figcaption a { color: var(--red-bright); }
-.bio a:hover, .lede a:hover, .erdos-path a:hover, .body > p:not([class]) a:hover, figcaption a:hover { color: var(--fg); }
+.bio a:hover, .lede a:hover, .erdos-path a:hover, .body > p:not([class]) a:hover, figcaption a:hover {
+  color: var(--red-bright); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
 a:focus-visible, button:focus-visible, summary:focus-visible, label:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--red-bright); outline-offset: 2px; }
 ::selection { background: var(--red); color: var(--sel-fg); }
 img { height: auto; }
@@ -729,7 +730,7 @@ details.how--linked > summary { display: none; }
 details.how--linked { margin-top: 0.6rem; }
 figcaption .how-link { all: unset; display: inline; font: inherit; color: var(--red-bright); cursor: pointer; }
 figcaption .how-link:focus-visible { outline: 2px solid var(--red-bright); outline-offset: 2px; }
-figcaption .how-link:hover, figcaption .how-link[aria-expanded="true"] { color: var(--fg); }
+figcaption .how-link:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
 /* KaTeX math at the size of the surrounding text. */
 .katex { font-size: 1.02em; }
 .katex-display { margin: 0.7rem 0; overflow-x: auto; overflow-y: hidden; }
