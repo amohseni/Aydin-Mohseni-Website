@@ -130,7 +130,9 @@ const MATRIX_TEX = "\\begin{pmatrix}" + A.map((row) => row.join(" & ")).join(" \
 
 const HOW_HTML = `
 <p>The population state is the share using each of four strategies, \\(x = (x_1, x_2, x_3, x_4)\\), a point in a tetrahedron (the 3-simplex). Under the replicator dynamics, a strategy grows in proportion to how much better than average it does:</p>
-\\[\\dot{x}_i = x_i\\big((Ax)_i - x^{\\top}\\!Ax\\big), \\qquad A = ${MATRIX_TEX}.\\]
+\\[\\dot{x}_i = x_i\\big((Ax)_i - x^{\\top}\\!Ax\\big),\\]
+<p>with payoff matrix</p>
+\\[A = ${MATRIX_TEX}.\\]
 <p>The center is the only interior equilibrium, and it is unstable. Orbits spiral away from it onto a strange attractor, and nearby starts separate at an average rate of about 0.16 per unit of time (the largest Lyapunov exponent, estimated numerically), so the long-run path cannot be predicted. New starts are drawn near the center, because starts far from it can run to the boundary.</p>
 <p><strong>Why four strategies.</strong> With three, the state space is a triangle, and by the Poincar&eacute;&ndash;Bendixson theorem a bounded orbit in the plane can only approach an equilibrium, a cycle, or a chain of equilibria. Chaos needs three dimensions, so four strategies.</p>
 <p>The four-strategy replicator dynamics is equivalent to a three-species Lotka&ndash;Volterra system (Hofbauer 1981), in which Arneodo, Coullet and Tresser (1980) found this attractor. Skyrms (1992) gave numerical evidence of chaos with four strategies. <span data-verify="matrix confirmed from Sandholm's Dynamo gallery and his 2007 survey; the section number comes from the 2009 draft table of contents; the printed book was not checked">Sandholm (2010, &sect;9.3) presents this game.</span> The orbit is computed in your browser by fourth-order Runge&ndash;Kutta, step 0.002.</p>

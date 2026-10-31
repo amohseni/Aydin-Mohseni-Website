@@ -123,6 +123,8 @@ const CHECK = (expectedBg) => {
     const limit = wide ? br.right : br.right - pr;
     body.querySelectorAll("*").forEach((el) => {
       if (isNote(el) || !visible(el) || el.matches("input, label.margin-toggle")) return;
+      // KaTeX: the MathML copy is visually hidden; a display formula scrolls inside its own box.
+      if (el.closest(".katex-mathml") || el.closest(".katex-display > .katex")) return;
       const r = el.getBoundingClientRect();
       if (r.right > limit + tol)
         problems.push(`${wide ? "wide" : "text"} section: ${name(el)} ends at ${Math.round(r.right)}, past ${Math.round(limit)}`);
@@ -141,7 +143,7 @@ const CHECK = (expectedBg) => {
     const cs = getComputedStyle(el);
     if (cs.overflowX === "auto" || cs.overflowX === "scroll" || cs.display === "inline") return;
     if (el.matches("canvas, svg, svg *")) return; // drawings size themselves
-    if (el.closest(".visually-hidden")) return; // screen-reader text is clipped to 1px on purpose
+    if (el.closest(".visually-hidden, .katex-mathml")) return; // screen-reader text is clipped to 1px on purpose
     if (isNote(el) || el.querySelector(".sidenote, .marginnote")) return; // notes hang into the margin by design
     if (el.scrollWidth > el.clientWidth + tol && el.clientWidth > 0)
       problems.push(`clipped content in ${name(el)} (${el.scrollWidth} > ${el.clientWidth})`);
