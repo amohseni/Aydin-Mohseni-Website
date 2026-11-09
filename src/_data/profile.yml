@@ -7,8 +7,13 @@ url: "https://aydinmohseni.com"
 short_bio: >-
   I'm an assistant professor in the Department of Philosophy at Carnegie Mellon University,
   a core member of CMU's Center for Conceptual Research on Safe AI and Institute for Complex
-  Social Dynamics, and co-director of ∃xProof AI with Daniel Herrmann. I use evolutionary game
-  theory and Bayesian epistemology to study problems in AI safety and metascience.
+  Social Dynamics, and co-director of ∃xProof AI with Daniel Herrmann.
+
+# Landing "Tools of Inquiry" section, Aydin's wording (9 Nov 2026; doubled "in" removed).
+tools_of_inquiry: >-
+  I use the lenses of evolutionary game theory, Bayesian epistemology, and complexity theory to
+  study problems in metascience, AI safety in particular, and philosophy of science and
+  philosophy of AI, generally.
 
 long_bio:
   - >-
