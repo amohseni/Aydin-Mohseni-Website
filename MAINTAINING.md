@@ -62,6 +62,8 @@ The link check, the layout check and the two model tests also run in CI and stop
 
 Nothing automatic writes facts to the site. Automation finds leads and keeps derived things (dates, the CV PDF) current; every new fact goes through a pull request.
 
+A lead that is not a real change (a work by another Aydin Mohseni, an item left off the site on purpose, a link that fails only for robots) goes into `src/_data/watch_ignore.yml` so it does not come back.
+
 Run the watch by hand: `node tools/watch_sources.mjs --links` (after `npx eleventy`), or "Run workflow" on the Content watch workflow in the Actions tab.
 
 ## Monthly steward routine

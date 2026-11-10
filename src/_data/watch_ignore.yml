@@ -1,0 +1,5 @@
+# Leads from the weekly content watch (tools/watch_sources.mjs) that should not come back:
+# works that are not Aydin's (another author with his name), items left off the site on purpose,
+# and links that fail only for robots. One entry per line: a title, a URL, or {match, why}.
+# Add an entry only when Aydin has said so or the source shows the work is not his.
+[]

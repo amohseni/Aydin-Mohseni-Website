@@ -40,13 +40,30 @@ function similar(a, b) {
   let n = 0; for (const w of A) if (B.has(w)) n++;
   return n / Math.min(A.size, B.size);   // overlap coefficient: tolerant of subtitles added or dropped
 }
+function lev(a, b) {   // edit distance, for typos in outside records ("Mispescription")
+  const d = Array.from({ length: b.length + 1 }, (_, j) => j);
+  for (let i = 1; i <= a.length; i++) {
+    let prev = d[0]; d[0] = i;
+    for (let j = 1; j <= b.length; j++) { const t = d[j]; d[j] = Math.min(d[j] + 1, d[j - 1] + 1, prev + (a[i - 1] === b[j - 1] ? 0 : 1)); prev = t; }
+  }
+  return d[b.length];
+}
+const close = (a, b) => { const x = norm(a), y = norm(b); return lev(x, y) <= Math.max(2, Math.round(0.08 * Math.max(x.length, y.length))); };
 const MATCH = 0.8;
-const known = (title) => pubs.find((p) => similar(p.title, title) >= MATCH);
+const matches = (a, b) => similar(a, b) >= MATCH || close(a, b);
+// Leads Aydin or a monthly session dismissed (not his, or left off on purpose) never come back.
+const IGNORE_FILE = "src/_data/watch_ignore.yml";
+const ignored = fs.existsSync(IGNORE_FILE) ? (yaml.load(fs.readFileSync(IGNORE_FILE, "utf8")) || []) : [];
+const isIgnored = (s) => ignored.some((x) => { const k = typeof x === "string" ? x : x.match; return k && (s.includes(k) || matches(k, s)); });
+const known = (title) => pubs.find((p) => matches(p.title, title)) || (isIgnored(title) ? { ignored: true, links: { arxiv: "-" } } : null);
 
 async function getJSON(url) {
-  const r = await fetch(url, { headers: { "User-Agent": UA, Accept: "application/json" }, signal: AbortSignal.timeout(30000) });
-  if (!r.ok) throw new Error(`${r.status} from ${new URL(url).host}`);
-  return r.json();
+  for (let attempt = 0; ; attempt++) {
+    const r = await fetch(url, { headers: { "User-Agent": UA, Accept: "application/json" }, signal: AbortSignal.timeout(30000) });
+    if (r.status === 429 && attempt < 4) { await new Promise((ok) => setTimeout(ok, 5000 * 2 ** attempt)); continue; }   // rate limited: back off
+    if (!r.ok) throw new Error(`${r.status} from ${new URL(url).host}`);
+    return r.json();
+  }
 }
 async function getText(url) {
   const r = await fetch(url, { headers: { "User-Agent": UA }, signal: AbortSignal.timeout(30000) });
@@ -68,7 +85,7 @@ async function crossref() {
       for (const it of j.message.items || []) {
         const t = (it.title || [])[0] || "";
         const byHim = (it.author || []).some((a) => (a.family || "").toLowerCase() === AUTHOR.family.toLowerCase());
-        if (!byHim || similar(t, p.title) < MATCH) continue;
+        if (!byHim || !matches(t, p.title)) continue;
         if (p.doi && it.DOI.toLowerCase() === String(p.doi).toLowerCase()) continue;
         if (it.type === "posted-content") continue;   // preprint servers; covered by the arXiv check
         const year = it.issued?.["date-parts"]?.[0]?.[0] ?? "?";
@@ -77,7 +94,7 @@ async function crossref() {
           `**${p.title}** (\`${p.slug}\`, status: ${p.status}${p.doi ? "" : ", no DOI"}): Crossref has *${t}* in ${venue}, ${year}, https://doi.org/${it.DOI}`);
       }
     } catch (e) { errors.push(`Crossref, ${p.slug}: ${e.message}`); }
-    await new Promise((r) => setTimeout(r, 300));   // stay polite
+    await new Promise((r) => setTimeout(r, 1500));   // Crossref's public pool allows few requests per second
   }
 }
 
@@ -154,6 +171,7 @@ async function links() {
         } catch (e) { status = e.name === "TimeoutError" ? "timeout" : "no response"; }
       }
       if (status === 403 || status === 429) return;   // bot blocking, not a dead link
+      if (isIgnored(u)) return;
       add("External links that failed to load", `${u} (${status}), on ${page}`);
     }));
   }
