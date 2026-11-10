@@ -55,7 +55,7 @@
   model: reflection
   caption: "Possible futures of an agent's credence that a coin is biased toward heads, simulated from its own probabilities. For a Bayesian, their average (red) stays level, as Reflection requires. The toggle shows an agent who expects to change its mind."
   essay:
-    - text: "My methods are formal: Bayesian epistemology, decision theory, and evolutionary game theory. I also study the methods themselves: when different models of evolution, such as the replicator dynamics and the Moran process, disagree about what evolves, and why; and when equilibrium concepts pick out the outcomes that matter for evolution and when they miss them."
+    - text: "I also study the tools themselves: when different models of evolution, such as the replicator dynamics and the Moran process, disagree about what evolves, and why; and when equilibrium concepts pick out the outcomes that matter for evolution and when they miss them."
       sources: ["CV research summary (methods)", "old Research page summaries of Stochastic Stability and Disagreements between Dynamics and Limitations of Equilibrium Concepts in Evolutionary Games"]
     - text: "With Simon Huttegger, I reconcile Kalai and Lehrer's result on Bayesian learning of Nash equilibrium with Foster and Young's impossibility theorem. With Cailin O'Connor and Hannah Rubin, I tested whether a difference in group size alone produces disadvantage for a minority: in a repeated Nash demand game, members of the minority group made low demands more often and earned lower payoffs."
       sources: ["old Research page ('Are Nash Equilibria Rational?', taken to be CV W2 'The Rationality of Nash Equilibria')", "old Research page (Red King)"]
