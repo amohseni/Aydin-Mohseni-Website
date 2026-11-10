@@ -62,7 +62,10 @@ Run after a build, from the repository root. Each takes the same `PATH_PREFIX` t
 5. copies the same CV to every old WordPress CV address listed in `src/_data/legacy_cv_paths.yml`, so old links serve the current CV;
 6. runs the model tests (`tools/test-models-agency.mjs`, `tools/test-models-community.mjs`);
 7. runs the three checks (link and layout checks block the deploy; the consistency check only warns);
-8. uploads `_site` and deploys it to GitHub Pages.
+8. copies `docs/` of the public repository `amohseni/AI-Safety-Fundamentals` (A Primer on AI) to `_site/teaching/primer-on-ai/`, after the checks, since the primer has its own;
+9. uploads `_site` and deploys it to GitHub Pages.
+
+The primer is published at `/teaching/primer-on-ai/`. A change to the primer reaches this site at the next nightly build, or at once by running this workflow by hand.
 
 GitHub disables scheduled workflows in a public repository after 60 days without activity. If the nightly run stops, re-enable it from the Actions tab.
 

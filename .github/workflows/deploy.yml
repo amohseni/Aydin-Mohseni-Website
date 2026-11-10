@@ -120,6 +120,16 @@ jobs:
         continue-on-error: true
         run: node tools/check_consistency.mjs --xproof https://exproof.ai/publications.html
 
+      - name: Add A Primer on AI at /teaching/primer-on-ai/
+        # The primer is a separate static site (amohseni/AI-Safety-Fundamentals, served from its docs/).
+        # It is copied in after the checks above, which are written for this site's pages only.
+        # The nightly build picks up changes to the primer; run this workflow by hand to publish sooner.
+        run: |
+          git clone --depth 1 https://github.com/amohseni/AI-Safety-Fundamentals.git "$RUNNER_TEMP/primer"
+          mkdir -p _site/teaching
+          cp -r "$RUNNER_TEMP/primer/docs" _site/teaching/primer-on-ai
+          test -f _site/teaching/primer-on-ai/index.html
+
       - name: Upload the site
         uses: actions/upload-pages-artifact@v3
         with:
