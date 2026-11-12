@@ -47,6 +47,9 @@ description: "Talks by Aydin Mohseni on AI safety, metascience, and methods (for
         <li{% if t.verify %} data-verify="{{ t.verify_note }}"{% endif %}>{{ t.venue }}, {{ t.city }}, <span class="nw">{{ t.date | formatDate }}{% if t.upcoming %} (upcoming){% endif %}{% if t.invited %} <span class="inv">invited</span>{% endif %}{% if t.video %} <a class="vid" href="{{ t.video }}">Video</a>{% endif %}</span>{% if t.with and t.with.length %} <span class="inv nw">with {% for nm in t.with %}{% if not loop.first %} and {% endif %}{% set u = nm | personUrl(coinquirers) %}{% if u %}<a href="{{ u }}">{{ nm }}</a>{% else %}{{ nm }}{% endif %}{% endfor %}</span>{% endif %}</li>
         {%- endfor %}
       </ul>
+      {%- if g.slides %}
+      <p class="work-links"><a href="{{ g.slides | url }}">Slides</a></p>
+      {%- endif %}
     </div>
   </li>
   {%- endfor %}

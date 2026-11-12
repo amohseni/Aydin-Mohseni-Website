@@ -1,19 +1,23 @@
 # Teaching, from the CV (UNIVERSITY TEACHING, SUMMER SCHOOLS & SHORT COURSES, TEACHING TRAINING).
 # Course titles follow the CV; old-site variants are listed in docs/CONTENT-AUDIT.md.
 # Courses are newest first; a course taught in several terms is one entry.
+# `syllabus`: the latest syllabus for that course (from Aydin's laptop, 12 Nov 2026).
 
 courses:
   - title: "Decision Theory & AI Agent Foundations"
     institution: "Carnegie Mellon University"
+    syllabus: "/assets/syllabi/cmu-decision-theory-ai-agent-foundations.pdf"
     terms: ["Spring 2026"]
   - title: "Philosophy Core II Graduate Seminar"
     institution: "Carnegie Mellon University"
     terms: ["Spring 2026", "Spring 2025"]
   - title: "Introduction to Philosophy"
     institution: "Carnegie Mellon University"
+    syllabus: "/assets/syllabi/cmu-introduction-to-philosophy.pdf"
     terms: ["Fall 2025", "Fall 2024"]
   - title: "Game Theory, AI & X-Risk"
     institution: "Carnegie Mellon University"
+    syllabus: "/assets/syllabi/cmu-game-theory-ai-x-risk.pdf"
     terms: ["Spring 2025"]
   - title: "Game Theory, AI & X-Risk"
     institution: "University of Pennsylvania"
@@ -26,6 +30,7 @@ courses:
     terms: ["Fall 2023", "Fall 2022"]
   - title: "Introduction to Philosophy of Science"
     institution: "University of Pennsylvania"
+    syllabus: "/assets/syllabi/penn-philosophy-of-science.pdf"
     terms: ["Fall 2023", "Fall 2022"]
   - title: "Introduction to Philosophy"
     institution: "University of Pennsylvania"
@@ -35,9 +40,11 @@ courses:
     terms: ["Spring 2023"]
   - title: "Making Modern Science"
     institution: "University of California, Irvine"
+    syllabus: "/assets/syllabi/uci-making-modern-science.pdf"
     terms: ["Fall 2020"]
   - title: "Introduction to Inductive Logic"
     institution: "University of California, Irvine"
+    syllabus: "/assets/syllabi/uci-introduction-to-inductive-logic.pdf"
     terms: ["Summer 2020"]
 
 short_courses:
@@ -65,11 +72,3 @@ training:
   - "UCI DTEI Certificate of Teaching Excellence (2019) and Certificate of Course Design (2018)"
   - "UCI courses in pedagogy (Uni Stu 390X, S90A, 390B, 390C; 2018–19) and advanced course design (Uni Stu 390Z; 2020)"
   - "UCI DTEI Mentoring Excellence Program workshop (2020): Balancing Academics and Wellness"
-
-# Syllabus files present in the old WordPress media library (not linked from the old Teaching page).
-# Which course and term each belongs to is not confirmed; not shown until Aydin says.
-syllabi_unlinked:
-  - "/wp-content/uploads/2023/12/aMohseniSyllabi.pdf"
-  - "/wp-content/uploads/2023/12/aMohseniSyllabusPhilosophyOfScience.pdf"
-  - "/wp-content/uploads/2019/11/SyllabusPhilosophyOfScience.pdf"
-  - "/wp-content/uploads/2019/11/SyllabusInductiveLogic.pdf"

@@ -7,6 +7,7 @@
 
 # P15
 - title: "A Bayesian Model of Optimal Science Funding"
+  slides: "/assets/slides/science-funding.pdf"   # latest deck (Aydin, 12 Nov 2026: most recent version)
   paper_slug: bayesian-grant-funding
   venue: "Manifest Conference"
   city: "Berkeley"
@@ -19,6 +20,7 @@
 
 # P14
 - title: "A Mathematical Unification of Learning and Evolution"
+  slides: "/assets/slides/learning-and-evolution.pdf"   # latest deck (Aydin, 12 Nov 2026: most recent version)
   paper_slug: ""
   venue: "ILIAD 2026 Conference"
   city: "Berkeley"
@@ -40,6 +42,7 @@
 
 # P12: A Bayesian Reduction of Causation
 - title: "A Bayesian Reduction of Causation"
+  slides: "/assets/slides/bayesian-causation.pdf"   # latest deck (Aydin, 12 Nov 2026: most recent version)
   paper_slug: bayesian-causation
   venue: "Philosophy of Science Association Biennial"   # CV: "Philosophy of Science Biennial Conference"; this site's name for the series (as for New Orleans and Pittsburgh, and on exproof.ai)
   city: "San Diego"
@@ -68,6 +71,7 @@
 
 # P11: Learning the Value of Value Learning (2026 venues)
 - title: "Learning the Value of Value Learning"
+  slides: "/assets/slides/value-of-value-learning.pdf"   # latest deck (Aydin, 12 Nov 2026: most recent version)
   paper_slug: value-of-value-learning
   venue: "Philosophy, Politics, and Economics Conference"
   city: "London"
@@ -168,6 +172,7 @@
   video: ""
   cv_id: P12
 - title: "Intervention and Backfire in the Replication Crisis"
+  slides: "/assets/slides/intervention-and-backfire.pdf"   # latest deck (Aydin, 12 Nov 2026: most recent version)
   paper_slug: ""
   venue: "Center for Philosophy of Science"
   city: "Pittsburgh"
@@ -189,6 +194,7 @@
   video: ""
   cv_id: P11
 - title: "AI Alignment as a Principal-Agent Problem"
+  slides: "/assets/slides/principal-agent.pdf"   # latest deck (Aydin, 12 Nov 2026: most recent version)
   paper_slug: principal-agent
   venue: "Foundations of Cooperative AI Lab Seminar"
   city: "Pittsburgh"
@@ -229,6 +235,7 @@
   video: ""
   cv_id: P9
 - title: "Why are the Social Sciences Hard? Two New Hypotheses"
+  slides: "/assets/slides/social-sciences-hard.pdf"   # latest deck (Aydin, 12 Nov 2026: most recent version)
   paper_slug: social-sciences-hard
   venue: "Ninth Quadrennial Fellows Conference"
   city: "Miami"
@@ -257,6 +264,7 @@
 
 # 2022
 - title: "HARKing: from Misunderstanding to Misprescription"
+  slides: "/assets/slides/harking.pdf"   # latest deck (Aydin, 12 Nov 2026: most recent version)
   paper_slug: harking
   venue: "Scientific Progress: Individual and Collective"
   city: "Amsterdam"
@@ -335,6 +343,7 @@
   video: ""
   cv_id: P6
 - title: "On the Emergence of Minority Disadvantage"
+  slides: "/wp-content/uploads/2019/10/SlidesEmergenceOfMinorityDisadvantage.pdf"   # latest deck (Aydin, 12 Nov 2026: most recent version)
   paper_slug: red-king
   venue: "APA: Central Division Meeting"
   city: "Denver"
@@ -377,6 +386,7 @@
   video: ""
   cv_id: P5
 - title: "Truth and Conformity on Networks"
+  slides: "/wp-content/uploads/2019/10/SlidesTruthAndConformity.pdf"   # latest deck (Aydin, 12 Nov 2026: most recent version)
   paper_slug: truth-and-conformity
   venue: "Philosophy of Science Association Biennial"
   city: "Seattle"
@@ -401,6 +411,7 @@
   video: ""
   cv_id: P4
 - title: "Stochastic Stability and Disagreements Between Dynamics"
+  slides: "/wp-content/uploads/2019/10/SlidesStochasticStabiility.pdf"   # latest deck (Aydin, 12 Nov 2026: most recent version)
   paper_slug: stochastic-stability
   venue: "Generalized Theory of Evolution Conference"
   city: "Düsseldorf"
@@ -429,6 +440,7 @@
 
 # 2015
 - title: "Self-Assembling Networks"
+  slides: "/assets/slides/self-assembling-networks.pdf"   # latest deck (Aydin, 12 Nov 2026: most recent version)
   paper_slug: self-assembling-networks
   venue: "IMBS R. D. Luce Conference"
   city: "Irvine"
@@ -437,6 +449,7 @@
   video: ""
   cv_id: P2
 - title: "Limitations of Equilibrium Concepts in Evolutionary Games"
+  slides: "/wp-content/uploads/2019/10/SlidesLimitsOfECinEGT.pdf"   # latest deck (Aydin, 12 Nov 2026: most recent version)
   paper_slug: equilibrium-concepts
   venue: "International Society for History, Philosophy & Social Studies of Biology Biennial Meeting"
   city: "Montreal"
