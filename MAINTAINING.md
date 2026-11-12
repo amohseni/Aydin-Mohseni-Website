@@ -14,7 +14,6 @@ How Aydin and Claude keep the site current. Content lives in YAML files; templat
 | A workshop page | `src/_data/workshops.yml` |
 | A collaborator's name, website or shared works | `src/_data/coinquirers.yml` |
 | An infographic or sketch | `src/_data/sketchbook.yml` (images in `src/assets/img/`) |
-| The influences section | `src/_data/influences.yml` |
 | A research strand's essay, model or selected works | `src/_data/strands.yml` |
 | Anything on the CV | `cv/amohseni.CV.tex` |
 | An old CV address that should serve the current CV | `src/_data/legacy_cv_paths.yml` |
@@ -25,8 +24,8 @@ Field names for each file are listed in `docs/BRIEF.md` under "Data schemas".
 ### Notes on common changes
 
 - **A paper is accepted or published.** Update its record in `publications.yml` (status, venue, volume, issue, pages, DOI, year, `verified` source), and the matching entry in the CV. Take citation details from Crossref or the journal page, not from memory. Then run `node tools/check_consistency.mjs` to confirm the CV and the data agree.
-- **A talk.** Add it to `talks.yml` with a full date (`YYYY-MM-DD`) if known. The home page and the Research page split talks into upcoming and past by comparing each date with the date of the build, so the nightly build moves a talk from upcoming to past the day after it happens, with no commit needed. A month-only date (`YYYY-MM`) counts as upcoming through the end of that month; a year-only date counts as upcoming only if the year has not begun, so give a talk in the current year at least its month. Workshop pages use their `end` date the same way (registration links show only while a workshop is upcoming).
-- **A file (PDF, slides).** Put it under `src/assets/files/` and link it as `/assets/files/<name>.pdf`. Files from the old site stay at their original paths under `src/wp-content/uploads/`.
+- **A talk.** Add it to `talks.yml` with a full date (`YYYY-MM-DD`) if known. The home page and the Talks page split talks into upcoming and past by comparing each date with the date of the build, so the nightly build moves a talk from upcoming to past the day after it happens, with no commit needed. A month-only date (`YYYY-MM`) counts as upcoming through the end of that month; a year-only date counts as upcoming only if the year has not begun, so give a talk in the current year at least its month. Workshop pages use their `end` date the same way (registration links show only while a workshop is upcoming).
+- **A file (PDF).** Slides go in `src/assets/slides/` (compress to under 5 MB, e.g. Ghostscript `-dPDFSETTINGS=/ebook`), paper drafts in `src/assets/papers/`, syllabi in `src/assets/syllabi/`. Link a deck from its talk with `slides:` on the talk's newest entry in `talks.yml` (and from the paper with `links.slides`), a syllabus with `syllabus:` on the course in `teaching.yml`. Files from the old site stay at their original paths under `src/wp-content/uploads/`.
 - **Unconfirmed facts.** Leave them out, or mark the element with `data-verify="what needs confirming"`. Append the question to `docs/OPEN-QUESTIONS.md`. Open any page with `#review` at the end of its address to see what is marked.
 
 ## How the CV builds

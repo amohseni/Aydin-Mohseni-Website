@@ -50,7 +50,7 @@ Eleventy 3 (already installed; `npx eleventy` builds `src/` to `_site/`). Nunjuc
 | `/about/` | About | Full bio, appointments, education, Peace Corps, Erdős number, profiles, contact, colophon |
 | `/cv.pdf` | CV | Built by CI from `cv/amohseni.CV.tex` |
 | `/meet/` | Redirect | Instant meta refresh + JS to `https://calendar.app.google/pe98GGpL8dwdoqbp6` |
-| old URLs | Redirect stubs | `/research/` stays; `/talks/` → `/research/#talks`; `/teaching-2/` → `/teaching/`; `/computational-models/` → `/models/`; `/infographics/` and `/sketches/` → `/sketchbook/`; `/ai-agency-workshop/` → `/workshops/ai-agency-2026/`; `/formal-models-in-science-workshop/` → `/workshops/metascience-2025/` |
+| old URLs | Redirect stubs | `/research/` stays; `/talks/` is its own page; `/teaching-2/` → `/teaching/`; `/computational-models/` → `/models/`; `/infographics/` and `/sketches/` → `/sketchbook/`; `/ai-agency-workshop/` → `/workshops/ai-agency-2026/`; `/formal-models-in-science-workshop/` → `/workshops/metascience-2025/` |
 
 Navigation: Research, Models, Teaching, Sketchbook, About, CV, ∃xProof AI (external, https://exproof.ai/), theme toggle. Footer repeats navigation, email `amohseni [at] cmu [dot] edu` (obfuscated, as now), Google Scholar `https://scholar.google.com/citations?user=CvN3cf4AAAAJ&hl=en`, GitHub `https://github.com/amohseni`, PhilPeople and ORCID only if verified, and a one-line colophon (Computer Modern by Donald Knuth; design shared with ∃xProof AI).
 

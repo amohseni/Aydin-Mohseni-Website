@@ -18,7 +18,7 @@ description: "Courses taught by Aydin Mohseni at Carnegie Mellon University, the
 <h2 class="list-head{% if loop.first %} list-head--first{% endif %}">{{ inst }}</h2>
 <ul class="featured courses">
   {%- for c in teaching.courses %}{% if c.institution == inst %}
-  <li><span class="t">{{ c.title }}</span><span class="d">{{ c.terms | join(", ") }}</span></li>
+  <li><span class="t">{{ c.title }}</span><span class="d">{{ c.terms | join(", ") }}{% if c.syllabus %} · <a href="{{ c.syllabus | url }}">Syllabus</a>{% endif %}</span></li>
   {%- endif %}{% endfor %}
 </ul>
 {%- endfor %}

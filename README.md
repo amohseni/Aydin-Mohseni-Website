@@ -8,7 +8,7 @@ This repository replaces the WordPress site at aydinmohseni.com with a static si
 
 | Path | What it holds |
 |---|---|
-| `src/_data/*.yml` | All content that changes: profile, publications, talks, models, teaching, workshops, co-inquirers, sketchbook, influences, research strands. |
+| `src/_data/*.yml` | All content that changes: profile, publications, talks, models, teaching, workshops, co-inquirers, sketchbook (infographics on Models), research strands. |
 | `src/*.njk`, `src/workshops/workshop.njk` | Page templates (one workshop template makes a page for each workshop in `workshops.yml`). |
 | `src/_includes/` | The base layout and shared macros. |
 | `src/assets/` | Stylesheet, fonts (Computer Modern, self-hosted), images, and the JavaScript models. |

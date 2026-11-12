@@ -201,6 +201,9 @@ a.xp, a:has(> .exists) { color: var(--fg) !important; }
 .hero .who .nw { white-space: nowrap; }
 .page-head { padding-block: 4rem 3rem; }
 .page-head { --h1: clamp(1.9rem, 4vw, 2.7rem); }
+/* Workshop header image: one 3:2 format for every workshop, under the title, body-column width. */
+.hero .ws-image { display: block; width: 100%; max-width: var(--measure); height: auto; aspect-ratio: 3 / 2; object-fit: cover; margin: 2.2rem 0 0; }
+:root[data-theme="dark"] .hero .ws-image { filter: brightness(0.8) contrast(1.05); }
 
 /* Home intro: the portrait fills the label column (like "Dynamics" below it); the text starts on the
    body column's left edge, the same grid as "Chaos on the simplex" (Aydin, 31 Oct 2026). */

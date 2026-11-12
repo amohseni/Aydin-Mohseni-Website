@@ -135,6 +135,7 @@ export default function (eleventyConfig) {
         byKey.set(key, g);
         groups.push(g);
       }
+      if (t.slides && !g.slides) g.slides = t.slides;   // one deck per talk: the newest entry's
       g.occasions.push({ ...t, upcoming: isUpcoming(t.date, BUILD) });
     }
     return groups;

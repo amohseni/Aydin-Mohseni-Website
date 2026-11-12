@@ -63,8 +63,9 @@
   program_pdf: "/wp-content/uploads/2026/09/Workshop_Program___AI_Agency___Interpretability-1.pdf"
   registration: "https://form.jotform.com/261945223896064"
   registration_note: "Attendance was free; registration was requested."
-  image: "/wp-content/uploads/2026/07/AI-Agency-Interp-825x510.png"
-  image_alt: "Header image of the AI Agency and Interpretability Workshop page"
+  # Header image from the old workshop page (original 1254 x 1254), widened to 3:2 by extending its plain background.
+  image: "/assets/img/workshops/ai-agency-2026.webp"
+  image_alt: "White relief of a face whose head dissolves into a network of nodes, above a row of white chess pieces"
   verify_note: "Organizers, hosts, room and Sunday end time from the program PDF. Description paraphrases the old page. CV title differs ('CMU AI & Agency Workshop', 'Fall 2026')."
 
 - slug: metascience-2025
@@ -121,8 +122,9 @@
   program_pdf: "/wp-content/uploads/2025/08/Workshop_Program___Formal_Models_in_Metascience.pdf"
   registration: "https://form.jotform.com/251726081824154"
   registration_note: "Attendance was free; registration was requested."
-  image: "/wp-content/uploads/2025/06/ChatGPT-Image-Jun-22-2025-05_30_47-PM.png"
-  image_alt: "Header image of the Formal Models in Metascience Workshop page"
+  # Header image from the old workshop page (original 1536 x 1024, 3:2).
+  image: "/assets/img/workshops/metascience-2025.webp"
+  image_alt: "Line drawing of a network that turns into a grid of filled and open dots, then scattered points"
   verify_note: "The old page's program link points to the AI Agency workshop PDF by mistake. The program used here (/wp-content/uploads/2025/08/Workshop_Program___Formal_Models_in_Metascience.pdf) was opened on 30 Oct 2026: its title, dates, room, hosts and speakers match this page, and it names the organizers. CV: 'Formal Models in Metascience Workshop (Pittsburgh, Summer 2025)'."
 
 # Other organizing listed in the CV (no page of its own; `page: false`).

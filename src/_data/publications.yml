@@ -22,6 +22,7 @@
   article_number: "102197"
   doi: "10.1016/j.shpsa.2026.102197"
   links:
+    slides: "/assets/slides/social-sciences-hard.pdf"
     pdf: "/wp-content/uploads/2024/06/Herrmann-Mohseni-Orona-2024-Why-are-the-Human-Sciences-Hard.pdf"
     journal: "https://doi.org/10.1016/j.shpsa.2026.102197"
   strand: metascience
@@ -43,14 +44,16 @@
   issue: ""
   pages: ""
   doi: ""
-  links: {}
+  links:
+    pdf: "/assets/papers/Mohseni-Role-of-Modeling-in-Improving-Science.pdf"
   strand: metascience
   selected: false
-  summary: ""
+  summary: "A critical survey of formal models of the social structure and epistemic properties of science, and of the assumption that such models support meaningful inferences about them: what this research has shown, what it faces, and the pressing open questions."
+  summary_sources: ["abstract of the May 2024 draft (laptop)"]
   exproof: ""
   verified: cv
   verify: true
-  verify_note: "No Crossref record found (query 30 Oct 2026). Citation from the CV only; commissioned article. No summary source available."
+  verify_note: "No Crossref record found (query 30 Oct 2026). Citation from the CV only; commissioned article. PDF and summary from the May 2024 draft on Aydin's laptop (posted at his request, 12 Nov 2026)."
 
 - slug: methods-for-modelers
   title: "Methods for Modelers of Science"
@@ -177,6 +180,7 @@
   pages: "301-325"
   doi: "10.1093/bjps/axx039"
   links:
+    slides: "/assets/slides/self-assembling-networks.pdf"
     pdf: "/wp-content/uploads/2019/01/Barret-Skyrms-Mohseni-2018-Self-Assembling-Networks.pdf"
     journal: "https://doi.org/10.1093/bjps/axx039"
     model: "https://amohseni.shinyapps.io/Self-Assembling-Networks/"
@@ -220,6 +224,7 @@
   status: under-review
   venue: ""
   links:
+    slides: "/assets/slides/bayesian-causation.pdf"
     pdf: "/wp-content/uploads/2026/03/A_Bayesian_Reduction_of_Causation.pdf"
   strand: ai-safety
   selected: true
@@ -235,6 +240,7 @@
   status: under-review
   venue: ""
   links:
+    slides: "/assets/slides/value-of-value-learning.pdf"
     arxiv: "2511.17714"
   strand: ai-safety
   selected: true
@@ -252,6 +258,7 @@
   revise_and_resubmit: true
   venue: ""
   links:
+    slides: "/assets/slides/harking.pdf"
     pdf: "/wp-content/uploads/2020/11/Mohseni-2020-HARKing-from-Misdiagnosis-to-Misprescription-2.pdf"
     philsci: "https://philsci-archive.pitt.edu/18523"
     model: "https://amohseni.shinyapps.io/Reporting-Protocols-and-the-Reliability-of-Science/"
@@ -334,6 +341,7 @@
   status: in-progress
   venue: ""
   links:
+    slides: "/assets/slides/science-funding.pdf"
     model: "https://amohseni.shinyapps.io/Grant-Funding-and-Scientific-Output-Model/"
     code: "https://github.com/amohseni/Grant-Funding-and-Scientific-Output-Model"
   strand: metascience
@@ -349,7 +357,8 @@
   year: ""
   status: in-progress
   venue: ""
-  links: {}
+  links:
+    slides: "/assets/slides/principal-agent.pdf"
   strand: ai-safety
   selected: true
   summary: "Formal models of delegation, incentives, and misalignment."
@@ -392,6 +401,7 @@
   status: in-progress
   venue: ""
   links:
+    pdf: "/assets/papers/Mohseni-Huttegger-Are-Nash-Equilibria-Rational.pdf"
     model: "https://amohseni.shinyapps.io/Near-Zero-Sum-Game/"
     code: "https://github.com/amohseni/Near-Zero-Sum-Game"
   strand: methods
