@@ -25,6 +25,9 @@
   {#- Status first, as a small tag (like "Upcoming" on talks); each segment stays whole, so a
       separator never ends a line. -#}
   <p class="who"><span class="tag">{{ "Upcoming" if isUpcoming else "Past event" }}</span> <span class="nw"><b>{{ ws.dates | replace("-", "&ndash;") | safe }}</b></span> <span class="seg">·&nbsp;{{ ws.place }}</span></p>
+  {%- if ws.image %}
+  <img class="ws-image" src="{{ ws.image | url }}" alt="{{ ws.image_alt }}" width="1500" height="1000" decoding="async" fetchpriority="high">
+  {%- endif %}
 </section>
 
 {% call section("About", "about") %}
