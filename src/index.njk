@@ -82,7 +82,7 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
   <li{% if t.verify %} data-verify="{{ t.verify_note }}"{% endif %}><span class="t">{% if t.paper_slug %}<a href="{{ research }}#pub-{{ t.paper_slug }}">{{ t.title }}</a>{% else %}{{ t.title }}{% endif %}</span><span class="d">{{ t.venue }}, {{ t.city }}, {{ t.date | formatDate }}.{% if t.video %} <a href="{{ t.video }}">Video</a>.{% endif %}</span></li>
   {%- endfor %}
 </ul>
-<p class="more"><a href="{{ research }}#talks">All talks</a></p>
+<p class="more"><a href="{{ '/talks/' | url }}">All talks</a></p>
 {% endcall %}
 
 
