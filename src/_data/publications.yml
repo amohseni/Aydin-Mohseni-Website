@@ -303,6 +303,23 @@
 
 # ---------------------------------------------------------------- in progress
 
+- slug: mutualism-asymmetry
+  title: "Human-AI Mutualism Is Unstable under Capability Asymmetry"
+  authors: ["Aydin Mohseni"]
+  year: 2026
+  status: in-progress
+  venue: ""
+  links:
+    arxiv: "2611.23322"
+    code: "https://github.com/amohseni/mutualism-asymmetry"
+  strand: ai-safety
+  selected: true
+  summary: "Hoping that humans and AI will need each other, and so keep the relationship good for both, is no substitute for alignment. In a game-theoretic model, humans stay as well off as before AI only while they have leverage over it; once they have none, only alignment protects them, and against an AI with insatiable goals the alignment required approaches perfect alignment as capability grows."
+  summary_sources: ["arXiv:2611.23322 abstract"]
+  exproof: ""
+  verified: arxiv
+  verify_note: "Posted to arXiv 15 Nov 2026 (v1; cs.AI, cs.GT). Code link from the arXiv comments field. Not in the CV yet. Listed under In progress because no submission status is known."
+
 - slug: science-ai
   title: "Why and How to Do Science When AI Is Better at It: A Framework Grounded in Human Understanding and Direction"
   authors: ["Hoda Heidari", "Aydin Mohseni"]
