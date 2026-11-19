@@ -2,7 +2,7 @@
 layout: layouts/base.njk
 title: Teaching
 permalink: /teaching/
-description: "Courses taught by Aydin Mohseni at Carnegie Mellon University, the University of Pennsylvania and the University of California, Irvine, with summer schools and teaching training."
+description: "Courses taught by Aydin Mohseni at Carnegie Mellon University, the University of Pennsylvania and the University of California, Irvine, with summer schools, teaching training, and an interactive primer on AI."
 ---
 {%- from "partials/macros.njk" import section with context -%}
 {%- set institutions = [] -%}
@@ -10,8 +10,16 @@ description: "Courses taught by Aydin Mohseni at Carnegie Mellon University, the
 
 <section class="hero page-head" aria-labelledby="t-title">
   <h1 id="t-title">Courses and summer schools</h1>
-  <p class="who"><a href="#courses">University courses</a> ({{ teaching.courses.length }}) · <a href="#short-courses">Summer schools</a> ({{ teaching.short_courses.length }}) · <a href="#training">Training</a> · <a href="{{ '/models/' | url }}#teaching-models">Teaching models</a></p>
+  <p class="who"><a href="#primer">Primer on AI</a> · <a href="#courses">University courses</a> ({{ teaching.courses.length }}) · <a href="#short-courses">Summer schools</a> ({{ teaching.short_courses.length }}) · <a href="#training">Training</a> · <a href="{{ '/models/' | url }}#teaching-models">Teaching models</a></p>
 </section>
+
+{% call section("Primer", "primer") %}
+<ul class="featured">
+  {%- for m in teaching.materials %}
+  <li><span class="t"><a href="{{ m.href | url }}">{{ m.title }}</a></span><span class="d">{{ m.summary }}</span></li>
+  {%- endfor %}
+</ul>
+{% endcall %}
 
 {% call section("Courses", "courses") %}
 {%- for inst in institutions %}

@@ -106,7 +106,8 @@ jobs:
           node tools/test-models-community.mjs
 
       - name: Check links, alt text, dashes and meta tags
-        run: node tools/check.mjs ${{ steps.cv.outcome == 'success' && ' ' || '--allow-missing /cv.pdf' }}
+        # The primer is copied in after this check (step below), so its link is allowed here.
+        run: node tools/check.mjs --allow-missing /teaching/primer-on-ai/ ${{ steps.cv.outcome == 'success' && ' ' || '--allow-missing /cv.pdf' }}
 
       - name: Install Chromium for the layout check
         run: |
