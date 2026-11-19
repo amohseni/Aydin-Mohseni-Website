@@ -3,6 +3,13 @@
 # Courses are newest first; a course taught in several terms is one entry.
 # `syllabus`: the latest syllabus for that course (from Aydin's laptop, 12 Nov 2026).
 
+# Teaching materials I've written. The primer is its own repo (amohseni/AI-Safety-Fundamentals),
+# copied to /teaching/primer-on-ai/ by the deploy workflow.
+materials:
+  - title: "A Primer on AI"
+    href: "/teaching/primer-on-ai/"
+    summary: "An interactive introduction to how modern AI systems work, from a single neuron to the alignment problem. I wrote it for graduate students teaching themselves the technical background for AI safety research. Each page answers one question with one interactive tool."
+
 courses:
   - title: "Decision Theory & AI Agent Foundations"
     institution: "Carnegie Mellon University"
