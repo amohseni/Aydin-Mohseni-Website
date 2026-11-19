@@ -318,7 +318,7 @@
   summary_sources: ["arXiv:2611.23322 abstract"]
   exproof: ""
   verified: arxiv
-  verify_note: "Posted to arXiv 15 Nov 2026 (v1; cs.AI, cs.GT). Code link from the arXiv comments field. Not in the CV yet. Listed under In progress because no submission status is known."
+  verify_note: "Posted to arXiv 15 Nov 2026 (v1; cs.AI, cs.GT). Code link from the arXiv comments field. CV: Works in Progress (W10 for the Mutualism paper, W9 for Science-AI), per Aydin 19 Nov 2026."
 
 - slug: science-ai
   title: "Why and How to Do Science When AI Is Better at It: A Framework Grounded in Human Understanding and Direction"
@@ -334,7 +334,7 @@
   summary_sources: ["exproof.ai publications.html (first sentence)", "arXiv:2610.36116 abstract (second sentence)"]
   exproof: "https://exproof.ai/publications.html#science-ai"
   verified: arxiv
-  verify_note: "Posted to arXiv 26 Oct 2026 (cs.AI, cs.CY). Not in the CV yet. Listed under In progress because no submission status is known."
+  verify_note: "Posted to arXiv 26 Oct 2026 (cs.AI, cs.CY). CV: Works in Progress (W10 for the Mutualism paper, W9 for Science-AI), per Aydin 19 Nov 2026."
 
 - slug: automated-safety-research
   title: "Bayes-Optimal Automated AI Safety Research via Judgement Aggregation under Resource Constraints"
