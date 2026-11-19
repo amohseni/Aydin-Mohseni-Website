@@ -93,7 +93,7 @@ Each model exports `mount(container, options)` and builds its own canvas, contro
 ## Data schemas (YAML in `src/_data/`)
 
 - `profile.yml`: name, tagline, short_bio (home), long_bio (about, paragraphs), email_obfuscated, links (scholar, github, osf, philpeople, orcid where verified), appointments, education, booking_url.
-- `publications.yml`: list of works: `slug`, `title`, `authors` (list, in the paper's order, Aydin marked by name match), `year`, `status` (published | under-review | in-progress), `venue`, `volume`, `issue`, `pages`, `doi`, `links` (pdf, journal, arxiv, philsci, model, code, data), `strand` (ai-safety | metascience | methods), `selected` (bool, for home), `summary` (one or two sentences, sourced), `exproof` (URL of related ∃xProof AI page, if any), `verified` (source used: crossref | journal | arxiv | cv).
+- `publications.yml`: list of works: `slug`, `title`, `authors` (list, in the paper's order, Aydin marked by name match), `year`, `status` (preprint | published | under-review | in-progress; preprint = on arXiv, not yet accepted), `venue`, `volume`, `issue`, `pages`, `doi`, `links` (pdf, journal, arxiv, philsci, model, code, data), `strand` (ai-safety | metascience | methods), `selected` (bool, for home), `summary` (one or two sentences, sourced), `exproof` (URL of related ∃xProof AI page, if any), `verified` (source used: crossref | journal | arxiv | cv).
 - `talks.yml`: list: `title`, `paper_slug` (if any), `venue`, `city`, `date` (YYYY or YYYY-MM-DD as known), `invited` (bool), `video` (url).
 - `models.yml`: `slug`, `title`, `kind` (research | teaching), `summary`, `app`, `code`, `paper_slug`, `image` (path).
 - `teaching.yml`: courses (title, institution, terms), short_courses, training (condensed).

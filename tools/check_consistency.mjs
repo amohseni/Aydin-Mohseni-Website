@@ -92,6 +92,7 @@ function parseCV(file) {
   const tex = stripComments(fs.readFileSync(file, "utf8"));
   const sections = [
     { status: "published", re: /\\begin\{CVList\}\{PEER-REVIEWED[\s\S]*?\\end\{CVList\}/ },
+    { status: "preprint", re: /\\begin\{CVList\}\{PREPRINTS[\s\S]*?\\end\{CVList\}/ },
     { status: "under-review", re: /\\begin\{CVList\}\{UNDER REVIEW[\s\S]*?\\end\{CVList\}/ },
     { status: "in-progress", re: /\\begin\{CVList\}\{WORKS IN PROGRESS[\s\S]*?\\end\{CVList\}/ },
   ];
@@ -186,7 +187,7 @@ function compare(data, other, otherName, { requireAll, onlyIf = () => true }) {
     else if (o.venue && !w.venue) report(`${id}: venue missing in data; ${otherName} has "${o.venue}"`);
     const dy = w.year == null ? null : String(w.year);
     if (o.year && dy && !/forthcoming/i.test(o.year) && o.year !== dy) report(`${id}: year differs: data ${dy} / ${otherName} ${o.year}`);
-    const statusMatches = o.status === w.status || (otherName !== "CV" && o.status === "in-progress" && w.status === "under-review");
+    const statusMatches = o.status === w.status || (otherName !== "CV" && o.status === "in-progress" && (w.status === "under-review" || w.status === "preprint"));
     if (o.status && w.status && !statusMatches) report(`${id}: status differs: data ${w.status} / ${otherName} ${o.status}`);
     for (const f of ["volume", "issue", "pages"]) {
       if (o[f] && w[f] != null && String(w[f]).replace(/\u2013/g, "-") !== o[f]) report(`${id}: ${f} differs: data ${w[f]} / ${otherName} ${o[f]}`);

@@ -18,6 +18,15 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
   <div class="intro-text">
     <h1 class="tagline" id="home-title"><span class="visually-hidden">Aydin Mohseni, </span>{{ profile.tagline }}</h1>
     <p class="bio">{{ profile.short_bio | linkPhrases(profile.bio_links) | replace("∃", '<span class="exists">∃</span>') | safe }}</p>
+    {%- set preprints = publications | whereStatus("preprint") %}
+    {%- if preprints.length %}
+    {#- Recent arXiv preprints, newest first, linked to arXiv (Aydin, 19 Nov 2026). -#}
+    <p class="bio recent">My recent preprints:
+      {%- for w in preprints %}{% if loop.last and not loop.first %} and{% endif %}
+      {%- set others = w.authors | coauthors %}
+      <a href="{{ w.links.arxiv if '://' in w.links.arxiv else 'https://arxiv.org/abs/' ~ w.links.arxiv }}">{{ w.title.split(":")[0] }}</a>{% if others.length %} (with {{ authorLine(others, coinquirers, true) }}){% endif %}{{ "." if loop.last else ("," if preprints.length > 2 else "") }}
+      {%- endfor %}</p>
+    {%- endif %}
   </div>
 </section>
 
@@ -52,6 +61,7 @@ description: "Aydin Mohseni is a mathematical philosopher at Carnegie Mellon Uni
   {%- set note = verifyNote(w) | string | trim %}
   <li{% if note | length %} data-verify="{{ note }}"{% endif %}><span class="t"><a href="{{ research }}#pub-{{ w.slug }}">{{ w.title }}</a></span><span class="d">
     {%- if w.status == "published" and w.venue %}<i>{{ w.venue }}</i>, {{ "forthcoming" if w.forthcoming else w.year }}.
+    {%- elif w.status == "preprint" %}Preprint, {{ w.year }}.
     {%- elif w.status == "under-review" %}{{ "Revise and resubmit." if w.revise_and_resubmit else "Under review." }}
     {%- else %}In progress.{% endif %}
     {%- set others = w.authors | coauthors %}

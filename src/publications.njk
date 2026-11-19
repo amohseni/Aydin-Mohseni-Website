@@ -7,14 +7,25 @@ description: "Papers by Aydin Mohseni on AI safety, metascience, and methods (fo
 {%- from "partials/macros.njk" import section, work with context -%}
 {#- Structure of exproof.ai publications.html: a count line with jump links, then one section per
     status. Talks and workshops have their own pages. Every work has the anchor #pub-<slug>. -#}
+{%- set preprints = publications | whereStatus("preprint") -%}
 {%- set published = publications | whereStatus("published") -%}
 {%- set review = publications | whereStatus("under-review") -%}
 {%- set progress = publications | whereStatus("in-progress") -%}
 
 <section class="hero page-head" aria-labelledby="r-title">
   <h1 id="r-title">Publications</h1>
-  <p class="who"><a href="#published">Published</a> ({{ published.length }}) · <a href="#under-review">Under review</a> ({{ review.length }}) · <a href="#in-progress">In progress</a> ({{ progress.length }})</p>
+  <p class="who">{% if preprints.length %}<a href="#preprints">Recent preprints</a> ({{ preprints.length }}) · {% endif %}<a href="#published">Published</a> ({{ published.length }}) · <a href="#under-review">Under review</a> ({{ review.length }}) · <a href="#in-progress">In progress</a> ({{ progress.length }})</p>
 </section>
+
+{% if preprints.length %}
+{% call section("Recent preprints", "preprints") %}
+<ol class="works">
+  {%- for w in preprints %}
+  {{ work(w, people=coinquirers, kind="Preprint", cite=true) }}
+  {%- endfor %}
+</ol>
+{% endcall %}
+{% endif %}
 
 {% call section("Published", "published") %}
 <ol class="works">

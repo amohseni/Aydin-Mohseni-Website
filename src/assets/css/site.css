@@ -213,6 +213,7 @@ a.xp, a:has(> .exists) { color: var(--fg) !important; }
 .intro-text > *:first-child { margin-top: 0; }
 .home-hero .tagline { font-size: 1.62rem; line-height: 1.2; margin: 0 0 0.9rem; }
 .home-hero .bio { color: var(--fg); margin: 0; }
+.home-hero .bio.recent { margin-top: 0.9rem; }
 .home-hero { padding-bottom: 2.575rem; }   /* 25% less space before the first section (7.7rem to 5.8rem) */
 
 .eyebrow, .label {
