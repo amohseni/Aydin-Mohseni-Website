@@ -133,7 +133,7 @@
 {%- if forthcoming %}
   note      = {Forthcoming},
 {%- elif bibtype == "unpublished" %}
-  note      = { {{- ("Revise and resubmit" if w.revise_and_resubmit else "Under review") if w.status == "under-review" else "Manuscript" -}} },
+  note      = { {{- ("arXiv:" ~ L.arxiv) if (w.status == "preprint" and L.arxiv) else (("Revise and resubmit" if w.revise_and_resubmit else "Under review") if w.status == "under-review" else "Manuscript") -}} },
 {%- endif %}
 }</pre><button class="copy" type="button">Copy</button></div></details>
       {%- endif %}
