@@ -137,8 +137,10 @@
 
 % Labeled item: left-column label plus right-column content.
 % Optional argument controls extra vertical space after the row.
+% The label is zero-width (\llap) and right-aligned in its column, so a wide
+% label such as W10 never wraps onto a second line.
 \NewDocumentCommand{\CVItem}{O{} m m}{%
-	#2 & #3 \ifstrempty{#1}{\\}{\\[#1]}%
+	\llap{#2} & #3 \ifstrempty{#1}{\\}{\\[#1]}%
 }
 
 % Unlabeled item: preserves the same left indent without printing a label.
