@@ -62,7 +62,7 @@ export function onReducedMotionChange(fn) {
 const TOKEN_DEFAULTS = {
   "--bg": "#fcfcfa", "--fg": "#141413", "--fg-2": "#5d5d58", "--rule": "#e2e2dc",
   "--rule-strong": "#a9a9a2", "--red": "#b0122b", "--red-bright": "#d11c3d",
-  "--green": "#1a7f4e", "--chalk": "#2b2b29"
+  "--blue": "#1f4e8c", "--chalk": "#2b2b29"
 };
 
 // Reads the color tokens from the root element. Cheap enough to call once per frame, but

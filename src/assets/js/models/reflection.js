@@ -83,7 +83,7 @@ export function simulateFutures({ c0, T = FLIPS, n = ENSEMBLE, drift = false, rn
 // ---------- Text ----------
 
 const HOW_HTML = `
-<p>The agent is unsure whether a coin is biased toward heads (chance 0.7) or toward tails (chance 0.3); the slider sets its credence in heads-bias. Each gray path is a future the agent itself thinks possible: draw a hypothesis with its present probabilities, flip ${FLIPS} times, and track its posterior. The red line averages ${ENSEMBLE.toLocaleString("en-US")} such futures. A path turns green once it stays within 0.02 of 0 or 1.</p>
+<p>The agent is unsure whether a coin is biased toward heads (chance 0.7) or toward tails (chance 0.3); the slider sets its credence in heads-bias. Each gray path is a future the agent itself thinks possible: draw a hypothesis with its present probabilities, flip ${FLIPS} times, and track its posterior. The red line averages ${ENSEMBLE.toLocaleString("en-US")} such futures. A path turns blue once it stays within 0.02 of 0 or 1.</p>
 <p>Van Fraassen's (1984) Reflection principle says \\(P(A \\mid P_{\\text{later}}(A) = x) = x\\). It implies that present credence equals expected later credence. A Bayesian who forecasts with its own probabilities satisfies this exactly: its credences form a martingale, \\(\\mathbb{E}[P_{t+1}(A) \\mid P_t] = P_t(A)\\). The paths still spread toward 0 or 1, and the share ending near 1 approaches the present credence. The agent expects to become more certain, but not in any particular direction.</p>
 <p>The agent who expects to change its mind moves ${Math.round(DRIFT * 100)} percent of the remaining way toward heads-bias after each Bayesian update. It foresees this, so its average forecast rises, Reflection fails, and it is open to a diachronic Dutch book.</p>
 <p>Source: B. C. van Fraassen (1984), &ldquo;Belief and the Will,&rdquo; <i>The Journal of Philosophy</i> 81(5), <span data-verify="end page not in the Crossref record">235-256</span>, <a href="https://doi.org/10.2307/2026388">doi:10.2307/2026388</a>.</p>
@@ -126,7 +126,7 @@ export function mount(container, options = {}) {
   let drift = options.drift === true;
   let sim = null, shownIdx = [];
   let W = 1, Hh = 1;
-  // Phases of one cycle: grow (the futures unfold flip by flip), hold, sweep (green on settled
+  // Phases of one cycle: grow (the futures unfold flip by flip), hold, sweep (blue on settled
   // paths), hold, fade. tau is the flip clock (0..FLIPS).
   const FLIP_MS = 150, HOLD1 = 700, SWEEP = 900, HOLD2 = 2600, FADE = 700;
   let phase = "grow", phaseT = 0, tau = 0, alpha = 1;
@@ -196,7 +196,7 @@ export function mount(container, options = {}) {
     // How far each path is drawn.
     const k = Math.floor(tau), f = smootherstep(tau - k);
     const T1 = sim.T + 1;
-    const greenUpTo = phase === "sweep" ? smootherstep(phaseT / SWEEP) * FLIPS
+    const blueUpTo = phase === "sweep" ? smootherstep(phaseT / SWEEP) * FLIPS
       : (phase === "hold2" || phase === "fade" || phase === "still") ? FLIPS + 1 : -1;
     // A path has settled from the first flip after which it stays within 0.02 of the end it finishes at.
     const settledAt = (i) => {
@@ -223,16 +223,16 @@ export function mount(container, options = {}) {
         color: tk["--chalk"], width: 1, jitter: 0.22, chunk: 6, dpr: sizer.dpr, alpha: 0.3 * alpha, salt: j * 13 + 1
       });
     });
-    // Green: settled parts of paths, swept in from the left.
-    if (greenUpTo >= 0) {
+    // Blue: settled parts of paths, swept in from the left.
+    if (blueUpTo >= 0) {
       shownIdx.forEach((i, j) => {
         const s = settledAt(i);
-        if (s < 0 || s > greenUpTo) return;
+        if (s < 0 || s > blueUpTo) return;
         const pts = [];
-        const end = Math.min(FLIPS, Math.floor(greenUpTo));
+        const end = Math.min(FLIPS, Math.floor(blueUpTo));
         for (let t = s; t <= end; t++) pts.push(X(t), Y(sim.paths[i * T1 + t]));
         if (pts.length >= 4) chalkStroke(ctx, pts, {
-          color: tk["--green"], width: 1.25, jitter: 0.15, chunk: 6, dpr: sizer.dpr, alpha: 0.75 * alpha, salt: j * 7 + 3, grain: false
+          color: tk["--blue"], width: 1.25, jitter: 0.15, chunk: 6, dpr: sizer.dpr, alpha: 0.75 * alpha, salt: j * 7 + 3, grain: false
         });
       });
     }

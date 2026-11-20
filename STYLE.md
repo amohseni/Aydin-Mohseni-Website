@@ -69,7 +69,7 @@ Computer Modern is thin on screens: keep the sizes in `site.css`, never synthesi
 
 ## 3. Color
 
-Day (paper) is the default. Night uses the ∃xProof AI palette exactly. A reader's choice is stored by the Night/Day button; otherwise the system setting decides.
+Day (paper) is the default. Night uses the ∃xProof AI palette, except that its green is replaced by the blue below. A reader's choice is stored by the Night/Day button; otherwise the system setting decides.
 
 | Token | Day | Night | Use |
 |---|---|---|---|
@@ -78,7 +78,7 @@ Day (paper) is the default. Night uses the ∃xProof AI palette exactly. A reade
 | `--fg-2` | #5d5d58 | #b8b8b3 | Secondary text, metadata, labels. |
 | `--rule`, `--rule-strong` | #e2e2dc, #a9a9a2 | #2c2c2a, #6c6c68 | `--rule` inside tables and the citation box; `--rule-strong` (at half strength) for the masthead line. Never for text. |
 | `--red`, `--red-bright` | #b0122b, #d11c3d | same | Link hover, the current page, the wordmark Δ, converged or winning states in models. Not for small body text. |
-| `--green` | #1a7f4e | #1fa463 | A found or converged path in a model only. |
+| `--blue` | #1f4e8c | #7fb2e5 | A found or converged path in a model only. |
 | `--chalk` | #2b2b29 | #d8d8d2 | Model strokes. |
 
 Body text contrast is at least 4.5:1 in both themes. The paper grain behind the page sits at 4% opacity by day and 2.5% by night and never moves. Text, controls and tables stay crisp.
