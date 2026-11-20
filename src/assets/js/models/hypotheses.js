@@ -117,7 +117,7 @@ export class HypothesisSpace {
 const HOW_HTML = `
 <p>A coin's hidden chance of heads is one of 19 values, \\(0.05, 0.10, \\dots, 0.95\\). The learner starts with three named hypotheses (0.20, 0.50, 0.80) and a catch-all, &ldquo;other,&rdquo; for the sixteen values it has not named; each of the four gets prior 1/4. After each flip it updates by Bayes' rule within its partition. The catch-all predicts heads with the average chance of its members, weighted by their probabilities within it.</p>
 <p>When the catch-all's probability passes the slider's threshold, the learner names its ${SPLIT_K} most probable members. Each new hypothesis gets the catch-all's probability times its weight within it, and no other cell changes. Total probability stays 1, and every cell gets exactly the probability a learner who had named all 19 values from the start would give it: refinement adds distinctions without revising any credence.</p>
-<p>A hypothesis turns green at probability ${SETTLED}. That stops the run; it is not certainty. In about 3 runs in 100, a neighboring value gets there first.</p>
+<p>A hypothesis turns blue at probability ${SETTLED}. That stops the run; it is not certainty. In about 3 runs in 100, a neighboring value gets there first.</p>
 <p>London and Mohseni (2025) extend the Jeffrey&ndash;Bolker framework to refinements of values, not only of hypotheses, and prove a value-of-information theorem for value refinement. The figure shows only the refinement of hypotheses.</p>
 <p>Source: A. J. London and A. Mohseni (2025), &ldquo;Learning the Value of Value Learning,&rdquo; <a href="https://arxiv.org/abs/2511.17714">arXiv:2511.17714</a>.</p>
 `;
@@ -155,7 +155,7 @@ export function mount(container, options = {}) {
 
   let space, truth, snaps, lastSplit, settledCell, W = 1, Hh = 1;
   // Phases: step (ease from the previous snapshot to the next), split (hold at a refinement),
-  // sweep (green on a settled hypothesis), hold, fade.
+  // sweep (blue on a settled hypothesis), hold, fade.
   const STEP_MS = 260, SPLIT_MS = 900, SWEEP = 900, HOLD = 2600, FADE = 700;
   let phase = "step", phaseT = 0, alpha = 1, xMaxShown = 40;
 
@@ -328,7 +328,7 @@ export function mount(container, options = {}) {
       chalkStroke(ctx, pts, { color: tk["--chalk"], width: 1.05, jitter: 0.2, chunk: 8, dpr: sizer.dpr, alpha: 0.62 * alpha, salt: cid * 17 + 5 });
     });
 
-    // Settled hypothesis: its region swept green, left to right.
+    // Settled hypothesis: its region swept blue, left to right.
     if (settledCell && sweepTo > 0) {
       const cid = settledId, lo = [], hi = [];
       const lastX = X(cols[0].n) + (X(nHead) - X(cols[0].n)) * sweepTo;
@@ -342,12 +342,12 @@ export function mount(container, options = {}) {
       }
       if (lo.length > 1) {
         ctx.save();
-        ctx.globalAlpha = 0.16 * alpha; ctx.fillStyle = tk["--green"];
+        ctx.globalAlpha = 0.16 * alpha; ctx.fillStyle = tk["--blue"];
         ctx.beginPath(); ctx.moveTo(lo[0][0], lo[0][1]);
         for (const p of lo) ctx.lineTo(p[0], p[1]);
         for (let i = hi.length - 1; i >= 0; i--) ctx.lineTo(hi[i][0], hi[i][1]);
         ctx.closePath(); ctx.fill();
-        ctx.globalAlpha = 0.85 * alpha; ctx.strokeStyle = tk["--green"]; ctx.lineWidth = 1.4;
+        ctx.globalAlpha = 0.85 * alpha; ctx.strokeStyle = tk["--blue"]; ctx.lineWidth = 1.4;
         for (const edge of [lo, hi]) { ctx.beginPath(); ctx.moveTo(edge[0][0], edge[0][1]); for (const p of edge) ctx.lineTo(p[0], p[1]); ctx.stroke(); }
         ctx.restore();
       }
@@ -367,7 +367,7 @@ export function mount(container, options = {}) {
         ctx.fillRect(g.xb, yTop, g.bandW, h);
       } else {
         const isSettled = c.id === settledId && sweepTo >= 1;
-        ctx.fillStyle = isSettled ? rgba(tk["--green"], 0.55) : rgba(tk["--chalk"], 0.06 + 0.5 * c.mass);
+        ctx.fillStyle = isSettled ? rgba(tk["--blue"], 0.55) : rgba(tk["--chalk"], 0.06 + 0.5 * c.mass);
         ctx.fillRect(g.xb, yTop, g.bandW, h);
       }
       ctx.strokeStyle = tk["--bg"]; ctx.lineWidth = 1;
@@ -386,7 +386,7 @@ export function mount(container, options = {}) {
       if (l.h < g.sans * 0.9 && l.c.id !== leader.id) continue;
       if (lastY - l.y < minGap) continue;
       const settledNow = l.c.id === settledId && sweepTo >= 1;
-      ctx.fillStyle = settledNow ? tk["--green"] : (l.c.kind === "named" && l.c.id === leader.id) ? tk["--red"] : tk["--fg-2"];
+      ctx.fillStyle = settledNow ? tk["--blue"] : (l.c.kind === "named" && l.c.id === leader.id) ? tk["--red"] : tk["--fg-2"];
       ctx.fillText(l.c.kind === "catch" ? "other" : fmt(THETAS[l.c.member]), g.xb + g.bandW + 6, l.y);
       lastY = l.y;
     }

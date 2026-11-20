@@ -33,7 +33,7 @@
   title: "Metascience"
   topics: "Grant funding, replication crisis, social epistemology of science"
   model: community
-  caption: "Twelve agents try two actions, one slightly better, and share results with the agents they are linked to. A node's shade is its credence that the better action is better. Green: the community settles on it. Red: it locks in on the worse one."
+  caption: "Twelve agents try two actions, one slightly better, and share results with the agents they are linked to. A node's shade is its credence that the better action is better. Blue: the community settles on it. Red: it locks in on the worse one."
   essay:
     - text: "My metascience work asks how scientific communities produce knowledge, and how to do it better. I study grant funding, the replication crisis, and the social epistemology of science, using Bayesian inference, game theory, network theory, and agent-based models."
       sources: ["old home page bio", "CV research summary"]

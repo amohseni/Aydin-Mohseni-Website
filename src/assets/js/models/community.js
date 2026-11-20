@@ -155,7 +155,7 @@ export function runTrial({ network = "cycle", share = "neighbors", rng = Math.ra
 
 const HOW_HTML = `
 <p>${N_AGENTS} agents choose between actions A and B, which succeed with chances ${P_A} and ${P_B}. B is slightly better, but the agents do not know this. Each round, every agent tries ${TRIALS} times the action it expects to do better, then updates its Beta beliefs by Bayes' rule on its own results and those of the agents it is linked to. A node's shade is that agent's credence that B is better.</p>
-<p>An action nobody tries yields no evidence. If everyone comes to prefer A, nothing corrects their low estimate of B, and the community locks in on the worse action (red). If everyone prefers B, the evidence keeps confirming it (green). A run settles when all agents have taken the same action for ${STABLE} rounds.</p>
+<p>An action nobody tries yields no evidence. If everyone comes to prefer A, nothing corrects their low estimate of B, and the community locks in on the worse action (red). If everyone prefers B, the evidence keeps confirming it (blue). A run settles when all agents have taken the same action for ${STABLE} rounds.</p>
 <p>This is the model of Bala and Goyal (1998), which Zollman (2007) used to study scientific communities. Less connected networks reach the better action more often, but more slowly, because a few unlucky early results cannot reach everyone at once. With this page's parameters, over 500 runs per network (seed 2007), <span data-model-stat="results">the cycle reached the better action in 99.4 percent of runs, the small world in 99.6 percent, and the complete network in 84.8 percent; the cycle took 58 rounds on average to settle, the small world 48, and the complete network 6</span>. Sharing every result with everyone makes any network behave like the complete one.</p>
 <p>Mohseni and Williams (2021) add conformity: agents state opinions publicly, weighing accuracy against agreement with their peers. There too, less centralized and less connected networks do best, sustaining diverse opinion, honest communication, and true belief.</p>
 <p>Sources: V. Bala and S. Goyal (1998), &ldquo;Learning from Neighbours,&rdquo; <i>Review of Economic Studies</i> 65(3), 595-621, <a href="https://doi.org/10.1111/1467-937X.00059">doi:10.1111/1467-937X.00059</a>. K. J. S. Zollman (2007), &ldquo;The Communication Structure of Epistemic Communities,&rdquo; <i>Philosophy of Science</i> 74(5), 574-587, <a href="https://doi.org/10.1086/525605">doi:10.1086/525605</a>. A. Mohseni and C. R. Williams (2021), &ldquo;Truth and Conformity on Networks,&rdquo; <i>Erkenntnis</i> 86(6), 1509-1530, <a href="https://doi.org/10.1007/s10670-019-00167-6">doi:10.1007/s10670-019-00167-6</a>; interactive model at <a href="https://amohseni.shinyapps.io/Truth-and-Conformity-on-Networks/">amohseni.shinyapps.io</a>, code at <a href="https://github.com/amohseni/Truth-and-Conformity-on-Networks">github.com/amohseni</a>.</p>
@@ -173,7 +173,7 @@ export function mount(container, options = {}) {
   const id = "community-" + Math.random().toString(36).slice(2, 8);
   root.innerHTML = `
 <canvas class="model-canvas" role="img" aria-describedby="${id}-desc"></canvas>
-<p id="${id}-desc" class="model-desc${options.visibleDescription ? "" : " visually-hidden"}">${options.description || `${N_AGENTS} agents try two actions, one slightly better than the other, and share their results with the agents they are linked to. Each node's shade is the agent's credence that B is better than A; B is in fact slightly better. When every agent settles on the better action the network sweeps green; when every agent settles on the worse one, it is marked red. Sparse networks settle on the better action more often but more slowly.`}</p>
+<p id="${id}-desc" class="model-desc${options.visibleDescription ? "" : " visually-hidden"}">${options.description || `${N_AGENTS} agents try two actions, one slightly better than the other, and share their results with the agents they are linked to. Each node's shade is the agent's credence that B is better than A; B is in fact slightly better. When every agent settles on the better action the network sweeps blue; when every agent settles on the worse one, it is marked red. Sparse networks settle on the better action more often but more slowly.`}</p>
 <div class="model-controls">
   <span class="model-actions"><button type="button" data-act="pause">Pause</button><button type="button" data-act="restart">Restart</button></span>
   <span class="segmented" role="group" aria-label="Network">
@@ -204,7 +204,7 @@ export function mount(container, options = {}) {
 
   let run = null, edges = [], W = 1, Hh = 1;
   // Playback: tau runs from 0 to run.totalRounds through the precomputed rounds.
-  // Phases: play, sweep (green or red marks), hold, fade.
+  // Phases: play, sweep (blue or red marks), hold, fade.
   const SWEEP = 1100, HOLD = 2600, FADE = 800;
   let phase = "play", phaseT = 0, tau = 0, alpha = 1;
   const roundMs = (r) => 320 / (1 + r / 20) + 40;   // slower at first, then faster
@@ -284,7 +284,7 @@ export function mount(container, options = {}) {
       const a = run.cred[r][i], b = run.cred[Math.min(run.totalRounds, r + 1)][i];
       return a + (b - a) * f;
     };
-    // Outcome marks: sweep angle for green, alpha for red.
+    // Outcome marks: sweep angle for blue, alpha for red.
     const marking = phase === "sweep" || phase === "hold" || phase === "fade" || phase === "still";
     const mk = phase === "sweep" ? smootherstep(phaseT / SWEEP) : marking ? 1 : 0;
     const good = run.outcome === "better", bad = run.outcome === "worse";
@@ -298,10 +298,10 @@ export function mount(container, options = {}) {
     const baseA = (share === "everyone" ? 0.22 : dense ? 0.3 : 0.55) * (1 + 0.5 * pulse);
     edges.forEach(([i, j], e) => {
       const [x1, y1, a1] = nodePos(g, i), [x2, y2, a2] = nodePos(g, j);
-      const green = swept(a1) && swept(a2);
+      const blue = swept(a1) && swept(a2);
       chalkStroke(ctx, [x1, y1, x2, y2], {
-        color: green ? tk["--green"] : tk["--chalk"], width: green ? 1.3 : 1, jitter: 0.2, chunk: 1,
-        dpr: sizer.dpr, alpha: green ? 0.7 : baseA, salt: e * 17 + 5, grain: !green
+        color: blue ? tk["--blue"] : tk["--chalk"], width: blue ? 1.3 : 1, jitter: 0.2, chunk: 1,
+        dpr: sizer.dpr, alpha: blue ? 0.7 : baseA, salt: e * 17 + 5, grain: !blue
       });
     });
     // Nodes: fill tone from paper (credence 0) to ink (credence 1); outline marks the outcome.
@@ -311,7 +311,7 @@ export function mount(container, options = {}) {
       ctx.fillStyle = mixColor(tk["--bg"], tk["--fg"], 0.06 + 0.94 * c);
       ctx.beginPath(); ctx.arc(x, y, g.nodeR, 0, Math.PI * 2); ctx.fill();
       let stroke = tk["--rule-strong"], lw = 1;
-      if (swept(a)) { stroke = tk["--green"]; lw = 2.2; }
+      if (swept(a)) { stroke = tk["--blue"]; lw = 2.2; }
       else if (bad && marking) { stroke = mixColor(tk["--rule-strong"], tk["--red"], mk); lw = 1 + 1.2 * mk; }
       ctx.strokeStyle = stroke; ctx.lineWidth = lw;
       ctx.beginPath(); ctx.arc(x, y, g.nodeR + lw / 2, 0, Math.PI * 2); ctx.stroke();
@@ -327,7 +327,7 @@ export function mount(container, options = {}) {
       ctx.globalAlpha = alpha * mk;
       // On the dark ground --red falls near 3:1 contrast; --red-bright reads better there.
       const darkBg = (parseColor(tk["--bg"]) || [255, 255, 255]).slice(0, 3).reduce((a, v) => a + v, 0) < 384;
-      ctx.fillStyle = good ? tk["--green"] : (darkBg && tk["--red-bright"] ? tk["--red-bright"] : tk["--red"]);
+      ctx.fillStyle = good ? tk["--blue"] : (darkBg && tk["--red-bright"] ? tk["--red-bright"] : tk["--red"]);
       const l1 = good ? "consensus on" : "locked in on", l2 = good ? "the better action" : "the worse action";
       ctx.fillText(l1, g.cx, g.cy - g.sans * 0.75); ctx.fillText(l2, g.cx, g.cy + g.sans * 0.75);
       ctx.globalAlpha = alpha;
@@ -374,7 +374,7 @@ export function mount(container, options = {}) {
       const a = run.trace[last], b = run.trace[last + 1];
       pts.push(X(tau), Y(a + (b - a) * smootherstep(tau - last)));
     }
-    const tcol = marking && good ? tk["--green"] : marking && bad ? tk["--red"] : tk["--chalk"];
+    const tcol = marking && good ? tk["--blue"] : marking && bad ? tk["--red"] : tk["--chalk"];
     if (pts.length >= 4) chalkStroke(ctx, pts, { color: tcol, width: 1.2, jitter: 0.2, chunk: 8, dpr: sizer.dpr, alpha: (marking ? 0.85 : 0.6) * alpha, salt: 3, grain: !marking });
   }
 
