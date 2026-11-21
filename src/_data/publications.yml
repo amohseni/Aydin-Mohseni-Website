@@ -105,6 +105,7 @@
   pages: "485-506"
   doi: "10.7551/mitpress/15452.003.0036"
   links:
+    slides: "/assets/slides/methods-for-modelers.pdf"
     pdf: "/wp-content/uploads/2024/06/Mohseni-2023-Methods-for-Modelers-of-Science.pdf"
     journal: "https://doi.org/10.7551/mitpress/15452.003.0036"
   strand: metascience
@@ -312,7 +313,8 @@
   year: ""
   status: under-review
   venue: ""
-  links: {}
+  links:
+    slides: "/assets/slides/replication-simpsons.pdf"
   strand: metascience
   selected: false
   summary: "Shows that reforms meant to raise reliability, such as lowering the significance threshold or adopting voluntary preregistration, can improve every individual study yet worsen the published literature, because they filter sound studies more stringently than unsound ones. The result is an interventional Simpson's paradox, and it holds for false-discovery rates, sign errors and exaggeration ratios alike."
@@ -421,7 +423,7 @@
   status: in-progress
   venue: ""
   links:
-    pdf: "/assets/papers/Mohseni-Huttegger-Are-Nash-Equilibria-Rational.pdf"
+    slides: "/assets/slides/rationality-nash.pdf"
     model: "https://amohseni.shinyapps.io/Near-Zero-Sum-Game/"
     code: "https://github.com/amohseni/Near-Zero-Sum-Game"
   strand: methods

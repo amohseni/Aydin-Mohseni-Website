@@ -127,3 +127,6 @@ Applied from four review lenses (UX, facts, integration, coherence); details in 
 4. **Status of "Learning the Value of Value Learning".** CV R4: under review (the site follows it). exproof.ai: "Working paper". exproof.ai should move it to under review, or the CV is out of date.
 5. **Principal-agent summary.** The old Research page adds "agents that optimize for reward rather than for the principal's intentions can outperform aligned agents". Not shown (exproof.ai's sentence only) until Aydin confirms it (`summary_unconfirmed` in `publications.yml`).
 6. **CV wording for the PSA Biennial.** The CV's P12 says "Philosophy of Science Biennial Conference" (San Diego 2026); the site writes "Philosophy of Science Association Biennial", as for the earlier PSA talks and on exproof.ai. The CV may want the same name.
+
+## Drafts policy (Aydin, 21 Nov 2026)
+Never post drafts of unpublished papers: titles, abstracts, models and code only. Removed the in-progress Nash draft PDF.
