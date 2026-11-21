@@ -1,7 +1,8 @@
 # Teaching, from the CV (UNIVERSITY TEACHING, SUMMER SCHOOLS & SHORT COURSES, TEACHING TRAINING).
 # Course titles follow the CV; old-site variants are listed in docs/CONTENT-AUDIT.md.
 # Courses are newest first; a course taught in several terms is one entry.
-# `syllabus`: the latest syllabus for that course (from Aydin's laptop, 12 Nov 2026).
+# `syllabus`: the latest syllabus for that course. CMU syllabi are the polished dossier versions
+# (laptop: 0. Plan/_Promotion Materials/_AM Dossier/_Teaching Materials, 27 Aug 2026).
 
 # Teaching materials I've written. The primer is its own repo (amohseni/AI-Safety-Fundamentals),
 # copied to /teaching/primer-on-ai/ by the deploy workflow.
@@ -17,6 +18,7 @@ courses:
     terms: ["Spring 2026"]
   - title: "Philosophy Core II Graduate Seminar"
     institution: "Carnegie Mellon University"
+    syllabus: "/assets/syllabi/cmu-core-seminar-ii.pdf"
     terms: ["Spring 2026", "Spring 2025"]
   - title: "Introduction to Philosophy"
     institution: "Carnegie Mellon University"
