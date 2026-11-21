@@ -421,7 +421,6 @@
   status: in-progress
   venue: ""
   links:
-    pdf: "/assets/papers/Mohseni-Huttegger-Are-Nash-Equilibria-Rational.pdf"
     model: "https://amohseni.shinyapps.io/Near-Zero-Sum-Game/"
     code: "https://github.com/amohseni/Near-Zero-Sum-Game"
   strand: methods
