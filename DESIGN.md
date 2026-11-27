@@ -8,7 +8,7 @@ This site shares its design with [∃xProof AI](https://exproof.ai/) (repository
 - **Section types.** Text sections and wide sections, with the same rules (see `STYLE.md`).
 - **Rules and rhythm.** A sticky masthead with one half-strength rule; no rules between sections; rail labels aligned to the cap line of the text beside them; link targets that land below the menu; closing notes centered in the section's tail.
 - **Margin notes.** Tufte-style sidenotes and margin notes, which become numbered toggles on phones.
-- **Links.** Links in running text and in entry lines (venue, co-authors, Slides, Code) are ink at rest with a thin underline in the menu's gray (`--fg-2`); text and underline turn red on hover and keyboard focus. Titles, headings and the menu are ink with no underline and turn red on hover. No visited style. Red marks the current page.
+- **Links.** Links in running text and in entry lines (venue, co-authors, Slides, Code) are ink at rest with a thin, light warm-gray underline (`--link-line`); text and underline turn red on hover and keyboard focus. Titles, headings and the menu are ink with no underline and turn red on hover. No visited style. Red marks the current page.
 - **Night palette.** Night mode uses exproof.ai's colors exactly.
 - **Animation vocabulary.** From exproof.ai's `search.js`: thin lines, one moving light (a core with a soft glow) in red, quintic smootherstep easing, brief holds at events, gray traces that stay, a blue sweep when something converges, dimming under the text column when a model runs behind the page, one still frame under reduced motion, and a pause when off screen.
 - **Review mode.** Appending `#review` to any address highlights every element marked `data-verify`, as on exproof.ai.

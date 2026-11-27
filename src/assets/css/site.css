@@ -23,6 +23,7 @@
   --fg-2: #5d5d58;        /* graphite: secondary text, metadata, labels */
   --rule: #e2e2dc;        /* hairlines inside tables and the citation box */
   --rule-strong: #a9a9a2; /* masthead line (at half strength), button borders */
+  --link-line: #b2aeac;   /* underline of links in running text (Aydin, 27 Nov 2026) */
   --red: #b0122b;         /* marks, the current page, active states */
   --red-bright: #d11c3d;  /* hover, the wordmark delta, large accent text */
   --blue: #1f4e8c;        /* a found or converged path in models only */
@@ -50,7 +51,7 @@
   :root:not([data-theme="light"]) {
     --bg: #050505; --fg: #f5f5f2; --fg-2: #b8b8b3; --rule: #2c2c2a; --rule-strong: #6c6c68;
     --red: #b0122b; --red-bright: #d11c3d; --blue: #7fb2e5; --chalk: #d8d8d2;
-    --header-bg: rgba(5, 5, 5, 0.88); --code-bg: #111110; --mark: #4a3a10; --sel-fg: #f5f5f2;
+    --link-line: #474545; --header-bg: rgba(5, 5, 5, 0.88); --code-bg: #111110; --mark: #4a3a10; --sel-fg: #f5f5f2;
     --grain-opacity: 0.025;
     --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.6 0 0 0 -0.45'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
     color-scheme: dark;
@@ -59,7 +60,7 @@
 :root[data-theme="dark"] {
   --bg: #050505; --fg: #f5f5f2; --fg-2: #b8b8b3; --rule: #2c2c2a; --rule-strong: #6c6c68;
   --red: #b0122b; --red-bright: #d11c3d; --blue: #7fb2e5; --chalk: #d8d8d2;
-  --header-bg: rgba(5, 5, 5, 0.88); --code-bg: #111110; --mark: #4a3a10; --sel-fg: #f5f5f2;
+  --link-line: #474545; --header-bg: rgba(5, 5, 5, 0.88); --code-bg: #111110; --mark: #4a3a10; --sel-fg: #f5f5f2;
   --grain-opacity: 0.025;
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.6 0 0 0 -0.45'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
   color-scheme: dark;
@@ -111,7 +112,7 @@ a:hover { color: var(--red-bright); }
    hover or keyboard focus. No visited style. Titles, headings, menus and .who jump links keep their
    own colors and stay un-underlined. */
 :is(.bio, .lede, .erdos-path, .body > p:not([class]), figcaption, .model-how-body, .work-summary, .work-venue, .work-links) a {
-  color: var(--fg); text-decoration: underline; text-decoration-color: var(--fg-2);
+  color: var(--fg); text-decoration: underline; text-decoration-color: var(--link-line);
   text-decoration-thickness: 1px; text-underline-offset: 0.2em; text-decoration-skip-ink: auto;
   transition: color 150ms ease, text-decoration-color 150ms ease; }
 :is(.bio, .lede, .erdos-path, .body > p:not([class]), figcaption, .model-how-body, .work-summary, .work-venue, .work-links) a:is(:hover, :focus-visible) {
@@ -737,7 +738,7 @@ details.selected-work > .featured { margin-top: 0; }
 details.how--linked > summary { display: none; }
 details.how--linked { margin-top: 0.6rem; }
 figcaption .how-link { all: unset; display: inline; font: inherit; color: var(--fg); cursor: pointer;
-  text-decoration: underline; text-decoration-color: var(--fg-2); text-decoration-thickness: 1px; text-underline-offset: 0.2em;
+  text-decoration: underline; text-decoration-color: var(--link-line); text-decoration-thickness: 1px; text-underline-offset: 0.2em;
   transition: color 150ms ease, text-decoration-color 150ms ease; }
 figcaption .how-link:focus-visible { outline: 2px solid var(--red-bright); outline-offset: 2px; }
 figcaption .how-link:is(:hover, :focus-visible) { color: var(--red-bright); text-decoration-color: var(--red-bright); }
