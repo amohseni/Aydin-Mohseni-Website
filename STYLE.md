@@ -75,7 +75,8 @@ Day (paper) is the default. Night uses the ∃xProof AI palette, except that its
 |---|---|---|---|
 | `--bg` | #fcfcfa | #050505 | Page background. |
 | `--fg` | #141413 | #f5f5f2 | Primary text, links at rest. |
-| `--fg-2` | #5d5d58 | #b8b8b3 | Secondary text, metadata, labels, the menu, the underline of links in running text. |
+| `--fg-2` | #5d5d58 | #b8b8b3 | Secondary text, metadata, labels, the menu. |
+| `--link-line` | #b2aeac | #474545 | Underline of links in running text at rest (same low contrast with the page in both modes, about 2.1:1). |
 | `--rule`, `--rule-strong` | #e2e2dc, #a9a9a2 | #2c2c2a, #6c6c68 | `--rule` inside tables and the citation box; `--rule-strong` (at half strength) for the masthead line. Never for text. |
 | `--red`, `--red-bright` | #b0122b, #d11c3d | same | Link hover, the current page, the wordmark Δ, converged or winning states in models. Not for small body text. |
 | `--blue` | #1f4e8c | #7fb2e5 | A found or converged path in a model only. |
