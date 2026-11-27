@@ -106,11 +106,16 @@ body::after {
 
 a { color: inherit; text-decoration: none; transition: color 120ms ease; }
 a:hover { color: var(--red-bright); }
-/* Links inside running text are red, as on danielherrmann.ca, so a reader can tell they are links.
-   Titles, author lines, menus and link rows keep their own colors. */
-.bio a, .lede a, .erdos-path a, .body > p:not([class]) a, figcaption a { color: var(--red-bright); }
-.bio a:hover, .lede a:hover, .erdos-path a:hover, .body > p:not([class]) a:hover, figcaption a:hover {
-  color: var(--red-bright); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+/* Links inside running text (and the venue, co-author and link lines of entries): ink with a thin
+   underline in the menu's gray, so a reader can tell they are links; text and underline turn red on
+   hover or keyboard focus. No visited style. Titles, headings, menus and .who jump links keep their
+   own colors and stay un-underlined. */
+:is(.bio, .lede, .erdos-path, .body > p:not([class]), figcaption, .model-how-body, .work-summary, .work-venue, .work-links) a {
+  color: var(--fg); text-decoration: underline; text-decoration-color: var(--fg-2);
+  text-decoration-thickness: 1px; text-underline-offset: 0.2em; text-decoration-skip-ink: auto;
+  transition: color 150ms ease, text-decoration-color 150ms ease; }
+:is(.bio, .lede, .erdos-path, .body > p:not([class]), figcaption, .model-how-body, .work-summary, .work-venue, .work-links) a:is(:hover, :focus-visible) {
+  color: var(--red-bright); text-decoration-color: var(--red-bright); }
 a:focus-visible, button:focus-visible, summary:focus-visible, label:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--red-bright); outline-offset: 2px; }
 ::selection { background: var(--red); color: var(--sel-fg); }
 img { height: auto; }
@@ -150,6 +155,7 @@ main:focus { outline: none; }   /* focused only as the skip link's target */
 /* ∃xProof AI always reads as a red ∃ and black text, even as an inline link: the one exception to
    red body-copy links (Aydin, 1 Nov 2026). Hover still underlines. */
 a.xp, a:has(> .exists) { color: var(--fg) !important; }
+a.xp:is(:hover, :focus-visible), a:has(> .exists):is(:hover, :focus-visible) { text-decoration-color: var(--red-bright); }
 .exists { font-family: var(--math); font-size: 1.04em; line-height: 1; color: var(--red-bright); margin-right: 0.02em; }
 .theme-toggle {
   font: inherit; letter-spacing: inherit; color: var(--fg-2); background: none; border: 0; cursor: pointer;
@@ -730,17 +736,17 @@ details.selected-work > .featured { margin-top: 0; }
 /* "How it works" as a link at the end of a model's caption; the disclosure's own summary hides. */
 details.how--linked > summary { display: none; }
 details.how--linked { margin-top: 0.6rem; }
-figcaption .how-link { all: unset; display: inline; font: inherit; color: var(--red-bright); cursor: pointer; }
+figcaption .how-link { all: unset; display: inline; font: inherit; color: var(--fg); cursor: pointer;
+  text-decoration: underline; text-decoration-color: var(--fg-2); text-decoration-thickness: 1px; text-underline-offset: 0.2em;
+  transition: color 150ms ease, text-decoration-color 150ms ease; }
 figcaption .how-link:focus-visible { outline: 2px solid var(--red-bright); outline-offset: 2px; }
-figcaption .how-link:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+figcaption .how-link:is(:hover, :focus-visible) { color: var(--red-bright); text-decoration-color: var(--red-bright); }
 /* KaTeX math at the size of the surrounding text. */
 .katex { font-size: 1.02em; }
 .katex-display { margin: 0.7rem 0; overflow-x: auto; overflow-y: hidden; }
 
-/* Publications, after danielherrmann.ca: venue and co-authors in one line; links red, underlined on
-   hover; Abstract and Cite open below. */
-.work-venue a, .work-links a, .work-venue .me + a { color: var(--red-bright); }
-.work-venue a:hover, .work-links a:hover { color: var(--red-bright); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+/* Publications, after danielherrmann.ca: venue and co-authors in one line, links styled as in running
+   text (see the top of this file); Abstract and Cite open below. */
 .work-links { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.66rem; margin-bottom: 0.35rem; }
 .work-links a[aria-label] { text-transform: none; letter-spacing: 0.02em; font-size: 0.74rem; }
 .work-more { display: flex; flex-wrap: wrap; gap: 0.3rem 1.3rem; align-items: baseline; }
