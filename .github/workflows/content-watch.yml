@@ -1,0 +1,66 @@
+# Weekly content watch: looks for outside changes the site should reflect and lists them in one
+# GitHub issue, "Content watch". It never edits the site. Each item is a lead to confirm against its
+# source before changing src/_data/ (the monthly routine in MAINTAINING.md works through the issue).
+#
+# Sources: Crossref (new journal records and DOIs), arXiv and OpenAlex (works the site does not
+# list), and every external link on the built site. On a pull request that changes the watch
+# itself, it only prints the report.
+
+name: Content watch
+
+on:
+  schedule:
+    - cron: "41 11 * * 1"   # Mondays, 11:41 UTC (early morning in Pittsburgh)
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "tools/watch_sources.mjs"
+      - ".github/workflows/content-watch.yml"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build the site (for the link check)
+        run: npx eleventy --quiet
+
+      - name: Run the watch
+        run: node tools/watch_sources.mjs --links --out "$RUNNER_TEMP/report.md"
+
+      - name: Show the report
+        run: cat "$RUNNER_TEMP/report.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or update the "Content watch" issue
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          report="$RUNNER_TEMP/report.md"
+          n=$(head -1 "$report" | sed 's/FINDINGS: //')
+          body="$RUNNER_TEMP/body.md"
+          tail -n +3 "$report" > "$body"
+          gh label create content-watch --color BFD4F2 --description "Weekly content watch" 2>/dev/null || true
+          issue=$(gh issue list --label content-watch --state open --json number --jq '.[0].number')
+          if [ "$n" = "0" ]; then
+            if [ -n "$issue" ]; then gh issue comment "$issue" --body "$(date -u +%F): nothing new found."; fi
+            exit 0
+          fi
+          if [ -n "$issue" ]; then
+            gh issue edit "$issue" --body-file "$body"
+            gh issue comment "$issue" --body "$(date -u +%F): report refreshed, $n item(s)."
+          else
+            gh issue create --title "Content watch" --label content-watch --body-file "$body"
+          fi
